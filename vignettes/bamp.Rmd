@@ -1,0 +1,48 @@
+---
+title: "Bayesian Age-Period-Cohort Modelling and Prediction"
+author: "Volker Schmid"
+date: "16th November 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache=FALSE)
+library(bamp)
+```
+
+## Data example
+
+BAMP includes a data example.
+
+```{r load and plot example data set}
+data(apc)
+plot(cases[,1],type="l",ylim=range(cases), ylab="cases", xlab="year", main="cases per age group")
+for (i in 2:8)lines(cases[,i], col=i)
+```
+
+## APC model with random walk first order prior
+```{r Model 1 with RW1 priors}
+model1 <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1",
+              periods_per_agegroup = 5,  verbose=TRUE)
+```
+
+bamp() automatically performs a check for MCMC convergence using Gelman and Rubin's convergence diagnostic. We cann manually check the convergence again:
+
+```{r check model}
+check(model1)
+```
+
+Now we have a look at the estimates of smoothing parameters_
+```{r print model}
+print(model1)
+```
+
+We can plot the main APC effects using point-wise quantiles: 
+```{r plot model}
+plot(model1)
+```
+
+More quantiles are possible:
+```{r plot model with more quantiles}
+plot(model1, quantiles = c(0.025,0.1,0.5,0.9,0.975))
+```

@@ -1,0 +1,17 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+TODO
+vignettes/*cache
+.git
+^.*\.dropbox\.attr$
+^cran-comments\.md$
+LICENSE
+no_cran
+docs
+_pkgdown.yaml
+.git
+.gitignore
+^.*\.git$
+TODO*
+vignettes/*cache
+
