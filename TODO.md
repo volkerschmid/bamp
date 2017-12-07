@@ -17,6 +17,7 @@ Important
 Features:
 * Re-enable prognosis
 * Deviance optional
+* Covariates not used yet
 
 Check models: 
 * Check heterogeneity models

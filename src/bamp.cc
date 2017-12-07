@@ -275,29 +275,29 @@ if (cohort_block==4||cohort_block==3) {delta=100;}
 double itpercent=0.0;
 double lastitpercent=-10.0;
 int tempcounter=0;
-int ididwritesomething=1;
-int tuningcounter=0;
+int ididwritesomething=0;
 
 for (int iteration=1; iteration<= number_of_iterations; iteration++)
 {
   // progress bar
 if(verbose==1){
-  if (ididwritesomething==1){
-    for (tempcounter=0; tempcounter<=27; tempcounter++)
-    {Rprintf(" ");}
-    ididwritesomething=0;
-  }
+  //if (ididwritesomething==0){
+    //for (tempcounter=0; tempcounter<=27; tempcounter++)
+    //{Rprintf(" ");}
+    //ididwritesomething=0;
+  //}
   itpercent=floor(100.0*iteration/number_of_iterations);
   if (itpercent>lastitpercent)
   {
-    for (tempcounter=0; tempcounter<=27; tempcounter++){Rprintf("\b");}
-    for (tempcounter=0; tempcounter <= (itpercent/5.0); tempcounter++){Rprintf("=");}
+    for (tempcounter=0; tempcounter<=ididwritesomething; tempcounter++){Rprintf("\b");}
+    for (tempcounter=0; tempcounter <= (itpercent/2.5); tempcounter++){Rprintf("=");}
     if (itpercent<100){Rprintf(">");}else{Rprintf(" ");}
-    for (;tempcounter<=20; tempcounter++){Rprintf(" ");}
+    for (;tempcounter<=40; tempcounter++){Rprintf(" ");}
     if (itpercent<100){Rprintf(" ");}
     if (itpercent<10){Rprintf(" ");}
     Rprintf("%d %% ",(int)itpercent);
     lastitpercent=itpercent;
+    ididwritesomething=47;
   }
 }
 
@@ -523,8 +523,11 @@ if (mode==1)
 	     {
 	       iteration=0;
 	       if(verbose==1){
-	       Rprintf("Tuning is necessary. Restarting iterations.");
-	       ididwritesomething=1;
+	         for (tempcounter=0; tempcounter<=ididwritesomething; tempcounter++){Rprintf("\b");}
+	         
+	          Rprintf("Tuning is necessary. Restarting iterations.");
+	          ididwritesomething=42;
+	          lastitpercent=0.0;
 	       }
 	       for (int l=0;l<number_of_agegroups;l++)
 	       {
@@ -553,8 +556,11 @@ if (mode==1)
 	     {
 	       iteration=0;
 	        if(verbose==1){
+	          for (tempcounter=0; tempcounter<=ididwritesomething; tempcounter++){Rprintf("\b");}
+	          
             Rprintf("Acceptance rate low. Restarting iterations.");
-	          ididwritesomething=1;
+	          lastitpercent=0.0;
+	          ididwritesomething=42;
 	          }
 	     for (int i=0; i< number_of_cohorts; i++)
 	       {psi[i]=zahl(0.0,1.0);}
@@ -728,7 +734,7 @@ if (mode==1)
 	}
 
  }//Ende Iterationsschleife
-  if (verbose==1){Rprintf("\n");}
+  if (verbose==1){Rprintf("\n\n");}
 
   return;
 }

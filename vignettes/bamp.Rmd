@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, cache=FALSE)
+knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
 library(bamp)
 ```
 
@@ -26,13 +26,13 @@ model1 <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1",
               periods_per_agegroup = 5,  verbose=TRUE)
 ```
 
-bamp() automatically performs a check for MCMC convergence using Gelman and Rubin's convergence diagnostic. We cann manually check the convergence again:
+bamp() automatically performs a check for MCMC convergence using Gelman and Rubin's convergence diagnostic. We can manually check the convergence again:
 
 ```{r check model}
 check(model1)
 ```
 
-Now we have a look at the estimates of smoothing parameters_
+Now we have a look at the model results. This includes estimates of smoothing parameters and deviance and DIC:
 ```{r print model}
 print(model1)
 ```

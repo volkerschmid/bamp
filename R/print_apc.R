@@ -7,6 +7,8 @@
 #'
 print.apc<-function(x, ...)
 {
+  ## Model
+  
   settings <- ""
   if (is.null(x$model$age))x$model$age=" "
   settings <- paste0(settings, switch(x$model$age,
@@ -39,9 +41,18 @@ print.apc<-function(x, ...)
   cat("\n Model:\n");
   cat(paste0(settings,"\n"))
   
+  ## Deviance
+  
+  cat(paste0("Deviance: ", format(x$deviance$med.deviance,nsmall = 4, width=10),"\n"))
+  cat(paste0("pD:       ", format(x$deviance$pD,nsmall = 4, width=10),"\n"))
+  cat(paste0("DIC:      ", format(x$deviance$DIC,nsmall = 4, width=10),"\n\n"))
+  
+  ## Hyper parameters
+  
   agepar <- quantile(unlist(x$samples$age_parameter), c(.05,.5,.95))
   perpar <- quantile(unlist(x$samples$period_parameter), c(.05,.5,.95))
   cohpar <- quantile(unlist(x$samples$cohort_parameter), c(.05,.5,.95))
+  if(x$model$overdispersion)overdisp <- quantile(unlist(x$samples$overdispersion), c(.05,.5,.95))
   
   cat("\n","Hyper parameters:")
   cat(paste0(rep(" ",9)))
@@ -56,4 +67,10 @@ print.apc<-function(x, ...)
   cat("cohort", paste0(rep(" ",10)))
   cat(format(cohpar,digits = 4, width=12,trim=FALSE,nsmall=4))
   cat("\n")
+  if(x$model$overdispersion)
+  {
+    cat("overdispersion", paste0(rep(" ",10)))
+    cat(format(overdisp,digits = 4, width=12,trim=FALSE,nsmall=4))
+    cat("\n")
+  }
 }

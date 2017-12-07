@@ -73,8 +73,8 @@ function(cases, population,
   }
   
   chains=4
-  if (parallel>1)chains=parallel
-  if(!parallel)chain=1
+  if (parallel>4)chains=parallel
+  if (unname(Sys.info()["sysname"] == "Windows"))parallel=FALSE
   
   # have been options before
   if (is.null(mcmc.options$burn_in))
@@ -146,7 +146,9 @@ function(cases, population,
   model$age=age
   model$period=period
   model$cohort=cohort
-
+  
+  model$overdispersion=overdisp
+  
   #if (!is.null(age_covariate))age_block=age_block=age_block+7
   if (!is.null(period_covariate))period_block=period_block=period_block+7
   if (!is.null(cohort_covariate))cohort_block=cohort_block=cohort_block+7
@@ -520,7 +522,7 @@ if (verbose)
 ##################################################################################################################################
   if (verbose)
     {
-    ausgabe <- paste(settings, "Starting Iterations!\n\n")
+    ausgabe <- paste(settings, "Starting Iterations in",chains,"chains.\n\n")
     cat(ausgabe)
   }
 
@@ -570,17 +572,16 @@ return(.C("bamp",
 if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population,blocks,numbers,periods_per_agegroup,
                                                  numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample,
                                                  theta2.sample,phi2.sample,psi2.sample,delta.sample,kappa.sample,kappa2.sample,
-                                                 lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose, mc.cores=chains)
+                                                 lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose>0, mc.cores=chains)
 
  if(!parallel)results_list<-lapply(1:chains,singlerun,cases,population,blocks,numbers,periods_per_agegroup,
                                               numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample,
                                               theta2.sample,phi2.sample,psi2.sample,delta.sample,kappa.sample,kappa2.sample,
-                                              lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose)
+                                              lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose>0)
 
 ##################################################################################################################################
 
-
- theta<-phi<-psi<-theta2<-phi2<-psi2<-delta<-kappa<-kappa2<-lambda<-lambda2<-ny<-ny2<-my<-deviance<-vector("list",chains)
+ deviance<-vector("list",chains)
 
  for (i in 1:chains){
    deviance[[i]]=coda::mcmc(results_list[[i]][[23]])
@@ -591,26 +592,38 @@ if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population
  deviance.sd<-unlist(lapply(deviance,sd))
  dm<-median(deviance.mean)
  sd<-median(deviance.sd)
+ if (verbose==2)
+ {
+   cat("deviance per chain:")
+   cat(paste(deviance.mean," (",deviance.sd,")"))
+   cat("\n")
+   print(coda::gelman.diag(deviance))
+ }
  kick<-((deviance.mean>=(dm-sd))&(deviance.mean<=(dm+sd)))
- 
 
+ if(verbose)if (any(!kick))(cat(paste0("Removed ",sum(!kick)," chains.\n")))
+ sumkick<-sum(kick)
+ theta<-phi<-psi<-theta2<-phi2<-psi2<-delta<-kappa<-kappa2<-lambda<-lambda2<-ny<-ny2<-my<-deviance<-vector("list",sumkick)
+ 
+ ii=0
   for (i in (1:chains)[kick]){
+    ii=ii+1
    results=results_list[[i]]
-   theta[[i]]=coda::mcmc(matrix(results[[9]],ncol=number_of_agegroups,byrow=TRUE))
-   phi[[i]]=coda::mcmc(matrix(results[[10]],ncol=number_of_periods,byrow=TRUE))
-   psi[[i]]=coda::mcmc(matrix(results[[11]],ncol=number_of_cohorts,byrow=TRUE))
-   theta2[[i]]=coda::mcmc(matrix(results[[12]],ncol=number_of_agegroups,byrow=TRUE))
-   phi2[[i]]=coda::mcmc(matrix(results[[13]],ncol=number_of_periods,byrow=TRUE))
-   psi2[[i]]=coda::mcmc(matrix(results[[14]],ncol=number_of_cohorts,byrow=TRUE))
-   kappa[[i]]=coda::mcmc(results[[16]])
-   kappa2[[i]]=coda::mcmc(results[[17]])
-   lambda[[i]]=coda::mcmc(results[[18]])
-   lambda2[[i]]=coda::mcmc(results[[19]])
-   ny[[i]]=coda::mcmc(results[[20]])
-   ny2[[i]]=coda::mcmc(results[[21]])
-   my[[i]]=coda::mcmc(results[[22]])
-   deviance[[i]]=coda::mcmc(results[[23]])
-   delta[[i]]=coda::mcmc(results[[15]])
+   theta[[ii]]=coda::mcmc(matrix(results[[9]],ncol=number_of_agegroups,byrow=TRUE))
+   phi[[ii]]=coda::mcmc(matrix(results[[10]],ncol=number_of_periods,byrow=TRUE))
+   psi[[ii]]=coda::mcmc(matrix(results[[11]],ncol=number_of_cohorts,byrow=TRUE))
+   theta2[[ii]]=coda::mcmc(matrix(results[[12]],ncol=number_of_agegroups,byrow=TRUE))
+   phi2[[ii]]=coda::mcmc(matrix(results[[13]],ncol=number_of_periods,byrow=TRUE))
+   psi2[[ii]]=coda::mcmc(matrix(results[[14]],ncol=number_of_cohorts,byrow=TRUE))
+   kappa[[ii]]=coda::mcmc(results[[16]])
+   kappa2[[ii]]=coda::mcmc(results[[17]])
+   lambda[[ii]]=coda::mcmc(results[[18]])
+   lambda2[[ii]]=coda::mcmc(results[[19]])
+   ny[[ii]]=coda::mcmc(results[[20]])
+   ny2[[ii]]=coda::mcmc(results[[21]])
+   my[[ii]]=coda::mcmc(results[[22]])
+   deviance[[ii]]=coda::mcmc(results[[23]])
+   delta[[ii]]=coda::mcmc(results[[15]])
    }
 
 
@@ -627,6 +640,7 @@ lambda2<-coda::as.mcmc.list(lambda2)
 ny<-coda::as.mcmc.list(ny)
 ny2<-coda::as.mcmc.list(ny2)
 my<-coda::as.mcmc.list(my)
+delta<-coda::as.mcmc.list(delta)
 deviance<-coda::as.mcmc.list(deviance)
 
 
@@ -638,8 +652,9 @@ deviance<-coda::as.mcmc.list(deviance)
  if (age_block==3)samples=c(samples,list("age2_parameter"=kappa2))
  if (period_block==3)samples=c(samples,list("period2_parameter"=lambda2))
  if (cohort_block==3)samples=c(samples,list("cohort2_parameter"=ny2))
- if (z_mode==1) samples=c(samples, list("delta"=delta))
-
+ if (z_mode==1) samples=c(samples, list("overdispersion"=delta))
+ samples=c(samples,list("deviance"=deviance))
+ 
  data=list("cases"=cases,"population"=population)
 
  output$model=model
