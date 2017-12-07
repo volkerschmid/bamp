@@ -533,7 +533,9 @@ if (verbose)
  theta.sample<-theta2.sample<-rep(0,nr.samples*number_of_agegroups)
  phi.sample<-phi2.sample<-rep(0,nr.samples*number_of_periods)
  psi.sample<-psi2.sample<-rep(0,nr.samples*number_of_cohorts)
- #ksi.sample<-rep(0,nr.samples*number_of_agegroups*number_of_periods)
+ ksi.sample<-0
+ if (z_mode==1)ksi.sample<-rep(0,nr.samples*number_of_agegroups*number_of_periods)
+ #print(paste("length of ksi.sample",length(ksi.sample)))
 
  blocks=c(age_block, period_block, cohort_block)
  numbers=c(number_of_agegroups, number_of_periods)
@@ -545,10 +547,11 @@ if (verbose)
 
  singlerun<-function(i,cases,population,blocks,numbers,periods_per_agegroup,
                      numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample,
-                     theta2.sample,phi2.sample,psi2.sample,#ksi.sample,
+                     theta2.sample,phi2.sample,psi2.sample,ksi.sample,
                      delta.sample,kappa.sample,kappa2.sample,
                      lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,
                      dev.sample,verbose){
+   gc()
 return(.C("bamp",
                           as.integer(cases),
                           as.integer(population),
@@ -560,7 +563,7 @@ return(.C("bamp",
                           as.double(allhyper),
                           as.double(theta.sample), as.double(phi.sample), as.double(psi.sample),
                           as.double(theta2.sample), as.double(phi2.sample), as.double(psi2.sample),
-                          #as.double(ksi.sample),
+                          as.double(ksi.sample),
                           as.double(delta.sample), as.double(kappa.sample), as.double(kappa2.sample), as.double(lambda.sample),
                           as.double(lambda2.sample), as.double(ny.sample), as.double(ny2.sample), as.double(my.sample),
                           as.double(dev.sample),
@@ -570,12 +573,12 @@ return(.C("bamp",
 }
 
 if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population,blocks,numbers,periods_per_agegroup,
-                                                 numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample,
+                                                 numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, ksi.sample,
                                                  theta2.sample,phi2.sample,psi2.sample,delta.sample,kappa.sample,kappa2.sample,
                                                  lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose>0, mc.cores=chains)
 
  if(!parallel)results_list<-lapply(1:chains,singlerun,cases,population,blocks,numbers,periods_per_agegroup,
-                                              numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample,
+                                              numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, ksi.sample,
                                               theta2.sample,phi2.sample,psi2.sample,delta.sample,kappa.sample,kappa2.sample,
                                               lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose>0)
 
@@ -597,7 +600,7 @@ if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population
    cat("deviance per chain:")
    cat(paste(deviance.mean," (",deviance.sd,")"))
    cat("\n")
-   print(coda::gelman.diag(deviance))
+   #print(coda::gelman.diag(deviance))
  }
  kick<-((deviance.mean>=(dm-sd))&(deviance.mean<=(dm+sd)))
 

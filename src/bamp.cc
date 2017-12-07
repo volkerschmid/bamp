@@ -23,7 +23,7 @@ extern "C"{
 // settings: prognose nein/ja, deviance nein/ja, overdispersion ja/nein
 // ab: age_a, age_b, period_a, period_b, cohort_a, cohort_b, age_a2, age_b2, period_a2, period_b2, cohort_a2, cohort_b2, z_a, z_b
 void bamp(int* cases, int* population, int* blocks, int* dims, double* vdb, int* mcnumbers, int* settings, double* ab,
-          double* ttt, double* pph, double* pps, double* ttt2, double* pph2, double* pps2, //double* ksisam,
+          double* ttt, double* pph, double* pps, double* ttt2, double* pph2, double* pps2, double* ksisam,
           double* KK_delta, double* KK_th, double* KK_th2, double* KK_ph, double* KK_ph2, double* KK_ps, double* KK_ps2, double* my_off, 
           double* devsample, int* verbose0)
 {
@@ -73,7 +73,7 @@ int gen_c=0;
 int ttt_c=0;
 int pph_c=0;
 int pps_c=0;
-//int ksisam_c=0;
+int ksisam_c=0;
 int ttt2_c=0;
 int pph2_c=0;
 int pps2_c=0;
@@ -608,12 +608,16 @@ if (mode==1)
 
 
 
-/*	  for (int h=0; h< number_of_agegroups;h++){
+	  if (mode==1)
+	    {
+	      
+	    for (int h=0; h< number_of_agegroups;h++){
 	    for (int j=0; j< number_of_periods;j++){
 	      ksisam[ksisam_c]=ksi[h][j];
 	      ksisam_c++;
-	    }}*/
-	      
+	      //Rprintf("ksisam_c:%d",(int)ksisam_c);
+	    }}
+	    }  
 	  for (int h=0; h< number_of_agegroups;h++)
 	    {
 	      ttt[ttt_c]=theta[h];

@@ -69,7 +69,7 @@ print.apc<-function(x, ...)
   cat("\n")
   if(x$model$overdispersion)
   {
-    cat("overdispersion", paste0(rep(" ",10)))
+    cat("overdispersion", paste0(rep(" ",6)))
     cat(format(overdisp,digits = 4, width=12,trim=FALSE,nsmall=4))
     cat("\n")
   }
