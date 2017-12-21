@@ -2,7 +2,11 @@
 title: "Simulating Age-Period-Cohort Data"
 author: "Volker Schmid"
 date: "16th November 2017"
-output: html_document
+output: pdf_document
+vignette: >
+  %\VignetteIndexEntry{Simulating Age-Period-Cohort Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}

@@ -1,6 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-TODO
 vignettes/*cache
 .git
 ^.*\.dropbox\.attr$
@@ -8,10 +7,8 @@ vignettes/*cache
 LICENSE
 test
 unused
-docs
 _pkgdown.yaml
 .gitignore
 ^.*\.git$
-TODO*
-
+TODO$
 ^docs$

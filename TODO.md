@@ -2,16 +2,11 @@ Warnings:
 * Argument items with no description in Rd object 'bamp':
   ‘mcmc.options’ ‘hyperpar’
 
-Bugs: 
-* var1 in deviance/DIC
-* overdisp=TRUE: "Error in mcmc.list(x) : Arguments must be mcmc objects"
-
 Important
 * Description in bamp help file
-* comnpute effects in bamp() (use effects.apc(..save=TRUE))
+* compute effects in bamp() (use effects.apc(..save=TRUE))
 * print.apc() 
 ** intercept
-** DIC
 ** use results from $effect
 
 Features:

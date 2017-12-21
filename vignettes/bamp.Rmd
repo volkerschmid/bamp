@@ -1,8 +1,12 @@
 ---
-title: "Bayesian Age-Period-Cohort Modelling and Prediction"
+title: "Bayesian Age-Period-Cohort Modelling"
 author: "Volker Schmid"
 date: "16th November 2017"
-output: html_document
+output: pdf_document
+vignette: >
+  %\VignetteIndexEntry{Bayesian Age-Period-Cohort Modelling}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}

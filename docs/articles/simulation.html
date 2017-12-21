@@ -88,21 +88,21 @@ cohort&lt;-cohort<span class="op">-</span><span class="kw">mean</span>(cohort)
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simdata&lt;-<span class="kw"><a href="../reference/apc_simulate.html">apc_simulate</a></span>(<span class="op">-</span><span class="dv">10</span>, age, period, cohort, periods_per_agegroup, <span class="fl">1e6</span>)
 <span class="kw">print</span>(simdata<span class="op">$</span>cases)</code></pre></div>
 <pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-##  [1,]    3    0   11   36   69  122  249  455  855  1889
-##  [2,]    1    6   13   21   70  113  222  386  740  1581
-##  [3,]    1    7   22   32   46  101  189  333  640  1359
-##  [4,]    0    3    6   22   44  100  159  278  577  1167
-##  [5,]    2    3   12   25   39   80  142  306  484   941
-##  [6,]    0    3    4   22   53   91  137  231  425   825
-##  [7,]    0    3    6   20   35   63  132  213  390   754
-##  [8,]    0    2    5   16   31   69   98  165  322   589
-##  [9,]    0    2    2   24   37   74  115  227  379   680
-## [10,]    1    2   10   23   53   87  146  235  409   711
-## [11,]    0    2    6   22   49   88  158  261  431   732
-## [12,]    0    1    7   20   52   88  176  286  488   837
-## [13,]    0    1   10   21   50   88  196  303  572   934
-## [14,]    1    3    8   16   50  123  214  386  675  1045
-## [15,]    0    2   13   41   74  126  240  409  708  1085</code></pre>
+##  [1,]    1    5   13   30   67  140  238  398  922  1839
+##  [2,]    0    1   14   34   73  113  197  377  754  1471
+##  [3,]    2    6    8   27   40  103  192  334  654  1328
+##  [4,]    1    4   17   25   55   90  161  309  522  1159
+##  [5,]    0    1   14   15   44   83  145  274  478   937
+##  [6,]    1    2    7   21   36   81  137  254  435   881
+##  [7,]    0    4    8   16   40   74  119  252  366   733
+##  [8,]    0    0    4   13   31   71  118  259  363   619
+##  [9,]    0    0    5   20   45   73  131  227  340   644
+## [10,]    0    2    7   18   53   82  128  255  383   703
+## [11,]    1    3   10   24   49   81  136  294  451   725
+## [12,]    0    4    6   21   54  104  169  325  497   799
+## [13,]    0    4    7   30   52   93  220  349  572   897
+## [14,]    1    1    7   31   59  109  229  372  613   990
+## [15,]    1    2   13   29   57  139  214  397  692  1140</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simmod &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bamp.html">bamp</a></span>(<span class="dt">cases =</span> simdata<span class="op">$</span>cases, <span class="dt">population =</span> simdata<span class="op">$</span>population, <span class="dt">age =</span> <span class="st">"rw1"</span>, 
 <span class="dt">period =</span> <span class="st">"rw1"</span>, <span class="dt">cohort =</span> <span class="st">"rw1"</span>, <span class="dt">periods_per_agegroup =</span>periods_per_agegroup)
 simmod&lt;-<span class="kw">effects</span>(simmod, <span class="dt">save=</span><span class="ot">TRUE</span>)</code></pre></div>
@@ -110,15 +110,15 @@ simmod&lt;-<span class="kw">effects</span>(simmod, <span class="dt">save=</span>
 <pre><code>## 
 ##  Model:
 ## age (rw1) - period (rw1) - cohort (rw1) model
-## Deviance: NULL
-## pD:          37.2215
-## DIC:        194.1392
+## Deviance:     139.81
+## pD:            37.77
+## DIC:          177.58
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                             0.7036       1.6168       3.1821
-## period                         36.8989      72.3901     127.5653
-## cohort                        374.4451     734.7829    1344.2508</code></pre>
+## age                              0.679        1.560        3.095
+## period                          50.940       99.837      173.464
+## cohort                         327.788      631.253     1165.707</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/check.html">check</a></span>(simmod)</code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(simmod, <span class="dt">quantiles=</span><span class="fl">0.5</span>)</code></pre></div>
