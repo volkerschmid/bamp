@@ -11,6 +11,7 @@
 #' @param cohort_covariate covariate for cohort
 #' @param mcmc.options Options for MCMC, see description
 #' @param hyperpar Hyper parameters, see description
+#' @param dic logical, should ddic be computed
 #' @param parallel logical, should computation be done in parallel
 #' @param verbose verbose mode
 #'
@@ -28,8 +29,9 @@ function(cases, population,
         age, period, cohort, overdisp=FALSE,
         period_covariate=NULL, cohort_covariate=NULL,
         periods_per_agegroup,
-        mcmc.options=list("number_of_iterations"=105000, "burn_in"=5000, "step"=1, "tuning"=500),
+        mcmc.options=list("number_of_iterations"=105000, "burn_in"=5000, "step"=50, "tuning"=500),
         hyperpar=list("age"=c(1,0.0005), "period"=c(1,0.0005), "cohort"=c(1,0.0005), "overdisp"=c(1,0.05)),
+        dic=TRUE,
         parallel=TRUE, verbose=FALSE){
   output=apc()
 
@@ -573,13 +575,13 @@ return(.C("bamp",
 }
 
 if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population,blocks,numbers,periods_per_agegroup,
-                                                 numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, ksi.sample,
-                                                 theta2.sample,phi2.sample,psi2.sample,delta.sample,kappa.sample,kappa2.sample,
+                                                 numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, 
+                                                 theta2.sample,phi2.sample,psi2.sample,ksi.sample,delta.sample,kappa.sample,kappa2.sample,
                                                  lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose>0, mc.cores=chains)
 
  if(!parallel)results_list<-lapply(1:chains,singlerun,cases,population,blocks,numbers,periods_per_agegroup,
-                                              numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, ksi.sample,
-                                              theta2.sample,phi2.sample,psi2.sample,delta.sample,kappa.sample,kappa2.sample,
+                                              numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, 
+                                              theta2.sample,phi2.sample,psi2.sample,ksi.sample,delta.sample,kappa.sample,kappa2.sample,
                                               lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose>0)
 
 ##################################################################################################################################
@@ -602,7 +604,14 @@ if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population
    cat("\n")
    #print(coda::gelman.diag(deviance))
  }
- kick<-((deviance.mean>=(dm-sd))&(deviance.mean<=(dm+sd)))
+ 
+ while (any((deviance.mean>=(dm-sd))&(deviance.mean<=(dm+sd))))
+ {
+   dm2<-abs(deviance.mean-dm)
+   kick2<-which(dm2==max(dm2))
+   kick[kick2]=FALSE
+   deviance.mean[kick2]<-dm
+ }
 
  if(verbose)if (any(!kick))(cat(paste0("Removed ",sum(!kick)," chains.\n")))
  sumkick<-sum(kick)
@@ -665,13 +674,14 @@ deviance<-coda::as.mcmc.list(deviance)
  output$samples=samples
 
  
- if (verbose)cat("\nComputing deviance and DIC.")
-   
- theta.med<-summary(theta,0.5)$quantiles
- phi.med<-summary(phi,0.5)$quantiles
- psi.med<-summary(psi,0.5)$quantiles
- my.med<-summary(my,0.5)$quantiles
- if (z_mode==1)delta.med<-summary(delta,0.5)$quantiles
+ if (dic)
+   {
+   if (verbose)cat("\nComputing deviance and DIC.")
+   theta.med<-summary(theta,0.5)$quantiles
+   phi.med<-summary(phi,0.5)$quantiles
+   psi.med<-summary(psi,0.5)$quantiles
+   my.med<-summary(my,0.5)$quantiles
+   if (z_mode==1)delta.med<-summary(delta,0.5)$quantiles
  
  devtemp=0.0;
   for(i in 1:number_of_agegroups){
@@ -698,6 +708,7 @@ deviance<-coda::as.mcmc.list(deviance)
  deviance$DIC <- 2*med.deviance-devtemp
  
  output$deviance=deviance
+ }
  
  # ksi_berechnen <-
  #   function(ksi, psi, vdb, noa, nop){
