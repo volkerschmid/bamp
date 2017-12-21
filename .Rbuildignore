@@ -6,12 +6,12 @@ vignettes/*cache
 ^.*\.dropbox\.attr$
 ^cran-comments\.md$
 LICENSE
-no_cran
+test
+unused
 docs
 _pkgdown.yaml
-.git
 .gitignore
 ^.*\.git$
 TODO*
-vignettes/*cache
 
+^docs$

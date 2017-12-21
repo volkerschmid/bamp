@@ -1,0 +1,24 @@
+templates:
+  params:
+    bootswatch: cerulean
+    
+navbar:
+  type: inverse
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Reference"
+      href: reference/index.html
+    - text: "Articles"
+      href: articles/index.html
+  right:
+    - text: "Bioimaging Group"
+      href: http://www.bioimg.statistik.uni-muenchen.de
+    - text: "BAMP website"
+      href: https://volkerschmid.de/bamp
+      
+articles:
+  - title: "Vignettes"
+    contents:
+    - bamp
+    - simulation
