@@ -11,7 +11,7 @@
 #' @param cohort_covariate covariate for cohort
 #' @param mcmc.options Options for MCMC, see description
 #' @param hyperpar Hyper parameters, see description
-#' @param dic logical, should ddic be computed
+#' @param dic logical. If true. DIC will be computed
 #' @param parallel logical, should computation be done in parallel
 #' @param verbose verbose mode
 #'
@@ -535,8 +535,7 @@ if (verbose)
  theta.sample<-theta2.sample<-rep(0,nr.samples*number_of_agegroups)
  phi.sample<-phi2.sample<-rep(0,nr.samples*number_of_periods)
  psi.sample<-psi2.sample<-rep(0,nr.samples*number_of_cohorts)
- ksi.sample<-0
- if (z_mode==1)ksi.sample<-rep(0,nr.samples*number_of_agegroups*number_of_periods)
+ ksi<-rep(0,number_of_agegroups*number_of_periods)
  #print(paste("length of ksi.sample",length(ksi.sample)))
 
  blocks=c(age_block, period_block, cohort_block)
@@ -549,11 +548,12 @@ if (verbose)
 
  singlerun<-function(i,cases,population,blocks,numbers,periods_per_agegroup,
                      numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample,
-                     theta2.sample,phi2.sample,psi2.sample,ksi.sample,
+                     theta2.sample,phi2.sample,psi2.sample,ksi,
                      delta.sample,kappa.sample,kappa2.sample,
                      lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,
                      dev.sample,verbose){
    gc()
+   
 return(.C("bamp",
                           as.integer(cases),
                           as.integer(population),
@@ -565,7 +565,7 @@ return(.C("bamp",
                           as.double(allhyper),
                           as.double(theta.sample), as.double(phi.sample), as.double(psi.sample),
                           as.double(theta2.sample), as.double(phi2.sample), as.double(psi2.sample),
-                          as.double(ksi.sample),
+                          as.double(ksi),
                           as.double(delta.sample), as.double(kappa.sample), as.double(kappa2.sample), as.double(lambda.sample),
                           as.double(lambda2.sample), as.double(ny.sample), as.double(ny2.sample), as.double(my.sample),
                           as.double(dev.sample),
@@ -576,28 +576,30 @@ return(.C("bamp",
 
 if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population,blocks,numbers,periods_per_agegroup,
                                                  numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, 
-                                                 theta2.sample,phi2.sample,psi2.sample,ksi.sample,delta.sample,kappa.sample,kappa2.sample,
+                                                 theta2.sample,phi2.sample,psi2.sample,ksi,delta.sample,kappa.sample,kappa2.sample,
                                                  lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose>0, mc.cores=chains)
 
  if(!parallel)results_list<-lapply(1:chains,singlerun,cases,population,blocks,numbers,periods_per_agegroup,
                                               numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, 
-                                              theta2.sample,phi2.sample,psi2.sample,ksi.sample,delta.sample,kappa.sample,kappa2.sample,
+                                              theta2.sample,phi2.sample,psi2.sample,ksi,delta.sample,kappa.sample,kappa2.sample,
                                               lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose>0)
 
 ##################################################################################################################################
 
- deviance<-vector("list",chains)
+  deviance<-vector("list",chains)
 
  for (i in 1:chains){
-   deviance[[i]]=coda::mcmc(results_list[[i]][[23]])
+   deviance[[i]]=coda::mcmc(results_list[[i]][[24]])
  }
- deviance<-coda::as.mcmc.list(deviance)
+
+
  kick<-rep(TRUE, chains)
- deviance.mean<-unlist(lapply(deviance,mean))
+ deviance.mean<-unlist(lapply(deviance,function(x)return(mean(as.vector(x)))))
  deviance.sd<-unlist(lapply(deviance,sd))
  dm<-median(deviance.mean)
- sd<-median(deviance.sd)
- if (verbose==2)
+ sd<-1.96*median(deviance.sd)
+ 
+  if (verbose==2)
  {
    cat("deviance per chain:")
    cat(paste(deviance.mean," (",deviance.sd,")"))
@@ -605,17 +607,18 @@ if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population
    #print(coda::gelman.diag(deviance))
  }
  
- while (any((deviance.mean>=(dm-sd))&(deviance.mean<=(dm+sd))))
+ while (any(!((deviance.mean>=(dm-sd))&(deviance.mean<=(dm+sd)))))
  {
+   if (verbose==2)print("kick")
    dm2<-abs(deviance.mean-dm)
    kick2<-which(dm2==max(dm2))
    kick[kick2]=FALSE
    deviance.mean[kick2]<-dm
  }
-
+ 
  if(verbose)if (any(!kick))(cat(paste0("Removed ",sum(!kick)," chains.\n")))
  sumkick<-sum(kick)
- theta<-phi<-psi<-theta2<-phi2<-psi2<-delta<-kappa<-kappa2<-lambda<-lambda2<-ny<-ny2<-my<-deviance<-vector("list",sumkick)
+ theta<-phi<-psi<-theta2<-phi2<-psi2<-delta<-kappa<-kappa2<-lambda<-lambda2<-ny<-ny2<-my<-deviance<-ksi<-vector("list",sumkick)
  
  ii=0
   for (i in (1:chains)[kick]){
@@ -627,17 +630,18 @@ if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population
    theta2[[ii]]=coda::mcmc(matrix(results[[12]],ncol=number_of_agegroups,byrow=TRUE))
    phi2[[ii]]=coda::mcmc(matrix(results[[13]],ncol=number_of_periods,byrow=TRUE))
    psi2[[ii]]=coda::mcmc(matrix(results[[14]],ncol=number_of_cohorts,byrow=TRUE))
-   kappa[[ii]]=coda::mcmc(results[[16]])
-   kappa2[[ii]]=coda::mcmc(results[[17]])
-   lambda[[ii]]=coda::mcmc(results[[18]])
-   lambda2[[ii]]=coda::mcmc(results[[19]])
-   ny[[ii]]=coda::mcmc(results[[20]])
-   ny2[[ii]]=coda::mcmc(results[[21]])
-   my[[ii]]=coda::mcmc(results[[22]])
-   deviance[[ii]]=coda::mcmc(results[[23]])
-   delta[[ii]]=coda::mcmc(results[[15]])
+   ksi[[ii]]=results[[15]]
+   delta[[ii]]=coda::mcmc(results[[16]])
+   kappa[[ii]]=coda::mcmc(results[[17]])
+   kappa2[[ii]]=coda::mcmc(results[[18]])
+   lambda[[ii]]=coda::mcmc(results[[19]])
+   lambda2[[ii]]=coda::mcmc(results[[20]])
+   ny[[ii]]=coda::mcmc(results[[21]])
+   ny2[[ii]]=coda::mcmc(results[[22]])
+   my[[ii]]=coda::mcmc(results[[23]])
+   deviance[[ii]]=coda::mcmc(results[[24]])
    }
-
+ 
 
 theta<-coda::as.mcmc.list(theta)
 phi<-coda::as.mcmc.list(phi)
@@ -674,36 +678,28 @@ deviance<-coda::as.mcmc.list(deviance)
  output$samples=samples
 
  
- if (dic)
+ ksi<-array(unlist(ksi),c(number_of_periods,number_of_agegroups,sumkick))
+ ksi<-t(apply(ksi,1:2,mean))
+
+  if (dic)
    {
    if (verbose)cat("\nComputing deviance and DIC.")
-   theta.med<-summary(theta,0.5)$quantiles
-   phi.med<-summary(phi,0.5)$quantiles
-   psi.med<-summary(psi,0.5)$quantiles
-   my.med<-summary(my,0.5)$quantiles
-   if (z_mode==1)delta.med<-summary(delta,0.5)$quantiles
- 
- devtemp=0.0;
-  for(i in 1:number_of_agegroups){
-       for(j in 1:number_of_periods){
-         ksi <- my.med + theta.med[i] + phi.med[j] + psi.med[coh(i,j,number_of_agegroups,periods_per_agegroup)]
-         pr <- exp(ksi)/(1+exp(ksi))
-         ydach <- population[i,j]*pr
-         if(cases[i,j]==0.0)
-         {   
-           devtemp=devtemp+2*((population[i,j]-cases[i,j])*log((population[i,j]-cases[i,j])/(population[i,j]-ydach)));
-         }
-         else
-         {
-           devtemp=devtemp+2*(cases[i,j]*log(cases[i,j]/ydach)+(population[i,j]-cases[i,j])*log((population[i,j]-cases[i,j])/(population[i,j]-ydach)));
-         }
-      }
-  }
- 
- med.deviance<-summary(deviance,0.5)$quantiles
+   
+  devtemp=0.0
+  
+  pr<-exp(ksi)/(1+exp(ksi))
+  ydach<-population*pr
+  devtemp1=2*((population-cases)*log((population-cases)/(population-ydach)));
+  devtemp2=2*(cases*log(cases/ydach)+(population-cases)*log((population-cases)/(population-ydach)));
+  devtemp1<-as.vector(devtemp1)
+  devtemp2<-as.vector(devtemp2)
+  devtemp2[is.nan(devtemp2)]<-devtemp1[is.nan(devtemp2)]
+  devtemp<-sum(devtemp2)
+  
+ med.deviance<-mean(unlist(deviance))
  deviance <- list()
- deviance$med.deviance <- med.deviance
- deviance$deviance.med <- devtemp
+ deviance$mean.deviance <- med.deviance
+ deviance$deviance.mean <- devtemp
  deviance$pD <- med.deviance-devtemp
  deviance$DIC <- 2*med.deviance-devtemp
  
@@ -722,5 +718,7 @@ deviance<-coda::as.mcmc.list(deviance)
  
 # check(output)
 
+ output$ksi=ksi
+ 
  return(output)
 }

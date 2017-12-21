@@ -43,9 +43,9 @@ print.apc<-function(x, ...)
   
   ## Deviance
   
-  cat(paste0("Deviance: ", format(x$deviance$med.deviance,nsmall = 4, width=10),"\n"))
-  cat(paste0("pD:       ", format(x$deviance$pD,nsmall = 4, width=10),"\n"))
-  cat(paste0("DIC:      ", format(x$deviance$DIC,nsmall = 4, width=10),"\n\n"))
+  cat(paste0("Deviance: ", format(x$deviance$mean.deviance,digits = 2,nsmall = 2, width=10,trim=FALSE),"\n"))
+  cat(paste0("pD:       ", format(x$deviance$pD,digits = 2,nsmall = 2, width=10,trim=FALSE),"\n"))
+  cat(paste0("DIC:      ", format(x$deviance$DIC,digits = 2,nsmall = 2, width=10,trim=FALSE),"\n\n"))
   
   ## Hyper parameters
   
@@ -59,18 +59,18 @@ print.apc<-function(x, ...)
   cat(format(names(agepar),width=12))
   cat("\n")
   cat("age   ", paste0(rep(" ",10)))
-  cat(format(agepar,digits = 4, width=12,trim=FALSE,nsmall=4))
+  cat(format(agepar,digits = 3, width=12,trim=FALSE,nsmall=3))
   cat("\n")
   cat("period", paste0(rep(" ",10)))
-  cat(format(perpar,digits = 4, width=12,trim=FALSE,nsmall=4))
+  cat(format(perpar,digits = 3, width=12,trim=FALSE,nsmall=3))
   cat("\n")
   cat("cohort", paste0(rep(" ",10)))
-  cat(format(cohpar,digits = 4, width=12,trim=FALSE,nsmall=4))
+  cat(format(cohpar,digits = 3, width=12,trim=FALSE,nsmall=3))
   cat("\n")
   if(x$model$overdispersion)
   {
     cat("overdispersion", paste0(rep(" ",6)))
-    cat(format(overdisp,digits = 4, width=12,trim=FALSE,nsmall=4))
+    cat(format(overdisp,digits = 3, width=12,trim=FALSE,nsmall=3))
     cat("\n")
   }
 }

@@ -6,9 +6,9 @@
 \usage{
 bamp(cases, population, age, period, cohort, overdisp = FALSE,
   period_covariate = NULL, cohort_covariate = NULL, periods_per_agegroup,
-  mcmc.options = list(number_of_iterations = 105000, burn_in = 5000, step = 1,
-  tuning = 500), hyperpar = list(age = c(1, 5e-04), period = c(1, 5e-04),
-  cohort = c(1, 5e-04), overdisp = c(1, 0.05)), parallel = TRUE,
+  mcmc.options = list(number_of_iterations = 105000, burn_in = 5000, step =
+  50, tuning = 500), hyperpar = list(age = c(1, 5e-04), period = c(1, 5e-04),
+  cohort = c(1, 5e-04), overdisp = c(1, 0.05)), dic = TRUE, parallel = TRUE,
   verbose = FALSE)
 }
 \arguments{
@@ -33,6 +33,8 @@ bamp(cases, population, age, period, cohort, overdisp = FALSE,
 \item{mcmc.options}{Options for MCMC, see description}
 
 \item{hyperpar}{Hyper parameters, see description}
+
+\item{dic}{logical. If true. DIC will be computed}
 
 \item{parallel}{logical, should computation be done in parallel}
 

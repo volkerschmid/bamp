@@ -27,6 +27,8 @@ void bamp(int* cases, int* population, int* blocks, int* dims, double* vdb, int*
           double* KK_delta, double* KK_th, double* KK_th2, double* KK_ph, double* KK_ph2, double* KK_ps, double* KK_ps2, double* my_off, 
           double* devsample, int* verbose0)
 {
+  int verbose=verbose0[0];
+  if(verbose==2){Rprintf("We are in cc");}
 double age_a=ab[0];
 double age_b=ab[1];
 double period_a=ab[2];
@@ -66,7 +68,6 @@ double temp1;
 int max_number_of_ap_combinations;
 double* period_data;
 double* cohort_data;
-int verbose=verbose0[0];
 
 //counters for sampling
 int gen_c=0;
@@ -608,16 +609,20 @@ if (mode==1)
 
 
 
-	  if (mode==1)
-	    {
-	      
-	    for (int h=0; h< number_of_agegroups;h++){
-	    for (int j=0; j< number_of_periods;j++){
-	      ksisam[ksisam_c]=ksi[h][j];
+
+	      int ksi_cc=0;
+	      double temp1=double(ksisam_c);
+	      double temp2=temp1/(1.0+temp1);
+	      temp1=1.0/(temp1+1.0);
+	      for (int h=0; h< number_of_agegroups;h++){
+	        for (int j=0; j< number_of_periods;j++){
+	          ksisam[ksi_cc]=temp2*ksisam[ksi_cc]+temp1*ksi[h][j];
+	          ksi_cc++;
+	          //Rprintf("ksisam_c:%d",(int)ksisam_c);
+	         }
+	        }
 	      ksisam_c++;
-	      //Rprintf("ksisam_c:%d",(int)ksisam_c);
-	    }}
-	    }  
+	      
 	  for (int h=0; h< number_of_agegroups;h++)
 	    {
 	      ttt[ttt_c]=theta[h];
