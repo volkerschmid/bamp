@@ -2,12 +2,15 @@
 % Please edit documentation in R/print_apc.R
 \name{print.apc}
 \alias{print.apc}
+\alias{print}
 \title{Print apc objects}
 \usage{
 \method{print}{apc}(x, ...)
 }
 \arguments{
 \item{x}{apc object}
+
+\item{...}{additional arguments will be ignored}
 }
 \value{
 print

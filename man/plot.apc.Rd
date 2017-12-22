@@ -10,6 +10,8 @@
 \item{x}{apc object}
 
 \item{quantiles}{quantiles to plot}
+
+\item{...}{Additional arguments will be ignored}
 }
 \value{
 plot

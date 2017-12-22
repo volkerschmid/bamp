@@ -39,10 +39,6 @@ bamp(cases, population, age, period, cohort, overdisp = FALSE,
 \item{parallel}{logical, should computation be done in parallel}
 
 \item{verbose}{verbose mode}
-
-\item{mcmc.options}{}
-
-\item{hyperpar}{}
 }
 \description{
 

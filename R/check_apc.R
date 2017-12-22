@@ -4,12 +4,18 @@
 #' @param level level of check; 1 uses point point estimation, 2 uses upper C.I.
 #' @param auto logical; should be TRUE if called automatically from bamp()
 #'
+#' @description 
+#' bamp uses Gelman and Rubins R to check convergence for all main parameters. 
+#' All parameters should have R<1.1. 
+#' bamp() runs at least four MCM chains (more if parallel is more than four).
+#' level=2 convergence check is not yet implemented.  
+#'
 #' @import coda 
 #' @return logical; TRUE if check is fine.
 #' @export
 #'
 
-check.apc<-function(x, level=2, auto=FALSE, ...)
+checkConvergence<-function(x, level=2, auto=FALSE)
 {
   j<-level
   theta<-coda::gelman.diag(x$samples$age, multivariate = FALSE)

@@ -2,6 +2,7 @@
 #'
 #' @param x apc object
 #' @param quantiles quantiles to plot
+#' @param ... Additional arguments will be ignored
 #'
 #' @import stats graphics
 #' @return plot

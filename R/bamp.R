@@ -15,9 +15,6 @@
 #' @param parallel logical, should computation be done in parallel
 #' @param verbose verbose mode
 #'
-#' @param mcmc.options 
-#' @param hyperpar 
-#' 
 #' @description 
 #'
 #' @useDynLib bamp
@@ -716,7 +713,7 @@ deviance<-coda::as.mcmc.list(deviance)
  #     return(ksi)
  #   }
  
-# check(output)
+ if(verbose)checkConvergence(output, auto=verbose)
 
  output$ksi=ksi
  

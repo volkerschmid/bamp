@@ -4,16 +4,18 @@
 \alias{effects.apc}
 \title{Effects from Fitted APC Model}
 \usage{
-\method{effects}{apc}(x, mean = FALSE, quantiles = 0.5, save = FALSE)
+effects.apc(object, mean = FALSE, quantiles = 0.5, save = FALSE, ...)
 }
 \arguments{
-\item{x}{an apc object}
+\item{object}{an apc object}
 
 \item{mean}{logical. If TRUE, mean effects are computed}
 
 \item{quantiles}{Scalar or vector of quantiles to compute (only if mean=FALSE)}
 
 \item{save}{logical. If TRUE, the apc object including the effects is returned}
+
+\item{...}{Additional arguments will be ignored}
 }
 \value{
 List of age, period, cohort effects or apc object including effects

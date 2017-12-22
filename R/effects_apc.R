@@ -1,15 +1,17 @@
 #' Effects from Fitted APC Model
 #'
-#' @param x an apc object
+#' @param object an apc object
 #' @param mean logical. If TRUE, mean effects are computed
 #' @param quantiles Scalar or vector of quantiles to compute (only if mean=FALSE)
 #' @param save logical. If TRUE, the apc object including the effects is returned
-#' 
+#' @param ... Additional arguments will be ignored
+
 #' @return List of age, period, cohort effects or apc object including effects
 #' @export
 #'
-effects.apc<-function(x, mean=FALSE, quantiles=0.5, save=FALSE)
+effects.apc<-function(object, mean=FALSE, quantiles=0.5, save=FALSE, ...)
 {
+  x<-object()
   #check, if we hav done this before
   if (!is.null(x$effect))
   {

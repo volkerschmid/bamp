@@ -1,6 +1,7 @@
 #' Print apc objects
-#'
+#' @aliases print
 #' @param x apc object
+#' @param ... additional arguments will be ignored
 #'
 #' @return print
 #' @export
