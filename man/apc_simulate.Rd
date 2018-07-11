@@ -15,7 +15,7 @@ apc_simulate(intercept, age, period, cohort, periods_per_agegroup, population)
 
 \item{cohort}{Vector of effect for cohorts}
 
-\item{periods_per_agegroup}{Periods per agegroup}
+\item{periods_per_agegroup}{Periods per age group}
 
 \item{population}{Population number. Either a matrix or a scalar.}
 }

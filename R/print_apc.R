@@ -13,20 +13,20 @@ print.apc<-function(x, ...)
   settings <- ""
   if (is.null(x$model$age))x$model$age=" "
   settings <- paste0(settings, switch(x$model$age,
-                     "rw1" = "age (rw1)",
-                     "rw2" = "age (rw2)",
-                     "rw1+het" = "age (rw1 with heterogeneity)",
-                     "rw2+het" = "age (rw2 with heterogeneity)",
+                     "rw1" = "age (rw1) ",
+                     "rw2" = "age (rw2) ",
+                     "rw1+het" = "age (rw1 with heterogeneity) ",
+                     "rw2+het" = "age (rw2 with heterogeneity) ",
                      " " = ""
   ))
   if (x$model$age !=" "&x$model$period!=" ")settings=paste0(settings," - ")
   if (is.null(x$model$period))x$model$period=" "
   settings <- paste0(settings, switch(x$model$period,
-                      "rw1" = "period (rw1)",
-                      "rw2" = "period (rw2)",
-                      "rw1+het" = "period (rw1 with heterogeneity)",
-                      "rw2+het" = "period (rw2 with heterogeneity)",
-                      " " = 0
+                      "rw1" = "period (rw1) ",
+                      "rw2" = "period (rw2) ",
+                      "rw1+het" = "period (rw1 with heterogeneity) ",
+                      "rw2+het" = "period (rw2 with heterogeneity) ",
+                      " " = ""
   ))
   if (x$model$cohort !=" "&x$model$period!=" ")settings=paste0(settings," - ")
   if (is.null(x$model$cohort))x$model$cohort=" "
@@ -59,15 +59,18 @@ print.apc<-function(x, ...)
   cat(paste0(rep(" ",9)))
   cat(format(names(agepar),width=12))
   cat("\n")
-  cat("age   ", paste0(rep(" ",10)))
+  if (x$model$age!=" ")
+  {cat("age   ", paste0(rep(" ",10)))
   cat(format(agepar,digits = 3, width=12,trim=FALSE,nsmall=3))
-  cat("\n")
-  cat("period", paste0(rep(" ",10)))
+  cat("\n")}
+  if (x$model$period!=" "){
+    cat("period", paste0(rep(" ",10)))
   cat(format(perpar,digits = 3, width=12,trim=FALSE,nsmall=3))
-  cat("\n")
-  cat("cohort", paste0(rep(" ",10)))
+  cat("\n")}
+  if (x$model$cohort!=" "){
+    cat("cohort", paste0(rep(" ",10)))
   cat(format(cohpar,digits = 3, width=12,trim=FALSE,nsmall=3))
-  cat("\n")
+  cat("\n")}
   if(x$model$overdispersion)
   {
     cat("overdispersion", paste0(rep(" ",6)))

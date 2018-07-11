@@ -1,4 +1,4 @@
-#' Bayesian Age-Period-Cohort Modelling and Prediction (bamp)
+#' Bayesian Age-Period-Cohort Modeling and Prediction (bamp)
 #'
 #' @param cases number of cases
 #' @param population population number
@@ -6,7 +6,7 @@
 #' @param period prior for periods ("rw1", "rw2", "rw1+het", "rw2+het", " ")
 #' @param cohort prior for cohorts ("rw1", "rw2", "rw1+het", "rw2+het", " ")
 #' @param overdisp logical, add overdispersion to model
-#' @param periods_per_agegroup periods per agegroup
+#' @param periods_per_agegroup periods per age group
 #' @param period_covariate covariate for period
 #' @param cohort_covariate covariate for cohort
 #' @param mcmc.options Options for MCMC, see description
@@ -16,6 +16,7 @@
 #' @param verbose verbose mode
 #'
 #' @description 
+#' Bayesian age-period-cohort modeling
 #'
 #' @useDynLib bamp
 #' @export
@@ -26,7 +27,7 @@ function(cases, population,
         age, period, cohort, overdisp=FALSE,
         period_covariate=NULL, cohort_covariate=NULL,
         periods_per_agegroup,
-        mcmc.options=list("number_of_iterations"=105000, "burn_in"=5000, "step"=50, "tuning"=500),
+        mcmc.options=list("number_of_iterations"=55000, "burn_in"=5000, "step"=50, "tuning"=500),
         hyperpar=list("age"=c(1,0.0005), "period"=c(1,0.0005), "cohort"=c(1,0.0005), "overdisp"=c(1,0.05)),
         dic=TRUE,
         parallel=TRUE, verbose=FALSE){
@@ -295,11 +296,8 @@ function(cases, population,
   cpsi <- 1                                                         # set psi = 1
 
   if(period_plus == 1){                                             # if period_plus = 1 (with period_covariate)
-    if(is.vector(period_covariate)){
-      cphi <- 0                                                     # set phi = 0
-    }else{
-      stop("ERROR:The period covariate must be in a vector form!")# period covariate must be in a vector form
-    }
+    cphi <- 0                                                     # set phi = 0
+    if(!is.vector(period_covariate))period_covariat<-as.vector(period_covariat)
     if(period_start%%1 != 0 || period_start <= 0){
       stop("ERROR: Period start must be a positive integer!")     # period start must be a positive integer
     }else{
@@ -324,11 +322,8 @@ function(cases, population,
   }
 
   if(cohort_plus == 1){                                              # if cohort_plus = 1 (with cohort_covariate)
-    if(is.vector(cohort_covariate)){
-      cpsi <- 0                                                      # set psi = 0
-    }else{
-      stop("ERROR: The cohort covariate must be in a vector form!")# cohort covariate must be in a vector form
-    }
+    cpsi <- 0                                                      # set psi = 0
+    if(!is.vector(cohort_covariate))cohort_covariate<-as.vector(cohort_covariate)
   if(cohort_start%%1 != 0 || cohort_start <= 0){
     stop("ERROR: Cohort start must be a positive integer!")         # cohort start must be a positive integer
   }else{
@@ -355,7 +350,7 @@ function(cases, population,
 if (verbose)
   {
   ##################################################################################################################################
-## output of settings (bamp.cc S.12-S-14)
+## output of settings
 
   max_block <- max(age_block, (max(period_block, cohort_block)))
   if(max_block == 0){
@@ -404,7 +399,10 @@ if (verbose)
   }
 
   settings <- paste(settings, ".", sep = "")
-  settings <- paste(settings, "\nPrioris: ", sep = "")                    # Prioris
+  settings <- paste(settings, "\nPrioris:", sep = "")                    # Prioris
+  if(age_block == 0&verbose>0){
+    settings <- paste(settings, "no age effect", sep = " ")                  # age
+  }
   if(age_block > 0){
     settings <- paste(settings, "age effect", sep = " ")                  # age
   }
@@ -417,6 +415,9 @@ if (verbose)
   if(age_block*period_block > 0){
     settings <- paste(settings, ",", sep = "")
   }
+  if(period_block == 0&verbose>0){
+    settings <- paste(settings, ", no period effect", sep = " ")                  # age
+  }
   if(period_block > 0){
     settings <- paste(settings, "period effect", sep = " ")               # period
   }
@@ -425,6 +426,9 @@ if (verbose)
   }
   if(period_block == 2 | period_block == 4){
     settings <- paste(settings, "RW 2", sep = " ")                        # RW 2
+  }
+  if(cohort_block == 0&verbose>0){
+    settings <- paste(settings, ", no cohort effect", sep = " ")                  # age
   }
   if(cohort_block > 0){
     settings <- paste(settings, ", cohort effect", sep = "")              # cohort
@@ -435,6 +439,7 @@ if (verbose)
   if(cohort_block == 2 | cohort_block == 4){
     settings <- paste(settings, "RW 2", sep = " ")                        # RW 2
   }
+  settings <- paste(settings, ".", sep = "")
   settings <- paste(settings, "\n", sep = "")
   if(period_plus == 1){
     settings <- paste(settings, "Period effect with covariates ", names(period_covariate),   # period effect with covariates
@@ -446,7 +451,6 @@ if (verbose)
   }
   settings <- paste(settings, number_of_agegroups, " age groups, ", number_of_periods, " periods, ",
                     number_of_cohorts, " cohorts. ", sep = "")            # counts of agegroups, periods and cohorts
-  settings <- paste(settings, ".", sep = "")
   settings <- paste(settings, "\n", sep = "")
   settings <- paste(settings, number_of_iterations, " iterations with ", burn_in, " burn in, using every ",
                     step, "th sample.", sep = "")                        # iterations, burn_in, step and tuning
@@ -493,6 +497,8 @@ if (verbose)
     }
     settings <- paste(settings, "overdispersion (", z_hyperpar_a, ", ", z_hyperpar_b, ")", sep = "")
   }
+  settings <- paste(settings, ".\n\n",sep="")
+  settings<-paste(settings, "verbose level: ", verbose, sep="")
   settings <- paste(settings, ".\n\n", sep = "")
 }
 
@@ -571,15 +577,32 @@ return(.C("bamp",
 )
 }
 
+ if (parallel)
+ {
+   cores<-getOption("mc.cores", 2L)
+   if (parallel>1)
+     cores<-parallel
+ }
+if(verbose>=2)
+{
+  results_list<-list()
+  for (i in 1:chains)
+    results_list[[i]]<-singlerun(i,cases,population,blocks,numbers,periods_per_agegroup,
+                     numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, 
+                     theta2.sample,phi2.sample,psi2.sample,ksi,delta.sample,kappa.sample,kappa2.sample,
+                     lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample, verbose)
+parallel<-FALSE
+}
 if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population,blocks,numbers,periods_per_agegroup,
                                                  numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, 
                                                  theta2.sample,phi2.sample,psi2.sample,ksi,delta.sample,kappa.sample,kappa2.sample,
-                                                 lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose>0, mc.cores=chains)
+                                                 lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose, mc.cores=cores)
 
+ 
  if(!parallel)results_list<-lapply(1:chains,singlerun,cases,population,blocks,numbers,periods_per_agegroup,
                                               numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, 
                                               theta2.sample,phi2.sample,psi2.sample,ksi,delta.sample,kappa.sample,kappa2.sample,
-                                              lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose>0)
+                                              lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose)
 
 ##################################################################################################################################
 
@@ -606,7 +629,7 @@ if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population
  
  while (any(!((deviance.mean>=(dm-sd))&(deviance.mean<=(dm+sd)))))
  {
-   if (verbose==2)print("kick")
+   if (verbose>=2)print("kick")
    dm2<-abs(deviance.mean-dm)
    kick2<-which(dm2==max(dm2))
    kick[kick2]=FALSE
@@ -703,7 +726,24 @@ deviance<-coda::as.mcmc.list(deviance)
  output$deviance=deviance
  }
  
- # ksi_berechnen <-
+ if (!is.null(period_covariate)|!is.null(cohort_covariate))
+ {
+   covariate <- list()
+ }
+ if (!is.null(period_covariate))
+ {
+   covariate$period<-period_covariate
+ }
+ if (!is.null(cohort_covariate))
+ {
+   covariate$cohort<-cohort_covariate
+ }
+ if (!is.null(period_covariate)|!is.null(cohort_covariate))
+ {
+   output$covariate<-covariate
+ }
+   
+# ksi_berechnen <-
  #   function(ksi, psi, vdb, noa, nop){
  #     for(i in 1:noa){
  #       for(j in 1:nop){

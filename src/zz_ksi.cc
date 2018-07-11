@@ -6,20 +6,11 @@
 
 void ZZ_aus_fc_von_ksi0(double my, double* theta, double* phi, double* psi, double** ksi, double delta, int number_of_agegroups, int number_of_periods, int vielfaches_der_breite, int** y, int** n, int** yes, int** no, int** schalter)
 {
-double mytemp;
 double atemp= 1.0/((exp(1.0/delta))-1.0);
 double btemp;
-double sigma2temp;
 double proposal;
-double log_dichte_proposal;
-double z_effekt;
-double log_dichte_ksialt;
-double qksialt;
-double qproposal;
 double alpha;
-double log_alpha;
 double offset;
-double schranke=5e-13;
 
   // ** Metropolis **
 for (int j=0; j < number_of_agegroups; j++)

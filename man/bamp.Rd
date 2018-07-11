@@ -2,12 +2,12 @@
 % Please edit documentation in R/bamp.R
 \name{bamp}
 \alias{bamp}
-\title{Bayesian Age-Period-Cohort Modelling and Prediction (bamp)}
+\title{Bayesian Age-Period-Cohort Modeling and Prediction (bamp)}
 \usage{
 bamp(cases, population, age, period, cohort, overdisp = FALSE,
   period_covariate = NULL, cohort_covariate = NULL, periods_per_agegroup,
-  mcmc.options = list(number_of_iterations = 105000, burn_in = 5000, step =
-  50, tuning = 500), hyperpar = list(age = c(1, 5e-04), period = c(1, 5e-04),
+  mcmc.options = list(number_of_iterations = 55000, burn_in = 5000, step = 50,
+  tuning = 500), hyperpar = list(age = c(1, 5e-04), period = c(1, 5e-04),
   cohort = c(1, 5e-04), overdisp = c(1, 0.05)), dic = TRUE, parallel = TRUE,
   verbose = FALSE)
 }
@@ -28,7 +28,7 @@ bamp(cases, population, age, period, cohort, overdisp = FALSE,
 
 \item{cohort_covariate}{covariate for cohort}
 
-\item{periods_per_agegroup}{periods per agegroup}
+\item{periods_per_agegroup}{periods per age group}
 
 \item{mcmc.options}{Options for MCMC, see description}
 
@@ -41,5 +41,5 @@ bamp(cases, population, age, period, cohort, overdisp = FALSE,
 \item{verbose}{verbose mode}
 }
 \description{
-
+Bayesian age-period-cohort modeling
 }

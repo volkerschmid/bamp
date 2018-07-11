@@ -1,9 +1,9 @@
 #' Compute cohort index from age and period index
 #'
-#' @param agegroup age group indes
-#' @param period period indes
+#' @param agegroup age group index
+#' @param period period index
 #' @param noa number of age groups in total
-#' @param periods_per_agegroup periods per agegroup
+#' @param periods_per_agegroup periods per age group
 #'
 #' @return cohort index
 #' @export

@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-vignettes/*cache
+vignettes/*_cache/
+vignettes/*_files/
 .git
 ^.*\.dropbox\.attr$
 ^cran-comments\.md$
@@ -10,5 +11,5 @@ unused
 _pkgdown.yaml
 .gitignore
 ^.*\.git$
-TODO$
+TODO.md
 ^docs$

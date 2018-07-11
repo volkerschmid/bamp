@@ -11,8 +11,8 @@
 #'
 effects.apc<-function(object, mean=FALSE, quantiles=0.5, save=FALSE, ...)
 {
-  x<-object()
-  #check, if we hav done this before
+  x<-object
+  #check, if we have done this before
   if (!is.null(x$effect))
   {
     if (all(attr(effects,"settings")==c(mean,quantiles)))return(x$effect) 

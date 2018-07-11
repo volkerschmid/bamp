@@ -10,6 +10,7 @@ Important
 * print.apc() 
 ** intercept
 ** use results from $effect
+* Plotting rw2 effects
 
 Features:
 * Re-enable prognosis

@@ -4,7 +4,7 @@
 #' @param age Vector of effect for age groups
 #' @param period Vector of effects for periods
 #' @param cohort Vector of effect for cohorts
-#' @param periods_per_agegroup Periods per agegroup
+#' @param periods_per_agegroup Periods per age group
 #' @param population Population number. Either a matrix or a scalar.
 #'
 #' @return List with number of cases (matrix) and population numbers (matrix).

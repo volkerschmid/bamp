@@ -1,14 +1,12 @@
 Package: bamp
 Type: Package
-Title: Bayesian Age-Period-Cohort Modelling and Prediction
-Version: 1.9.33
-Date: 2017-12-22
-Author: Volker Schmid
-Authors@R: c(
-    person("Volker", "Schmid", role = c("aut", "cre"), email = "stats@volkerschmid.de"))
-Contributors: Leonhard Held, Evi Rainer, Florian Geressen
-Maintainer: Volker Schmid <stats@volkerschmid.de>
-Description: Bayesian Age-Period-Cohort Modelling and Prediction.
+Title: Bayesian Age-Period-Cohort Modeling and Prediction
+Version: 1.9.35
+Date: 2018-07-11
+Authors@R: as.person(c("Volker Schmid <volker.schmid@lmu.de> [aut] [cre]",
+    "Leonhard Held [ctb]", "Evi Rainer [ctb]", "Florian Geressen [ctb]"))
+Maintainer: Volker Schmid <volker.schmid@lmu.de>
+Description: Bayesian Age-Period-Cohort Modeling and Prediction.
 License: GPL-3
 Encoding: UTF-8
 Imports: coda
@@ -16,3 +14,5 @@ LazyData: true
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr
 Suggests: knitr, rmarkdown
+URL: https://volkerschmid.github.io/bamp/
+BugReports: https://github.com/volkerschmid/bamp/issues

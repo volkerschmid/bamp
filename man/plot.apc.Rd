@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{apc object}
 
-\item{quantiles}{quantiles to plot}
+\item{quantiles}{quantiles to plot. Default: c(0.05,0.5,0.95) is median and 90\% credible interval.}
 
 \item{...}{Additional arguments will be ignored}
 }

@@ -7,13 +7,13 @@
 coh(agegroup, period, noa, periods_per_agegroup)
 }
 \arguments{
-\item{agegroup}{age group indes}
+\item{agegroup}{age group index}
 
-\item{period}{period indes}
+\item{period}{period index}
 
 \item{noa}{number of age groups in total}
 
-\item{periods_per_agegroup}{periods per agegroup}
+\item{periods_per_agegroup}{periods per age group}
 }
 \value{
 cohort index

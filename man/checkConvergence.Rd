@@ -4,10 +4,12 @@
 \alias{checkConvergence}
 \title{Check apc object, whether MCMC has converged}
 \usage{
-checkConvergence(x, level = 2, auto = FALSE)
+checkConvergence(x, info = FALSE, level = 2, auto = FALSE)
 }
 \arguments{
 \item{x}{An apc object}
+
+\item{info}{logical; print more information}
 
 \item{level}{level of check; 1 uses point point estimation, 2 uses upper C.I.}
 
@@ -19,6 +21,5 @@ logical; TRUE if check is fine.
 \description{
 bamp uses Gelman and Rubins R to check convergence for all main parameters. 
 All parameters should have R<1.1. 
-bamp() runs at least four MCM chains (more if parallel is more than four).
-level=2 convergence check is not yet implemented.
+bamp() runs at least four MCMC chains (more if parallel is more than four).
 }

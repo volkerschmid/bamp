@@ -1,8 +1,8 @@
 ---
 title: "Bayesian Age-Period-Cohort Modelling"
 author: "Volker Schmid"
-date: "16th November 2017"
-output: pdf_document
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Bayesian Age-Period-Cohort Modelling}
   %\VignetteEngine{knitr::rmarkdown}
@@ -18,35 +18,72 @@ library(bamp)
 
 BAMP includes a data example.
 
-```{r load and plot example data set}
+```{r load_and_plot_example_data_set}
 data(apc)
 plot(cases[,1],type="l",ylim=range(cases), ylab="cases", xlab="year", main="cases per age group")
 for (i in 2:8)lines(cases[,i], col=i)
 ```
 
 ## APC model with random walk first order prior
-```{r Model 1 with RW1 priors}
+```{r Model1_with_RW1_priors}
 model1 <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1",
-              periods_per_agegroup = 5,  verbose=TRUE)
+              periods_per_agegroup = 5)
 ```
 
 bamp() automatically performs a check for MCMC convergence using Gelman and Rubin's convergence diagnostic. We can manually check the convergence again:
 
-```{r check model}
-check(model1)
+```{r check_model}
+checkConvergence(model1)
 ```
 
 Now we have a look at the model results. This includes estimates of smoothing parameters and deviance and DIC:
-```{r print model}
+```{r print_model}
 print(model1)
 ```
 
 We can plot the main APC effects using point-wise quantiles: 
-```{r plot model}
+```{r plot_model}
 plot(model1)
 ```
 
 More quantiles are possible:
-```{r plot model with more quantiles}
+```{r plot_model_with_more_quantiles}
 plot(model1, quantiles = c(0.025,0.1,0.5,0.9,0.975))
+```
+
+## APC model with random walk first order prior
+```{r Model2_with_RW2_priors}
+model2 <- bamp(cases, population, age="rw2", period="rw2", cohort="rw2",
+              periods_per_agegroup = 5)
+```
+
+```{r Model2_results}
+checkConvergence(model2)
+print(model2)
+plot(model2)
+```
+
+```{r model3}
+model3<-bamp(cases, population, age="rw1", period=" ", cohort="rw2",
+              periods_per_agegroup = 5)
+checkConvergence(model3)
+print(model3)
+plot(model3)
+```
+
+```{r model4}
+(model4<-bamp(cases, population, age="rw1", period="rw1", cohort="rw1",
+             cohort_covariate = cov_c, periods_per_agegroup = 5, 
+             parallel = FALSE, 
+             mcmc.options=list("number_of_iterations"=50000)
+             ))
+plot(model4)
+```
+
+
+```{r model5}
+(model5<-bamp(cases, population, age="rw1", period="rw1", cohort="rw1",
+             period_covariate = cov_p, periods_per_agegroup = 5, 
+             parallel = FALSE))
+plot(model5)
 ```

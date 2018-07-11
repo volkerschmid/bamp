@@ -28,7 +28,7 @@ void bamp(int* cases, int* population, int* blocks, int* dims, double* vdb, int*
           double* devsample, int* verbose0)
 {
   int verbose=verbose0[0];
-  if(verbose==2){Rprintf("We are in cc");}
+  if(verbose>=2){Rprintf("cc verbose level: %d\n\n", verbose);}
 double age_a=ab[0];
 double age_b=ab[1];
 double period_a=ab[2];
@@ -229,10 +229,23 @@ double* phitemp=new double[number_of_periods+number_of_predictions];
 for (int i=0; i<number_of_agegroups; i++)
   {theta[i]=0.0;theta2[i]=0.0;}
 for (int i=0; i<number_of_periods2; i++)
-  {phi[i]=0.0;phi2[i]=0.0;}
+  {
+  phi[i]=0.0;phi2[i]=0.0;
+  }
+if (cohort_block>0)
+{
 for (int i=0; i<number_of_cohorts2; i++)
-{psi[i]=zahl(0.0,1.0);psi2[i]=zahl(0.0,1.0);}
-
+  {
+  psi[i]=zahl(0.0,1.0);psi2[i]=zahl(0.0,1.0);
+  }
+}
+if (cohort_block==0)
+{
+  for (int i=0; i<number_of_cohorts2; i++)
+  {
+    psi[i]=0.0;psi2[i]=0.0;
+  }
+}
 
 double my=0.0;
 
@@ -280,8 +293,9 @@ int ididwritesomething=0;
 
 for (int iteration=1; iteration<= number_of_iterations; iteration++)
 {
+  if (verbose>=3){Rprintf("Iteration: %d\n",iteration);ididwritesomething=0;}
   // progress bar
-if(verbose==1){
+if(verbose>0){
   //if (ididwritesomething==0){
     //for (tempcounter=0; tempcounter<=27; tempcounter++)
     //{Rprintf(" ");}
@@ -523,7 +537,7 @@ if (mode==1)
 	   if (back==1)
 	     {
 	       iteration=0;
-	       if(verbose==1){
+	       if(verbose>=1){
 	         for (tempcounter=0; tempcounter<=ididwritesomething; tempcounter++){Rprintf("\b");}
 	         
 	          Rprintf("Tuning is necessary. Restarting iterations.");
@@ -549,26 +563,31 @@ if (mode==1)
 	   int back=0;
 
 	   //	   if ((double)ja_my/(double)tun_konst<.4){back=1; my=0;}
-	   if ((double)ja_age/(double)tun_konst<.4){back=1;kappa=kappa*exp(nulleins());}
-	   if ((double)ja_period/(double)tun_konst<.4){back=1;lambda=1;lambda2=10;}
-	   if ((double)ja_cohort/(double)tun_konst<.4){back=1;ny=1;}
+	   if(age_block>0)if ((double)ja_age/(double)tun_konst<.4){back=1;kappa=kappa*exp(nulleins());}
+	   if(period_block>0)if ((double)ja_period/(double)tun_konst<.4){back=1;lambda=1;lambda2=10;}
+	   if(cohort_block>0)if ((double)ja_cohort/(double)tun_konst<.4){back=1;ny=1;}
 
 	   if (back==1)
 	     {
 	       iteration=0;
-	        if(verbose==1){
+	        if(verbose>=1){
 	          for (tempcounter=0; tempcounter<=ididwritesomething; tempcounter++){Rprintf("\b");}
 	          
             Rprintf("Acceptance rate low. Restarting iterations.");
-	          lastitpercent=0.0;
+	            lastitpercent=0.0;
 	          ididwritesomething=42;
 	          }
-	     for (int i=0; i< number_of_cohorts; i++)
-	       {psi[i]=zahl(0.0,1.0);}
-	       for (int i=0; i< number_of_periods; i++)
-	       {phi[i]=zahl(0.0,1.0);}
+	        if (cohort_block>0){
+    	     for (int i=0; i< number_of_cohorts; i++)
+    	     {psi[i]=zahl(0.0,1.0);}}
+	        if (period_block>0)
+	        {
+	         for (int i=0; i< number_of_periods; i++)
+	         {phi[i]=zahl(0.0,1.0);}}
+	        if (age_block>0)
+	        {
      	     for (int i=0; i< number_of_agegroups; i++)
-	       {theta[i]=zahl(0.0,1.0);}
+     	     {theta[i]=zahl(0.0,1.0);}}
 	     my=zahl(0.0,1.0);
 	     }
 
@@ -743,7 +762,7 @@ if (mode==1)
 	}
 
  }//Ende Iterationsschleife
-  if (verbose==1){Rprintf("\n\n");}
+  if (verbose>=1){Rprintf("\n\n");}
 
   return;
 }

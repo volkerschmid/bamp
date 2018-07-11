@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>apc S3 class — apc • bamp</title>
+<title>Check apc object, whether MCMC has converged — checkConvergence • bamp</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,11 @@
 
 
 
-<meta property="og:title" content="apc S3 class — apc" />
+<meta property="og:title" content="Check apc object, whether MCMC has converged — checkConvergence" />
 
-<meta property="og:description" content="apc S3 class" />
+<meta property="og:description" content="bamp uses Gelman and Rubins R to check convergence for all main parameters. 
+All parameters should have R&amp;lt;1.1. 
+bamp() runs at least four MCM chains (more if parallel is more than four)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -97,28 +99,52 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>apc S3 class</h1>
+    <h1>Check apc object, whether MCMC has converged</h1>
     
-    <div class="hidden name"><code>apc.Rd</code></div>
+    <div class="hidden name"><code>checkConvergence.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>apc S3 class</p>
+    <p>bamp uses Gelman and Rubins R to check convergence for all main parameters. 
+All parameters should have R&lt;1.1. 
+bamp() runs at least four MCM chains (more if parallel is more than four).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>apc</span>()</pre>
-        
+    <pre class="usage"><span class='fu'>checkConvergence</span>(<span class='no'>x</span>, <span class='kw'>info</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>auto</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>An apc object</p></td>
+    </tr>
+    <tr>
+      <th>info</th>
+      <td><p>logical; print more information</p></td>
+    </tr>
+    <tr>
+      <th>level</th>
+      <td><p>level of check; 1 uses point point estimation, 2 uses upper C.I.</p></td>
+    </tr>
+    <tr>
+      <th>auto</th>
+      <td><p>logical; should be TRUE if called automatically from bamp()</p></td>
+    </tr>
+    </table>
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>apc class</p>
+    <p>logical; TRUE if check is fine.</p>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
           </ul>
