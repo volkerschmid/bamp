@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute cohort index from age and period index — coh • bamp</title>
+<title>Example dataset for APC model — apc.data • bamp</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Compute cohort index from age and period index — coh" />
+<meta property="og:title" content="Example dataset for APC model — apc.data" />
 
-<meta property="og:description" content="Compute cohort index from age and period index" />
+<meta property="og:description" content="A dataset containing case counts and population numbers in eight age groups for ten years. Each age group consists of five years." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -97,52 +97,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute cohort index from age and period index</h1>
+    <h1>Example dataset for APC model</h1>
     
-    <div class="hidden name"><code>coh.Rd</code></div>
+    <div class="hidden name"><code>apc.data.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Compute cohort index from age and period index</p>
+    <p>A dataset containing case counts and population numbers in eight age groups for ten years. Each age group consists of five years.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>coh</span>(<span class='no'>agegroup</span>, <span class='no'>period</span>, <span class='no'>noa</span>, <span class='no'>periods_per_agegroup</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>agegroup</th>
-      <td><p>age group index</p></td>
-    </tr>
-    <tr>
-      <th>period</th>
-      <td><p>period index</p></td>
-    </tr>
-    <tr>
-      <th>noa</th>
-      <td><p>number of age groups in total</p></td>
-    </tr>
-    <tr>
-      <th>periods_per_agegroup</th>
-      <td><p>periods per age group</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <pre class="usage"><span class='fu'>data</span>(<span class='no'>apc</span>)</pre>
+        
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>cohort index</p>
+    <p>population: matrix of population data</p>
+<p>cases: matrix of case counts</p>
+<p>cov_p: covariate for period</p>
+<p>cov_c: covariate for cohort</p>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
           </ul>
 
   </div>
