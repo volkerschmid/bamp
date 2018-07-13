@@ -26,7 +26,7 @@
 #' plot(simmod)
 #' }
 
-apc_simulate<-function(intercept, age, period, cohort, periods_per_agegroup, population)
+apcSimulate<-function(intercept, age, period, cohort, periods_per_agegroup, population)
 {
   noa <- length(age)
   nop <- length(period)

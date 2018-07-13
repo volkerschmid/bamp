@@ -22,3 +22,23 @@ articles:
     contents:
     - bamp
     - simulation
+    
+reference:
+- title: "Main Function"
+  contents: 
+      - bamp
+      - checkConvergence
+      - apcSimulate
+- title: "apc S3 class"
+  contents: 
+      - apc
+      - effects.apc
+      - plot.apc
+      - print.apc
+- title: "Data"
+  contents: 
+      - apc.data
+- title: "helper Functions"
+  contents: 
+      - coh
+

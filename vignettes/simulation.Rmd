@@ -37,7 +37,7 @@ cohort<-cohort-mean(cohort)
 plot(cohort, type="l")
 ```
 ```{r simulate_data}
-simdata<-apc_simulate(-10, age, period, cohort, periods_per_agegroup, 1e6)
+simdata<-apcSimulate(-10, age, period, cohort, periods_per_agegroup, 1e6)
 print(simdata$cases)
 ```
 
