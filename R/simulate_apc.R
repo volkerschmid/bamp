@@ -15,7 +15,7 @@
 #' periods_per_agegroup=5; number_of_cohorts <- periods_per_agegroup*(10-1)+15
 #' cohort<-rep(0,60); cohort[1:10]<-10:1; cohort[41:60]<- -(1:20)/2; cohort<-cohort/10;
 #' cohort<-cohort-mean(cohort)
-#' simdata<-apc_simulate(-5, age, period, cohort, periods_per_agegroup, 1e6)
+#' simdata<-apcSimulate(-5, age, period, cohort, periods_per_agegroup, 1e6)
 #' par(mfrow=c(3,1))
 #' plot(age, type="l")
 #' plot(period, type="l")

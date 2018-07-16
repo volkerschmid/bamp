@@ -18,7 +18,7 @@ library(bamp)
 
 BAMP includes a data example.
 
-```{r load_and_plot_example_data_set}
+```{r loadplot}
 data(apc)
 plot(cases[,1],type="l",ylim=range(cases), ylab="cases", xlab="year", main="cases per age group")
 for (i in 2:8)lines(cases[,i], col=i)
