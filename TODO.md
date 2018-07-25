@@ -1,9 +1,3 @@
-Warnings:
-* Argument items with no description in Rd object 'bamp':
-  ‘mcmc.options’ ‘hyperpar’
-* checking S3 generic/method consistency ... effects: function(object, ...) effects.apc: function(x, mean, quantiles, save)
-* prepare_Rd: bamp.Rd:47-49: Dropping empty section \description
-
 Important
 * Description in bamp help file
 * compute effects in bamp() (use effects.apc(..save=TRUE))
@@ -11,6 +5,7 @@ Important
 ** intercept
 ** use results from $effect
 * Plotting rw2 effects
+** Restrict per iteration
 
 Features:
 * Re-enable prognosis
