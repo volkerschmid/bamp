@@ -691,8 +691,9 @@ deviance<-coda::as.mcmc.list(deviance)
  if (z_mode==1) samples=c(samples, list("overdispersion"=delta))
  samples=c(samples,list("deviance"=deviance))
  
- data=list("cases"=cases,"population"=population)
-
+ data=list("cases"=cases,"population"=population, "periods_per_agegroup"=periods_per_agegroup)
+ 
+ 
  output$model=model
  output$data=data
  output$samples=samples

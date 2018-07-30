@@ -13,3 +13,5 @@ _pkgdown.yaml
 ^.*\.git$
 TODO.md
 ^docs$
+docs/articles/*_cache/
+internaaltest/

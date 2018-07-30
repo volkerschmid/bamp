@@ -4,8 +4,7 @@
 \alias{effects.apc}
 \title{Effects from Fitted APC Model}
 \usage{
-\method{effects}{apc}(object, mean = FALSE, quantiles = 0.5, save = FALSE,
-  ...)
+effects.apc(object, mean = FALSE, quantiles = 0.5, update = FALSE, ...)
 }
 \arguments{
 \item{object}{an apc object}
@@ -14,7 +13,7 @@
 
 \item{quantiles}{Scalar or vector of quantiles to compute (only if mean=FALSE)}
 
-\item{save}{logical. If TRUE, the apc object including the effects is returned}
+\item{update}{logical. If TRUE, the apc object including the effects is returned}
 
 \item{...}{Additional arguments will be ignored}
 }
