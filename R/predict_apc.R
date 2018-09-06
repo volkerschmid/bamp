@@ -10,8 +10,8 @@
 #' and a list samples with MCMC samples of pr, cases and cases_period. 
 #' If update=TRUE, the apc object will be returned with this list (predicted) added.
 #' 
-#' @import parallel abind
-#' 
+#' @import parallel
+#' @importFrom abind abind
 #' @export
 #'
 predict.apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0.95), update=FALSE)
@@ -160,7 +160,7 @@ predict.apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
   
   if (!update)return(predicted)
   if (update){
-    object$predicted=preticted
+    object$predicted=predicted
     return(object)
 }
 }

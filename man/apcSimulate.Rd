@@ -4,7 +4,8 @@
 \alias{apcSimulate}
 \title{Simulate from age-period-cohort model}
 \usage{
-apcSimulate(intercept, age, period, cohort, periods_per_agegroup, population)
+apcSimulate(intercept, age, period, cohort, periods_per_agegroup,
+  population)
 }
 \arguments{
 \item{intercept}{Intercept}

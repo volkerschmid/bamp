@@ -9,9 +9,9 @@ Maintainer: Volker Schmid <volker.schmid@lmu.de>
 Description: Bayesian Age-Period-Cohort Modeling and Prediction.
 License: GPL-3
 Encoding: UTF-8
-Imports: coda
+Imports: coda, graphics, parallel, stats, abind
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 VignetteBuilder: knitr
 Suggests: knitr, rmarkdown
 URL: https://volkerschmid.github.io/bamp/
