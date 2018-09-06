@@ -4,7 +4,6 @@
 .Ruserdata
 bamp.Rproj
 .DS_Store
-inst/doc
 vignettes/*_cache
 vignettes/*_files
 docs/articles/*_files

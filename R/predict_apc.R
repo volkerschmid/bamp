@@ -14,8 +14,8 @@
 #' @importFrom abind abind
 #' @export
 #'
-predict.apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0.95), update=FALSE)
-{
+predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0.95), update=FALSE){
+  
   ksi_prognose <-
     function(prepi, vdb, noa, nop, nop2, noc, zmode){
       my<-prepi[1]
@@ -157,7 +157,7 @@ predict.apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
     "samples"=samples
   )
   
-  
+  print(update)
   if (!update)return(predicted)
   if (update){
     object$predicted=predicted
