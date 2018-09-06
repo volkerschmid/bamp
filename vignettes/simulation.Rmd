@@ -30,8 +30,9 @@ plot(period, type="l")
 periods_per_agegroup=5
 number_of_cohorts <- periods_per_agegroup*(10-1)+15
 cohort<-rep(0,60)
-cohort[1:10]<-10:1
-cohort[41:60]<- (1:20)/2
+cohort[1:15]<-(14:0)
+cohort[16:30]<- (1:15)/2
+cohort[31:60]<- 8
 cohort<-cohort/10
 cohort<-cohort-mean(cohort)
 plot(cohort, type="l")
@@ -65,6 +66,16 @@ plot(cohort, type="l")
 lines(effects$cohort, col="blue")
 lines(effects2$cohort, col="green")
 ```
+
+```{r prediction}
+prediction<-predict(simmod, periods=5, population=array(1e6,c(20,10)))
+plot(prediction$cases_period[2,], ylim=range(prediction$cases_period),ylab="",pch=19)
+points(prediction$cases_period[1,],pch="–",cex=2)
+points(prediction$cases_period[3,],pch="–",cex=2)
+for (i in 1:20)lines(rep(i,3),prediction$cases_period[,i])
+plot(prediction$period[2,])
+```
+
 
 ```{r bamp_rw2}
 simmodrw2 <- bamp(cases = simdata$cases, population = simdata$population, age = "rw2", 
