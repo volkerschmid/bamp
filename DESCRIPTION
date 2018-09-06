@@ -3,8 +3,8 @@ Type: Package
 Title: Bayesian Age-Period-Cohort Modeling and Prediction
 Version: 1.9.37
 Date: 2018-07-16
-Authors@R: c(person(given="Volker",family="Schmid",middle="J", email="volker.schmid@lmu.de", role=c("aut","cre")),
-    as.person("Florian Geressen [ctb]"), as.person("Leonhard Held [ctb]"), as.person("Evi Rainer [ctb]"))
+Authors@R: as.person(c("Volker Schmid <volker.schmid@lmu.de> [aut],[cre]",
+  "Florian Geressen [ctb]", "Leonhard Held [ctb]", "Evi Rainer [ctb]"))
 Maintainer: Volker Schmid <volker.schmid@lmu.de>
 Description: Bayesian Age-Period-Cohort Modeling and Prediction.
 License: GPL-3
