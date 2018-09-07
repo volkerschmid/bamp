@@ -29,6 +29,7 @@ reference:
       - bamp
       - checkConvergence
       - apcSimulate
+      - predict_apc
 - title: "apc S3 class"
   contents: 
       - apc

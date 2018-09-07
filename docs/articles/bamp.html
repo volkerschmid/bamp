@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bamp</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.9.36</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.9.41</span>
       </span>
     </div>
 
@@ -67,7 +67,7 @@
       <h1>Bayesian Age-Period-Cohort Modelling</h1>
                         <h4 class="author">Volker Schmid</h4>
             
-            <h4 class="date">2018-07-13</h4>
+            <h4 class="date">2018-09-07</h4>
       
       
       <div class="hidden name"><code>bamp.Rmd</code></div>
@@ -83,7 +83,7 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(apc)
 <span class="kw">plot</span>(cases[,<span class="dv">1</span>],<span class="dt">type=</span><span class="st">"l"</span>,<span class="dt">ylim=</span><span class="kw">range</span>(cases), <span class="dt">ylab=</span><span class="st">"cases"</span>, <span class="dt">xlab=</span><span class="st">"year"</span>, <span class="dt">main=</span><span class="st">"cases per age group"</span>)
 <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">8</span>)<span class="kw">lines</span>(cases[,i], <span class="dt">col=</span>i)</code></pre></div>
-<p><img src="bamp_files/figure-html/load_and_plot_example_data_set-1.png" width="700"></p>
+<p><img src="bamp_files/figure-html/loadplot-1.png" width="700"></p>
 </div>
 <div id="apc-model-with-random-walk-first-order-prior" class="section level2">
 <h2 class="hasAnchor">
@@ -98,15 +98,15 @@
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.60
-## pD:            37.14
-## DIC:          268.74
+## Deviance:     231.29
+## pD:            36.75
+## DIC:          268.04
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.413        1.035        2.312
-## period                          63.729      191.833      594.663
-## cohort                          35.650       59.956       99.417</code></pre>
+## age                              0.398        1.046        2.229
+## period                          67.752      200.627      568.333
+## cohort                          34.743       60.582       99.459</code></pre>
 <p>We can plot the main APC effects using point-wise quantiles:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model1)</code></pre></div>
 <p><img src="bamp_files/figure-html/plot_model-1.png" width="700"><img src="bamp_files/figure-html/plot_model-2.png" width="700"><img src="bamp_files/figure-html/plot_model-3.png" width="700"></p>
@@ -125,15 +125,15 @@
 <pre><code>## 
 ##  Model:
 ## age (rw2)  - period (rw2)  - cohort (rw2) model
-## Deviance:     245.95
-## pD:            33.70
-## DIC:          279.65
+## Deviance:     245.91
+## pD:            33.71
+## DIC:          279.63
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              2.005        6.276       16.624
-## period                          57.815      309.328     2794.046
-## cohort                          36.634       73.791      146.080</code></pre>
+## age                              2.054        6.206       16.321
+## period                          55.599      304.426     2564.264
+## cohort                          35.454       74.201      143.292</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model2)</code></pre></div>
 <p><img src="bamp_files/figure-html/Model2_results-1.png" width="700"><img src="bamp_files/figure-html/Model2_results-2.png" width="700"><img src="bamp_files/figure-html/Model2_results-3.png" width="700"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model3&lt;-<span class="kw"><a href="../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">" "</span>, <span class="dt">cohort=</span><span class="st">"rw2"</span>,
@@ -144,14 +144,14 @@
 <pre><code>## 
 ##  Model:
 ## age (rw1) cohort (rw2) model
-## Deviance:     276.46
-## pD:            30.21
-## DIC:          306.67
+## Deviance:     276.50
+## pD:            30.09
+## DIC:          306.59
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.307        0.798        1.643
-## cohort                          39.229       72.911      137.850</code></pre>
+## age                              0.314        0.787        1.639
+## cohort                          38.528       74.489      139.335</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model3)</code></pre></div>
 <p><img src="bamp_files/figure-html/model3-1.png" width="700"><img src="bamp_files/figure-html/model3-2.png" width="700"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(model4&lt;-<span class="kw"><a href="../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">"rw1"</span>, <span class="dt">cohort=</span><span class="st">"rw1"</span>,
@@ -162,15 +162,15 @@
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.26
-## pD:            36.84
-## DIC:          268.10
+## Deviance:     231.32
+## pD:            36.91
+## DIC:          268.22
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.406        1.050        2.259
-## period                          66.306      194.791      603.117
-## cohort                          34.874       59.790       98.471</code></pre>
+## age                              0.405        1.045        2.248
+## period                          66.868      195.220      598.207
+## cohort                          34.626       59.672       98.689</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model4)</code></pre></div>
 <p><img src="bamp_files/figure-html/model4-1.png" width="700"><img src="bamp_files/figure-html/model4-2.png" width="700"><img src="bamp_files/figure-html/model4-3.png" width="700"><img src="bamp_files/figure-html/model4-4.png" width="700"><img src="bamp_files/figure-html/model4-5.png" width="700"><img src="bamp_files/figure-html/model4-6.png" width="700"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(model5&lt;-<span class="kw"><a href="../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">"rw1"</span>, <span class="dt">cohort=</span><span class="st">"rw1"</span>,
@@ -179,15 +179,15 @@
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.30
-## pD:            36.90
-## DIC:          268.21
+## Deviance:     231.09
+## pD:            36.73
+## DIC:          267.82
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.402        1.057        2.256
-## period                          63.779      197.924      650.772
-## cohort                          34.050       60.119      100.548</code></pre>
+## age                              0.402        1.053        2.241
+## period                          66.193      194.975      634.252
+## cohort                          34.512       58.973       97.975</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model5)</code></pre></div>
 <p><img src="bamp_files/figure-html/model5-1.png" width="700"><img src="bamp_files/figure-html/model5-2.png" width="700"><img src="bamp_files/figure-html/model5-3.png" width="700"><img src="bamp_files/figure-html/model5-4.png" width="700"><img src="bamp_files/figure-html/model5-5.png" width="700"><img src="bamp_files/figure-html/model5-6.png" width="700"></p>
 </div>
