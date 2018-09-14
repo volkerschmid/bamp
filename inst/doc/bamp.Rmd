@@ -1,0 +1,77 @@
+---
+title: "Bayesian Age-Period-Cohort Modelling"
+author: "Volker Schmid"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Bayesian Age-Period-Cohort Modelling}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
+library(bamp)
+```
+
+## Data example
+
+BAMP includes a data example.
+
+```{r loadplot}
+data(apc)
+plot(cases[,1],type="l",ylim=range(cases), ylab="cases", xlab="year", main="cases per age group")
+for (i in 2:8)lines(cases[,i], col=i)
+```
+
+## APC model with random walk first order prior
+```{r Model1_with_RW1_priors}
+model1 <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1",
+              periods_per_agegroup = 5)
+```
+
+bamp() automatically performs a check for MCMC convergence using Gelman and Rubin's convergence diagnostic. We can manually check the convergence again:
+
+```{r check_model}
+checkConvergence(model1)
+```
+
+Now we have a look at the model results. This includes estimates of smoothing parameters and deviance and DIC:
+```{r print_model}
+print(model1)
+```
+
+We can plot the main APC effects using point-wise quantiles: 
+```{r plot_model}
+plot(model1)
+```
+
+More quantiles are possible:
+```{r plot_model_with_more_quantiles}
+plot(model1, quantiles = c(0.025,0.1,0.5,0.9,0.975))
+```
+## Prediction
+
+Using the prior assumption of a random walk for the period and cohort effect, one can predict cases for upcoming years. 
+
+We use the same data as above -- but only nine years -- and predict the last year.
+
+```{r}
+model2 <- bamp(cases[-10,], population[-10,], age="rw1", period="rw1", cohort="rw1",
+              periods_per_agegroup = 5)
+prediction<-predict_apc(model2, periods=1, population=population)
+```
+
+Plot period and cohort effects including prediction of year 10.
+```{r}
+ts.plot(t(prediction$period), lty=c(2,1,2))
+ts.plot(t(prediction$cohort), lty=c(2,1,2))
+```
+
+Plot of predicted cases with credible intervals and true data
+```{r}
+ts.plot(t(prediction$cases_period), lty=c(2,1,2))
+points(apply(cases,1,sum), pch=19)
+```
+
+
