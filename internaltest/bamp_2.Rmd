@@ -50,16 +50,48 @@ More quantiles are possible:
 ```{r plot_model_with_more_quantiles}
 plot(model1, quantiles = c(0.025,0.1,0.5,0.9,0.975))
 ```
-## Prediction
 
-Using the prior assumption of a random walk for the period and cohort effect, one can predict cases for upcoming years. 
+## APC model with random walk first order prior
+```{r Model2_with_RW2_priors}
+model2 <- bamp(cases, population, age="rw2", period="rw2", cohort="rw2",
+              periods_per_agegroup = 5)
+```
 
-We use the same data as above -- but only nine years -- and predict the last year.
+```{r Model2_results}
+checkConvergence(model2)
+print(model2)
+plot(model2)
+```
+
+```{r model3}
+model3<-bamp(cases, population, age="rw1", period=" ", cohort="rw2",
+              periods_per_agegroup = 5)
+checkConvergence(model3)
+print(model3)
+plot(model3)
+```
+
+```{r model4}
+(model4<-bamp(cases, population, age="rw1", period="rw1", cohort="rw1",
+             cohort_covariate = cov_c, periods_per_agegroup = 5, 
+             parallel = FALSE, 
+             mcmc.options=list("number_of_iterations"=50000)
+             ))
+plot(model4)
+```
+
+
+```{r model5}
+(model5<-bamp(cases, population, age="rw1", period="rw1", cohort="rw1",
+             period_covariate = cov_p, periods_per_agegroup = 5, 
+             parallel = FALSE))
+plot(model5)
+```
 
 ```{r}
-model2 <- bamp(cases[-10,], population[-10,], age="rw1", period="rw1", cohort="rw1",
+model2 <- bamp(cases[1:7,], population[1:7,], age="rw2", period="rw2", cohort="rw2",
               periods_per_agegroup = 5)
-prediction<-predict_apc(model2, periods=1, population=population)
+prediction<-predict_apc(model2, periods=3, population=population)
 ```
 
 Plot period and cohort effects including prediction of year 10.
@@ -73,5 +105,3 @@ Plot of predicted cases with credible intervals and true data
 ts.plot(t(prediction$cases_period), lty=c(2,1,2))
 points(apply(cases,1,sum), pch=19)
 ```
-
-
