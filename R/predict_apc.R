@@ -113,7 +113,9 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
     temp<-apply(prepi, 1, ksi_prognose, vdb, noa, nop, nop2, noc, zmode); return(array(temp,c(nop2,noa,dim(temp)[2])))}, object$data$periods_per_agegroup,
     a1, n1, n2, c2, object$model$overdispersion)
 
+    
   ksi0<-ksi[[1]]
+  if (ch>1)
   for (i in 2:ch)
     ksi0<-abind::abind(ksi0,ksi[[i]], along=3)
   
@@ -134,11 +136,14 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
   
   
   period<-phi[[1]]
+  print(dim(phi[[1]]))
+  if (ch>1)
   for (i in 2:ch)
-    period<-abind::abind(period,phi[[i]], along=3)
+    period<-abind::abind(period,phi[[i]], along=1)
   cohort<-psi[[1]]
+  if (ch>1)
   for (i in 2:ch)
-    cohort<-abind::abind(cohort,psi[[i]], along=3)
+    cohort<-abind::abind(cohort,psi[[i]], along=1)
 
   samples<-list(
     "pr"=pr,

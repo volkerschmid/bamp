@@ -14,4 +14,4 @@ _pkgdown.yaml
 TODO.md
 ^docs$
 docs/articles/*_cache/
-internaaltest/
+internaltest/
