@@ -69,7 +69,7 @@ Plot of predicted cases with credible intervals and true data
 ```
 
 ```{r prdiction}
-#predion<-predict_apc(model2, periods=1, population=population, quantiles=c(0.05,0.5,0.95), update=TRUE)
+predion<-predict_apc(object=model1, periods=1, quantiles=c(0.05,0.5,0.95), update=TRUE)
 ```
 
 ```{r prediction}
