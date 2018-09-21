@@ -15,7 +15,6 @@
 #' @export
 #'
 predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0.95), update=FALSE){
-  
   ksi_prognose <-
     function(prepi, vdb, noa, nop, nop2, noc, zmode){
       my<-prepi[1]
@@ -94,22 +93,27 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
       prep<-parallel::mclapply(1:ch, function(i,samples)cbind(object$samples$cohort_parameter[[i]],object$samples$cohort[[i]]), samples)
       psi<-parallel::mclapply(prep, function(prepi, rw, n1, n2){t(apply(prepi, 1, predict_rw, rw, n1, n2))}, rwc, c1, c2)
   }
-  
+    
   nr.samples<-length(object$samples$intercept[[1]])
-  
-  theta<-if(object$model$age==""){NA}else{object$samples$age}
-  delta<-if(object$model$overdispersion){object$samples$overdispersion}else{NA}  
-    prep<- parallel::mclapply(1:ch, function(i, theta, phi, psi, my, delta, a1, n1, c1, nr){
-    theta=if(is.na(theta)){array(0, c(nr, a1))}else{theta[[i]]}
-    phi=if(is.na(phi)){array(0, c(nr, a1))}else{phi[[i]]}
-    psi=if(is.na(psi)){array(0, c(nr, a1))}else{psi[[i]]}
-    my=my[[i]]
-    delta=if(is.na(delta)){rep(0, nr)}else{delta[[i]]}
-    return(cbind(my,theta,phi,psi, delta))
-  },
-  theta, phi, psi, object$samples$intercept, delta, a1, n1, c1, nr.samples)
-
-    ksi<-parallel::mclapply(prep, function(prepi, vdb, noa, nop, nop2, noc, zmode){
+  ###
+    theta<-if(object$model$age!=""){object$samples$age}else{NA}
+    if(0){
+      delta<-if(object$model$overdispersion){object$samples$overdispersion}else{NA}
+      
+    prepfx<- function(i, theta, phi, psi, my, delta, a1, n1, c1, nr){
+      theta=if(is.na(theta)){array(0, c(nr, a1))}else{theta[[i]]}
+      phi=if(is.na(phi)){array(0, c(nr, a1))}else{phi[[i]]}
+      psi=if(is.na(psi)){array(0, c(nr, a1))}else{psi[[i]]}
+      my=my[[i]]
+      delta=if(is.na(delta)){rep(0, nr)}else{delta[[i]]}
+      return(cbind(my,theta,phi,psi, delta))
+    }
+    
+      
+    prep<- parallel::mclapply(1:ch, prepfx, theta, phi, psi, object$samples$intercept, delta, a1, n1, c1, nr.samples)
+ ###
+    
+      ksi<-parallel::mclapply(prep, function(prepi, vdb, noa, nop, nop2, noc, zmode){
     temp<-apply(prepi, 1, ksi_prognose, vdb, noa, nop, nop2, noc, zmode); return(array(temp,c(nop2,noa,dim(temp)[2])))}, object$data$periods_per_agegroup,
     a1, n1, n2, c2, object$model$overdispersion)
 
@@ -166,5 +170,6 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
   if (update){
     object$predicted=predicted
     return(object)
+}
 }
 }
