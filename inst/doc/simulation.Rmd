@@ -98,6 +98,7 @@ plot(simmodrw2)
 cov_p<-rnorm(15,period,.1)
 ```
 
+
 ```{r bamp_with_covariate}
 simmod2 <- bamp(cases = simdata$cases, population = simdata$population, age = "rw1", 
 period = "rw1", cohort = "rw1", periods_per_agegroup =periods_per_agegroup,

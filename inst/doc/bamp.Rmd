@@ -99,17 +99,17 @@ model0 <- bamp(cases[-10,], population[-10,], age="rw1", period="rw1", cohort="r
 ```
 
 ```{r prediction}
-model0<-predict_apc(object=model0, periods=1, population=population, update = TRUE)
+prediction<-predict_apc(object=model0, periods=1, population=population)
 ```
 
 Plot of predicted cases with credible intervals and true data
 ```{r}
-ts.plot(t(model0$predicted$cases_period), lty=c(2,1,2))
+ts.plot(t(prediction$cases_period), lty=c(2,1,2))
 points(apply(cases,1,sum), pch=19)
 ```
 
 Plot period and cohort effects including prediction of year 10.
 ```{r}
-ts.plot(t(model0$predicted$period), lty=c(2,1,2))
-ts.plot(t(model0$predicted$cohort), lty=c(2,1,2))
+ts.plot(t(prediction$period), lty=c(2,1,2))
+ts.plot(t(prediction$cohort), lty=c(2,1,2))
 ```
