@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bamp</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.9.44</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.0</span>
       </span>
     </div>
 
@@ -67,7 +67,7 @@
       <h1>Bayesian Age-Period-Cohort Modelling</h1>
                         <h4 class="author">Volker Schmid</h4>
             
-            <h4 class="date">2018-09-14</h4>
+            <h4 class="date">2018-09-24</h4>
       
       
       <div class="hidden name"><code>bamp.Rmd</code></div>
@@ -98,35 +98,95 @@
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.31
-## pD:            36.92
-## DIC:          268.23
+## Deviance:     231.33
+## pD:            36.84
+## DIC:          268.16
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.409        1.043        2.262
-## period                          69.502      201.540      640.580
-## cohort                          34.572       59.177       97.248</code></pre>
+## age                              0.399        1.051        2.237
+## period                          69.737      197.136      624.423
+## cohort                          34.352       59.289       97.689</code></pre>
 <p>We can plot the main APC effects using point-wise quantiles:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model1)</code></pre></div>
 <p><img src="bamp_files/figure-html/plot_model-1.png" width="700"><img src="bamp_files/figure-html/plot_model-2.png" width="700"><img src="bamp_files/figure-html/plot_model-3.png" width="700"></p>
 <p>More quantiles are possible:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model1, <span class="dt">quantiles =</span> <span class="kw">c</span>(<span class="fl">0.025</span>,<span class="fl">0.1</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>,<span class="fl">0.975</span>))</code></pre></div>
-<p><img src="bamp_files/figure-html/plot_model_with_more_quantiles-1.png" width="700"><img src="bamp_files/figure-html/plot_model_with_more_quantiles-2.png" width="700"><img src="bamp_files/figure-html/plot_model_with_more_quantiles-3.png" width="700"> ## Prediction</p>
-<p>Using the prior assumption of a random walk for the period and cohort effect, one can predict cases for upcoming years.</p>
-<p>We use the same data as above – but only nine years – and predict the last year.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bamp.html">bamp</a></span>(cases[<span class="op">-</span><span class="dv">10</span>,], population[<span class="op">-</span><span class="dv">10</span>,], <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">"rw1"</span>, <span class="dt">cohort=</span><span class="st">"rw1"</span>,
+<p><img src="bamp_files/figure-html/plot_model_with_more_quantiles-1.png" width="700"><img src="bamp_files/figure-html/plot_model_with_more_quantiles-2.png" width="700"><img src="bamp_files/figure-html/plot_model_with_more_quantiles-3.png" width="700"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw2"</span>, <span class="dt">period=</span><span class="st">"rw2"</span>, <span class="dt">cohort=</span><span class="st">"rw2"</span>,
+              <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/checkConvergence.html">checkConvergence</a></span>(model2)</code></pre></div>
+<pre><code>## Warning: MCMC chains did not converge!</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/print.apc.html">print</a></span>(model2)</code></pre></div>
+<pre><code>## 
+##  Model:
+## age (rw2)  - period (rw2)  - cohort (rw2) model
+## Deviance:     245.93
+## pD:            33.57
+## DIC:          279.50
+## 
+## 
+##  Hyper parameters:                 5%           50%          95%         
+## age                              2.112        6.301       16.583
+## period                          57.852      311.803     2580.126
+## cohort                          35.784       74.343      144.509</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model2)</code></pre></div>
+<p><img src="bamp_files/figure-html/Model2_results-1.png" width="700"><img src="bamp_files/figure-html/Model2_results-2.png" width="700"><img src="bamp_files/figure-html/Model2_results-3.png" width="700"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model3&lt;-<span class="kw"><a href="../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">" "</span>, <span class="dt">cohort=</span><span class="st">"rw2"</span>,
               <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>)
-prediction&lt;-<span class="kw"><a href="../reference/predict_apc.html">predict_apc</a></span>(model2, <span class="dt">periods=</span><span class="dv">1</span>, <span class="dt">population=</span>population)</code></pre></div>
-<p>Plot period and cohort effects including prediction of year 10.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ts.plot</span>(<span class="kw">t</span>(prediction<span class="op">$</span>period), <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>))</code></pre></div>
-<p><img src="bamp_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ts.plot</span>(<span class="kw">t</span>(prediction<span class="op">$</span>cohort), <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>))</code></pre></div>
-<p><img src="bamp_files/figure-html/unnamed-chunk-2-2.png" width="700"></p>
-<p>Plot of predicted cases with credible intervals and true data</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ts.plot</span>(<span class="kw">t</span>(prediction<span class="op">$</span>cases_period), <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>))
-<span class="kw">points</span>(<span class="kw">apply</span>(cases,<span class="dv">1</span>,sum), <span class="dt">pch=</span><span class="dv">19</span>)</code></pre></div>
-<p><img src="bamp_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
+<span class="kw"><a href="../reference/checkConvergence.html">checkConvergence</a></span>(model3)</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/print.apc.html">print</a></span>(model3)</code></pre></div>
+<pre><code>## 
+##  Model:
+## age (rw1) cohort (rw2) model
+## Deviance:     276.54
+## pD:            30.16
+## DIC:          306.70
+## 
+## 
+##  Hyper parameters:                 5%           50%          95%         
+## age                              0.323        0.794        1.624
+## cohort                          37.646       74.095      140.281</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model3)</code></pre></div>
+<p><img src="bamp_files/figure-html/model3-1.png" width="700"><img src="bamp_files/figure-html/model3-2.png" width="700"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(model4&lt;-<span class="kw"><a href="../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">"rw1"</span>, <span class="dt">cohort=</span><span class="st">"rw1"</span>,
+             <span class="dt">cohort_covariate =</span> cov_c, <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>, 
+             <span class="dt">parallel =</span> <span class="ot">FALSE</span>, 
+             <span class="dt">mcmc.options=</span><span class="kw">list</span>(<span class="st">"number_of_iterations"</span>=<span class="dv">50000</span>)
+             ))</code></pre></div>
+<pre><code>## 
+##  Model:
+## age (rw1)  - period (rw1)  - cohort (rw1) model
+## Deviance:     231.33
+## pD:            36.84
+## DIC:          268.17
+## 
+## 
+##  Hyper parameters:                 5%           50%          95%         
+## age                              0.400        1.037        2.225
+## period                          68.314      201.229      617.055
+## cohort                          34.688       59.383       98.009</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model4)</code></pre></div>
+<p><img src="bamp_files/figure-html/model4-1.png" width="700"><img src="bamp_files/figure-html/model4-2.png" width="700"><img src="bamp_files/figure-html/model4-3.png" width="700"><img src="bamp_files/figure-html/model4-4.png" width="700"><img src="bamp_files/figure-html/model4-5.png" width="700"><img src="bamp_files/figure-html/model4-6.png" width="700"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(model5&lt;-<span class="kw"><a href="../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">"rw1"</span>, <span class="dt">cohort=</span><span class="st">"rw1"</span>,
+             <span class="dt">period_covariate =</span> cov_p, <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>, 
+             <span class="dt">parallel =</span> <span class="ot">FALSE</span>))</code></pre></div>
+<pre><code>## 
+##  Model:
+## age (rw1)  - period (rw1)  - cohort (rw1) model
+## Deviance:     231.44
+## pD:            37.23
+## DIC:          268.67
+## 
+## 
+##  Hyper parameters:                 5%           50%          95%         
+## age                              0.402        1.041        2.280
+## period                          64.234      192.399      573.126
+## cohort                          34.197       59.768       98.044</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model5)</code></pre></div>
+<p><img src="bamp_files/figure-html/model5-1.png" width="700"><img src="bamp_files/figure-html/model5-2.png" width="700"><img src="bamp_files/figure-html/model5-3.png" width="700"><img src="bamp_files/figure-html/model5-4.png" width="700"><img src="bamp_files/figure-html/model5-5.png" width="700"><img src="bamp_files/figure-html/model5-6.png" width="700"></p>
 </div>
   </div>
 
