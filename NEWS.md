@@ -1,2 +1,2 @@
-# bamp 2.0
+# bamp 2.0.0
 * R package
