@@ -2,7 +2,11 @@ pandoc: 1.19.2.1
 pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
+<<<<<<< HEAD
   modeling: modeling.html
+=======
+  bamp: bamp.html
+>>>>>>> fed43109c061f823ee9bef994818547dca405235
   prediction: prediction.html
   simulation: simulation.html
 

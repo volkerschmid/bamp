@@ -99,6 +99,7 @@ cohort&lt;-cohort<span class="op">-</span><span class="kw">mean</span>(cohort)
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simdata&lt;-<span class="kw"><a href="../reference/apcSimulate.html">apcSimulate</a></span>(<span class="op">-</span><span class="dv">10</span>, age, period, cohort, periods_per_agegroup, <span class="fl">1e6</span>)
 <span class="kw"><a href="../reference/print.apc.html">print</a></span>(simdata<span class="op">$</span>cases)</code></pre></div>
 <pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+<<<<<<< HEAD
 ##  [1,]    1    4   20   43   87  109  164  367 1096  2963
 ##  [2,]    3    7   19   34   62   92  131  306  810  2218
 ##  [3,]    2    2   18   31   47   90  122  230  586  1708
@@ -114,12 +115,30 @@ cohort&lt;-cohort<span class="op">-</span><span class="kw">mean</span>(cohort)
 ## [13,]    1    5   16   30   75  133  202  278  375   588
 ## [14,]    0    9   11   33   80  163  265  364  491   662
 ## [15,]    2    8   23   49   97  194  341  474  596   785</code></pre>
+=======
+##  [1,]    0    6   19   45   91  123  158  401 1115  3025
+##  [2,]    1    1   15   42   69   95  137  312  841  2250
+##  [3,]    1    6   20   32   66   98  126  229  628  1699
+##  [4,]    0    7    8   29   40   77  112  149  460  1168
+##  [5,]    0    4    9   24   41   61   96  128  368   957
+##  [6,]    0    4    7   17   44   63   93  115  276   671
+##  [7,]    1    1    5    7   37   54   82  110  192   498
+##  [8,]    0    1    4   13   38   42   60   89  123   383
+##  [9,]    0    3    4   13   29   54   80  112  153   398
+## [10,]    0    3    5   14   25   57  113  117  161   479
+## [11,]    0    3   13   20   56   77  116  168  222   481
+## [12,]    2    2    8   24   50  103  146  200  274   530
+## [13,]    1    2   16   36   73  128  223  277  370   623
+## [14,]    1    5   19   42   88  174  251  351  434   675
+## [15,]    0    9   16   38   88  198  314  488  586   752</code></pre>
+>>>>>>> fed43109c061f823ee9bef994818547dca405235
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simmod &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bamp.html">bamp</a></span>(<span class="dt">cases =</span> simdata<span class="op">$</span>cases, <span class="dt">population =</span> simdata<span class="op">$</span>population, <span class="dt">age =</span> <span class="st">"rw1"</span>, 
 <span class="dt">period =</span> <span class="st">"rw1"</span>, <span class="dt">cohort =</span> <span class="st">"rw1"</span>, <span class="dt">periods_per_agegroup =</span>periods_per_agegroup)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/print.apc.html">print</a></span>(simmod)</code></pre></div>
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
+<<<<<<< HEAD
 ## Deviance:     123.75
 ## pD:            49.02
 ## DIC:          172.77
@@ -129,6 +148,17 @@ cohort&lt;-cohort<span class="op">-</span><span class="kw">mean</span>(cohort)
 ## age                              0.641        1.479        3.003
 ## period                          13.573       26.597       47.117
 ## cohort                          83.523      127.574      192.754</code></pre>
+=======
+## Deviance:     133.25
+## pD:            48.63
+## DIC:          181.88
+## 
+## 
+##  Hyper parameters:                 5%           50%          95%         
+## age                              0.537        1.266        2.577
+## period                          14.115       27.053       46.771
+## cohort                          82.443      131.666      198.836</code></pre>
+>>>>>>> fed43109c061f823ee9bef994818547dca405235
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/checkConvergence.html">checkConvergence</a></span>(simmod)</code></pre></div>
 <pre><code>## Warning: MCMC chains did not converge!</code></pre>
 <pre><code>## [1] FALSE</code></pre>
@@ -167,6 +197,7 @@ effects2&lt;-<span class="kw">effects</span>(simmod, <span class="dt">mean=</spa
 <pre><code>## 
 ##  Model:
 ## age (rw2)  - period (rw2)  - cohort (rw2) model
+<<<<<<< HEAD
 ## Deviance:     128.98
 ## pD:            30.06
 ## DIC:          159.04
@@ -176,6 +207,17 @@ effects2&lt;-<span class="kw">effects</span>(simmod, <span class="dt">mean=</spa
 ## age                             56.039      193.366      585.221
 ## period                          53.326      129.617      279.006
 ## cohort                         615.222     1381.049     2867.853</code></pre>
+=======
+## Deviance:     140.02
+## pD:            30.07
+## DIC:          170.09
+## 
+## 
+##  Hyper parameters:                 5%           50%          95%         
+## age                             25.809       91.193      275.591
+## period                          48.944      117.845      247.930
+## cohort                         755.589     1561.416     3030.832</code></pre>
+>>>>>>> fed43109c061f823ee9bef994818547dca405235
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/checkConvergence.html">checkConvergence</a></span>(simmodrw2)</code></pre></div>
 <pre><code>## Warning: MCMC chains did not converge!</code></pre>
 <pre><code>## [1] FALSE</code></pre>
