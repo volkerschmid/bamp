@@ -72,17 +72,12 @@ plot(model3)
 
 ```{r model4}
 (model4<-bamp(cases, population, age="rw1", period="rw1", cohort="rw1",
-             cohort_covariate = cov_c, periods_per_agegroup = 5, 
-             parallel = FALSE, 
-             mcmc.options=list("number_of_iterations"=50000)
-             ))
+             cohort_covariate = cov_c, periods_per_agegroup = 5))
 plot(model4)
 ```
 
 
 ```{r model5}
 (model5<-bamp(cases, population, age="rw1", period="rw1", cohort="rw1",
-             period_covariate = cov_p, periods_per_agegroup = 5, 
-             parallel = FALSE))
+             period_covariate = cov_p, periods_per_agegroup = 5))
 plot(model5)
-```

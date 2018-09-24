@@ -20,9 +20,9 @@ navbar:
 articles:
   - title: "Vignettes"
     contents:
-    - bamp
-    - simulation
+    - modeling
     - prediction
+    - simulation
     
 reference:
 - title: "Main Function"
