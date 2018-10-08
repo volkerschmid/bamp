@@ -1,0 +1,33 @@
+citHeader("To cite nucim in publications please use:")
+
+if(!exists("meta") || is.null(meta)) meta <- packageDescription("bamp")
+year <- sub("-.*", "", meta$Date) 
+note <- sprintf("R package version %s", meta$Version) 
+
+
+bibentry(bibtype = "Article",
+title = "BAMP – Bayesian age-period-cohort modeling and prediction",
+author = personList(as.person("Volker J. Schmid"), as.person("Leonhard Held")),
+journal= "Journal of Statistical Software",
+year = "2007",
+volume = "21",
+textVersion=
+paste("Volker J. Schmid, Leonhard Held.",
+"BAMP – Bayesian age-period-cohort modeling and prediction.",
+"Journal of Statistical Software 21 (2007).",
+"DOI 10.18637/jss.v021.i08")
+)
+citEntry(header = "To refer to the current version of the package you could use:",
+ entry = "manual",
+ title = "{nucim}: Nucleome Imaging Toolbox",
+author = personList(as.person("Volker J. Schmid")),
+year = year,
+note = note,
+url = "https://github.com/bioimaginggroup/nucim",
+textVersion =
+paste("Volker J. Schmid",
+sprintf("(%s).", year),	 
+"nucim: Nucleome Imaging Toolbox.",
+paste(note, ".", sep = ""),
+"https://github.com/bioimaginggroup/nucim")
+)
