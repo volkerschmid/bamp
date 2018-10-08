@@ -1,8 +1,9 @@
-pandoc: 1.19.2.1
+pandoc: 1.19.2.4
 pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
-  modeling: modeling.html
-  prediction: prediction.html
-  simulation: simulation.html
+  bamp: bamp.html
+  modeling: largevignettes/modeling.html
+  prediction: largevignettes/prediction.html
+  simulation: largevignettes/simulation.html
 

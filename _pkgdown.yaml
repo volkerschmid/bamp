@@ -12,17 +12,20 @@ navbar:
     - text: "Articles"
       href: articles/index.html
   right:
-    - text: "Bioimaging Group"
-      href: http://www.bioimg.statistik.uni-muenchen.de
     - text: "BAMP website"
       href: https://volkerschmid.de/bamp
+    - text: "Volke Schmid"
+      href: https://volkerschmid.de
+    - text: "Bioimaging Group"
+      href: http://www.bioimg.statistik.uni-muenchen.de
       
 articles:
   - title: "Vignettes"
     contents:
-    - modeling
-    - prediction
-    - simulation
+    - bamp
+    - largevignettes/modeling
+    - largevignettes/prediction
+    - largevignettes/simulation
     
 reference:
 - title: "Main Function"

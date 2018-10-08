@@ -19,15 +19,15 @@ paste("Volker J. Schmid, Leonhard Held.",
 )
 citEntry(header = "To refer to the current version of the package you could use:",
  entry = "manual",
- title = "{nucim}: Nucleome Imaging Toolbox",
+ title = "{bamp}: Bayesian age-period-cohort modeling and prediction",
 author = personList(as.person("Volker J. Schmid")),
 year = year,
 note = note,
-url = "https://github.com/bioimaginggroup/nucim",
+url = "https://volkerschmid.github.io/bamp/",
 textVersion =
 paste("Volker J. Schmid",
 sprintf("(%s).", year),	 
-"nucim: Nucleome Imaging Toolbox.",
+"bamp: Bayesian age-period-cohort modeling and prediction.",
 paste(note, ".", sep = ""),
-"https://github.com/bioimaginggroup/nucim")
+"https://volkerschmid.github.io/bamp/")
 )
