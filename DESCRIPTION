@@ -1,19 +1,19 @@
 Package: bamp
 Type: Package
 Title: Bayesian Age-Period-Cohort Modeling and Prediction
-Version: 2.0.0
-Date: 2018-09-26
+Version: 2.0.1
+Date: 2018-10-08
 Author: Volker Schmid [aut, cre], Florian Geressen [ctb], Leonhard Held [ctb], Evi Rainer [ctb]
 Authors@R: c(person("Volker","Schmid",email="volker.schmid@lmu.de", role=c("aut","cre")),person("Florian","Geressen",role="ctb"), person("Leonhard","Held",role="ctb"),person("Evi","Rainer",role="ctb"))
 Maintainer: Volker Schmid <volker.schmid@lmu.de>
-Description: Bayesian Age-Period-Cohort Modeling and Prediction using efficient Markov Chain Monte Carlo Methods. Includes (automatic) checks of convergence.
+Description: Bayesian Age-Period-Cohort Modeling and Prediction using efficient Markov Chain Monte Carlo Methods. This is the R version of the previous BAMP software as described in Schmid, Held: Bayesian Age-Period-Cohort Modeling and Prediction - BAMP, Journal of Statistical Software, Vol. 21, Issue 8, Oct 2007. This package includes checks of convergence using Gelman's R.
 License: GPL-3
 Encoding: UTF-8
 Depends: R (>= 3.5.0)
 Imports: coda, graphics, parallel, stats, abind
 LazyData: true
 RoxygenNote: 6.1.0
-VignetteBuilder: knitr
-Suggests: knitr, rmarkdown
+VignetteBuilder: knitr, R.rsp
+Suggests: knitr, rmarkdown, R.rsp
 URL: https://volkerschmid.github.io/bamp/
 BugReports: https://github.com/volkerschmid/bamp/issues

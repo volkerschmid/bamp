@@ -116,11 +116,9 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
 
     
   ksi0<-ksi[[1]]
-  print(dim(ksi0))
   if (ch>1)
   for (i in 2:ch)
   {
-     print(dim(ksi[[i]]))
     ksi0<-abind::abind(ksi0,ksi[[i]], along=3)
   }
   
