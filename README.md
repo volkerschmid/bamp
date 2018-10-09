@@ -1,4 +1,4 @@
-# <img src="https://volkerschmid.github.io/bamp/figures/bamplogo8.png" align="right" />
+<img src="https://volkerschmid.github.io/bamp/figures/bamplogo8.png" align="right" />
 
 # BAMP R package
 

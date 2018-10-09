@@ -16,7 +16,7 @@ output: html_document
 
 * [Beruzini, C., D. Clayton (1994): Bayesian Analysis of Survival on Multiple Time Scales. Statistics in Medicine, 13, 823-838](https://doi.org/10.1002/sim.4780130804)
 
-* [Besag, J.E., P.J. Green, D.M. Higdon and K.L. Mengersen (1995): Bayesian computation and stochastic systems (with discussion). Statistical Science, 10, 3-66]( https://www.jstor.org/stable/2246224)
+* [Besag, J.E., P.J. Green, D.M. Higdon and K.L. Mengersen (1995): Bayesian computation and stochastic systems (with discussion). Statistical Science, 10, 3-66](https://www.jstor.org/stable/2246224)
 
 * [Clayton, D.G. and E. Schifflers (1987): Models for temporal variation in cancer rates. II: Age-period-cohort-models. Statistics in Medicine, 6, 469-481](https://doi.org/10.1002/sim.4780060406)
 
