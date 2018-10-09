@@ -1,0 +1,37 @@
+---
+title: "Publications"
+author: "Volker Schmid"
+date: "October 9, 2018"
+output: html_document
+---
+
+## Literature on (Bayesian) Age-Period-Cohort Models
+### BAMP manual
+
+* [Schmid, Held: Bayesian Age-Period-Cohort Modeling and Prediction - BAMP, Journal of Statistical Software, Vol. 21, Issue 8, Oct 2007.](http://dx.doi.org/10.18637/jss.v021.i08) 
+
+### Related articles
+
+* [Schmid, V. (2004): Bayesianische Raum-Zeit-Modellierung in der Epidemiologie. PhD Thesis, München.](https://edoc.ub.uni-muenchen.de/3000/)
+
+* [Beruzini, C., D. Clayton (1994): Bayesian Analysis of Survival on Multiple Time Scales. Statistics in Medicine, 13, 823-838](https://doi.org/10.1002/sim.4780130804)
+
+* [Besag, J.E., P.J. Green, D.M. Higdon and K.L. Mengersen (1995): Bayesian computation and stochastic systems (with discussion). Statistical Science, 10, 3-66]( https://www.jstor.org/stable/2246224)
+
+* [Clayton, D.G. and E. Schifflers (1987): Models for temporal variation in cancer rates. II: Age-period-cohort-models. Statistics in Medicine, 6, 469-481](https://doi.org/10.1002/sim.4780060406)
+
+### Papers using BAMP
+
+* [Knorr-Held, L. and E. Rainer (2001): Projections of lung cancer mortality in West Germany: A case study in Bayesian prediction. Biostatistics, 2, 109-129.](https://doi.org/10.1093/biostatistics/2.1.109)
+* [Schmid, V. and Held, L. (2004): Bayesian extrapolation of space-time trends for cancer registry data. Biometrics 60: 1034–1042](https://doi.org/10.1111/j.0006-341X.2004.00259.x)
+* [Lopez, A.D., Shibuya, K., Rao C., Mathers, C.D., Hansell, A. L., Held, L. S., Schmid, V.J. and Buis, S. (2006): Chronic obstructive pulmonary disease: current burden and future projection. European Respiratory Journal, 27:397-412.](https://dx.doi.org/10.1183/09031936.06.00025805)
+* [Leung, G.M., P.P.S. Woo, S.M. McGhee, A.N.Y. Cheung, S. Fan, O. Mang, T.Q. Thach and H.Y.S. Ngan (2006): Age-period-cohort analysis of cervical cancer incidence in Hong Kong from 1972 to 2001 using maximum likelihood and Bayesian methods. Journal of Epidemiology and Community Health, 60:712-720.](https://dx.doi.org/10.1136%2Fjech.2005.042275)
+* [Kort, E.J., Paneth, N., Vande Woude, G.F.(2009): The Decline in U.S. Cancer Mortality in People Born since 1925. Cancer Research, 69 (16):6500–5](https://doi.org/10.1158/0008-5472.CAN-09-0357)
+* [Odagiri Y, Uchida H, Nakano M. (2011): Gender differences in age, period, and birth-cohort effects on the suicide mortality rate in Japan, 1985-2006. Asia Pac J Public Health. 2011 Jul;23(4):581-7.](https://doi.org/10.1177/1010539509348242)
+* [Shu-Zheng Liu, Fang Zhang, Pei-Liang Quan, Jian-Bang Lu, Zhi-Cai Liu, Xi-Bin Sun (2012): Time Trends of Esophageal Cancer Mortality in Linzhou City During the Period 1988-2010 and a Bayesian Approach Projection for 2020. Asian Paci c J Cancer Prev, 13 (9), 4501-4504.](https://doi.org/10.7314/APJCP.2012.13.9.4501)
+* [Guzman Castillo M, Gillespie DOS, Allen K, Bandosz P, Schmid V, Capewell S, et al. (2014) Future Declines of Coronary Heart Disease Mortality in England and Wales Could Counter the Burden of Population Ageing. PLoS ONE 9(6): e99482.](https://doi.org/10.1371/journal.pone.0099482)
+* [Bing Wang, Shu-Zheng Liu, Rong-Shou Zheng, Fang Zhang, Wan-Qing Chen, Xi-Bin Sun (2014). Time Trends of Ovarian Cancer Incidence in China. Asian Pac J Cancer Prev, 15 (1), 191-193.](https://doi.org/10.7314/APJCP.2014.15.1.191)
+* [Paolo Girardi, Vittoria Bressan, Enzo Merler (2014): Past trends and future prediction of mesothelioma incidence in an industrialized area of Italy, the Veneto Region. Cancer Epidemiology 38 (2014) 496–503.](https://doi.org/10.1016/j.canep.2014.08.007)
+* [Rongshou Zheng, Xiaoxia Peng, Hongmei Zeng, Siwei Zhang, Tianhui Chen, Huanmin Wang, Wanqing Chen (2015): Incidence, mortality and survival of childhood cancer in China during 2000–2010 period: A population-based study. Cancer Letters 363 (2015) 176–180.](https://doi.org/10.1016/j.canlet.2015.04.021)
+* [Jonathan Pearson-Stuttard, Maria Guzman Castillo, Jose L. Penalvo, Colin D. Rehm, Ashkan Afshin, Goodarz Danaei, Chris Kypridemos, Tom Gaziano, Dariush Mozaffarian, Simon Capewell, Martin O'Flaherty (2016). Modelling Future Cardiovascular Disease Mortality in the United States: National Trends and Racial and Ethnic Disparities. Circulation. Volume 135, Issue 21.](https://doi.org/10.1161/CIRCULATIONAHA.115.019904)
+* [Chris Kypridemos, Kirk Allen, Graeme L Hickey, Maria Guzman-Castillo, Piotr Bandosz, Iain Buchan, Simon Capewell, Martin O’Flaherty (2016). Cardiovascular screening to reduce the burden from cardiovascular disease: microsimulation study to quantify policy options. BMJ 2016;353:i2793.](https://doi.org/10.1136/bmj.i2793)

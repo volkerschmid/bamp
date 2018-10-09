@@ -1,0 +1,104 @@
+---
+title: "Standalone Version"
+author: "Volker Schmid"
+date: "October 9, 2018"
+output: html_document
+---
+
+## BAMP standalon version
+
+BAMP is available as standalone version. This version is no longer actively developed, but should still work.
+
+## Downloads
+
+* [BAMP Windows version](bamp.zip)
+* [BAMP Linux version](bamp.tar)
+* [R scripts for BAMP results](bamp.R)
+* [S-Plus scripts for BAMP results](bamp.ssc)
+* [dos2unix](dos2unix.zip)
+
+### Installation/Usage Windows:  
+
+* Unzip the downloaded bamp.zip file
+* Edit the bamp.ini file and you can start the program with a doubleclick on the BAMP-icon.
+
+If you want to use your own ini-files, you have to use a MS-DOS-console:
+
+> bamp ini-file
+
+Please be sure, that the file cygwin1.dll is in the same folder as bamp.exe.
+    
+We recommend to convert bamp.ini to unix format using [dos2unix] after editing the file with WordPad. Unpack dos2unix to the bamp folder. After editing and saving bamp.ini, drop the bamp.ini file on the dos2unix icon. After this, BAMP should run smoothly on all Windows versions.
+
+### Installation/Usage Linux
+
+Extract the bamp.tar file using
+
+> tar xf bamp.tar
+
+Edit the bamp.ini file and start the program:
+
+> ./BAMP
+       
+## Manual – Quick steps
+
+Detailed information on the software, the data and the output can be found in [Schmid, Held: Bayesian Age-Period-Cohort Modeling and Prediction - BAMP, Journal of Statistical Software, Vol. 21, Issue 8, Oct 2007](http://dx.doi.org/10.18637/jss.v021.i08). 
+
+### Quick steps
+
+After you have installed BAMP, edit the bamp.ini file or write your own ini-file. Then start the program by typing
+
+> bamp ini-file
+
+or (if you use bamp.ini) just type
+
+> bamp
+
+On window-based OS you can also start BAMP with a double click on the BAMP-icon. BAMP then will use the bamp.ini file
+
+### Input-Files
+
+BAMP needs inputfiles with the population data and the number of deaths. Both files have to be matrices of number of agegroups x number of periods (or transposed, see dataorder). The data has to be seperated by blanks.
+
+### Predictions
+
+If you want to get predictions of future deathrates, set predictions to 1. Set number of predictions to the number of periods for which you want the predictions. If you also have population projection, set predictions to 3.
+In order to test the model you can also make prediction for existing data. Then the input files must include this data, the matrices have to be of order number of agegroups x (number of periods + number of predictions). Set deviance to 2 and BAMP will calculate the deviance for the predicted periods.
+ 
+### Description of bamp.ini
+
+| | |
+|------------------------|---------------------------------------------------------------------------------------|
+| cancer data | Path + File of number of deaths |
+| population data | Path + File of population number |
+| output folder | Path of Folder for output files |
+| temp folder | Path of Folder for temporarily files |
+| output file | File for general output; 0 = console |
+| dataorder | 1 if data for one period is in a row, 0 if in a column |
+| number of agegroups| Number of agegroups |
+| number of periods | Number of periods |
+| periods per agegroup | Number of periods in one agegroup |
+| predictions | 0 = no predictions, 1 = predictions, 2 = predictions for existing data (see deviance) |
+| number of predictions | Number of periods to be predicted |
+| number of iterations | Number of iterations (including burn in) |
+| burn in | Number of iterations for burn in (including tuning) |
+| step | Thinning parameter for MCMC simulation |
+| tuning | Number of iterations done for tuning |
+| samples | 1 if you wish to get all samples, 0 else; samples will be written to "temp folder" |
+| deviance | 0 = don't compute deviance, 1 = compute deviance, 2 = compute deviance also for predicted periods (only if predictions = 2) |
+| age block | 0 = don't compute age effect, 1 = use RW 1, 2 = use RW 2 |
+| age hyperpar.a / b. | hyperparameters for Priors of precision |
+| period block | 0 = don't compute period effect, 1 = use RW 1, 2 = use RW 2 |
+| period hyperpar.a / b. | hyperparameters for Priors of precision |
+| cohort block | 0 = don't compute cohort effect, 1 = use RW 1, 2 = use RW 2 |
+| cohort hyperpar.a and b. | hyperparameters for Priors of precision |
+| z hyperpar.a and b. | hyperparameters for Priors of precision of overdispersion parameter |
+| quantile 1 to 5 | Quantile of output data; -1 no output |
+
+## Publications
+
+[List of publications](../publications/publications)
+
+## Licence agreement 
+
+The authors of this software grant to any individual or non-commercial organization the right to use and to make an unlimitted number of copies of this software. Usage by commercial entitities require a licence from the authors. You may not decompile, disassemble, reverse engineer, or modify the software. This includes, but is not limitted to modifying/changing any icons, menues, or displays associated with the software. This software cannot be sold without written authorization from the authors. This restriction is not intended to apply for connect time charges, or flat rate connection/download fees for electronic bulletin board services. The authors of this program accept no responsibility for damages resulting from the use of this software and make no warranty on representation, either express or implied, including but not limited to, any implied warranty of merchantability or fitness for a particular purpose. This software is provided as is, and you, its user, assume all risks when using it.

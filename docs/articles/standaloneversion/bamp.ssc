@@ -1,0 +1,288 @@
+# bamp.splus v1.2.4.1 (28 nov 2001)
+
+# edit first age of first age group
+startingage <- 45
+# edit first period of first period group
+startingperiod <- 1945
+# edit years per period group
+yearsperperiod <- 1
+# edit name of your .ini file
+inifile <- "bamp.ini"
+# edit root folder
+bamp.dir <- "f:\\bamp\\test\\"
+# set psfile to 0 if you don't want a postscript file
+psfile <- 1
+
+# O.K. 
+# Unix users: save and start with "Splus < bamp.ssc"
+# Windows users: select "select all" in "Edit" menu and let "Run" 
+
+inifile <- paste(bamp.dir, inifile, sep="")
+first.ini <- scan(file=inifile,what=list("", ""), sep=":", n=6)
+second.ini <- scan(file=inifile,what=list("", ""), sep=":", skip=4)
+ini <- c(first.ini[[2]], "", second.ini[[2]])
+rm(first.ini, second.ini)
+
+cancerdata <- paste(bamp.dir, ini[1], sep="")
+popdata <- paste(bamp.dir, ini[2], sep="")
+outputfolder <- paste(bamp.dir, ini[3], sep="")
+
+dataorder <- as.numeric(ini[6])
+numberofagegroups <- as.numeric(ini[7])
+numberofperiods <- as.numeric(ini[8])
+ppa <- as.numeric(ini[9])
+numberofcohorts <- (ppa*(numberofagegroups - 1))+numberofperiods;
+numberofpredictions <- as.numeric(ini[11])
+prognosis <- as.numeric(ini[10])
+if (prognosis==0) numberofpredictions_0
+if (numberofpredictions==0) prognosis_0
+quantile <- vector(length=5)
+quantile[1] <- as.numeric(ini[29])
+quantile[2] <- as.numeric(ini[30])
+quantile[3] <- as.numeric(ini[31])
+quantile[4] <- as.numeric(ini[32])
+quantile[5] <- as.numeric(ini[33])
+numberofquantiles <- 5
+qumed <- 0
+for (i in 5:1)
+{
+	if (quantile[i]==-1){numberofquantiles <- numberofquantiles-1}	
+	if (quantile[i]==0.5){qumed <- i}
+}
+perplus <- 0
+cohplus <- 0
+
+ageblock <- as.numeric(ini[18])
+periodblock <- as.numeric(ini[21])
+if (periodblock >7)
+{
+	periodblock <- periodblock - 7
+	perplus <- 1
+}
+cohortblock <- as.numeric(ini[24])
+if (cohortblock >7)
+{
+	cohortblock <- cohortblock - 7
+	cohplus <- 1
+}
+rw <- max(ageblock,max(periodblock,cohortblock))
+
+
+# labels for axis
+periodaxis_vector(length=as.integer((numberofperiods+numberofpredictions)/3))
+temp_0
+if (yearsperperiod==1)
+{
+for (i in seq(1,(numberofperiods+numberofpredictions),by=3))
+{
+temp_temp+1
+periodaxis[temp]_as.character(startingperiod+i-1)
+}
+}
+if (yearsperperiod>1)
+{
+for (i in seq(1,(numberofperiods+numberofpredictions),by=3))
+{
+temp_temp+1
+periodaxis[temp]_paste((startingperiod+((i-1)*yearsperperiod)),"-",(startingperiod+(i*yearsperperiod)-1))
+}
+}
+
+ageaxis_vector(length=as.integer(numberofagegroups/3))
+temp_0
+if ((ppa*yearsperperiod)==1)
+{
+for (i in seq(1,(numberofagegroups),by=3))
+{
+temp_temp+1
+ageaxis[temp]_as.character(startingage+i-1)
+}
+}
+if ((ppa*yearsperperiod)>1)
+{
+for (i in seq(1,numberofagegroups,by=3))
+{
+temp_temp+1
+ageaxis[temp]_paste((startingage+((i-1)*ppa*yearsperperiod)),"-",(startingage+(i*ppa*yearsperperiod)-1))
+}
+}
+yearsperc <- (ppa+1)*yearsperperiod
+startingcohort_startingperiod-(startingage+(ppa*yearsperperiod*numberofagegroups))
+cohortaxis_vector(length=as.integer(numberofcohorts/10))
+temp_0
+for (i in seq(1,numberofcohorts,by=10))
+{
+temp_temp+1
+cohortaxis[temp]_paste(startingcohort+((i-1)*yearsperperiod),"-",startingcohort+((i-1)*yearsperperiod)+yearsperc-1)
+}
+
+
+
+if (psfile==1) postscript(file=paste(outputfolder,"bamp.ps",sep=""), horizontal=F)
+
+linien <- c(1,1,1,1)
+if (numberofquantiles==3) linien <- c(3,1,3)
+if (numberofquantiles==5) linien <- c(3,5,1,5,3)
+
+if (rw==1){
+# plots of age period and cohort effects, only when rw=1
+theta <- matrix(scan(paste(outputfolder,"theta.dat",sep="")),ncol=numberofquantiles)
+phi <- matrix(scan(paste(outputfolder,"phi.dat",sep="")),ncol=numberofquantiles)
+psi <- matrix(scan(paste(outputfolder,"psi.dat",sep="")),ncol=numberofquantiles)
+if (perplus==1) phibeta <- matrix(scan(paste(outputfolder,"beta_per.dat",sep="")),ncol=numberofquantiles)
+if (cohplus==1) psibeta <- matrix(scan(paste(outputfolder,"beta_coh.dat",sep="")),ncol=numberofquantiles)
+par(mfrow=c((3+perplus+cohplus),1))
+
+tsplot(theta,lty=linien,sub="Age",col=c(1),axes=F)
+title(main="Age Period and Cohort effects")
+axis(2)
+axis(1, at=seq(1,numberofagegroups,by=3),labels=ageaxis)
+box() 
+ 
+tsplot(phi,lty=linien,col=c(1),axes=F)
+if (perplus==1)
+{
+	title(sub="Period x Covariate")
+}
+else
+{
+	title(sub="Period")
+}
+axis(2)
+axis(1, at=seq(1,numberofperiods+numberofpredictions,by=3),labels=periodaxis)
+if (numberofpredictions>0)abline(v=numberofperiods)
+box() 
+
+if (perplus==1)
+{
+	tsplot(phibeta,lty=linien,col=c(1),axes=F)
+	title(sub="Period")
+	axis(2)
+	axis(1, at=seq(1,numberofperiods+numberofpredictions,by=3),labels=periodaxis)
+	if (numberofpredictions>0)abline(v=numberofperiods)
+	box()
+} 
+
+tsplot(psi,lty=linien,col=c(1),axes=F)
+if (cohplus==1)
+{
+	title(sub="Cohort x Covariate")
+}
+else
+{
+	title(sub="Cohort")
+}
+if (numberofpredictions>0)abline(v=dim(psi)[1]-numberofpredictions)
+axis(2)
+axis(1, at=seq(1,numberofcohorts,by=10),labels=cohortaxis)
+box() 
+
+if (cohplus==1)
+{
+	tsplot(psibeta,lty=linien,col=c(1),axes=F)
+	title(sub="Cohort")
+	if (numberofpredictions>0)abline(v=dim(psi)[1]-numberofpredictions)
+	axis(2)
+	axis(1, at=seq(1,numberofcohorts,by=10),labels=cohortaxis)
+	box() 
+}
+
+}
+
+#read data
+cols <- numberofperiods
+if (prognosis==2) {cols <- cols+numberofpredictions}
+
+if (dataorder==0)
+{
+y <- t(matrix(scan(cancerdata),ncol=numberofagegroups,nrow=cols))
+n <- t(matrix(scan(popdata),ncol=numberofagegroups,nrow=cols))
+if (prognosis==3) 
+	{
+	nn <- t(matrix(scan(popdata),ncol=numberofagegroups,nrow=cols+numberofpredictions))
+	}
+}
+if (dataorder==1)
+{
+y <- matrix(scan(cancerdata),nrow=numberofagegroups,ncol=cols)
+n <- matrix(scan(popdata),nrow=numberofagegroups,ncol=cols)
+if (prognosis==3) 
+	{
+	nn <- matrix(scan(popdata),nrow=numberofagegroups,ncol=cols+numberofpredictions)
+	}
+}
+
+# plot predicted mortality propability for each agegroup
+pr <- array(scan(paste(outputfolder,"pr.dat",sep="")),c(numberofperiods+numberofpredictions,numberofagegroups,numberofquantiles))
+par(mfrow=c(4,2))
+if (prognosis==3)
+{ypred_array(scan(paste(outputfolder,"y_pred.dat",sep="")),c(numberofpredictions,numberofagegroups,numberofquantiles))
+}
+
+for (i in 1:numberofagegroups)
+{
+tsplot(pr[,i,],lty=linien,ylim=c(0,max(pr[,i,],(y[i,]/n[i,]))),sub=paste("agegroup",(startingage+((i-1)*ppa)),"-",(startingage+(i*ppa)-1)),col=c(1),axes=F)
+for (j in 1:cols)
+points(j,(y[i,j]/n[i,j]),pch="X")
+if (prognosis==3)
+{
+	for (j in 1:numberofpredictions)
+		points(j+numberofperiods,ypred[j,i,qumed]/nn[i,numberofperiods+j],pch="o")
+}
+title(xlab="period",ylab="pr")
+if (numberofpredictions>0) abline(v=numberofperiods)
+axis(2)
+axis(1, at=seq(1,numberofperiods+numberofpredictions,by=3),labels=periodaxis)
+box() 
+}
+
+
+par(mfrow=c(2,1))
+
+# plot ysumpred
+if (prognosis==3)
+{
+ ysum0 <- apply(y,2,sum)
+ ysum <- matrix(ncol=numberofperiods+numberofpredictions,nrow=numberofquantiles)
+ for (i in 1:numberofquantiles)
+	{
+		ysum[i,1:numberofperiods] <- ysum0
+	}
+ ysum[,(numberofperiods+1):(numberofperiods+numberofpredictions)] <- as.matrix(read.table(paste(outputfolder,"ysum_pred.dat",sep="")))
+
+tsplot(t(ysum),lty=linien,sub="predicted cases",col=c(1),axes=F)
+abline(v=numberofperiods)
+axis(2)
+axis(1, at=seq(1,numberofperiods+numberofpredictions,by=3),labels=periodaxis)
+box() 
+}
+
+# plots of z 
+z_array(scan(paste(outputfolder,"z.dat",sep="")),c(numberofperiods,numberofagegroups,numberofquantiles))
+
+schalter<-0
+for (i in 1:numberofperiods)
+for (j in 1:numberofagegroups)
+{
+if (z[i,j,1]>0){
+ if (schalter==1){points(j,i,pch="-")}
+ if (schalter==0){plot(j,i,pch="-",ylim=c(1,numberofperiods),xlim=c(1,numberofagegroups),ylab="period",xlab="agegroup",axes=F);schalter_1}
+}
+}
+for (i in 1:numberofperiods)
+for (j in 1:numberofagegroups)
+{
+if (z[i,j,numberofquantiles]<0){
+ if (schalter==1){points(j,i,pch="+")}
+ if (schalter==0){plot(j,i,pch="+",ylim=c(1,numberofperiods),xlim=c(1,numberofagegroups),ylab="period",xlab="agegroup",axes=F);schalter_1}
+}
+}
+if (schalter==1)
+{
+axis(1, at=seq(1,numberofagegroups,by=3),labels=ageaxis)
+axis(2, at=seq(1,numberofperiods+numberofpredictions,by=3),labels=periodaxis)
+box() 
+title(sub="significant overdispersion")
+}
+
+if (psfile==1) dev.off()
