@@ -44,6 +44,9 @@
 <li>
   <a href="articles/index.html">Articles</a>
 </li>
+<li>
+  <a href="articles/standaloneversion/index.html">Standalone Version</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -66,11 +69,44 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-    <div id="bamp-r-package" class="section level1">
+    
+<div id="section" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#bamp-r-package" class="anchor"></a>BAMP R package</h1></div>
-<p>Bayesian Age-period-cohort Modelling and Prediction R package</p>
+<a href="#section" class="anchor"></a><img src="https://volkerschmid.github.io/bamp/figures/bamplogo8.png" align="right">
+</h1></div>
 </div>
+<div id="bamp-r-package" class="section level1">
+<h1 class="hasAnchor">
+<a href="#bamp-r-package" class="anchor"></a>BAMP R package</h1>
+<div id="bayesian-age-period-cohort-modelling-and-prediction-r-package" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bayesian-age-period-cohort-modelling-and-prediction-r-package" class="anchor"></a>Bayesian Age-period-cohort Modelling and Prediction R package</h2>
+<p>BAMP is a software package to analyze incidence or mortality data on the Lexis diagram, using a Bayesian version of an age-period-cohort model. Such models have been described in, e.g., <a href="https://doi.org/10.1002/sim.4780130804">Berzuini and Clayton (1994)</a>, <a href="https://www.jstor.org/stable/2246224">Besag, J.E., P.J. Green, D.M. Higdon and K.L. Mengersen (1995)</a> and <a href="https://doi.org/10.1093/biostatistics/2.1.109">Knorr-Held and Rainer (2001)</a>. For each pixel in the Lexis diagram (that is for a specific age group and specific period) data must be available on the number of persons under risk (population number) and the number of disease cases (typically cancer incidence or mortality). A hierarchical model is assumed with a binomial model in the first-stage.</p>
+<p>As smoothing priors for the age, period and cohort parameters random walks of first and second order (RW1 or RW2) available. BAMP also allows to drop one or more of the latent components, for example to drop the cohort effect and to analyze a age-period model. Additional unstructured prior distributions are assumed for each pixel in the Lexis diagram. Note that there is a nonidentifiability in the likelihood of the APC-model, see <a href="https://doi.org/10.1002/sim.4780060406">Clayton and Schifflers (1987)</a>, which indices some problems in interpreting the latent effects. Only for RW1 model, the parameters are (weakly) identifiable.</p>
+<p>BAMP has several features which are described more detailed in <a href="https://doi.org/10.1093/biostatistics/2.1.109">Knorr-Held and Rainer (2001)</a>:</p>
+<ul>
+<li>The data does not need to be on the same grid, for example period can be in one year intervals and age group in five year intervals.</li>
+<li>BAMP allows for prediction of the future number of cases</li>
+<li>BAMP allows for a retrospective prediction for model checking</li>
+</ul>
+<p>Additionally to the model described in <a href="https://doi.org/10.1093/biostatistics/2.1.109">Knorr-Held and Rainer (2001)</a>, BAMP can handle</p>
+<ul>
+<li>AP and AC models</li>
+<li>models with and without global heterogenity parameter (overdispersion)</li>
+<li>models with additional age, period and/or cohohort heterogenity</li>
+<li>including covariates (still in development) Detail about this feature can be found in <a href="https://edoc.ub.uni-muenchen.de/3000/">Schmid (2004 - in german)</a>
+</li>
+</ul>
+<p>There are some graphical routines available in order to</p>
+<ul>
+<li>plot estimated age, period and cohort effects (only for RW1 model)</li>
+<li>compare observed and fitted rates</li>
+<li>predict rates</li>
+<li>assess the “significance” of the unstructured parameters. This helps to identify variation in the data, which is not supported by the age, period and cohort parameters.</li>
+</ul>
+</div>
+</div>
+
   </div>
 
   <div class="col-md-3" id="sidebar">

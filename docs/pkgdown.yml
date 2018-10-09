@@ -6,4 +6,6 @@ articles:
   modeling: largevignettes/modeling.html
   prediction: largevignettes/prediction.html
   simulation: largevignettes/simulation.html
+  publications: publications/publications.html
+  index: standaloneversion/index.html
 

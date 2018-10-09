@@ -44,6 +44,9 @@
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
+<li>
+  <a href="../articles/standaloneversion/index.html">Standalone Version</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -70,7 +73,7 @@
       <h1>Short Introduction to BAMP</h1>
                         <h4 class="author">Volker Schmid</h4>
             
-            <h4 class="date">2018-10-08</h4>
+            <h4 class="date">2018-10-09</h4>
       
       
       <div class="hidden name"><code>bamp.Rmd</code></div>
@@ -101,15 +104,15 @@
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.01
-## pD:            36.64
-## DIC:          267.65
+## Deviance:     231.29
+## pD:            36.98
+## DIC:          268.27
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.414        1.039        2.249
-## period                          67.000      198.926      605.323
-## cohort                          34.628       60.117       97.451</code></pre>
+## age                              0.405        1.029        2.168
+## period                          68.917      202.496      621.862
+## cohort                          35.190       59.787       96.552</code></pre>
 <p>We can plot the main APC effects using point-wise quantiles:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model1)</code></pre></div>
 <p><img src="bamp_files/figure-html/plot_model-1.png" width="700"><img src="bamp_files/figure-html/plot_model-2.png" width="700"><img src="bamp_files/figure-html/plot_model-3.png" width="700"></p>

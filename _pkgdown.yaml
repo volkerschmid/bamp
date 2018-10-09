@@ -11,6 +11,9 @@ navbar:
       href: reference/index.html
     - text: "Articles"
       href: articles/index.html
+    - text: "Standalone Version"
+      href: articles/standaloneversion/index.html
+      
   right:
     - text: "BAMP website"
       href: https://volkerschmid.de/bamp
@@ -26,6 +29,9 @@ articles:
     - largevignettes/modeling
     - largevignettes/prediction
     - largevignettes/simulation
+  - title: "Publications"
+    contents:
+    - publications/publications
     
 reference:
 - title: "Main Function"
