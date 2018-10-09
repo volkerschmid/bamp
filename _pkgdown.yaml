@@ -15,9 +15,7 @@ navbar:
       href: articles/standaloneversion/index.html
       
   right:
-    - text: "BAMP website"
-      href: https://volkerschmid.de/bamp
-    - text: "Volke Schmid"
+    - text: "Volker Schmid"
       href: https://volkerschmid.de
     - text: "Bioimaging Group"
       href: http://www.bioimg.statistik.uni-muenchen.de

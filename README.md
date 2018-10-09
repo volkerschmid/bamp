@@ -1,8 +1,6 @@
 <img src="https://volkerschmid.github.io/bamp/figures/bamplogo8.png" align="right" />
 
-# BAMP R package
-
-## Bayesian Age-period-cohort Modelling and Prediction R package
+# Bayesian Age-period-cohort Modelling and Prediction
 
 BAMP is a software package to analyze incidence or mortality data on the Lexis diagram, using a Bayesian version of an age-period-cohort model. Such models have been described in, e.g., [Berzuini and Clayton (1994)](https://doi.org/10.1002/sim.4780130804),  [Besag, J.E., P.J. Green, D.M. Higdon and K.L. Mengersen (1995)](https://www.jstor.org/stable/2246224) and [Knorr-Held and Rainer (2001)](https://doi.org/10.1093/biostatistics/2.1.109). For each pixel in the Lexis diagram (that  is for a specific age group and specific period) data must be available on the number of persons under risk (population number) and the number of disease cases (typically cancer incidence or mortality). A hierarchical model is assumed with a binomial model in the first-stage.
 
@@ -27,3 +25,11 @@ There are some graphical routines available in order to
 - compare observed and fitted rates
 - predict rates
 - assess the "significance" of the unstructured parameters. This helps  to identify variation in the data, which is not supported by the age, period and cohort parameters. 
+
+## Old version (1.3)
+
+[Find the older standalone version here.](articles/standaloneversion)
+
+## Bayesian Age-period-cohort Modelling and Prediction R package
+
+The bamp R package will appear on CRAN soon.
