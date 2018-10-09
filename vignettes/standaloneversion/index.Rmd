@@ -7,7 +7,7 @@ output: html_document
 
 ## BAMP standalon version
 
-BAMP is available as standalone version. This version is no longer actively developed, but should still work.
+BAMP is available as standalone version (version 1.3). The standalone version no longer actively developed
 
 ## Downloads
 
