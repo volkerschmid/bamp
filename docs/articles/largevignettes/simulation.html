@@ -79,111 +79,115 @@
 
     
     
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">age=<span class="dv">2</span><span class="op">*</span><span class="kw">sqrt</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">20</span>,<span class="dt">length=</span><span class="dv">10</span>))
-age&lt;-<span class="st"> </span>age<span class="op">-</span><span class="kw">mean</span>(age)
-<span class="kw">plot</span>(age, <span class="dt">type=</span><span class="st">"l"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">age=<span class="dv">2</span><span class="op">*</span><span class="kw">sqrt</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">20</span>,<span class="dt">length=</span><span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">age&lt;-<span class="st"> </span>age<span class="op">-</span><span class="kw">mean</span>(age)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">plot</span>(age, <span class="dt">type=</span><span class="st">"l"</span>)</a></code></pre></div>
 <p><img src="simulation_files/figure-html/simulate_age-1.png" width="90%"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">period=<span class="dv">15</span><span class="op">:</span><span class="dv">1</span>
-period[<span class="dv">8</span><span class="op">:</span><span class="dv">15</span>]&lt;-<span class="dv">8</span><span class="op">:</span><span class="dv">15</span>
-period&lt;-period<span class="op">/</span><span class="dv">5</span>
-period&lt;-period<span class="op">-</span><span class="kw">mean</span>(period)
-<span class="kw">plot</span>(period, <span class="dt">type=</span><span class="st">"l"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">period=<span class="dv">15</span><span class="op">:</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">period[<span class="dv">8</span><span class="op">:</span><span class="dv">15</span>]&lt;-<span class="dv">8</span><span class="op">:</span><span class="dv">15</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">period&lt;-period<span class="op">/</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">period&lt;-period<span class="op">-</span><span class="kw">mean</span>(period)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">plot</span>(period, <span class="dt">type=</span><span class="st">"l"</span>)</a></code></pre></div>
 <p><img src="simulation_files/figure-html/simulate_period-1.png" width="90%"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">periods_per_agegroup=<span class="dv">5</span>
-number_of_cohorts &lt;-<span class="st"> </span>periods_per_agegroup<span class="op">*</span>(<span class="dv">10-1</span>)<span class="op">+</span><span class="dv">15</span>
-cohort&lt;-<span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">60</span>)
-cohort[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>]&lt;-(<span class="dv">14</span><span class="op">:</span><span class="dv">0</span>)
-cohort[<span class="dv">16</span><span class="op">:</span><span class="dv">30</span>]&lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)<span class="op">/</span><span class="dv">2</span>
-cohort[<span class="dv">31</span><span class="op">:</span><span class="dv">60</span>]&lt;-<span class="st"> </span><span class="dv">8</span>
-cohort&lt;-cohort<span class="op">/</span><span class="dv">10</span>
-cohort&lt;-cohort<span class="op">-</span><span class="kw">mean</span>(cohort)
-<span class="kw">plot</span>(cohort, <span class="dt">type=</span><span class="st">"l"</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">periods_per_agegroup=<span class="dv">5</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">number_of_cohorts &lt;-<span class="st"> </span>periods_per_agegroup<span class="op">*</span>(<span class="dv">10-1</span>)<span class="op">+</span><span class="dv">15</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">cohort&lt;-<span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">60</span>)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">cohort[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>]&lt;-(<span class="dv">14</span><span class="op">:</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">cohort[<span class="dv">16</span><span class="op">:</span><span class="dv">30</span>]&lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">cohort[<span class="dv">31</span><span class="op">:</span><span class="dv">60</span>]&lt;-<span class="st"> </span><span class="dv">8</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">cohort&lt;-cohort<span class="op">/</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">cohort&lt;-cohort<span class="op">-</span><span class="kw">mean</span>(cohort)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw">plot</span>(cohort, <span class="dt">type=</span><span class="st">"l"</span>)</a></code></pre></div>
 <p><img src="simulation_files/figure-html/simulate_cohort-1.png" width="90%"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simdata&lt;-<span class="kw"><a href="../../reference/apcSimulate.html">apcSimulate</a></span>(<span class="op">-</span><span class="dv">10</span>, age, period, cohort, periods_per_agegroup, <span class="fl">1e6</span>)
-<span class="kw"><a href="../../reference/print.apc.html">print</a></span>(simdata<span class="op">$</span>cases)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">simdata&lt;-<span class="kw"><a href="../../reference/apcSimulate.html">apcSimulate</a></span>(<span class="op">-</span><span class="dv">10</span>, age, period, cohort, periods_per_agegroup, <span class="fl">1e6</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(simdata<span class="op">$</span>cases)</a></code></pre></div>
 <pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-##  [1,]    0    8   22   47   80  119  180  391 1163  2838
-##  [2,]    1   10   19   43   77  102  130  327  803  2333
-##  [3,]    1    4   13   37   57   82  132  224  625  1753
-##  [4,]    3    5   12   29   55   77  120  155  462  1161
-##  [5,]    0    7    8   10   38   60   85  132  308   920
-##  [6,]    0    1    9   13   45   55   76  103  225   686
-##  [7,]    0    0    7   18   35   53   67   90  193   491
-##  [8,]    1    2    7    7   22   31   56   80  145   414
-##  [9,]    0    2    4   16   29   51   73  101  141   409
-## [10,]    0    1    8   13   45   58  102  126  123   468
-## [11,]    0    6    4   23   51   96  122  163  222   485
-## [12,]    1    2   14   21   58   91  172  215  267   572
-## [13,]    0    2   17   34   69  135  205  334  381   563
-## [14,]    2    8   32   34   73  176  259  346  474   679
-## [15,]    3    9   23   53  119  183  352  452  576   741</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simmod &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(<span class="dt">cases =</span> simdata<span class="op">$</span>cases, <span class="dt">population =</span> simdata<span class="op">$</span>population, <span class="dt">age =</span> <span class="st">"rw1"</span>, 
-<span class="dt">period =</span> <span class="st">"rw1"</span>, <span class="dt">cohort =</span> <span class="st">"rw1"</span>, <span class="dt">periods_per_agegroup =</span>periods_per_agegroup)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(simmod)</code></pre></div>
+##  [1,]    5    7   22   68   82  109  162  403 1090  3039
+##  [2,]    1    7   18   40   65  109  162  295  852  2268
+##  [3,]    0    1   21   32   42   83  144  220  582  1739
+##  [4,]    2    4    7   25   49   64  105  159  456  1260
+##  [5,]    1    2   11   27   48   62   82  135  335   867
+##  [6,]    1    5    7    6   35   53   74  110  280   663
+##  [7,]    1    4    4   12   27   54   66   88  174   495
+##  [8,]    0    1    4    9   31   61   65   88  149   363
+##  [9,]    1    2   12   13   30   39   83  105  166   405
+## [10,]    0    1    7   19   40   83   89  130  171   472
+## [11,]    1    6    3   22   34   89  134  160  190   473
+## [12,]    1    4    9   30   55  123  129  217  274   547
+## [13,]    1    9   13   28   65  129  210  276  358   665
+## [14,]    0    6   21   42   85  140  239  366  428   653
+## [15,]    0    5   18   47  115  188  340  457  538   800</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">simmod &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(<span class="dt">cases =</span> simdata<span class="op">$</span>cases, <span class="dt">population =</span> simdata<span class="op">$</span>population, <span class="dt">age =</span> <span class="st">"rw1"</span>, </a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="dt">period =</span> <span class="st">"rw1"</span>, <span class="dt">cohort =</span> <span class="st">"rw1"</span>, <span class="dt">periods_per_agegroup =</span>periods_per_agegroup)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(simmod)</a></code></pre></div>
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     154.13
-## pD:            50.56
-## DIC:          204.69
+## Deviance:     163.24
+## pD:            49.09
+## DIC:          212.33
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.594        1.413        2.937
-## period                          13.653       26.195       45.783
-## cohort                          63.403      102.514      161.767</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/checkConvergence.html">checkConvergence</a></span>(simmod)</code></pre></div>
+## age                              0.648        1.580        3.172
+## period                          14.058       27.517       47.117
+## cohort                          71.432      116.811      180.954</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="../../reference/checkConvergence.html">checkConvergence</a></span>(simmod)</a></code></pre></div>
 <pre><code>## Warning: MCMC chains did not converge!</code></pre>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(simmod)</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">plot</span>(simmod)</a></code></pre></div>
 <p><img src="simulation_files/figure-html/check_print_plot-1.png" width="90%"><img src="simulation_files/figure-html/check_print_plot-2.png" width="90%"><img src="simulation_files/figure-html/check_print_plot-3.png" width="90%"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">effects&lt;-<span class="kw">effects</span>(simmod)
-effects2&lt;-<span class="kw">effects</span>(simmod, <span class="dt">mean=</span><span class="ot">TRUE</span>)
-<span class="co">#par(mfrow=c(3,1))</span>
-<span class="kw">plot</span>(age, <span class="dt">type=</span><span class="st">"l"</span>)
-<span class="kw">lines</span>(effects<span class="op">$</span>age, <span class="dt">col=</span><span class="st">"blue"</span>)
-<span class="kw">lines</span>(effects2<span class="op">$</span>age, <span class="dt">col=</span><span class="st">"green"</span>)</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">effects&lt;-<span class="kw">effects</span>(simmod)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">effects2&lt;-<span class="kw">effects</span>(simmod, <span class="dt">mean=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co">#par(mfrow=c(3,1))</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw">plot</span>(age, <span class="dt">type=</span><span class="st">"l"</span>)</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="kw">lines</span>(effects<span class="op">$</span>age, <span class="dt">col=</span><span class="st">"blue"</span>)</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="kw">lines</span>(effects2<span class="op">$</span>age, <span class="dt">col=</span><span class="st">"green"</span>)</a></code></pre></div>
 <p><img src="simulation_files/figure-html/plot_comparison-1.png" width="90%"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(period, <span class="dt">type=</span><span class="st">"l"</span>)
-<span class="kw">lines</span>(effects<span class="op">$</span>period, <span class="dt">col=</span><span class="st">"blue"</span>)
-<span class="kw">lines</span>(effects2<span class="op">$</span>period, <span class="dt">col=</span><span class="st">"green"</span>)</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">plot</span>(period, <span class="dt">type=</span><span class="st">"l"</span>)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">lines</span>(effects<span class="op">$</span>period, <span class="dt">col=</span><span class="st">"blue"</span>)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw">lines</span>(effects2<span class="op">$</span>period, <span class="dt">col=</span><span class="st">"green"</span>)</a></code></pre></div>
 <p><img src="simulation_files/figure-html/plot_comparison-2.png" width="90%"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cohort, <span class="dt">type=</span><span class="st">"l"</span>)
-<span class="kw">lines</span>(effects<span class="op">$</span>cohort, <span class="dt">col=</span><span class="st">"blue"</span>)
-<span class="kw">lines</span>(effects2<span class="op">$</span>cohort, <span class="dt">col=</span><span class="st">"green"</span>)</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">plot</span>(cohort, <span class="dt">type=</span><span class="st">"l"</span>)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">lines</span>(effects<span class="op">$</span>cohort, <span class="dt">col=</span><span class="st">"blue"</span>)</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="kw">lines</span>(effects2<span class="op">$</span>cohort, <span class="dt">col=</span><span class="st">"green"</span>)</a></code></pre></div>
 <p><img src="simulation_files/figure-html/plot_comparison-3.png" width="90%"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prediction&lt;-<span class="kw"><a href="../../reference/predict_apc.html">predict_apc</a></span>(simmod, <span class="dt">periods=</span><span class="dv">5</span>, <span class="dt">population=</span><span class="kw">array</span>(<span class="fl">1e6</span>,<span class="kw">c</span>(<span class="dv">20</span>,<span class="dv">10</span>)))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(prediction<span class="op">$</span>cases_period[<span class="dv">2</span>,], <span class="dt">ylim=</span><span class="kw">range</span>(prediction<span class="op">$</span>cases_period),<span class="dt">ylab=</span><span class="st">""</span>,<span class="dt">pch=</span><span class="dv">19</span>)
-<span class="kw">points</span>(prediction<span class="op">$</span>cases_period[<span class="dv">1</span>,],<span class="dt">pch=</span><span class="st">"–"</span>,<span class="dt">cex=</span><span class="dv">2</span>)
-<span class="kw">points</span>(prediction<span class="op">$</span>cases_period[<span class="dv">3</span>,],<span class="dt">pch=</span><span class="st">"–"</span>,<span class="dt">cex=</span><span class="dv">2</span>)
-<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)<span class="kw">lines</span>(<span class="kw">rep</span>(i,<span class="dv">3</span>),prediction<span class="op">$</span>cases_period[,i])</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">prediction&lt;-<span class="kw"><a href="../../reference/predict_apc.html">predict_apc</a></span>(simmod, <span class="dt">periods=</span><span class="dv">5</span>, <span class="dt">population=</span><span class="kw">array</span>(<span class="fl">1e6</span>,<span class="kw">c</span>(<span class="dv">20</span>,<span class="dv">10</span>)))</a></code></pre></div>
+<pre><code>## [1]   20   10 1000
+## [1]   20   10 1000
+## [1]   20   10 1000
+## [1]   20   10 1000</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">plot</span>(prediction<span class="op">$</span>cases_period[<span class="dv">2</span>,], <span class="dt">ylim=</span><span class="kw">range</span>(prediction<span class="op">$</span>cases_period),<span class="dt">ylab=</span><span class="st">""</span>,<span class="dt">pch=</span><span class="dv">19</span>)</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">points</span>(prediction<span class="op">$</span>cases_period[<span class="dv">1</span>,],<span class="dt">pch=</span><span class="st">"–"</span>,<span class="dt">cex=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="kw">points</span>(prediction<span class="op">$</span>cases_period[<span class="dv">3</span>,],<span class="dt">pch=</span><span class="st">"–"</span>,<span class="dt">cex=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)<span class="kw">lines</span>(<span class="kw">rep</span>(i,<span class="dv">3</span>),prediction<span class="op">$</span>cases_period[,i])</a></code></pre></div>
 <p><img src="simulation_files/figure-html/prediction1-1.png" width="90%"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(prediction<span class="op">$</span>period[<span class="dv">2</span>,])</code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">plot</span>(prediction<span class="op">$</span>period[<span class="dv">2</span>,])</a></code></pre></div>
 <p><img src="simulation_files/figure-html/prediction4-1.png" width="90%"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simmodrw2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(<span class="dt">cases =</span> simdata<span class="op">$</span>cases, <span class="dt">population =</span> simdata<span class="op">$</span>population, <span class="dt">age =</span> <span class="st">"rw2"</span>, 
-<span class="dt">period =</span> <span class="st">"rw2"</span>, <span class="dt">cohort =</span> <span class="st">"rw2"</span>, <span class="dt">periods_per_agegroup =</span>periods_per_agegroup)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(simmodrw2)</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">simmodrw2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(<span class="dt">cases =</span> simdata<span class="op">$</span>cases, <span class="dt">population =</span> simdata<span class="op">$</span>population, <span class="dt">age =</span> <span class="st">"rw2"</span>, </a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="dt">period =</span> <span class="st">"rw2"</span>, <span class="dt">cohort =</span> <span class="st">"rw2"</span>, <span class="dt">periods_per_agegroup =</span>periods_per_agegroup)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(simmodrw2)</a></code></pre></div>
 <pre><code>## 
 ##  Model:
 ## age (rw2)  - period (rw2)  - cohort (rw2) model
-## Deviance:     179.41
-## pD:            31.02
-## DIC:          210.44
+## Deviance:     173.45
+## pD:            30.72
+## DIC:          204.18
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                             19.210       76.325      244.528
-## period                          78.783      166.644      332.710
-## cohort                         489.761     1124.793     2329.436</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/checkConvergence.html">checkConvergence</a></span>(simmodrw2)</code></pre></div>
+## age                             67.248      213.104      636.392
+## period                          67.425      152.728      318.962
+## cohort                         450.192     1293.469     2854.395</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw"><a href="../../reference/checkConvergence.html">checkConvergence</a></span>(simmodrw2)</a></code></pre></div>
 <pre><code>## Warning: MCMC chains did not converge!</code></pre>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(simmodrw2)</code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">plot</span>(simmodrw2)</a></code></pre></div>
 <p><img src="simulation_files/figure-html/check_print_plot_rw2-1.png" width="90%"><img src="simulation_files/figure-html/check_print_plot_rw2-2.png" width="90%"><img src="simulation_files/figure-html/check_print_plot_rw2-3.png" width="90%"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cov_p&lt;-<span class="kw">rnorm</span>(<span class="dv">15</span>,period,.<span class="dv">1</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simmod2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(<span class="dt">cases =</span> simdata<span class="op">$</span>cases, <span class="dt">population =</span> simdata<span class="op">$</span>population, <span class="dt">age =</span> <span class="st">"rw1"</span>, 
-<span class="dt">period =</span> <span class="st">"rw1"</span>, <span class="dt">cohort =</span> <span class="st">"rw1"</span>, <span class="dt">periods_per_agegroup =</span>periods_per_agegroup,
-<span class="dt">period_covariate =</span> cov_p)</code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">cov_p&lt;-<span class="kw">rnorm</span>(<span class="dv">15</span>,period,.<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">simmod2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(<span class="dt">cases =</span> simdata<span class="op">$</span>cases, <span class="dt">population =</span> simdata<span class="op">$</span>population, <span class="dt">age =</span> <span class="st">"rw1"</span>, </a>
+<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="dt">period =</span> <span class="st">"rw1"</span>, <span class="dt">cohort =</span> <span class="st">"rw1"</span>, <span class="dt">periods_per_agegroup =</span>periods_per_agegroup,</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="dt">period_covariate =</span> cov_p)</a></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

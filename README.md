@@ -28,7 +28,7 @@ There are some graphical routines available in order to
 
 ## Old version (1.3)
 
-[Find the older standalone version here.](articles/standaloneversion)
+[Find the older standalone version here.](https://volkerschmid.github.io/bamp/articles/standaloneversion/)
 
 ## Bayesian Age-period-cohort Modelling and Prediction R package
 
