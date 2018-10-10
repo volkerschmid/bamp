@@ -1,13 +1,6 @@
----
-title: "Standalone Version"
-author: "Volker Schmid"
-date: "October 9, 2018"
-output: html_document
----
-
 ## BAMP standalon version
 
-BAMP is available as standalone version (version 1.3). The standalone version no longer actively developed
+BAMP is available as standalone version (version 1.3). The standalone version no longer actively developed.
 
 ## Downloads
 

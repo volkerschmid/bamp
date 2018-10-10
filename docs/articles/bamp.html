@@ -83,51 +83,55 @@
 <h2 class="hasAnchor">
 <a href="#data-example" class="anchor"></a>Data example</h2>
 <p>BAMP includes a data example.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(apc)
-<span class="kw">plot</span>(cases[,<span class="dv">1</span>],<span class="dt">type=</span><span class="st">"l"</span>,<span class="dt">ylim=</span><span class="kw">range</span>(cases), <span class="dt">ylab=</span><span class="st">"cases"</span>, <span class="dt">xlab=</span><span class="st">"year"</span>, <span class="dt">main=</span><span class="st">"cases per age group"</span>)
-<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">8</span>)<span class="kw">lines</span>(cases[,i], <span class="dt">col=</span>i)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">data</span>(apc)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">plot</span>(cases[,<span class="dv">1</span>],<span class="dt">type=</span><span class="st">"l"</span>,<span class="dt">ylim=</span><span class="kw">range</span>(cases), <span class="dt">ylab=</span><span class="st">"cases"</span>, <span class="dt">xlab=</span><span class="st">"year"</span>, <span class="dt">main=</span><span class="st">"cases per age group"</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">8</span>)<span class="kw">lines</span>(cases[,i], <span class="dt">col=</span>i)</a></code></pre></div>
 <p><img src="bamp_files/figure-html/loadplot-1.png" width="700"></p>
 </div>
 <div id="apc-model-with-random-walk-first-order-prior" class="section level2">
 <h2 class="hasAnchor">
 <a href="#apc-model-with-random-walk-first-order-prior" class="anchor"></a>APC model with random walk first order prior</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">"rw1"</span>, <span class="dt">cohort=</span><span class="st">"rw1"</span>,
-              <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">model1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">"rw1"</span>, <span class="dt">cohort=</span><span class="st">"rw1"</span>,</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">              <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>)</a></code></pre></div>
 <p>bamp() automatically performs a check for MCMC convergence using Gelman and Rubin’s convergence diagnostic. We can manually check the convergence again:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/checkConvergence.html">checkConvergence</a></span>(model1)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="../reference/checkConvergence.html">checkConvergence</a></span>(model1)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Now we have a look at the model results. This includes estimates of smoothing parameters and deviance and DIC:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/print.apc.html">print</a></span>(model1)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/print.apc.html">print</a></span>(model1)</a></code></pre></div>
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.29
-## pD:            36.98
-## DIC:          268.27
+## Deviance:     231.30
+## pD:            36.93
+## DIC:          268.23
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.405        1.029        2.168
-## period                          68.917      202.496      621.862
-## cohort                          35.190       59.787       96.552</code></pre>
+## age                              0.409        1.046        2.180
+## period                          65.409      194.060      593.900
+## cohort                          34.581       59.556      100.214</code></pre>
 <p>We can plot the main APC effects using point-wise quantiles:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model1)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">plot</span>(model1)</a></code></pre></div>
 <p><img src="bamp_files/figure-html/plot_model-1.png" width="700"><img src="bamp_files/figure-html/plot_model-2.png" width="700"><img src="bamp_files/figure-html/plot_model-3.png" width="700"></p>
 <p>More quantiles are possible:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model1, <span class="dt">quantiles =</span> <span class="kw">c</span>(<span class="fl">0.025</span>,<span class="fl">0.1</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>,<span class="fl">0.975</span>))</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">plot</span>(model1, <span class="dt">quantiles =</span> <span class="kw">c</span>(<span class="fl">0.025</span>,<span class="fl">0.1</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>,<span class="fl">0.975</span>))</a></code></pre></div>
 <p><img src="bamp_files/figure-html/plot_model_with_more_quantiles-1.png" width="700"><img src="bamp_files/figure-html/plot_model_with_more_quantiles-2.png" width="700"><img src="bamp_files/figure-html/plot_model_with_more_quantiles-3.png" width="700"></p>
 </div>
 <div id="prediction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#prediction" class="anchor"></a>Prediction</h2>
 <p>Using the prior assumption of a random walk for the period and cohort effect, one can predict cases for upcoming years.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred &lt;-<span class="st"> </span><span class="kw"><a href="../reference/predict_apc.html">predict_apc</a></span>(<span class="dt">object=</span>model1, <span class="dt">periods=</span><span class="dv">3</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m&lt;-<span class="kw">max</span>(pred<span class="op">$</span>pr[<span class="dv">2</span>,,])
-<span class="kw">plot</span>(pred<span class="op">$</span>pr[<span class="dv">2</span>,,<span class="dv">8</span>],<span class="dt">type=</span><span class="st">"l"</span>, <span class="dt">ylab=</span><span class="st">"probability"</span>, <span class="dt">xlab=</span><span class="st">"year"</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,m))
-<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">7</span><span class="op">:</span><span class="dv">1</span>)
-  <span class="kw">lines</span>(pred<span class="op">$</span>pr[<span class="dv">2</span>,,i],<span class="dt">col=</span><span class="dv">8</span><span class="op">-</span>i)
-<span class="kw">legend</span>(<span class="dv">1</span>,m,<span class="dt">col=</span><span class="dv">8</span><span class="op">:</span><span class="dv">1</span>,<span class="dt">legend=</span><span class="kw">paste</span>(<span class="st">"Age group"</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>),<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">cex=</span><span class="fl">0.6</span>)
-<span class="kw">lines</span>(<span class="kw">c</span>(<span class="fl">10.5</span>,<span class="fl">10.5</span>),<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">pred &lt;-<span class="st"> </span><span class="kw"><a href="../reference/predict_apc.html">predict_apc</a></span>(<span class="dt">object=</span>model1, <span class="dt">periods=</span><span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## [1]   13    8 1000
+## [1]   13    8 1000
+## [1]   13    8 1000
+## [1]   13    8 1000</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">m&lt;-<span class="kw">max</span>(pred<span class="op">$</span>pr[<span class="dv">2</span>,,])</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">plot</span>(pred<span class="op">$</span>pr[<span class="dv">2</span>,,<span class="dv">8</span>],<span class="dt">type=</span><span class="st">"l"</span>, <span class="dt">ylab=</span><span class="st">"probability"</span>, <span class="dt">xlab=</span><span class="st">"year"</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,m))</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">7</span><span class="op">:</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">  <span class="kw">lines</span>(pred<span class="op">$</span>pr[<span class="dv">2</span>,,i],<span class="dt">col=</span><span class="dv">8</span><span class="op">-</span>i)</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="kw">legend</span>(<span class="dv">1</span>,m,<span class="dt">col=</span><span class="dv">8</span><span class="op">:</span><span class="dv">1</span>,<span class="dt">legend=</span><span class="kw">paste</span>(<span class="st">"Age group"</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>),<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">cex=</span><span class="fl">0.6</span>)</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="kw">lines</span>(<span class="kw">c</span>(<span class="fl">10.5</span>,<span class="fl">10.5</span>),<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">lty=</span><span class="dv">2</span>)</a></code></pre></div>
 <p><img src="bamp_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
 </div>
   </div>
