@@ -8,4 +8,4 @@ as requested.
 * local windows, R 3.5.0
 * win_build (devel)
 
-0 NOTEs, ERRORs or WARNINGs
+1 NOTE (incoming), 0 ERRORs or WARNINGs
