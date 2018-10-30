@@ -13,13 +13,14 @@ checkConvergence(x, info = FALSE, level = 2, auto = FALSE)
 
 \item{level}{level of check; 1 uses point point estimation, 2 uses upper C.I.}
 
-\item{auto}{logical; should be TRUE if called automatically from bamp()}
+\item{auto}{logical; should be TRUE if called automatically from \code{\link{bamp}}
+#'}
 }
 \value{
 logical; TRUE if check is fine.
 }
 \description{
-bamp uses Gelman and Rubins R to check convergence for all main parameters. 
+This functions uses Gelman and Rubins R to check convergence for all main parameters. 
 All parameters should have R<1.1. 
-bamp() runs at least four MCMC chains (more if parallel is more than four).
+\code{\link{bamp}} runs at least four MCMC chains by default (more if parallel is more than four).
 }

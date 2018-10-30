@@ -30,16 +30,34 @@ bamp(cases, population, age, period, cohort, overdisp = FALSE,
 
 \item{periods_per_agegroup}{periods per age group}
 
-\item{mcmc.options}{Options for MCMC, see description}
+\item{mcmc.options}{list of options for MCMC. \itemize{\item number_of_iterations: number of iterations per chain. \item burn_in: number of iterations used as burnin at the beginning of the algorithm, these iterations will be removed. \item step: Step size, for example default is 50, so only every 50th iterations will be stored. \item tuning: number of iterations for automatic tuning. Depending on the model, the MCMC algorithm will tune certain paramters for more efficient MCMC chains. After tuning, the algorithm is restarted.}}
 
-\item{hyperpar}{Hyper parameters, see description}
+\item{hyperpar}{list of hyper parameters. The hyper prior for the precision (inverse variance) in the random walk priors is a Gamma distribution with parameters \eqn{a} and \eqn{b}; expected value is \eqn{a/b}, variance is \eqn{a/b^2}. Weak hyper parameters are suggested, defaults are \eqn{a=1, b=0.0005} for age, period and cohort effects and \eqn{a=1, b=0.05} for overdispersion (if added).}
 
 \item{dic}{logical. If true. DIC will be computed}
 
-\item{parallel}{logical, should computation be done in parallel}
+\item{parallel}{logical, should computation be done in parallel. This uses the parallel package, which does not allow parallel computing under Windows.}
 
 \item{verbose}{verbose mode}
 }
 \description{
-Bayesian age-period-cohort modeling
+Bayesian Age-Period-Cohort Modeling for the analyze of incidence or mortality data on the Lexis diagram.
+For each pixel in the Lexis diagram (that is for a specific age group and specific period) data must be available on the number of persons under risk (population number) and the number of disease cases (typically cancer incidence or mortality).
+A hierarchical model is assumed with a binomial model in the first-stage. As smoothing priors for the age, period and cohort parameters random walks of first and second order (RW1 or RW2) available.
+Deviance information criterion and effective number of parameters is computed for model comparison.
+Note that there is a nonidentifiability in the likelihood of the APC-model, see e.g. Clayton and Schifflers (1987, DOI:10.1002/sim.4780060406), which indices some problems in interpreting the latent effects. Only for RW1 model, the parameters are (weakly) identifiable.
+Period and age groups do not need to be on the same grid, for example periods can be in one year intervals and age groups in five year intervals.\cr
+Additionally to the model described in Knorr-Held and Rainer (2001, DOI:10.1093/biostatistics/2.1.109), \code{bamp} can handle 
+\itemize{\item AP and AC models, 
+\item models with and without global heterogenity parameter (overdispersion),
+\item models with additional age, period and/or cohohort heterogenity,
+\item additional covariates.}
+}
+\details{
+This functions returns a apc object, for which \code{\link{plot.apc}}, \code{\link{print.apc}} and \code{\link{effects.apc}} functions are available. 
+It is recommended to use \code{\link{checkConvergence}} to check, whether the MCMC algorithm has converged. If not, more iterations are needed.\cr
+\code{\link{predict_apc}} can be used for for prediction of the future rates and number of cases and for a retrospective prediction for model checking.
+}
+\seealso{
+\code{vignette("modeling", package = "bamp")}
 }

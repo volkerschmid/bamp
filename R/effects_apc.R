@@ -6,7 +6,7 @@
 #' @param update logical. If TRUE, the apc object including the effects is returned
 #' @param ... Additional arguments will be ignored
 
-#' @return List of age, period, cohort effects or apc object including effects
+#' @return List of age, period, cohort effects or apc object including effects (if update=TRUE)
 #' @export
 #'
 effects.apc<-function(object, mean=FALSE, quantiles=0.5, update=FALSE, ...)

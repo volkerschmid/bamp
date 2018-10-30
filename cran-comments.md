@@ -1,5 +1,4 @@
-V2.0.2: Reference in Description as Authors (year) <DOI:.....>
-as requested.
+V2.0.3: Added more details to help files as recommended.
 
 ## Test environments
 * local ubuntu 18.04 (devel and release)

@@ -1,12 +1,13 @@
 #' Simulate from age-period-cohort model
 #'
+#' @description This functions simulates a data set of cases on the Lexis diagram from given age, period and cohort effects. Population numbers have to be given; can be one number for all age group/period combinations.
 #' @param intercept Intercept
 #' @param age Vector of effect for age groups
 #' @param period Vector of effects for periods
 #' @param cohort Vector of effect for cohorts
 #' @param periods_per_agegroup Periods per age group
 #' @param population Population number. Either a matrix or a scalar.
-#'
+#' @seealso \code{vignette("simulation", package = "bamp")}
 #' @return List with number of cases (matrix) and population numbers (matrix).
 #' @export
 #'

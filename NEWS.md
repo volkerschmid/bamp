@@ -1,3 +1,6 @@
+# bamp 2.0.3
+* Added more details to help pages
+
 # bamp 2.0.2
 * Reference in description changed
 

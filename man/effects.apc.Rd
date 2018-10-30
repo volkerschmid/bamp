@@ -19,7 +19,7 @@
 \item{...}{Additional arguments will be ignored}
 }
 \value{
-List of age, period, cohort effects or apc object including effects
+List of age, period, cohort effects or apc object including effects (if update=TRUE)
 }
 \description{
 Effects from Fitted APC Model

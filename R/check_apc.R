@@ -3,12 +3,12 @@
 #' @param x An apc object
 #' @param info logical; print more information
 #' @param level level of check; 1 uses point point estimation, 2 uses upper C.I.
-#' @param auto logical; should be TRUE if called automatically from bamp()
-#'
+#' @param auto logical; should be TRUE if called automatically from \code{\link{bamp}}
+#' #'
 #' @description 
-#' bamp uses Gelman and Rubins R to check convergence for all main parameters. 
+#' This functions uses Gelman and Rubins R to check convergence for all main parameters. 
 #' All parameters should have R<1.1. 
-#' bamp() runs at least four MCMC chains (more if parallel is more than four).
+#' \code{\link{bamp}} runs at least four MCMC chains by default (more if parallel is more than four).
 #'
 #' @import coda 
 #' @return logical; TRUE if check is fine.

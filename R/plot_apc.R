@@ -1,9 +1,10 @@
 #' Plot apc object
 #'
 #' @param x apc object
-#' @param quantiles quantiles to plot. Default: c(0.05,0.5,0.95) is median and 90\% credible interval.
+#' @param quantiles quantiles to plot. Default: \code{c(0.05,0.5,0.95)} is median and 90\% credible interval.
 #' @param ... Additional arguments will be ignored
-#'
+#' 
+#' @details Plot of age, period and cohort effects from apc objects. If covariates have been used for period/cohort, a second plot with covariate, absolute effect and relative effect is created. Absolute effect is relative effect times covariate. 
 #' @import stats graphics
 #' @return plot
 #' @export
