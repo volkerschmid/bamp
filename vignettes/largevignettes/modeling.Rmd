@@ -1,11 +1,11 @@
 ---
-title: "Bayesian Age-Period-Cohort Modelling"
+title: "Bayesian Age-Period-Cohort Modeling"
 author: "Volker Schmid"
 date: "`r Sys.Date()`"
 #output: rmarkdown::html_vignette
 output: rmarkdown::pdf_document
 vignette: >
-  %\VignetteIndexEntry{Bayesian Age-Period-Cohort Modelling}
+  %\VignetteIndexEntry{Bayesian Age-Period-Cohort Modeling}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

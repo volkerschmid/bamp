@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{apc object}
 
-\item{quantiles}{quantiles to plot. Default: c(0.05,0.5,0.95) is median and 90\% credible interval.}
+\item{quantiles}{quantiles to plot. Default: \code{c(0.05,0.5,0.95)} is median and 90\% credible interval.}
 
 \item{...}{Additional arguments will be ignored}
 }
@@ -18,4 +18,7 @@ plot
 }
 \description{
 Plot apc object
+}
+\details{
+Plot of age, period and cohort effects from apc objects. If covariates have been used for period/cohort, a second plot with covariate, absolute effect and relative effect is created. Absolute effect is relative effect times covariate.
 }

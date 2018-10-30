@@ -32,7 +32,17 @@
 
 <meta property="og:title" content="Bayesian Age-Period-Cohort Modeling and Prediction (bamp) — bamp" />
 
-<meta property="og:description" content="Bayesian age-period-cohort modeling" />
+<meta property="og:description" content="Bayesian Age-Period-Cohort Modeling for the analyze of incidence or mortality data on the Lexis diagram.
+For each pixel in the Lexis diagram (that is for a specific age group and specific period) data must be available on the number of persons under risk (population number) and the number of disease cases (typically cancer incidence or mortality).
+A hierarchical model is assumed with a binomial model in the first-stage. As smoothing priors for the age, period and cohort parameters random walks of first and second order (RW1 or RW2) available.
+Deviance information criterion and effective number of parameters is computed for model comparison.
+Note that there is a non-identifiability in the likelihood of the APC-model, see e.g. Clayton and Schifflers (1987, DOI:10.1002/sim.4780060406), which indices some problems in interpreting the latent effects. Only for RW1 model, the parameters are (weakly) identifiable.
+Period and age groups do not need to be on the same grid, for example periods can be in one year intervals and age groups in five year intervals.
+Additionally to the model described in Knorr-Held and Rainer (2001, DOI:10.1093/biostatistics/2.1.109), bamp can handle
+models with and without global heterogeneity parameter (overdispersion),
+models with additional age, period and/or cohort heterogeneity,
+additional covariates.
+" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -61,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bamp</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.0.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.0.3</span>
       </span>
     </div>
 
@@ -107,7 +117,17 @@
 
     <div class="ref-description">
     
-    <p>Bayesian age-period-cohort modeling</p>
+    <p>Bayesian Age-Period-Cohort Modeling for the analyze of incidence or mortality data on the Lexis diagram.
+For each pixel in the Lexis diagram (that is for a specific age group and specific period) data must be available on the number of persons under risk (population number) and the number of disease cases (typically cancer incidence or mortality).
+A hierarchical model is assumed with a binomial model in the first-stage. As smoothing priors for the age, period and cohort parameters random walks of first and second order (RW1 or RW2) available.
+Deviance information criterion and effective number of parameters is computed for model comparison.
+Note that there is a non-identifiability in the likelihood of the APC-model, see e.g. Clayton and Schifflers (1987, DOI:10.1002/sim.4780060406), which indices some problems in interpreting the latent effects. Only for RW1 model, the parameters are (weakly) identifiable.
+Period and age groups do not need to be on the same grid, for example periods can be in one year intervals and age groups in five year intervals.<br />
+Additionally to the model described in Knorr-Held and Rainer (2001, DOI:10.1093/biostatistics/2.1.109), <code>bamp</code> can handle</p><ul>
+<li><p>models with and without global heterogeneity parameter (overdispersion),</p></li>
+<li><p>models with additional age, period and/or cohort heterogeneity,</p></li>
+<li><p>additional covariates.</p></li>
+</ul>
     
     </div>
 
@@ -159,11 +179,15 @@
     </tr>
     <tr>
       <th>mcmc.options</th>
-      <td><p>Options for MCMC, see description</p></td>
+      <td><p>list of options for MCMC.</p><ul>
+<li><p>burn_in: number of iterations used as burnin at the beginning of the algorithm, these iterations will be removed.</p></li>
+<li><p>step: Step size, for example default is 50, so only every 50th iterations will be stored.</p></li>
+<li><p>tuning: number of iterations for automatic tuning. Depending on the model, the MCMC algorithm will tune certain parameters for more efficient MCMC chains. After tuning, the algorithm is restarted.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>hyperpar</th>
-      <td><p>Hyper parameters, see description</p></td>
+      <td><p>list of hyper parameters. The hyper prior for the precision (inverse variance) in the random walk priors is a Gamma distribution with parameters \(a\) and \(b\); expected value is \(a/b\), variance is \(a/b^2\). Weak hyper parameters are suggested, defaults are \(a=1, b=0.0005\) for age, period and cohort effects and \(a=1, b=0.05\) for overdispersion (if added).</p></td>
     </tr>
     <tr>
       <th>dic</th>
@@ -171,7 +195,7 @@
     </tr>
     <tr>
       <th>parallel</th>
-      <td><p>logical, should computation be done in parallel</p></td>
+      <td><p>logical, should computation be done in parallel. This uses the parallel package, which does not allow parallel computing under Windows.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -179,13 +203,28 @@
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This functions returns an <code><a href='apc.html'>apc</a></code> object. 
+Only samples from the posterior are computed, point estimates and credible intervals will be computed in <code><a href='effects.apc.html'>effects.apc</a></code>, <code><a href='print.apc.html'>print.apc</a></code> and <code><a href='plot.apc.html'>plot.apc</a></code>.
+It is recommended to use <code><a href='checkConvergence.html'>checkConvergence</a></code> to check, whether the MCMC algorithm has converged. If not, more iterations are needed.<br />
+<code><a href='predict_apc.html'>predict_apc</a></code> can be used for for prediction of the future rates and number of cases and for a retrospective prediction for model checking.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='../articles/largevignettes/modeling.html'>vignette("modeling", package = "bamp")</a></code></p></div>
+    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+          </ul>
 
   </div>
 </div>

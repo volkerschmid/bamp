@@ -8,19 +8,15 @@
 \alias{population}
 \alias{cases}
 \title{Example dataset for APC model}
+\format{\itemize{
+\item\code{population}: matrix of population data
+\item\code{cases}: matrix of case counts
+\item\code{cov_p}: covariate for period
+\item\code{cov_c}: covariate for cohort}}
 \usage{
 data(apc)
 }
 \description{
 A dataset containing case counts and population numbers in eight age groups for ten years. Each age group consists of five years.
-}
-\details{
-population: matrix of population data
-
-cases: matrix of case counts
-
-cov_p: covariate for period
-
-cov_c: covariate for cohort
 }
 \keyword{datasets}

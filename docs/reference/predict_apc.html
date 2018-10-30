@@ -32,7 +32,9 @@
 
 <meta property="og:title" content="Prediction for age-period-cohort models — predict_apc" />
 
-<meta property="og:description" content="Prediction for age-period-cohort models" />
+<meta property="og:description" content="Prediction of rates and, if possible, cases from the Bayesian age-period-cohort model 
+using the prior assumptions (random walks) of the model and the estimated variance of the random walk.
+For example, random walk of first order (rw1) for period effect predicts constant effects for future periods plus noise." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -61,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bamp</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.0.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.0.3</span>
       </span>
     </div>
 
@@ -107,7 +109,9 @@
 
     <div class="ref-description">
     
-    <p>Prediction for age-period-cohort models</p>
+    <p>Prediction of rates and, if possible, cases from the Bayesian age-period-cohort model 
+using the prior assumptions (random walks) of the model and the estimated variance of the random walk.
+For example, random walk of first order (rw1) for period effect predicts constant effects for future periods plus noise.</p>
     
     </div>
 
@@ -141,9 +145,22 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>list with quantiles of predicted probabilities (pr), predicted cases (cases) and predicted cases per period (cases_period)
+    <p>list with quantiles of predicted probabilities (<code>pr</code>), predicted cases (<code>cases</code>) and predicted cases per period (<code>cases_period</code>)
 and a list samples with MCMC samples of pr, cases and cases_period. 
-If update=TRUE, the apc object will be returned with this list (predicted) added.</p>
+If <code>update=TRUE</code>, the apc object will be returned with this list (predicted) added.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function will return predicted rates for future periods. For this, future period and cohort effects will be predicted.
+Further age group effects will not be predicted. The rates are random samples from the predictive distribution; number of samples is equal
+to number of MCMC iterations. Quantiles will be provided for convenience, but all samples are available.
+If population numbers are given, number of cases will also be predicted. Number of cases 
+will not only be predicted for future periods,
+but also for the time periods where data are available; this can be used for model assessment.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='../articles/largevignettes/prediction.html'>vignette("prediction", package = "bamp")</a></code></p></div>
     
 
   </div>
@@ -153,6 +170,10 @@ If update=TRUE, the apc object will be returned with this list (predicted) added
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
           </ul>
 
   </div>

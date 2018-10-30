@@ -10,5 +10,12 @@ apc()
 apc class
 }
 \description{
-apc S3 class
+Class for (Bayesian) age-period-cohort objects
+}
+\details{
+\code{\link{bamp}} will return an object of class apc. Available functions are
+\itemize{
+\item \code{\link{plot.apc}} plots main effects
+\item \code{\link{print.apc}} print summary of model and effects 
+\item \code{\link{effects.apc}} extract effects (mean, median and quantiles)}
 }

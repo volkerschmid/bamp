@@ -24,7 +24,7 @@ apcSimulate(intercept, age, period, cohort, periods_per_agegroup,
 List with number of cases (matrix) and population numbers (matrix).
 }
 \description{
-Simulate from age-period-cohort model
+This functions simulates a data set of cases on the Lexis diagram from given age, period and cohort effects. Population numbers have to be given; can be one number for all age group/period combinations.
 }
 \examples{
 age=sqrt(seq(5,0,length=10)); age<-1-age-mean(age)
@@ -42,4 +42,7 @@ simmod <- bamp(cases = simdata$cases, population = simdata$population, age = "rw
 period = "rw1", cohort = "rw1", periods_per_agegroup =periods_per_agegroup)
 plot(simmod)
 }
+}
+\seealso{
+\code{vignette("simulation", package = "bamp")}
 }

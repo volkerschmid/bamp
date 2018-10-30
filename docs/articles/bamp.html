@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bamp</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.0.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.0.3</span>
       </span>
     </div>
 
@@ -70,7 +70,7 @@
       <h1>Short Introduction to BAMP</h1>
                         <h4 class="author">Volker Schmid</h4>
             
-            <h4 class="date">2018-10-09</h4>
+            <h4 class="date">2018-10-30</h4>
       
       
       <div class="hidden name"><code>bamp.Rmd</code></div>
@@ -101,15 +101,15 @@
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.30
-## pD:            36.93
-## DIC:          268.23
+## Deviance:     231.29
+## pD:            36.87
+## DIC:          268.16
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.409        1.046        2.180
-## period                          65.409      194.060      593.900
-## cohort                          34.581       59.556      100.214</code></pre>
+## age                              0.415        1.051        2.247
+## period                          69.309      197.440      606.723
+## cohort                          34.623       59.701       98.748</code></pre>
 <p>We can plot the main APC effects using point-wise quantiles:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">plot</span>(model1)</a></code></pre></div>
 <p><img src="bamp_files/figure-html/plot_model-1.png" width="700"><img src="bamp_files/figure-html/plot_model-2.png" width="700"><img src="bamp_files/figure-html/plot_model-3.png" width="700"></p>
@@ -122,16 +122,12 @@
 <a href="#prediction" class="anchor"></a>Prediction</h2>
 <p>Using the prior assumption of a random walk for the period and cohort effect, one can predict cases for upcoming years.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">pred &lt;-<span class="st"> </span><span class="kw"><a href="../reference/predict_apc.html">predict_apc</a></span>(<span class="dt">object=</span>model1, <span class="dt">periods=</span><span class="dv">3</span>)</a></code></pre></div>
-<pre><code>## [1]   13    8 1000
-## [1]   13    8 1000
-## [1]   13    8 1000
-## [1]   13    8 1000</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">m&lt;-<span class="kw">max</span>(pred<span class="op">$</span>pr[<span class="dv">2</span>,,])</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">plot</span>(pred<span class="op">$</span>pr[<span class="dv">2</span>,,<span class="dv">8</span>],<span class="dt">type=</span><span class="st">"l"</span>, <span class="dt">ylab=</span><span class="st">"probability"</span>, <span class="dt">xlab=</span><span class="st">"year"</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,m))</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">7</span><span class="op">:</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">  <span class="kw">lines</span>(pred<span class="op">$</span>pr[<span class="dv">2</span>,,i],<span class="dt">col=</span><span class="dv">8</span><span class="op">-</span>i)</a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="kw">legend</span>(<span class="dv">1</span>,m,<span class="dt">col=</span><span class="dv">8</span><span class="op">:</span><span class="dv">1</span>,<span class="dt">legend=</span><span class="kw">paste</span>(<span class="st">"Age group"</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>),<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">cex=</span><span class="fl">0.6</span>)</a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="kw">lines</span>(<span class="kw">c</span>(<span class="fl">10.5</span>,<span class="fl">10.5</span>),<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">lty=</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">m&lt;-<span class="kw">max</span>(pred<span class="op">$</span>pr[<span class="dv">2</span>,,])</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">plot</span>(pred<span class="op">$</span>pr[<span class="dv">2</span>,,<span class="dv">8</span>],<span class="dt">type=</span><span class="st">"l"</span>, <span class="dt">ylab=</span><span class="st">"probability"</span>, <span class="dt">xlab=</span><span class="st">"year"</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,m))</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">7</span><span class="op">:</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">  <span class="kw">lines</span>(pred<span class="op">$</span>pr[<span class="dv">2</span>,,i],<span class="dt">col=</span><span class="dv">8</span><span class="op">-</span>i)</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="kw">legend</span>(<span class="dv">1</span>,m,<span class="dt">col=</span><span class="dv">8</span><span class="op">:</span><span class="dv">1</span>,<span class="dt">legend=</span><span class="kw">paste</span>(<span class="st">"Age group"</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>),<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">cex=</span><span class="fl">0.6</span>)</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="kw">lines</span>(<span class="kw">c</span>(<span class="fl">10.5</span>,<span class="fl">10.5</span>),<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">lty=</span><span class="dv">2</span>)</a></code></pre></div>
 <p><img src="bamp_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
 </div>
   </div>

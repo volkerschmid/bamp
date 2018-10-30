@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bayesian Age-Period-Cohort Modelling • bamp</title>
+<title>Bayesian Age-Period-Cohort Modeling • bamp</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
-<script src="../../pkgdown.js"></script><meta property="og:title" content="Bayesian Age-Period-Cohort Modelling">
+<script src="../../pkgdown.js"></script><meta property="og:title" content="Bayesian Age-Period-Cohort Modeling">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">bamp</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.0.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.0.3</span>
       </span>
     </div>
 
@@ -67,10 +67,10 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Bayesian Age-Period-Cohort Modelling</h1>
+      <h1>Bayesian Age-Period-Cohort Modeling</h1>
                         <h4 class="author">Volker Schmid</h4>
             
-            <h4 class="date">2018-10-09</h4>
+            <h4 class="date">2018-10-30</h4>
       
       
       <div class="hidden name"><code>modeling.Rmd</code></div>
@@ -101,15 +101,15 @@
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.31
-## pD:            37.00
-## DIC:          268.31
+## Deviance:     231.09
+## pD:            36.83
+## DIC:          267.92
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.394        1.045        2.198
-## period                          66.460      195.420      598.044
-## cohort                          34.743       59.177       96.742</code></pre>
+## age                              0.397        1.041        2.217
+## period                          64.380      185.844      574.257
+## cohort                          34.914       59.723       98.518</code></pre>
 <p>We can plot the main APC effects using point-wise quantiles:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">plot</span>(model1)</a></code></pre></div>
 <p><img src="modeling_files/figure-html/plot_model-1.png" width="700"><img src="modeling_files/figure-html/plot_model-2.png" width="700"><img src="modeling_files/figure-html/plot_model-3.png" width="700"></p>
@@ -124,15 +124,15 @@
 <pre><code>## 
 ##  Model:
 ## age (rw2)  - period (rw2)  - cohort (rw2) model
-## Deviance:     246.20
-## pD:            33.92
-## DIC:          280.13
+## Deviance:     246.09
+## pD:            33.63
+## DIC:          279.72
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              1.983        6.126       16.182
-## period                          55.888      315.354     2628.830
-## cohort                          35.188       74.322      148.389</code></pre>
+## age                              2.038        6.307       16.379
+## period                          57.859      321.904     2737.458
+## cohort                          37.332       73.992      143.918</code></pre>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">plot</span>(model2)</a></code></pre></div>
 <p><img src="modeling_files/figure-html/Model2_results-1.png" width="700"><img src="modeling_files/figure-html/Model2_results-2.png" width="700"><img src="modeling_files/figure-html/Model2_results-3.png" width="700"></p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">model3&lt;-<span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">" "</span>, <span class="dt">cohort=</span><span class="st">"rw2"</span>,</a>
@@ -143,14 +143,14 @@
 <pre><code>## 
 ##  Model:
 ## age (rw1) cohort (rw2) model
-## Deviance:     276.47
-## pD:            30.09
-## DIC:          306.56
+## Deviance:     276.58
+## pD:            30.18
+## DIC:          306.76
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.306        0.796        1.661
-## cohort                          38.244       73.947      138.723</code></pre>
+## age                              0.307        0.785        1.642
+## cohort                          37.622       74.028      137.917</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">plot</span>(model3)</a></code></pre></div>
 <p><img src="modeling_files/figure-html/model3-1.png" width="700"><img src="modeling_files/figure-html/model3-2.png" width="700"></p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">(model4&lt;-<span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">"rw1"</span>, <span class="dt">cohort=</span><span class="st">"rw1"</span>,</a>
@@ -158,15 +158,15 @@
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.47
-## pD:            37.09
-## DIC:          268.56
+## Deviance:     231.44
+## pD:            36.82
+## DIC:          268.26
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.385        1.034        2.257
-## period                          64.497      194.979      614.310
-## cohort                          35.370       59.674       97.383</code></pre>
+## age                              0.396        1.047        2.202
+## period                          69.337      200.615      607.407
+## cohort                          35.054       59.819       99.935</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">plot</span>(model4)</a></code></pre></div>
 <p><img src="modeling_files/figure-html/model4-1.png" width="700"><img src="modeling_files/figure-html/model4-2.png" width="700"><img src="modeling_files/figure-html/model4-3.png" width="700"><img src="modeling_files/figure-html/model4-4.png" width="700"><img src="modeling_files/figure-html/model4-5.png" width="700"><img src="modeling_files/figure-html/model4-6.png" width="700"></p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">(model5&lt;-<span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">"rw1"</span>, <span class="dt">cohort=</span><span class="st">"rw1"</span>,</a>
@@ -174,15 +174,15 @@
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.12
-## pD:            36.69
-## DIC:          267.82
+## Deviance:     231.16
+## pD:            36.84
+## DIC:          268.00
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.406        1.063        2.172
-## period                          68.731      197.480      620.846
-## cohort                          35.288       59.511       97.476</code></pre>
+## age                              0.406        1.046        2.222
+## period                          67.462      198.116      625.158
+## cohort                          33.927       58.905       97.245</code></pre>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">plot</span>(model5)</a></code></pre></div>
 <p><img src="modeling_files/figure-html/model5-1.png" width="700"><img src="modeling_files/figure-html/model5-2.png" width="700"><img src="modeling_files/figure-html/model5-3.png" width="700"><img src="modeling_files/figure-html/model5-4.png" width="700"><img src="modeling_files/figure-html/model5-5.png" width="700"><img src="modeling_files/figure-html/model5-6.png" width="700"></p>
 </div>
