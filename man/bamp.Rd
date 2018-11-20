@@ -56,7 +56,6 @@ Additionally to the model described in Knorr-Held and Rainer (2001, DOI:10.1093/
 \details{
 This functions returns an \code{\link{apc}} object. 
 Only samples from the posterior are computed, point estimates and credible intervals will be computed in \code{\link{effects.apc}}, \code{\link{print.apc}} and \code{\link{plot.apc}}.
-It is recommended to use \code{\link{checkConvergence}} to check, whether the MCMC algorithm has converged. If not, more iterations are needed.\cr
 \code{\link{predict_apc}} can be used for for prediction of the future rates and number of cases and for a retrospective prediction for model checking.
 }
 \examples{
