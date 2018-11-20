@@ -24,3 +24,10 @@ This functions uses Gelman and Rubin's R to check convergence for all main param
 All parameters should have R<1.1. 
 \code{\link{bamp}} runs at least four MCMC chains by default (more if parallel is more than four).
 }
+\examples{
+\dontrun{
+data(apc)
+model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+checkConvergence(model)
+}
+}

@@ -36,6 +36,14 @@ If population numbers are given, number of cases will also be predicted. Number 
 will not only be predicted for future periods,
 but also for the time periods where data are available; this can be used for model assessment.
 }
+\examples{
+\dontrun{
+data(apc)
+model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+pred <- predict_apc(model, periods=1)
+plot(pred$pr[2,11,], main="Predicted rate per agegroup", ylab="p")
+}
+}
 \seealso{
 \code{vignette("prediction", package = "bamp")}
 }

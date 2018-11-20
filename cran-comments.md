@@ -1,1 +1,1 @@
-V2.0.3: Added more details to help files as recommended.
+V2.0.4: Added examples to each function as recommended.

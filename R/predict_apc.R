@@ -25,6 +25,13 @@
 #' @importFrom abind abind
 #' @export
 #'
+#' @examples
+#' \dontrun{
+#' data(apc)
+#' model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+#' pred <- predict_apc(model, periods=1)
+#' plot(pred$pr[2,11,], main="Predicted rate per agegroup", ylab="p")
+#' }
 predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0.95), update=FALSE){
   ksi_prognose <-
     function(prepi, vdb, noa, nop, nop2, noc, zmode){

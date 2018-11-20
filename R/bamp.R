@@ -36,7 +36,11 @@
 #' @useDynLib bamp
 #' @export
 #' @import coda
-#'
+#' @examples 
+#' \dontrun{
+#' data(apc)
+#' model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+#' }
 bamp <-
 function(cases, population,
         age, period, cohort, overdisp=FALSE,

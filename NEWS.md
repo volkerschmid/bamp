@@ -1,3 +1,6 @@
+# bamp 2.0.4
+* Added examples to all functions
+
 # bamp 2.0.3
 * Added more details to help pages
 

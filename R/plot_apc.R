@@ -8,7 +8,12 @@
 #' @import stats graphics
 #' @return plot
 #' @export
-#'
+#' @examples
+#' \dontrun{
+#' data(apc)
+#' model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+#' plot(model)
+#' }
 plot.apc<-function(x, quantiles=c(0.05,0.5,0.95), ...)
 {
   age<-as.array(x$samples$age)

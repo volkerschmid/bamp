@@ -18,3 +18,10 @@ print
 \description{
 Print apc objects
 }
+\examples{
+\dontrun{
+data(apc)
+model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+print(model)
+}
+}

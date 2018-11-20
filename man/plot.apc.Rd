@@ -22,3 +22,10 @@ Plot apc object
 \details{
 Plot of age, period and cohort effects from apc objects. If covariates have been used for period/cohort, a second plot with covariate, absolute effect and relative effect is created. Absolute effect is relative effect times covariate.
 }
+\examples{
+\dontrun{
+data(apc)
+model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+plot(model)
+}
+}

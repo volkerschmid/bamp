@@ -13,7 +13,13 @@
 #' @import coda 
 #' @return logical; TRUE if check is fine.
 #' @export
-#'
+#' @examples 
+#' \dontrun{
+#' data(apc)
+#' model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+#' checkConvergence(model)
+#' }
+
 
 checkConvergence<-function(x, info=FALSE, level=2, auto=FALSE)
 {

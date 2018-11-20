@@ -8,7 +8,13 @@
 
 #' @return List of age, period, cohort effects or apc object including effects (if update=TRUE)
 #' @export
-#'
+#' @examples
+#' \dontrun{
+#' data(apc)
+#' model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+#' effects(model)
+#' }
+
 effects.apc<-function(object, mean=FALSE, quantiles=0.5, update=FALSE, ...)
 {
   x<-object

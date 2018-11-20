@@ -59,6 +59,12 @@ Only samples from the posterior are computed, point estimates and credible inter
 It is recommended to use \code{\link{checkConvergence}} to check, whether the MCMC algorithm has converged. If not, more iterations are needed.\cr
 \code{\link{predict_apc}} can be used for for prediction of the future rates and number of cases and for a retrospective prediction for model checking.
 }
+\examples{
+\dontrun{
+data(apc)
+model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+}
+}
 \seealso{
 \code{vignette("modeling", package = "bamp")}
 }
