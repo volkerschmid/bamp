@@ -26,10 +26,10 @@ There are some graphical routines available in order to
 - predict rates
 - assess the "significance" of the unstructured parameters. This helps  to identify variation in the data, which is not supported by the age, period and cohort parameters. 
 
-## Old version (1.3)
+## BAMP old version (1.3)
 
 [Find the older standalone version here.](https://volkerschmid.github.io/bamp/articles/standaloneversion/)
 
-## Bayesian Age-period-cohort Modeling and Prediction R package
+## BAMP R package (2.0)
 
-The bamp R package will appear on CRAN soon.
+[The bamp R package is available on CRAN.](https://cran.r-project.org/web/packages/bamp/ )
