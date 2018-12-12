@@ -1,3 +1,6 @@
+# bamp 2.0.5
+* Removed ambiguities (mail Brian Ripley) and clean up in C code
+
 # bamp 2.0.4
 * Added examples to all functions
 

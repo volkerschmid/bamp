@@ -446,7 +446,7 @@ void gausssample(double* temp, int noa)
 
 for (int i=0; i< noa; i++)
   {
-    temp[i]=zahl(0,1);
+    temp[i]=normal(0,1);
   }
 
 return;

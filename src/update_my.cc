@@ -18,7 +18,7 @@ void update_my_1(double &my, double** ksi, double* theta, double* phi, double* p
  my = my/number_of_periods;
  my = my/number_of_agegroups;
  
- my = my + zahl(0,1)*sqrt(1/(delta*number_of_agegroups*number_of_periods));
+ my = my + normal(0,1)*sqrt(1/(delta*number_of_agegroups*number_of_periods));
  return;
 }
 
