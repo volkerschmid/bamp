@@ -236,7 +236,7 @@ if (cohort_block>0)
 {
 for (int i=0; i<number_of_cohorts2; i++)
   {
-  psi[i]=zahl(0.0,1.0);psi2[i]=zahl(0.0,1.0);
+  psi[i]=normal(0.0,1.0);psi2[i]=normal(0.0,1.0);
   }
 }
 if (cohort_block==0)
@@ -579,16 +579,16 @@ if (mode==1)
 	          }
 	        if (cohort_block>0){
     	     for (int i=0; i< number_of_cohorts; i++)
-    	     {psi[i]=zahl(0.0,1.0);}}
+    	     {psi[i]=normal(0.0,1.0);}}
 	        if (period_block>0)
 	        {
 	         for (int i=0; i< number_of_periods; i++)
-	         {phi[i]=zahl(0.0,1.0);}}
+	         {phi[i]=normal(0.0,1.0);}}
 	        if (age_block>0)
 	        {
      	     for (int i=0; i< number_of_agegroups; i++)
-     	     {theta[i]=zahl(0.0,1.0);}}
-	     my=zahl(0.0,1.0);
+     	     {theta[i]=normal(0.0,1.0);}}
+	     my=normal(0.0,1.0);
 	     }
 
 

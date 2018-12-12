@@ -32,4 +32,4 @@ There are some graphical routines available in order to
 
 ## BAMP R package (2.0)
 
-[The bamp R package is available on CRAN.](https://cran.r-project.org/web/packages/bamp/ )
+[The bamp R package is available on CRAN.](https://CRAN.R-project.org/package=bamp)
