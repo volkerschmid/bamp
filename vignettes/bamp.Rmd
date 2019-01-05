@@ -4,7 +4,7 @@ author: "Volker Schmid"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introduction to Bayesian Age-Period-Cohort Modeling}
+  %\VignetteIndexEntry{Short Introduction to Bayesian Age-Period-Cohort Modeling and Prediction}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

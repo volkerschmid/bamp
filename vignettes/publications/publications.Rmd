@@ -1,7 +1,7 @@
 ---
 title: "Publications"
 author: "Volker Schmid"
-date: "October 9, 2018"
+date: "January 5th, 2018"
 output: html_document
 ---
 
@@ -20,7 +20,7 @@ output: html_document
 
 * [Clayton, D.G. and E. Schifflers (1987): Models for temporal variation in cancer rates. II: Age-period-cohort-models. Statistics in Medicine, 6, 469-481](https://doi.org/10.1002/sim.4780060406)
 
-### Papers using BAMP
+### Papers using BAMP (selection)
 
 * [Knorr-Held, L. and E. Rainer (2001): Projections of lung cancer mortality in West Germany: A case study in Bayesian prediction. Biostatistics 2, 109-129.](https://doi.org/10.1093/biostatistics/2.1.109)
 * [Schmid, V. and Held, L. (2004): Bayesian extrapolation of space-time trends for cancer registry data. Biometrics 60, 1034–1042](https://doi.org/10.1111/j.0006-341X.2004.00259.x)
