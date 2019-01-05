@@ -4,7 +4,7 @@ author: "Volker Schmid"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Bayesian Age-Period-Cohort Modeling}
+  %\VignetteIndexEntry{Introduction to Bayesian Age-Period-Cohort Modeling}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -23,6 +23,8 @@ data(apc)
 plot(cases[,1],type="l",ylim=range(cases), ylab="cases", xlab="year", main="cases per age group")
 for (i in 2:8)lines(cases[,i], col=i)
 ```
+
+For simulating APC data, see *vignette("simulation", package="bamp")*.
 
 ## APC model with random walk first order prior
 ```{r Model1_with_RW1_priors}
@@ -51,6 +53,8 @@ More quantiles are possible:
 plot(model1, quantiles = c(0.025,0.1,0.5,0.9,0.975))
 ```
 
+For other models see *vignette("modeling",package="bamp")*.
+
 ## Prediction
 
 Using the prior assumption of a random walk for the period and cohort effect, one can predict cases for upcoming years. 
@@ -68,3 +72,4 @@ legend(1,m,col=8:1,legend=paste("Age group",1:8),lwd=2,cex=0.6)
 lines(c(10.5,10.5),c(0,1),lty=2)
 ```
 
+More details see *vignette("prediction",package="bamp")*.

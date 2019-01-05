@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.6</span>
       </span>
     </div>
 
@@ -71,7 +71,7 @@
       <h1>Short Introduction to BAMP</h1>
                         <h4 class="author">Volker Schmid</h4>
             
-            <h4 class="date">2018-12-12</h4>
+            <h4 class="date">2019-01-05</h4>
       
       
       <div class="hidden name"><code>bamp.Rmd</code></div>
@@ -88,6 +88,7 @@
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(cases[,<span class="dv">1</span>],<span class="dt">type=</span><span class="st">"l"</span>,<span class="dt">ylim=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/range">range</a></span>(cases), <span class="dt">ylab=</span><span class="st">"cases"</span>, <span class="dt">xlab=</span><span class="st">"year"</span>, <span class="dt">main=</span><span class="st">"cases per age group"</span>)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">8</span>)<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/lines">lines</a></span>(cases[,i], <span class="dt">col=</span>i)</a></code></pre></div>
 <p><img src="bamp_files/figure-html/loadplot-1.png" width="700"></p>
+<p>For simulating APC data, see <em>vignette(“simulation”, package=“bamp”)</em>.</p>
 </div>
 <div id="apc-model-with-random-walk-first-order-prior" class="section level2">
 <h2 class="hasAnchor">
@@ -102,21 +103,22 @@
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.57
-## pD:            37.11
-## DIC:          268.68
+## Deviance:     231.39
+## pD:            36.94
+## DIC:          268.34
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.398        1.044        2.218
-## period                          67.295      194.066      610.724
-## cohort                          34.616       59.820       98.160</code></pre>
+## age                              0.402        1.046        2.244
+## period                          68.952      196.076      619.746
+## cohort                          35.220       59.330       96.870</code></pre>
 <p>We can plot the main APC effects using point-wise quantiles:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(model1)</a></code></pre></div>
 <p><img src="bamp_files/figure-html/plot_model-1.png" width="700"><img src="bamp_files/figure-html/plot_model-2.png" width="700"><img src="bamp_files/figure-html/plot_model-3.png" width="700"></p>
 <p>More quantiles are possible:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(model1, <span class="dt">quantiles =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.025</span>,<span class="fl">0.1</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>,<span class="fl">0.975</span>))</a></code></pre></div>
 <p><img src="bamp_files/figure-html/plot_model_with_more_quantiles-1.png" width="700"><img src="bamp_files/figure-html/plot_model_with_more_quantiles-2.png" width="700"><img src="bamp_files/figure-html/plot_model_with_more_quantiles-3.png" width="700"></p>
+<p>For other models see <em>vignette(“modeling”,package=“bamp”)</em>.</p>
 </div>
 <div id="prediction" class="section level2">
 <h2 class="hasAnchor">
@@ -130,6 +132,7 @@
 <a class="sourceLine" id="cb10-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/legend">legend</a></span>(<span class="dv">1</span>,m,<span class="dt">col=</span><span class="dv">8</span><span class="op">:</span><span class="dv">1</span>,<span class="dt">legend=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Age group"</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>),<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">cex=</span><span class="fl">0.6</span>)</a>
 <a class="sourceLine" id="cb10-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/lines">lines</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">10.5</span>,<span class="fl">10.5</span>),<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">lty=</span><span class="dv">2</span>)</a></code></pre></div>
 <p><img src="bamp_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
+<p>More details see <em>vignette(“prediction”,package=“bamp”)</em>.</p>
 </div>
   </div>
 

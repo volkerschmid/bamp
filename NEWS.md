@@ -1,3 +1,6 @@
+# bamp 2.0.6
+* Introductory vignette renamed (double vignette name warning from CRAN)
+
 # bamp 2.0.5
 * Removed ambiguities (mail Brian Ripley) and clean up in C code
 
