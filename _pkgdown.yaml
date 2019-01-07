@@ -15,10 +15,10 @@ navbar:
       href: articles/standaloneversion/index.html
       
   right:
-    - text: "Volker Schmid"
-      href: https://volkerschmid.de
-    - text: "Bioimaging Group"
-      href: http://www.bioimg.statistik.uni-muenchen.de
+    - icon: fa-github fa-lg
+      href: https://github.com/volkerschmid/bamp
+    - icon: fa-twitter
+      href: https://twitter.com/vjsstat
       
 articles:
   - title: "Vignettes"
@@ -55,3 +55,7 @@ home:
   links:
   - text: "BAMP standalone version"
     href: http://volkerschmid.github.io/bamp/articles/standaloneversion
+  - text: "Volker Schmid"
+    href: https://volkerschmid.de
+  - text: "Bioimaging group"
+    href: http://www.bioimg.statistik.uni-muenchen.de
