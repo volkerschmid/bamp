@@ -1,5 +1,5 @@
-Important
-* Description in bamp help file
+# Important
+
 * compute effects in bamp() (use effects.apc(..save=TRUE))
 * print.apc() 
 ** intercept
@@ -7,15 +7,18 @@ Important
 * Plotting rw2 effects
 ** Restrict per iteration
 
-Features:
+# Features
+
 * Re-enable prognosis
 * Deviance optional
 * Covariates not used yet
 
-Check models: 
+# Check models
+
 * Check heterogeneity models
 * Check overdispersion models
 
-* Write vignette(s)
+# Misc
 
+* Write more vignette(s)
 * apc_simulate: improve plotting

@@ -1,7 +1,7 @@
-templates:
+template:
   params:
-    bootswatch: slate
-    
+    bootswatch: spacelab
+
 navbar:
   type: inverse
   left:
