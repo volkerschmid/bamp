@@ -1,4 +1,4 @@
-citHeader("To cite nucim in publications please use:")
+citHeader("To cite BAMP in publications please use:")
 
 if(!exists("meta") || is.null(meta)) meta <- packageDescription("bamp")
 year <- sub("-.*", "", meta$Date) 

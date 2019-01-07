@@ -2,12 +2,7 @@
 title: "Simulating Age-Period-Cohort Data"
 author: "Volker Schmid"
 date: "`r Sys.Date()`"
-#output: rmarkdown::html_vignette
-output: rmarkdown::pdf_document
-vignette: >
-  %\VignetteIndexEntry{Simulating Age-Period-Cohort Data}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: rmarkdown::html_vignette
 ---
 
 ```{r setup, include=FALSE}
