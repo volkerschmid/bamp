@@ -1,8 +1,8 @@
 Package: bamp
 Type: Package
 Title: Bayesian Age-Period-Cohort Modeling and Prediction
-Version: 2.0.6
-Date: 2019-01-07
+Version: 2.0.6.001
+Date: 2019-05-15
 Author: Volker Schmid [aut, cre], Florian Geressen [ctb], Leonhard Held [ctb], Evi Rainer [ctb]
 Authors@R: c(person("Volker","Schmid",email="volker.schmid@lmu.de", role=c("aut","cre")),person("Florian","Geressen",role="ctb"), person("Leonhard","Held",role="ctb"),person("Evi","Rainer",role="ctb"))
 Maintainer: Volker Schmid <volker.schmid@lmu.de>

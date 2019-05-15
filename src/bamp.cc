@@ -68,6 +68,7 @@ double temp1;
 int max_number_of_ap_combinations;
 double* period_data;
 double* cohort_data;
+int tuningcount=0;
 
 //counters for sampling
 int gen_c=0;
@@ -543,6 +544,7 @@ if (mode==1)
 	          Rprintf("Tuning is necessary. Restarting iterations.");
 	          ididwritesomething=42;
 	          lastitpercent=0.0;
+	          tuningcount++;
 	       }
 	       for (int l=0;l<number_of_agegroups;l++)
 	       {
@@ -562,8 +564,8 @@ if (mode==1)
  if (iteration == tun_konst && mode==0){
 	   int back=0;
 
-	   //	   if ((double)ja_my/(double)tun_konst<.4){back=1; my=0;}
-	   if(age_block>0)if ((double)ja_age/(double)tun_konst<.4){back=1;kappa=kappa*exp(nulleins());}
+	   //	if ((double)ja_my/(double)tun_konst<.4){back=1; my=0;}
+	   if(age_block>0)if ((double)ja_age/(double)tun_konst<.4){back=1;kappa=1;}
 	   if(period_block>0)if ((double)ja_period/(double)tun_konst<.4){back=1;lambda=1;lambda2=10;}
 	   if(cohort_block>0)if ((double)ja_cohort/(double)tun_konst<.4){back=1;ny=1;}
 
@@ -574,7 +576,7 @@ if (mode==1)
 	          for (tempcounter=0; tempcounter<=ididwritesomething; tempcounter++){Rprintf("\b");}
 	          
             Rprintf("Acceptance rate low. Restarting iterations.");
-	            lastitpercent=0.0;
+	          lastitpercent=0.0;
 	          ididwritesomething=42;
 	          }
 	        if (cohort_block>0){
