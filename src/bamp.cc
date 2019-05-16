@@ -263,12 +263,12 @@ ksi[j]=new double[number_of_periods+number_of_predictions];
 
 //double z_prog;
 ksi_berechnen(ksi, psi, vielfaches_der_breite, number_of_agegroups,number_of_periods);
-double kappa = 10.0;
-double lambda = period_a/period_b;
-double ny = 10.0;
-double kappa2 = 1000.0;
-double lambda2 = period_a2/period_b2;
-double ny2 = 1000.0;
+double kappa = 10*age_a/age_b;
+double lambda = 10*period_a/period_b;
+double ny = 10*cohort_a/cohort_b;
+double kappa2 = 10*age_a2/age_b2;
+double lambda2 = 10*period_a2/period_b2;
+double ny2 = 10*cohort_a2/cohort_b2;
 double delta = 1.0;
 
 //double mydach;
@@ -296,7 +296,7 @@ for (int iteration=1; iteration<= number_of_iterations; iteration++)
 {
   if (verbose>=3){Rprintf("Iteration: %d\n",iteration);ididwritesomething=0;}
   // progress bar
-if(verbose>0){
+  if(verbose>0){
   //if (ididwritesomething==0){
     //for (tempcounter=0; tempcounter<=27; tempcounter++)
     //{Rprintf(" ");}
@@ -322,6 +322,7 @@ if(verbose>0){
   if (mode==0)
     {
 
+    
     if (age_block==1 || age_block==2)
 	    {
 	      blocken(1, age_block, kappa, delta, number_of_agegroups, number_of_periods, my, theta,  phi,  psi,  ageQ,  thetatemp,  vielfaches_der_breite, n, y, ja_age );
@@ -350,7 +351,7 @@ if(verbose>0){
 	    }
 
       update_my_mh(my, ksi, theta, phi,  psi, vielfaches_der_breite, number_of_agegroups, number_of_periods, lung_summe,  n,  y, ja_my);
-
+      
       for (int i=0; i<number_of_agegroups; i++)
 	    {
  	      for (int j=0; j<number_of_periods; j++)
@@ -412,7 +413,7 @@ if(verbose>0){
       ZZ_aus_fc_von_ksi0(my, theta,  phi,  psi,  ksi, delta,  number_of_agegroups,  number_of_periods, vielfaches_der_breite,  y,  n,yes,no,schalter);
       z_aus_ksi_berechnen(z, my, ksi, theta, phi, psi, vielfaches_der_breite,number_of_agegroups,number_of_periods) ;
       update_my_1(my, ksi,  theta, phi,  psi,  vielfaches_der_breite,  number_of_agegroups, number_of_periods, delta);
-    }
+    } //mode==1
 
 
   // Updaten der Hyperparameter
@@ -514,9 +515,9 @@ if (mode==1)
   }
 
       //
-      // TUNING
+      // TUNING 
       //
-      // EVTL. PR?FUNG AKZEPTANZ
+      // CHECK ACCEPTANCE RATE
 
 
  if (iteration == tun_konst && mode==1){
@@ -564,35 +565,39 @@ if (mode==1)
  if (iteration == tun_konst && mode==0){
 	   int back=0;
 
-	   //	if ((double)ja_my/(double)tun_konst<.4){back=1; my=0;}
-	   if(age_block>0)if ((double)ja_age/(double)tun_konst<.4){back=1;kappa=1;}
-	   if(period_block>0)if ((double)ja_period/(double)tun_konst<.4){back=1;lambda=1;lambda2=10;}
-	   if(cohort_block>0)if ((double)ja_cohort/(double)tun_konst<.4){back=1;ny=1;}
+	   if ((double)ja_my/(double)tun_konst<.3){back=1; my=0;}
+	   if(age_block>0)if ((double)ja_age/(double)tun_konst<.3){back=1;}
+	   if(period_block>0)if ((double)ja_period/(double)tun_konst<.3){back=1;}
+	   if(cohort_block>0)if ((double)ja_cohort/(double)tun_konst<.3){back=1;}
 
 	   if (back==1)
 	     {
 	       iteration=0;
 	        if(verbose>=1){
-	          for (tempcounter=0; tempcounter<=ididwritesomething; tempcounter++){Rprintf("\b");}
+	          for (tempcounter=0; tempcounter<=ididwritesomething; tempcounter++){Rprintf("\b");}}
 	          
-            Rprintf("Acceptance rate low. Restarting iterations.");
+            Rprintf("Acceptance rate low. Restarting iterations.\n\n");
 	          lastitpercent=0.0;
-	          ididwritesomething=42;
-	          }
-	        if (cohort_block>0){
-    	     for (int i=0; i< number_of_cohorts; i++)
-    	     {psi[i]=normal(0.0,1.0);}}
-	        if (period_block>0)
-	        {
-	         for (int i=0; i< number_of_periods; i++)
-	         {phi[i]=normal(0.0,1.0);}}
-	        if (age_block>0)
-	        {
-     	     for (int i=0; i< number_of_agegroups; i++)
-     	     {theta[i]=normal(0.0,1.0);}}
-	     my=normal(0.0,1.0);
-	     }
+	          ididwritesomething=0;
+	          kappa = 10*age_a/age_b;
+	          lambda = 10*period_a/period_b;
+	          ny = 10*cohort_a/cohort_b;
+	          kappa2 = 10*age_a2/age_b2;
+	          lambda2 = 10*period_a2/period_b2;
+	          ny2 = 10*cohort_a2/cohort_b2;
+	          for (int i=0; i<number_of_agegroups; i++){theta[i]=0.0;theta2[i]=0.0;}
+	          for (int i=0; i<number_of_periods2; i++){phi[i]=0.0;phi2[i]=0.0;}}
+	          if (cohort_block>0){for (int i=0; i<number_of_cohorts2; i++){psi[i]=normal(0.0,1.0);psi2[i]=normal(0.0,1.0);}}
+	          if (cohort_block==0){for (int i=0; i<number_of_cohorts2; i++){psi[i]=0.0;psi2[i]=0.0;}}
+	          my=startwert+normal(0,1.0);
 
+	   if (verbose>=2)
+	   {
+	     Rprintf("%d ",ja_my);
+	     Rprintf("%d ",ja_age);
+	     Rprintf("%d ",ja_period);
+	     Rprintf("%d\n\n",ja_cohort);
+	   }
 
 	  ja_age=0;
 	  ja_period=0;

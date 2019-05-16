@@ -1,3 +1,6 @@
+# bamp 2.0.7
+* Better initial setting for restarting iterations; helps with RW2 priors
+
 # bamp 2.0.6
 * Introductory vignette renamed (double vignette name warning from CRAN)
 

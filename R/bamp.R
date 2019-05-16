@@ -574,6 +574,7 @@ if (verbose)
                      lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,
                      dev.sample,verbose){
    gc()
+   if (verbose>=2)cat(paste("chain",i,"\n"))
    
 return(.C("bamp",
                           as.integer(cases),
@@ -634,6 +635,10 @@ if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population
  kick<-rep(TRUE, chains)
  deviance.mean<-unlist(lapply(deviance,function(x)return(mean(as.vector(x)))))
  deviance.sd<-unlist(lapply(deviance,sd))
+
+ deviance.mean[is.infinite(deviance.mean)]<-rnorm(1,0,1e9)
+ deviance.sd[is.na(deviance.sd)]<-rgamma(1,1,1e-6)
+ 
  dm<-median(deviance.mean)
  sd<-1.96*median(deviance.sd)
  
@@ -644,6 +649,7 @@ if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population
    cat("\n")
    #print(coda::gelman.diag(deviance))
  }
+ 
  
  while (any(!((deviance.mean>=(dm-sd))&(deviance.mean<=(dm+sd)))))
  {
