@@ -1,8 +1,11 @@
 ## Test environments
 
-* ubuntu, R 3.6.0 (local)
-* windows, R 3.6.0 (using check_win_devel())
-* fedora linux, debian linux, R 3.6-0 (using check_rhub())
+* macOS 10.14.5, R 3.6.0 (local)
+* ubuntu 18.04, R 3.6.0 (local)
+* windows (using check_win_devel())
+* ubuntu 16.04 (using check_rhub())
+* debian linux (using check_rhub())
+* fedora linux (using check_rhub())
 
 ## Submission comments
 
