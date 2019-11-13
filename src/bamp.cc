@@ -211,9 +211,15 @@ for (int i=0; i< number_of_agegroups; i++)
     }
 }
 
+if (my_off[0]==0.0)
+{
 startwert = lung_summe/bev_summe;
 startwert = log(startwert/(1-startwert));
-
+}
+else
+{
+  startwert=my_off[0];
+}
 
 //  ***** SETTING VARIABLES *****
 
@@ -227,20 +233,36 @@ double* psitemp =new double[number_of_cohorts+number_of_predictions];
 double* thetatemp=new double[number_of_agegroups];
 double* phitemp=new double[number_of_periods+number_of_predictions];
 
+// Starting values, use first entries in "save sample matrices" (ttt etc.)
 for (int i=0; i<number_of_agegroups; i++)
-  {theta[i]=0.0;theta2[i]=0.0;}
-for (int i=0; i<number_of_periods2; i++)
   {
-  phi[i]=0.0;phi2[i]=0.0;
+  theta[i]=ttt[i];theta2[i]=ttt2[i];
   }
+if (period_block>0)
+{
+for (int i=0; i<number_of_periods2; i++)
+{
+  phi[i]=pph[i];phi2[i]=pph2[i];
+}
+}
+if (period_block==0) // no period effect
+{
+  for (int i=0; i<number_of_periods2; i++)
+  {
+    phi[i]=0.0;phi2[i]=0.0;
+  }
+}
 if (cohort_block>0)
 {
 for (int i=0; i<number_of_cohorts2; i++)
   {
-  psi[i]=normal(0.0,1.0);psi2[i]=normal(0.0,1.0);
+  psi[i]=pps[i];psi2[i]=pps2[i];
+  if (psi[i]==0.0){psi[i]=normal(0.0,1.0);} //add noise if starting value is not given 
+  if (psi2[i]==0.0){psi2[i]=normal(0.0,1.0);}
+  //psi[i]=normal(0.0,1.0);psi2[i]=normal(0.0,1.0);
   }
 }
-if (cohort_block==0)
+if (cohort_block==0) // no cohort effect
 {
   for (int i=0; i<number_of_cohorts2; i++)
   {

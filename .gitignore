@@ -4,7 +4,6 @@ Meta
 .RData
 .Ruserdata
 bamp.Rproj
-.DS_Store
 vignettes/*_cache
 vignettes/*_files
 vignettes/*/*_cache
@@ -13,3 +12,4 @@ docs/articles/*_files
 src/*.o
 src/*.so
 src/*.dll
+.DS_Store
