@@ -1,4 +1,5 @@
 #include <R.h>
+#include <Rconfig.h>
 #include <Rmath.h>
 #include <time.h>
 //#include "mystring.h"

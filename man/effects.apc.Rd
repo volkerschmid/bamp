@@ -4,8 +4,7 @@
 \alias{effects.apc}
 \title{Effects from Fitted APC Model}
 \usage{
-\method{effects}{apc}(object, mean = FALSE, quantiles = 0.5,
-  update = FALSE, ...)
+\method{effects}{apc}(object, mean = FALSE, quantiles = 0.5, update = FALSE, ...)
 }
 \arguments{
 \item{object}{an apc object}

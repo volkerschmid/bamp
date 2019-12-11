@@ -4,8 +4,13 @@
 \alias{predict_apc}
 \title{Prediction for age-period-cohort models}
 \usage{
-predict_apc(object, periods = 0, population = NULL,
-  quantiles = c(0.05, 0.5, 0.95), update = FALSE)
+predict_apc(
+  object,
+  periods = 0,
+  population = NULL,
+  quantiles = c(0.05, 0.5, 0.95),
+  update = FALSE
+)
 }
 \arguments{
 \item{object}{apc object}
