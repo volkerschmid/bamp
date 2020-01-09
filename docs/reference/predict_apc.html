@@ -71,7 +71,7 @@ For example, random walk of first order (rw1) for period effect predicts constan
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.8</span>
       </span>
     </div>
 
@@ -127,8 +127,13 @@ using the prior assumptions (random walks) of the model and the estimated varian
 For example, random walk of first order (rw1) for period effect predicts constant effects for future periods plus noise.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>predict_apc</span>(<span class='no'>object</span>, <span class='kw'>periods</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>population</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>quantiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.05</span>, <span class='fl'>0.5</span>, <span class='fl'>0.95</span>), <span class='kw'>update</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>predict_apc</span>(
+  <span class='no'>object</span>,
+  <span class='kw'>periods</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>population</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>quantiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.05</span>, <span class='fl'>0.5</span>, <span class='fl'>0.95</span>),
+  <span class='kw'>update</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

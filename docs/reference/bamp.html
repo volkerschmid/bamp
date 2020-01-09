@@ -80,7 +80,7 @@ additional covariates.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.8</span>
       </span>
     </div>
 
@@ -145,12 +145,24 @@ Additionally to the model described in Knorr-Held and Rainer (2001, DOI:10.1093/
 
     </div>
 
-    <pre class="usage"><span class='fu'>bamp</span>(<span class='no'>cases</span>, <span class='no'>population</span>, <span class='no'>age</span>, <span class='no'>period</span>, <span class='no'>cohort</span>, <span class='kw'>overdisp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>period_covariate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cohort_covariate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>periods_per_agegroup</span>, <span class='kw'>mcmc.options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>number_of_iterations</span> <span class='kw'>=</span> <span class='fl'>55000</span>,
-  <span class='kw'>burn_in</span> <span class='kw'>=</span> <span class='fl'>5000</span>, <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>tuning</span> <span class='kw'>=</span> <span class='fl'>500</span>), <span class='kw'>hyperpar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>age</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,
-  <span class='fl'>5e-04</span>), <span class='kw'>period</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5e-04</span>), <span class='kw'>cohort</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5e-04</span>), <span class='kw'>overdisp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,
-  <span class='fl'>0.05</span>)), <span class='kw'>dic</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>bamp</span>(
+  <span class='no'>cases</span>,
+  <span class='no'>population</span>,
+  <span class='no'>age</span>,
+  <span class='no'>period</span>,
+  <span class='no'>cohort</span>,
+  <span class='kw'>overdisp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>period_covariate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>cohort_covariate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>periods_per_agegroup</span>,
+  <span class='kw'>mcmc.options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>number_of_iterations</span> <span class='kw'>=</span> <span class='fl'>55000</span>, <span class='kw'>burn_in</span> <span class='kw'>=</span> <span class='fl'>5000</span>, <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>tuning</span> <span class='kw'>=</span>
+    <span class='fl'>500</span>),
+  <span class='kw'>hyperpar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>age</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5e-04</span>), <span class='kw'>period</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5e-04</span>), <span class='kw'>cohort</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5e-04</span>),
+    <span class='kw'>overdisp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0.05</span>)),
+  <span class='kw'>dic</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
