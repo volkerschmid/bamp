@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">bamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.8</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@
       <h1>Simulating Age-Period-Cohort Data</h1>
                         <h4 class="author">Volker Schmid</h4>
             
-            <h4 class="date">2019-10-17</h4>
+            <h4 class="date">2020-01-09</h4>
       
       
       <div class="hidden name"><code>simulation.Rmd</code></div>
@@ -88,111 +88,110 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">age=<span class="dv">2</span><span class="op">*</span><span class="kw"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">1</span>,<span class="dv">20</span>,<span class="dt">length=</span><span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb1-2" title="2">age&lt;-<span class="st"> </span>age<span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(age)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(age, <span class="dt">type=</span><span class="st">"l"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">age=<span class="dv">2</span><span class="op">*</span><span class="kw"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">1</span>,<span class="dv">20</span>,<span class="dt">length=</span><span class="dv">10</span>))
+age&lt;-<span class="st"> </span>age<span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(age)
+<span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(age, <span class="dt">type=</span><span class="st">"l"</span>)</code></pre></div>
 <p><img src="simulation_files/figure-html/simulate_age-1.png" width="90%"></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">period=<span class="dv">15</span><span class="op">:</span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb2-2" title="2">period[<span class="dv">8</span><span class="op">:</span><span class="dv">15</span>]&lt;-<span class="dv">8</span><span class="op">:</span><span class="dv">15</span></a>
-<a class="sourceLine" id="cb2-3" title="3">period&lt;-period<span class="op">/</span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb2-4" title="4">period&lt;-period<span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(period)</a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(period, <span class="dt">type=</span><span class="st">"l"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">period=<span class="dv">15</span><span class="op">:</span><span class="dv">1</span>
+period[<span class="dv">8</span><span class="op">:</span><span class="dv">15</span>]&lt;-<span class="dv">8</span><span class="op">:</span><span class="dv">15</span>
+period&lt;-period<span class="op">/</span><span class="dv">5</span>
+period&lt;-period<span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(period)
+<span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(period, <span class="dt">type=</span><span class="st">"l"</span>)</code></pre></div>
 <p><img src="simulation_files/figure-html/simulate_period-1.png" width="90%"></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">periods_per_agegroup=<span class="dv">5</span></a>
-<a class="sourceLine" id="cb3-2" title="2">number_of_cohorts &lt;-<span class="st"> </span>periods_per_agegroup<span class="op">*</span>(<span class="dv">10-1</span>)<span class="op">+</span><span class="dv">15</span></a>
-<a class="sourceLine" id="cb3-3" title="3">cohort&lt;-<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="dv">0</span>,<span class="dv">60</span>)</a>
-<a class="sourceLine" id="cb3-4" title="4">cohort[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>]&lt;-(<span class="dv">14</span><span class="op">:</span><span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb3-5" title="5">cohort[<span class="dv">16</span><span class="op">:</span><span class="dv">30</span>]&lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)<span class="op">/</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb3-6" title="6">cohort[<span class="dv">31</span><span class="op">:</span><span class="dv">60</span>]&lt;-<span class="st"> </span><span class="dv">8</span></a>
-<a class="sourceLine" id="cb3-7" title="7">cohort&lt;-cohort<span class="op">/</span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb3-8" title="8">cohort&lt;-cohort<span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(cohort)</a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(cohort, <span class="dt">type=</span><span class="st">"l"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">periods_per_agegroup=<span class="dv">5</span>
+number_of_cohorts &lt;-<span class="st"> </span>periods_per_agegroup<span class="op">*</span>(<span class="dv">10</span><span class="op">-</span><span class="dv">1</span>)<span class="op">+</span><span class="dv">15</span>
+cohort&lt;-<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="dv">0</span>,<span class="dv">60</span>)
+cohort[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>]&lt;-(<span class="dv">14</span><span class="op">:</span><span class="dv">0</span>)
+cohort[<span class="dv">16</span><span class="op">:</span><span class="dv">30</span>]&lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)<span class="op">/</span><span class="dv">2</span>
+cohort[<span class="dv">31</span><span class="op">:</span><span class="dv">60</span>]&lt;-<span class="st"> </span><span class="dv">8</span>
+cohort&lt;-cohort<span class="op">/</span><span class="dv">10</span>
+cohort&lt;-cohort<span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(cohort)
+<span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(cohort, <span class="dt">type=</span><span class="st">"l"</span>)</code></pre></div>
 <p><img src="simulation_files/figure-html/simulate_cohort-1.png" width="90%"></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">simdata&lt;-<span class="kw"><a href="../../reference/apcSimulate.html">apcSimulate</a></span>(<span class="op">-</span><span class="dv">10</span>, age, period, cohort, periods_per_agegroup, <span class="fl">1e6</span>)</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(simdata<span class="op">$</span>cases)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simdata&lt;-<span class="kw"><a href="../../reference/apcSimulate.html">apcSimulate</a></span>(<span class="op">-</span><span class="dv">10</span>, age, period, cohort, periods_per_agegroup, <span class="fl">1e6</span>)
+<span class="kw"><a href="../../reference/print.apc.html">print</a></span>(simdata<span class="op">$</span>cases)</code></pre></div>
 <pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-##  [1,]    4    8   27   47   69  112  172  410 1120  3063
-##  [2,]    1    7   15   32   62   95  156  289  839  2239
-##  [3,]    2    1   13   34   62  108  107  256  599  1730
-##  [4,]    1    2    9   24   43   67   98  166  501  1150
-##  [5,]    0    3   11   29   42   77   93  126  332   937
-##  [6,]    2    2    9   15   43   77   77   88  249   666
-##  [7,]    0    3    8   14   32   46   75  106  200   529
-##  [8,]    1    0    3   10   27   46   63   87  141   342
-##  [9,]    0    6   10   13   29   49   70  101  148   416
-## [10,]    0    1   11   19   38   63  122  116  145   451
-## [11,]    0    4    9   25   48   92  114  162  247   550
-## [12,]    1    8   17   26   51   94  147  221  280   492
-## [13,]    2    8   18   35   72  161  208  268  383   612
-## [14,]    0    7   20   48   83  154  249  337  477   661
-## [15,]    1    6   26   45   97  194  364  483  590   753</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">simmod &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(<span class="dt">cases =</span> simdata<span class="op">$</span>cases, <span class="dt">population =</span> simdata<span class="op">$</span>population, <span class="dt">age =</span> <span class="st">"rw1"</span>, </a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="dt">period =</span> <span class="st">"rw1"</span>, <span class="dt">cohort =</span> <span class="st">"rw1"</span>, <span class="dt">periods_per_agegroup =</span>periods_per_agegroup)</a></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(simmod)</a></code></pre></div>
+##  [1,]    2    7   13   45   68  123  171  408 1175  3017
+##  [2,]    3    6   18   49   67  102  145  286  816  2165
+##  [3,]    0    5   18   28   62  103  127  260  597  1642
+##  [4,]    0    4   16   22   51   67  102  164  425  1234
+##  [5,]    0    6   15   12   40   78   92  116  327   864
+##  [6,]    0    1    7   13   26   52   86  100  258   686
+##  [7,]    0    2    4   18   30   47   76   82  209   522
+##  [8,]    0    3    5   12   29   41   69   84  125   428
+##  [9,]    2    4    9   17   30   55   86   96  166   400
+## [10,]    1    0   10   19   32   67   95  136  171   453
+## [11,]    0    2   13   28   42   76  141  163  204   482
+## [12,]    1    4   11   27   53  106  170  225  290   600
+## [13,]    0    5   12   30   68  152  198  296  317   619
+## [14,]    2    4   19   47   89  151  294  375  462   714
+## [15,]    3    7   14   45  116  200  335  457  654   777</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simmod &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(<span class="dt">cases =</span> simdata<span class="op">$</span>cases, <span class="dt">population =</span> simdata<span class="op">$</span>population, <span class="dt">age =</span> <span class="st">"rw1"</span>, 
+<span class="dt">period =</span> <span class="st">"rw1"</span>, <span class="dt">cohort =</span> <span class="st">"rw1"</span>, <span class="dt">periods_per_agegroup =</span>periods_per_agegroup)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(simmod)</code></pre></div>
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     147.08
-## pD:            50.51
-## DIC:          197.59
+## Deviance:     134.81
+## pD:            49.18
+## DIC:          183.99
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.607        1.436        2.917
-## period                          12.785       24.687       44.016
-## cohort                          66.611      106.102      163.995</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="../../reference/checkConvergence.html">checkConvergence</a></span>(simmod)</a></code></pre></div>
-<pre><code>## Warning: MCMC chains did not converge!</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(simmod)</a></code></pre></div>
+## age                              0.679        1.610        3.230
+## period                          14.287       27.346       47.671
+## cohort                          77.210      122.990      188.227</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/checkConvergence.html">checkConvergence</a></span>(simmod)</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(simmod)</code></pre></div>
 <p><img src="simulation_files/figure-html/check_print_plot-1.png" width="90%"><img src="simulation_files/figure-html/check_print_plot-2.png" width="90%"><img src="simulation_files/figure-html/check_print_plot-3.png" width="90%"></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">effects&lt;-<span class="kw"><a href="https://rdrr.io/r/stats/effects.html">effects</a></span>(simmod)</a>
-<a class="sourceLine" id="cb13-2" title="2">effects2&lt;-<span class="kw"><a href="https://rdrr.io/r/stats/effects.html">effects</a></span>(simmod, <span class="dt">mean=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb13-3" title="3"><span class="co">#par(mfrow=c(3,1))</span></a>
-<a class="sourceLine" id="cb13-4" title="4"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(age, <span class="dt">type=</span><span class="st">"l"</span>)</a>
-<a class="sourceLine" id="cb13-5" title="5"><span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(effects<span class="op">$</span>age, <span class="dt">col=</span><span class="st">"blue"</span>)</a>
-<a class="sourceLine" id="cb13-6" title="6"><span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(effects2<span class="op">$</span>age, <span class="dt">col=</span><span class="st">"green"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">effects&lt;-<span class="kw"><a href="https://rdrr.io/r/stats/effects.html">effects</a></span>(simmod)
+effects2&lt;-<span class="kw"><a href="https://rdrr.io/r/stats/effects.html">effects</a></span>(simmod, <span class="dt">mean=</span><span class="ot">TRUE</span>)
+<span class="co">#par(mfrow=c(3,1))</span>
+<span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(age, <span class="dt">type=</span><span class="st">"l"</span>)
+<span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(effects<span class="op">$</span>age, <span class="dt">col=</span><span class="st">"blue"</span>)
+<span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(effects2<span class="op">$</span>age, <span class="dt">col=</span><span class="st">"green"</span>)</code></pre></div>
 <p><img src="simulation_files/figure-html/plot_comparison-1.png" width="90%"></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(period, <span class="dt">type=</span><span class="st">"l"</span>)</a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(effects<span class="op">$</span>period, <span class="dt">col=</span><span class="st">"blue"</span>)</a>
-<a class="sourceLine" id="cb14-3" title="3"><span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(effects2<span class="op">$</span>period, <span class="dt">col=</span><span class="st">"green"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(period, <span class="dt">type=</span><span class="st">"l"</span>)
+<span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(effects<span class="op">$</span>period, <span class="dt">col=</span><span class="st">"blue"</span>)
+<span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(effects2<span class="op">$</span>period, <span class="dt">col=</span><span class="st">"green"</span>)</code></pre></div>
 <p><img src="simulation_files/figure-html/plot_comparison-2.png" width="90%"></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(cohort, <span class="dt">type=</span><span class="st">"l"</span>)</a>
-<a class="sourceLine" id="cb15-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(effects<span class="op">$</span>cohort, <span class="dt">col=</span><span class="st">"blue"</span>)</a>
-<a class="sourceLine" id="cb15-3" title="3"><span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(effects2<span class="op">$</span>cohort, <span class="dt">col=</span><span class="st">"green"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(cohort, <span class="dt">type=</span><span class="st">"l"</span>)
+<span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(effects<span class="op">$</span>cohort, <span class="dt">col=</span><span class="st">"blue"</span>)
+<span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(effects2<span class="op">$</span>cohort, <span class="dt">col=</span><span class="st">"green"</span>)</code></pre></div>
 <p><img src="simulation_files/figure-html/plot_comparison-3.png" width="90%"></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">prediction&lt;-<span class="kw"><a href="../../reference/predict_apc.html">predict_apc</a></span>(simmod, <span class="dt">periods=</span><span class="dv">5</span>, <span class="dt">population=</span><span class="kw"><a href="https://rdrr.io/r/base/array.html">array</a></span>(<span class="fl">1e6</span>,<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">20</span>,<span class="dv">10</span>)))</a></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(prediction<span class="op">$</span>cases_period[<span class="dv">2</span>,], <span class="dt">ylim=</span><span class="kw"><a href="https://rdrr.io/r/base/range.html">range</a></span>(prediction<span class="op">$</span>cases_period),<span class="dt">ylab=</span><span class="st">""</span>,<span class="dt">pch=</span><span class="dv">19</span>)</a>
-<a class="sourceLine" id="cb17-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(prediction<span class="op">$</span>cases_period[<span class="dv">1</span>,],<span class="dt">pch=</span><span class="st">"–"</span>,<span class="dt">cex=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb17-3" title="3"><span class="kw"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(prediction<span class="op">$</span>cases_period[<span class="dv">3</span>,],<span class="dt">pch=</span><span class="st">"–"</span>,<span class="dt">cex=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb17-4" title="4"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)<span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(i,<span class="dv">3</span>),prediction<span class="op">$</span>cases_period[,i])</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prediction&lt;-<span class="kw"><a href="../../reference/predict_apc.html">predict_apc</a></span>(simmod, <span class="dt">periods=</span><span class="dv">5</span>, <span class="dt">population=</span><span class="kw"><a href="https://rdrr.io/r/base/array.html">array</a></span>(<span class="fl">1e6</span>,<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">20</span>,<span class="dv">10</span>)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(prediction<span class="op">$</span>cases_period[<span class="dv">2</span>,], <span class="dt">ylim=</span><span class="kw"><a href="https://rdrr.io/r/base/range.html">range</a></span>(prediction<span class="op">$</span>cases_period),<span class="dt">ylab=</span><span class="st">""</span>,<span class="dt">pch=</span><span class="dv">19</span>)
+<span class="kw"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(prediction<span class="op">$</span>cases_period[<span class="dv">1</span>,],<span class="dt">pch=</span><span class="st">"–"</span>,<span class="dt">cex=</span><span class="dv">2</span>)
+<span class="kw"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(prediction<span class="op">$</span>cases_period[<span class="dv">3</span>,],<span class="dt">pch=</span><span class="st">"–"</span>,<span class="dt">cex=</span><span class="dv">2</span>)
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)<span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(i,<span class="dv">3</span>),prediction<span class="op">$</span>cases_period[,i])</code></pre></div>
 <p><img src="simulation_files/figure-html/prediction1-1.png" width="90%"></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(prediction<span class="op">$</span>period[<span class="dv">2</span>,])</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(prediction<span class="op">$</span>period[<span class="dv">2</span>,])</code></pre></div>
 <p><img src="simulation_files/figure-html/prediction4-1.png" width="90%"></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">simmodrw2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(<span class="dt">cases =</span> simdata<span class="op">$</span>cases, <span class="dt">population =</span> simdata<span class="op">$</span>population, <span class="dt">age =</span> <span class="st">"rw2"</span>, </a>
-<a class="sourceLine" id="cb19-2" title="2"><span class="dt">period =</span> <span class="st">"rw2"</span>, <span class="dt">cohort =</span> <span class="st">"rw2"</span>, <span class="dt">periods_per_agegroup =</span>periods_per_agegroup)</a></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(simmodrw2)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simmodrw2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(<span class="dt">cases =</span> simdata<span class="op">$</span>cases, <span class="dt">population =</span> simdata<span class="op">$</span>population, <span class="dt">age =</span> <span class="st">"rw2"</span>, 
+<span class="dt">period =</span> <span class="st">"rw2"</span>, <span class="dt">cohort =</span> <span class="st">"rw2"</span>, <span class="dt">periods_per_agegroup =</span>periods_per_agegroup)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(simmodrw2)</code></pre></div>
 <pre><code>## 
 ##  Model:
 ## age (rw2)  - period (rw2)  - cohort (rw2) model
-## Deviance:     167.78
-## pD:            31.62
-## DIC:          199.39
+## Deviance:     141.03
+## pD:            29.42
+## DIC:          170.45
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                             34.572      118.142      346.772
-## period                          30.202       74.562      168.025
-## cohort                         553.729     1318.573     2798.038</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw"><a href="../../reference/checkConvergence.html">checkConvergence</a></span>(simmodrw2)</a></code></pre></div>
+## age                             46.914      153.890      440.482
+## period                          79.724      181.478      367.538
+## cohort                         632.549     1345.253     2674.138</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/checkConvergence.html">checkConvergence</a></span>(simmodrw2)</code></pre></div>
 <pre><code>## Warning: MCMC chains did not converge!</code></pre>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(simmodrw2)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(simmodrw2)</code></pre></div>
 <p><img src="simulation_files/figure-html/check_print_plot_rw2-1.png" width="90%"><img src="simulation_files/figure-html/check_print_plot_rw2-2.png" width="90%"><img src="simulation_files/figure-html/check_print_plot_rw2-3.png" width="90%"></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">cov_p&lt;-<span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">15</span>,period,.<span class="dv">1</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">simmod2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(<span class="dt">cases =</span> simdata<span class="op">$</span>cases, <span class="dt">population =</span> simdata<span class="op">$</span>population, <span class="dt">age =</span> <span class="st">"rw1"</span>, </a>
-<a class="sourceLine" id="cb27-2" title="2"><span class="dt">period =</span> <span class="st">"rw1"</span>, <span class="dt">cohort =</span> <span class="st">"rw1"</span>, <span class="dt">periods_per_agegroup =</span>periods_per_agegroup,</a>
-<a class="sourceLine" id="cb27-3" title="3"><span class="dt">period_covariate =</span> cov_p)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cov_p&lt;-<span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">15</span>,period,.<span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simmod2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(<span class="dt">cases =</span> simdata<span class="op">$</span>cases, <span class="dt">population =</span> simdata<span class="op">$</span>population, <span class="dt">age =</span> <span class="st">"rw1"</span>, 
+<span class="dt">period =</span> <span class="st">"rw1"</span>, <span class="dt">cohort =</span> <span class="st">"rw1"</span>, <span class="dt">periods_per_agegroup =</span>periods_per_agegroup,
+<span class="dt">period_covariate =</span> cov_p)</code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -79,7 +79,7 @@
       <h1>Bayesian Age-Period-Cohort Modeling</h1>
                         <h4 class="author">Volker Schmid</h4>
             
-            <h4 class="date">2020-01-08</h4>
+            <h4 class="date">2020-01-09</h4>
       
       
       <div class="hidden name"><code>modeling.Rmd</code></div>
@@ -92,108 +92,108 @@
 <h2 class="hasAnchor">
 <a href="#data-example" class="anchor"></a>Data example</h2>
 <p>BAMP includes a data example.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(apc)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(cases[,<span class="dv">1</span>],<span class="dt">type=</span><span class="st">"l"</span>,<span class="dt">ylim=</span><span class="kw"><a href="https://rdrr.io/r/base/range.html">range</a></span>(cases), <span class="dt">ylab=</span><span class="st">"cases"</span>, <span class="dt">xlab=</span><span class="st">"year"</span>, <span class="dt">main=</span><span class="st">"cases per age group"</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">8</span>)<span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(cases[,i], <span class="dt">col=</span>i)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(apc)
+<span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(cases[,<span class="dv">1</span>],<span class="dt">type=</span><span class="st">"l"</span>,<span class="dt">ylim=</span><span class="kw"><a href="https://rdrr.io/r/base/range.html">range</a></span>(cases), <span class="dt">ylab=</span><span class="st">"cases"</span>, <span class="dt">xlab=</span><span class="st">"year"</span>, <span class="dt">main=</span><span class="st">"cases per age group"</span>)
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">8</span>)<span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(cases[,i], <span class="dt">col=</span>i)</code></pre></div>
 <p><img src="modeling_files/figure-html/loadplot-1.png" width="700"></p>
 </div>
 <div id="apc-model-with-random-walk-first-order-prior" class="section level2">
 <h2 class="hasAnchor">
 <a href="#apc-model-with-random-walk-first-order-prior" class="anchor"></a>APC model with random walk first order prior</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">model1 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">"rw1"</span>, <span class="dt">cohort=</span><span class="st">"rw1"</span>,</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">              <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model1 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">"rw1"</span>, <span class="dt">cohort=</span><span class="st">"rw1"</span>,
+              <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>)</code></pre></div>
 <p>bamp() automatically performs a check for MCMC convergence using Gelman and Rubin’s convergence diagnostic. We can manually check the convergence again:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="../../reference/checkConvergence.html">checkConvergence</a></span>(model1)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/checkConvergence.html">checkConvergence</a></span>(model1)</code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Now we have a look at the model results. This includes estimates of smoothing parameters and deviance and DIC:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(model1)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(model1)</code></pre></div>
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.31
-## pD:            36.90
-## DIC:          268.22
+## Deviance:     231.35
+## pD:            37.04
+## DIC:          268.39
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.418        1.056        2.299
-## period                          67.622      191.417      608.721
-## cohort                          34.691       59.524       96.713</code></pre>
+## age                              0.389        1.044        2.225
+## period                          65.267      192.161      577.099
+## cohort                          34.520       59.305       98.778</code></pre>
 <p>We can plot the main APC effects using point-wise quantiles:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model1)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model1)</code></pre></div>
 <p><img src="modeling_files/figure-html/plot_model-1.png" width="700"><img src="modeling_files/figure-html/plot_model-2.png" width="700"><img src="modeling_files/figure-html/plot_model-3.png" width="700"></p>
 <p>More quantiles are possible:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model1, <span class="dt">quantiles =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.025</span>,<span class="fl">0.1</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>,<span class="fl">0.975</span>))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model1, <span class="dt">quantiles =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.025</span>,<span class="fl">0.1</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>,<span class="fl">0.975</span>))</code></pre></div>
 <p><img src="modeling_files/figure-html/plot_model_with_more_quantiles-1.png" width="700"><img src="modeling_files/figure-html/plot_model_with_more_quantiles-2.png" width="700"><img src="modeling_files/figure-html/plot_model_with_more_quantiles-3.png" width="700"></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">model2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw2"</span>, <span class="dt">period=</span><span class="st">"rw2"</span>, <span class="dt">cohort=</span><span class="st">"rw2"</span>,</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">              <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="../../reference/checkConvergence.html">checkConvergence</a></span>(model2)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw2"</span>, <span class="dt">period=</span><span class="st">"rw2"</span>, <span class="dt">cohort=</span><span class="st">"rw2"</span>,
+              <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/checkConvergence.html">checkConvergence</a></span>(model2)</code></pre></div>
 <pre><code>## Warning: MCMC chains did not converge!</code></pre>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(model2)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(model2)</code></pre></div>
 <pre><code>## 
 ##  Model:
 ## age (rw2)  - period (rw2)  - cohort (rw2) model
-## Deviance:     245.92
-## pD:            33.50
-## DIC:          279.43
+## Deviance:     246.20
+## pD:            33.68
+## DIC:          279.88
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              2.107        6.200       16.567
-## period                          57.732      299.826     2727.159
-## cohort                          37.255       74.529      148.456</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2)</a></code></pre></div>
+## age                              2.045        6.253       16.786
+## period                          57.500      309.876     2621.629
+## cohort                          36.580       75.100      145.425</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model2)</code></pre></div>
 <p><img src="modeling_files/figure-html/Model2_results-1.png" width="700"><img src="modeling_files/figure-html/Model2_results-2.png" width="700"><img src="modeling_files/figure-html/Model2_results-3.png" width="700"></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">model3&lt;-<span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">" "</span>, <span class="dt">cohort=</span><span class="st">"rw2"</span>,</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">              <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="kw"><a href="../../reference/checkConvergence.html">checkConvergence</a></span>(model3)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model3&lt;-<span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">" "</span>, <span class="dt">cohort=</span><span class="st">"rw2"</span>,
+              <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>)
+<span class="kw"><a href="../../reference/checkConvergence.html">checkConvergence</a></span>(model3)</code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(model3)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../../reference/print.apc.html">print</a></span>(model3)</code></pre></div>
 <pre><code>## 
 ##  Model:
 ## age (rw1) cohort (rw2) model
-## Deviance:     276.70
-## pD:            30.20
-## DIC:          306.89
+## Deviance:     276.41
+## pD:            30.19
+## DIC:          306.60
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.316        0.794        1.661
-## cohort                          38.525       73.956      139.190</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model3)</a></code></pre></div>
+## age                              0.300        0.782        1.679
+## cohort                          38.904       73.828      136.267</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model3)</code></pre></div>
 <p><img src="modeling_files/figure-html/model3-1.png" width="700"><img src="modeling_files/figure-html/model3-2.png" width="700"></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">(model4&lt;-<span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">"rw1"</span>, <span class="dt">cohort=</span><span class="st">"rw1"</span>,</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">             <span class="dt">cohort_covariate =</span> cov_c, <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(model4&lt;-<span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">"rw1"</span>, <span class="dt">cohort=</span><span class="st">"rw1"</span>,
+             <span class="dt">cohort_covariate =</span> cov_c, <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>))</code></pre></div>
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.15
-## pD:            36.67
-## DIC:          267.82
+## Deviance:     231.36
+## pD:            36.80
+## DIC:          268.16
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.407        1.053        2.261
-## period                          67.734      194.175      608.467
-## cohort                          35.635       60.110       97.397</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model4)</a></code></pre></div>
+## age                              0.400        1.030        2.251
+## period                          67.615      201.685      628.548
+## cohort                          34.647       59.897       99.183</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model4)</code></pre></div>
 <p><img src="modeling_files/figure-html/model4-1.png" width="700"><img src="modeling_files/figure-html/model4-2.png" width="700"><img src="modeling_files/figure-html/model4-3.png" width="700"><img src="modeling_files/figure-html/model4-4.png" width="700"><img src="modeling_files/figure-html/model4-5.png" width="700"><img src="modeling_files/figure-html/model4-6.png" width="700"></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">(model5&lt;-<span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">"rw1"</span>, <span class="dt">cohort=</span><span class="st">"rw1"</span>,</a>
-<a class="sourceLine" id="cb24-2" data-line-number="2">             <span class="dt">period_covariate =</span> cov_p, <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(model5&lt;-<span class="kw"><a href="../../reference/bamp.html">bamp</a></span>(cases, population, <span class="dt">age=</span><span class="st">"rw1"</span>, <span class="dt">period=</span><span class="st">"rw1"</span>, <span class="dt">cohort=</span><span class="st">"rw1"</span>,
+             <span class="dt">period_covariate =</span> cov_p, <span class="dt">periods_per_agegroup =</span> <span class="dv">5</span>))</code></pre></div>
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.17
-## pD:            36.90
-## DIC:          268.08
+## Deviance:     231.38
+## pD:            36.76
+## DIC:          268.15
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.400        1.048        2.218
-## period                          68.537      193.679      579.317
-## cohort                          33.918       59.074       97.704</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model5)</a></code></pre></div>
+## age                              0.396        1.037        2.203
+## period                          71.122      203.003      639.376
+## cohort                          33.915       59.155       97.065</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model5)</code></pre></div>
 <p><img src="modeling_files/figure-html/model5-1.png" width="700"><img src="modeling_files/figure-html/model5-2.png" width="700"><img src="modeling_files/figure-html/model5-3.png" width="700"><img src="modeling_files/figure-html/model5-4.png" width="700"><img src="modeling_files/figure-html/model5-5.png" width="700"><img src="modeling_files/figure-html/model5-6.png" width="700"></p>
 </div>
   </div>
