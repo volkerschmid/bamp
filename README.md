@@ -32,4 +32,7 @@ There are some graphical routines available in order to
 
 ## BAMP R package (2.0)
 
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/bamp)](https://CRAN.R-project.org/package=bamp)
+<!-- badges: end -->
 [The bamp R package is available on CRAN.](https://CRAN.R-project.org/package=bamp)
