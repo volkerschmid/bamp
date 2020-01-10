@@ -79,7 +79,7 @@
       <h1>Short Introduction to BAMP</h1>
                         <h4 class="author">Volker Schmid</h4>
             
-            <h4 class="date">2020-01-09</h4>
+            <h4 class="date">2020-01-10</h4>
       
       
       <div class="hidden name"><code>bamp.Rmd</code></div>
@@ -111,15 +111,15 @@
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.21
+## Deviance:     231.15
 ## pD:            36.78
-## DIC:          268.00
+## DIC:          267.93
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.383        1.014        2.168
-## period                          67.387      205.070      635.452
-## cohort                          33.861       58.286       97.115</code></pre>
+## age                              0.415        1.026        2.241
+## period                          68.616      201.177      607.783
+## cohort                          35.056       59.431       98.347</code></pre>
 <p>We can plot the main APC effects using point-wise quantiles:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(model1)</code></pre></div>
 <p><img src="bamp_files/figure-html/plot_model-1.png" width="700"><img src="bamp_files/figure-html/plot_model-2.png" width="700"><img src="bamp_files/figure-html/plot_model-3.png" width="700"></p>

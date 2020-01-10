@@ -1,3 +1,6 @@
+# bamp 2.0.8
+* Minor bug fixes, fix additional issues
+
 # bamp 2.0.7
 * Better initial setting for restarting iterations; helps with RW2 priors
 
