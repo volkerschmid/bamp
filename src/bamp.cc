@@ -120,15 +120,15 @@ if (prognosis == 0)
 if (period_block==8 || period_block==9)
 	{
 	period_block = period_block-7;
-	period_data = new double[number_of_periods+number_of_predictions];
 	period_plus = 1;
 	}
 if (cohort_block==8 || cohort_block==9)
 	{
 	cohort_block = cohort_block-7;
-	cohort_data = new double[number_of_cohorts+number_of_predictions];
 	cohort_plus = 1;
 	}
+period_data = new double[number_of_periods+number_of_predictions];
+cohort_data = new double[number_of_cohorts+number_of_predictions];
 
 int** yes = new int*[number_of_agegroups];
 int** no =new int*[number_of_agegroups];
@@ -302,9 +302,9 @@ for (int iteration=1; iteration<= number_of_iterations; iteration++)
     //{Rprintf(" ");}
     //ididwritesomething=0;
   //}
-  itpercent=floor(100.0*iteration/number_of_iterations);
-  if (itpercent>lastitpercent)
-  {
+    itpercent=floor(100.0*iteration/number_of_iterations);
+    if (itpercent>lastitpercent)
+    {
     for (tempcounter=0; tempcounter<=ididwritesomething; tempcounter++){Rprintf("\b");}
     for (tempcounter=0; tempcounter <= (itpercent/2.5); tempcounter++){Rprintf("=");}
     if (itpercent<100){Rprintf(">");}else{Rprintf(" ");}
@@ -314,8 +314,8 @@ for (int iteration=1; iteration<= number_of_iterations; iteration++)
     Rprintf("%d %% ",(int)itpercent);
     lastitpercent=itpercent;
     ididwritesomething=47;
+    }
   }
-}
 
     // ** Gibbs-Steps **
 
