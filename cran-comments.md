@@ -1,3 +1,5 @@
+Additional issues: OpenBLAS segfaults were removed.
+
 ## Test environments
 
 ── bamp 2.0.8: NOTE

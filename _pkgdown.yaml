@@ -23,7 +23,7 @@ navbar:
 articles:
   - title: "Vignettes"
     contents:
-    - bamp
+    - largevignettes/bamp
     - largevignettes/modeling
     - largevignettes/prediction
     - largevignettes/simulation
