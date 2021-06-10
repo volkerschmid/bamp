@@ -53,10 +53,7 @@ checkConvergence<-function(x, info=FALSE, level=2, auto=FALSE)
     return=FALSE
   }
   else{
-    if (!auto)
-    {
-      return=TRUE
-    }
+    return=TRUE
   }
   return(return)
 }

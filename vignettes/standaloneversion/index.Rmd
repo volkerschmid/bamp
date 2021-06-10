@@ -1,5 +1,5 @@
 ---
-title: "BAMP standalon version"
+title: "BAMP standalone version"
 output: html_document
 ---
 
@@ -16,7 +16,7 @@ BAMP is available as standalone version (version 1.3). The standalone version no
 ## Installation and usage under Windows  
 
 * Unzip the downloaded bamp.zip file
-* Edit the bamp.ini file and you can start the program with a doubleclick on the BAMP-icon.
+* Edit the bamp.ini file and you can start the program with a double click on the BAMP-icon.
 
 If you want to use your own ini-files, you have to use a MS-DOS-console:
 
@@ -54,11 +54,11 @@ On window-based OS you can also start BAMP with a double click on the BAMP-icon.
 
 ## Input-Files
 
-BAMP needs inputfiles with the population data and the number of deaths. Both files have to be matrices of number of agegroups x number of periods (or transposed, see dataorder). The data has to be seperated by blanks.
+BAMP needs input files with the population data and the number of deaths. Both files have to be matrices of number of age groups x number of periods (or transposed, see dataorder). The data has to be separated by blanks.
 
 ## Predictions
 
-If you want to get predictions of future deathrates, set predictions to 1. Set number of predictions to the number of periods for which you want the predictions. If you also have population projection, set predictions to 3.
+If you want to get predictions of future death rates, set predictions to 1. Set number of predictions to the number of periods for which you want the predictions. If you also have population projection, set predictions to 3.
 In order to test the model you can also make prediction for existing data. Then the input files must include this data, the matrices have to be of order number of agegroups x (number of periods + number of predictions). Set deviance to 2 and BAMP will calculate the deviance for the predicted periods.
  
 ## Description of bamp.ini
@@ -97,4 +97,4 @@ In order to test the model you can also make prediction for existing data. Then 
 
 # Licence agreement 
 
-The authors of this software grant to any individual or non-commercial organization the right to use and to make an unlimitted number of copies of this software. Usage by commercial entitities require a licence from the authors. You may not decompile, disassemble, reverse engineer, or modify the software. This includes, but is not limitted to modifying/changing any icons, menues, or displays associated with the software. This software cannot be sold without written authorization from the authors. This restriction is not intended to apply for connect time charges, or flat rate connection/download fees for electronic bulletin board services. The authors of this program accept no responsibility for damages resulting from the use of this software and make no warranty on representation, either express or implied, including but not limited to, any implied warranty of merchantability or fitness for a particular purpose. This software is provided as is, and you, its user, assume all risks when using it.
+The authors of this software grant to any individual or non-commercial organization the right to use and to make an unlimited number of copies of this software. Usage by commercial entities require a license from the authors. You may not decompile, disassemble, reverse engineer, or modify the software. This includes, but is not limited to modifying/changing any icons, menus, or displays associated with the software. This software cannot be sold without written authorization from the authors. This restriction is not intended to apply for connect time charges, or flat rate connection/download fees for electronic bulletin board services. The authors of this program accept no responsibility for damages resulting from the use of this software and make no warranty on representation, either express or implied, including but not limited to, any implied warranty of merchantability or fitness for a particular purpose. This software is provided as is, and you, its user, assume all risks when using it.
