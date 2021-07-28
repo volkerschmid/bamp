@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -48,7 +52,6 @@ models with additional age, period and/or cohort heterogeneity,
 additional covariates.
 
 " />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -66,7 +69,7 @@ additional covariates.
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -80,7 +83,7 @@ additional covariates.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
       </span>
     </div>
 
@@ -102,13 +105,13 @@ additional covariates.
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/volkerschmid/bamp">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/vjsstat">
-    <span class="fa fa-twitter"></span>
+    <span class="fas fa-twitter"></span>
      
   </a>
 </li>
@@ -126,7 +129,7 @@ additional covariates.
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Bayesian Age-Period-Cohort Modeling and Prediction (bamp)</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/volkerschmid/bamp/blob/master/R/bamp.R'><code>R/bamp.R</code></a></small>
     <div class="hidden name"><code>bamp.Rd</code></div>
     </div>
 
@@ -145,24 +148,24 @@ Additionally to the model described in Knorr-Held and Rainer (2001, DOI:10.1093/
 
     </div>
 
-    <pre class="usage"><span class='fu'>bamp</span>(
-  <span class='no'>cases</span>,
-  <span class='no'>population</span>,
-  <span class='no'>age</span>,
-  <span class='no'>period</span>,
-  <span class='no'>cohort</span>,
-  <span class='kw'>overdisp</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>period_covariate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cohort_covariate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>periods_per_agegroup</span>,
-  <span class='kw'>mcmc.options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>number_of_iterations</span> <span class='kw'>=</span> <span class='fl'>55000</span>, <span class='kw'>burn_in</span> <span class='kw'>=</span> <span class='fl'>5000</span>, <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>tuning</span> <span class='kw'>=</span>
-    <span class='fl'>500</span>),
-  <span class='kw'>hyperpar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>age</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5e-04</span>), <span class='kw'>period</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5e-04</span>), <span class='kw'>cohort</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5e-04</span>),
-    <span class='kw'>overdisp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0.05</span>)),
-  <span class='kw'>dic</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>bamp</span><span class='op'>(</span>
+  <span class='va'>cases</span>,
+  <span class='va'>population</span>,
+  <span class='va'>age</span>,
+  <span class='va'>period</span>,
+  <span class='va'>cohort</span>,
+  overdisp <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  period_covariate <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cohort_covariate <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>periods_per_agegroup</span>,
+  mcmc.options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>number_of_iterations <span class='op'>=</span> <span class='fl'>1e+05</span>, burn_in <span class='op'>=</span> <span class='fl'>50000</span>, step <span class='op'>=</span> <span class='fl'>50</span>, tuning
+    <span class='op'>=</span> <span class='fl'>500</span><span class='op'>)</span>,
+  hyperpar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>age <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0.5</span><span class='op'>)</span>, period <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>5e-04</span><span class='op'>)</span>, cohort <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>5e-04</span><span class='op'>)</span>, overdisp
+    <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0.05</span><span class='op'>)</span><span class='op'>)</span>,
+  dic <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  parallel <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -236,23 +239,19 @@ Only samples from the posterior are computed, point estimates and credible inter
 <code><a href='predict_apc.html'>predict_apc</a></code> can be used for for prediction of the future rates and number of cases and for a retrospective prediction for model checking.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='../articles/largevignettes/modeling.html'>vignette("modeling", package = "bamp")</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://volkerschmid.github.io/bamp/articles/largevignettes/modeling.html'>vignette("modeling", package = "bamp")</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>apc</span>)
-<span class='no'>model</span> <span class='kw'>&lt;-</span> <span class='fu'>bamp</span>(<span class='no'>cases</span>, <span class='no'>population</span>, <span class='kw'>age</span><span class='kw'>=</span><span class='st'>"rw1"</span>, <span class='kw'>period</span><span class='kw'>=</span><span class='st'>"rw1"</span>, <span class='kw'>cohort</span><span class='kw'>=</span><span class='st'>"rw1"</span>, <span class='kw'>periods_per_agegroup</span> <span class='kw'>=</span> <span class='fl'>5</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>apc</span><span class='op'>)</span>
+<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'>bamp</span><span class='op'>(</span><span class='va'>cases</span>, <span class='va'>population</span>, age<span class='op'>=</span><span class='st'>"rw1"</span>, period<span class='op'>=</span><span class='st'>"rw1"</span>, cohort<span class='op'>=</span><span class='st'>"rw1"</span>, periods_per_agegroup <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -263,7 +262,7 @@ Only samples from the posterior are computed, point estimates and credible inter
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

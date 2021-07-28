@@ -84,17 +84,6 @@ plot(prediction$period[2,])
 ```
 
 
-```{r bamp_rw2}
-simmodrw2 <- bamp(cases = simdata$cases, population = simdata$population, age = "rw2", 
-period = "rw2", cohort = "rw2", periods_per_agegroup =periods_per_agegroup)
-```
-
-```{r check_print_plot_rw2}
-print(simmodrw2)
-checkConvergence(simmodrw2)
-plot(simmodrw2)
-```
-
 ```{r simulate_covariate_for_period}
 cov_p<-rnorm(15,period,.1)
 ```
@@ -104,4 +93,10 @@ cov_p<-rnorm(15,period,.1)
 simmod2 <- bamp(cases = simdata$cases, population = simdata$population, age = "rw1", 
 period = "rw1", cohort = "rw1", periods_per_agegroup =periods_per_agegroup,
 period_covariate = cov_p)
+```
+
+```{r check_print_plot2}
+print(simmod2)
+checkConvergence(simmod2)
+plot(simmod2)
 ```

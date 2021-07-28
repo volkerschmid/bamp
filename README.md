@@ -15,9 +15,9 @@ BAMP has several features which are described more detailed in [Knorr-Held and R
 Additionally to the model described in [Knorr-Held and Rainer (2001)](https://doi.org/10.1093/biostatistics/2.1.109), BAMP can handle
 - AP and AC models
 - models with and without global heterogenity parameter (overdispersion)
-- models with additional age, period and/or cohohort heterogenity
+- models with additional age, period and/or cohort heterogenity
 - including covariates (still in development)
-Detail about this feature can be found in [Schmid (2004 - in german)](https://edoc.ub.uni-muenchen.de/3000/)
+Detail about this feature can be found in [Schmid (2004 - in German)](https://edoc.ub.uni-muenchen.de/3000/)
 
 There are some graphical routines available in order to
 

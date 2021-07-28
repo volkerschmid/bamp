@@ -1,11 +1,12 @@
-pandoc: 2.3.1
-pkgdown: 1.4.1
+pandoc: 2.7.3
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  bamp: largevignettes/bamp.html
-  modeling: largevignettes/modeling.html
-  prediction: largevignettes/prediction.html
-  simulation: largevignettes/simulation.html
-  publications: publications/publications.html
-  index: standaloneversion/index.html
+  largevignettes/bamp: bamp.html
+  largevignettes/modeling: modeling.html
+  largevignettes/prediction: prediction.html
+  largevignettes/simulation: simulation.html
+  publications/publications: publications.html
+  standaloneversion/index: index.html
+last_built: 2021-06-10T09:11Z
 

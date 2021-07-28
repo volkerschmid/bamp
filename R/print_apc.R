@@ -14,6 +14,13 @@
 #' }
 print.apc<-function(x, ...)
 {
+  
+  ## Check convergence
+  
+  cc <- checkConvergence(x, auto=TRUE)
+  
+  if (!cc)cat("\nWARNING! Markov Chains have apparently not converged! DO NOT TRUST THIS MODEL!\n")
+  
   ## Model
   
   settings <- ""
@@ -83,4 +90,9 @@ print.apc<-function(x, ...)
     cat(format(overdisp,digits = 3, width=12,trim=FALSE,nsmall=3))
     cat("\n")
   }
+  
+  ## Convergence
+  
+  if (cc)cat("\n\nMarkov Chains convergence checked succesfully using Gelman's R (potential scale reduction factor).")
+  
 }

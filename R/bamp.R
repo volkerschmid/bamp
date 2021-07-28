@@ -45,8 +45,8 @@ function(cases, population,
         age, period, cohort, overdisp=FALSE,
         period_covariate=NULL, cohort_covariate=NULL,
         periods_per_agegroup,
-        mcmc.options=list("number_of_iterations"=55000, "burn_in"=5000, "step"=50, "tuning"=500),
-        hyperpar=list("age"=c(1,0.0005), "period"=c(1,0.0005), "cohort"=c(1,0.0005), "overdisp"=c(1,0.05)),
+        mcmc.options=list("number_of_iterations"=100000, "burn_in"=50000, "step"=50, "tuning"=500),
+        hyperpar=list("age"=c(1,.5), "period"=c(1,0.0005), "cohort"=c(1,0.0005), "overdisp"=c(1,0.05)),
         dic=TRUE,
         parallel=TRUE, verbose=FALSE){
   output=apc()
@@ -612,6 +612,7 @@ if(verbose>=2)
                      lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample, verbose)
 parallel<-FALSE
 }
+ else{
 if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population,blocks,numbers,periods_per_agegroup,
                                                  numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, 
                                                  theta2.sample,phi2.sample,psi2.sample,ksi,delta.sample,kappa.sample,kappa2.sample,
@@ -622,7 +623,7 @@ if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population
                                               numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, 
                                               theta2.sample,phi2.sample,psi2.sample,ksi,delta.sample,kappa.sample,kappa2.sample,
                                               lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose)
-
+}
 ##################################################################################################################################
 
   deviance<-vector("list",chains)
@@ -663,6 +664,20 @@ if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population
  if(verbose)if (any(!kick))(cat(paste0("Removed ",sum(!kick)," chains.\n")))
  sumkick<-sum(kick)
  theta<-phi<-psi<-theta2<-phi2<-psi2<-delta<-kappa<-kappa2<-lambda<-lambda2<-ny<-ny2<-my<-deviance<-ksi<-vector("list",sumkick)
+ 
+ if (sum(kick)==0)
+  {
+   cat("\nAutomatic check procedure removed all Markov chains. Please change your model settings (maybe add overdispersion).")
+    return(list())
+  }
+ 
+
+ if (sum(kick)<chains)
+ {
+   cat("\nAutomatic check procedure removed",sum(!kick),"Markov chain")
+   if (sum(!kick)>1)cat("s")
+   cat(". Please check for convergence using checkConvergence() and maybe change your model settings (maybe add overdispersion).\n")
+ }
  
  ii=0
   for (i in (1:chains)[kick]){
@@ -778,9 +793,9 @@ deviance<-coda::as.mcmc.list(deviance)
  #     return(ksi)
  #   }
  
- if(verbose)checkConvergence(output, auto=verbose)
+ checkConvergence(output, auto=verbose)
 
  output$ksi=ksi
- 
+ cat("\n")
  return(output)
 }

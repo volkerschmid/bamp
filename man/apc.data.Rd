@@ -8,11 +8,13 @@
 \alias{population}
 \alias{cases}
 \title{Example dataset for APC model}
-\format{\itemize{
+\format{
+\itemize{
 \item\code{population}: matrix of population data
 \item\code{cases}: matrix of case counts
 \item\code{cov_p}: covariate for period
-\item\code{cov_c}: covariate for cohort}}
+\item\code{cov_c}: covariate for cohort}
+}
 \usage{
 data(apc)
 }

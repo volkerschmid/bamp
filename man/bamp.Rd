@@ -14,10 +14,10 @@ bamp(
   period_covariate = NULL,
   cohort_covariate = NULL,
   periods_per_agegroup,
-  mcmc.options = list(number_of_iterations = 55000, burn_in = 5000, step = 50, tuning =
-    500),
-  hyperpar = list(age = c(1, 5e-04), period = c(1, 5e-04), cohort = c(1, 5e-04),
-    overdisp = c(1, 0.05)),
+  mcmc.options = list(number_of_iterations = 1e+05, burn_in = 50000, step = 50, tuning
+    = 500),
+  hyperpar = list(age = c(1, 0.5), period = c(1, 5e-04), cohort = c(1, 5e-04), overdisp
+    = c(1, 0.05)),
   dic = TRUE,
   parallel = TRUE,
   verbose = FALSE
