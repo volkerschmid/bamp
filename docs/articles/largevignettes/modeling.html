@@ -53,13 +53,13 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/volkerschmid/bamp">
-    <span class="fas fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/vjsstat">
-    <span class="fas fa-twitter"></span>
+    <span class="fa fa-twitter"></span>
      
   </a>
 </li>
@@ -73,13 +73,13 @@
 
       
 
-      </header><script src="modeling_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="modeling_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Bayesian Age-Period-Cohort Modeling</h1>
                         <h4 class="author">Volker Schmid</h4>
             
-            <h4 class="date">2021-06-10</h4>
+            <h4 class="date">2021-07-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/volkerschmid/bamp/blob/master/vignettes/largevignettes/modeling.Rmd"><code>vignettes/largevignettes/modeling.Rmd</code></a></small>
       <div class="hidden name"><code>modeling.Rmd</code></div>
@@ -104,136 +104,134 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/bamp.html">bamp</a></span><span class="op">(</span><span class="va">cases</span>, <span class="va">population</span>, age<span class="op">=</span><span class="st">"rw1"</span>, period<span class="op">=</span><span class="st">"rw1"</span>, cohort<span class="op">=</span><span class="st">"rw1"</span>,
               periods_per_agegroup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Automatic check procedure removed 1 Markov chain. Please check for convergence using checkConvergence() and maybe change your model settings (maybe add overdispersion).</code></pre>
 <p>bamp() automatically performs a check for MCMC convergence using Gelman and Rubin’s convergence diagnostic. We can manually check the convergence again:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../../reference/checkConvergence.html">checkConvergence</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Now we have a look at the model results. This includes estimates of smoothing parameters and deviance and DIC:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../../reference/print.apc.html">print</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.08
-## pD:            36.65
-## DIC:          267.73
+## Deviance:     231.39
+## pD:            37.11
+## DIC:          268.50
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.340        0.932        1.913
-## period                          68.919      194.903      594.688
-## cohort                          34.971       58.932       99.366
+## age                              0.336        0.916        1.899
+## period                          68.761      197.792      585.818
+## cohort                          34.589       58.936       97.364
 ## 
 ## 
 ## Markov Chains convergence checked succesfully using Gelman's R (potential scale reduction factor).</code></pre>
 <p>We can plot the main APC effects using point-wise quantiles:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></code></pre></div>
 <p><img src="modeling_files/figure-html/plot_model-1.png" width="700"><img src="modeling_files/figure-html/plot_model-2.png" width="700"><img src="modeling_files/figure-html/plot_model-3.png" width="700"></p>
 <p>More quantiles are possible:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">model1</span>, quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>,<span class="fl">0.1</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>,<span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="modeling_files/figure-html/plot_model_with_more_quantiles-1.png" width="700"><img src="modeling_files/figure-html/plot_model_with_more_quantiles-2.png" width="700"><img src="modeling_files/figure-html/plot_model_with_more_quantiles-3.png" width="700"></p>
 </div>
 <div id="apc-model-with-random-walk-second-order-prior" class="section level2">
 <h2 class="hasAnchor">
 <a href="#apc-model-with-random-walk-second-order-prior" class="anchor"></a>APC model with random walk second order prior</h2>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">model2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/bamp.html">bamp</a></span><span class="op">(</span><span class="va">cases</span>, <span class="va">population</span>, age<span class="op">=</span><span class="st">"rw2"</span>, period<span class="op">=</span><span class="st">"rw2"</span>, cohort<span class="op">=</span><span class="st">"rw2"</span>,
               periods_per_agegroup <span class="op">=</span> <span class="fl">5</span>,
               mcmc.options<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"number_of_iterations"</span><span class="op">=</span><span class="fl">200000</span>, <span class="st">"burn_in"</span><span class="op">=</span><span class="fl">100000</span>, <span class="st">"step"</span><span class="op">=</span><span class="fl">50</span>, <span class="st">"tuning"</span><span class="op">=</span><span class="fl">500</span><span class="op">)</span>,
               hyperpar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"age"</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">.5</span><span class="op">)</span>, <span class="st">"period"</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0.05</span><span class="op">)</span>, <span class="st">"cohort"</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0.05</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: MCMC chains did not converge!</code></pre>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../../reference/checkConvergence.html">checkConvergence</a></span><span class="op">(</span><span class="va">model2</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning: MCMC chains did not converge!</code></pre>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../../reference/print.apc.html">print</a></span><span class="op">(</span><span class="va">model2</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## WARNING! Markov Chains have apparently not converged! DO NOT TRUST THIS MODEL!
 ## 
 ##  Model:
 ## age (rw2)  - period (rw2)  - cohort (rw2) model
-## Deviance:     234.02
-## pD:            36.81
-## DIC:          270.83
+## Deviance:     237.08
+## pD:            37.17
+## DIC:          274.25
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              1.035        2.922        6.645
-## period                          16.307       41.915       91.569
-## cohort                          23.446       45.032       82.334</code></pre>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+## age                              1.022        2.871        6.461
+## period                          16.512       41.970       91.815
+## cohort                          24.085       41.655       78.583</code></pre>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">model2</span><span class="op">)</span></code></pre></div>
 <p><img src="modeling_files/figure-html/Model2_results-1.png" width="700"><img src="modeling_files/figure-html/Model2_results-2.png" width="700"><img src="modeling_files/figure-html/Model2_results-3.png" width="700"></p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">model3</span><span class="op">&lt;-</span><span class="fu"><a href="../../reference/bamp.html">bamp</a></span><span class="op">(</span><span class="va">cases</span>, <span class="va">population</span>, age<span class="op">=</span><span class="st">"rw1"</span>, period<span class="op">=</span><span class="st">" "</span>, cohort<span class="op">=</span><span class="st">"rw2"</span>,
               periods_per_agegroup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../../reference/checkConvergence.html">checkConvergence</a></span><span class="op">(</span><span class="va">model3</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../../reference/print.apc.html">print</a></span><span class="op">(</span><span class="va">model3</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Model:
 ## age (rw1) cohort (rw2) model
-## Deviance:     276.60
-## pD:            30.11
-## DIC:          306.71
+## Deviance:     276.21
+## pD:            30.03
+## DIC:          306.25
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.290        0.727        1.522
-## cohort                          38.399       74.085      137.531
+## age                              0.281        0.722        1.501
+## cohort                          38.619       73.610      135.966
 ## 
 ## 
 ## Markov Chains convergence checked succesfully using Gelman's R (potential scale reduction factor).</code></pre>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">model3</span><span class="op">)</span></code></pre></div>
 <p><img src="modeling_files/figure-html/model3-1.png" width="700"><img src="modeling_files/figure-html/model3-2.png" width="700"></p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="va">model4</span><span class="op">&lt;-</span><span class="fu"><a href="../../reference/bamp.html">bamp</a></span><span class="op">(</span><span class="va">cases</span>, <span class="va">population</span>, age<span class="op">=</span><span class="st">"rw1"</span>, period<span class="op">=</span><span class="st">"rw1"</span>, cohort<span class="op">=</span><span class="st">"rw1"</span>,
              cohort_covariate <span class="op">=</span> <span class="va">cov_c</span>, periods_per_agegroup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning: MCMC chains did not converge!</code></pre>
 <pre><code>## 
-## WARNING! Markov Chains have apparently not converged! DO NOT TRUST THIS MODEL!
-## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.31
-## pD:            37.03
-## DIC:          268.33
+## Deviance:     231.13
+## pD:            36.88
+## DIC:          268.01
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.347        0.912        1.909
-## period                          63.771      201.278      638.200
-## cohort                          33.479       58.744       99.241</code></pre>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+## age                              0.352        0.911        1.947
+## period                          66.270      198.481      610.313
+## cohort                          34.056       59.015       98.858
+## 
+## 
+## Markov Chains convergence checked succesfully using Gelman's R (potential scale reduction factor).</code></pre>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">model4</span><span class="op">)</span></code></pre></div>
 <p><img src="modeling_files/figure-html/model4-1.png" width="700"><img src="modeling_files/figure-html/model4-2.png" width="700"><img src="modeling_files/figure-html/model4-3.png" width="700"><img src="modeling_files/figure-html/model4-4.png" width="700"><img src="modeling_files/figure-html/model4-5.png" width="700"><img src="modeling_files/figure-html/model4-6.png" width="700"></p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="va">model5</span><span class="op">&lt;-</span><span class="fu"><a href="../../reference/bamp.html">bamp</a></span><span class="op">(</span><span class="va">cases</span>, <span class="va">population</span>, age<span class="op">=</span><span class="st">"rw1"</span>, period<span class="op">=</span><span class="st">"rw1"</span>, cohort<span class="op">=</span><span class="st">"rw1"</span>,
              period_covariate <span class="op">=</span> <span class="va">cov_p</span>, periods_per_agegroup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.34
-## pD:            36.97
-## DIC:          268.30
+## Deviance:     231.33
+## pD:            36.83
+## DIC:          268.16
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.363        0.924        1.970
-## period                          65.217      199.492      613.479
-## cohort                          34.443       59.277       97.055
+## age                              0.353        0.899        1.923
+## period                          68.214      199.926      646.618
+## cohort                          34.668       58.831       97.870
 ## 
 ## 
 ## Markov Chains convergence checked succesfully using Gelman's R (potential scale reduction factor).</code></pre>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">model5</span><span class="op">)</span></code></pre></div>
 <p><img src="modeling_files/figure-html/model5-1.png" width="700"><img src="modeling_files/figure-html/model5-2.png" width="700"><img src="modeling_files/figure-html/model5-3.png" width="700"><img src="modeling_files/figure-html/model5-4.png" width="700"><img src="modeling_files/figure-html/model5-5.png" width="700"><img src="modeling_files/figure-html/model5-6.png" width="700"></p>
 </div>

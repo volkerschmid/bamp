@@ -53,13 +53,13 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/volkerschmid/bamp">
-    <span class="fas fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/vjsstat">
-    <span class="fas fa-twitter"></span>
+    <span class="fa fa-twitter"></span>
      
   </a>
 </li>
@@ -73,13 +73,13 @@
 
       
 
-      </header><script src="bamp_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="bamp_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Short Introduction to BAMP</h1>
                         <h4 class="author">Volker Schmid</h4>
             
-            <h4 class="date">2021-06-10</h4>
+            <h4 class="date">2021-07-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/volkerschmid/bamp/blob/master/vignettes/largevignettes/bamp.Rmd"><code>vignettes/largevignettes/bamp.Rmd</code></a></small>
       <div class="hidden name"><code>bamp.Rmd</code></div>
@@ -105,34 +105,36 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/bamp.html">bamp</a></span><span class="op">(</span><span class="va">cases</span>, <span class="va">population</span>, age<span class="op">=</span><span class="st">"rw1"</span>, period<span class="op">=</span><span class="st">"rw1"</span>, cohort<span class="op">=</span><span class="st">"rw1"</span>,
               periods_per_agegroup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## Automatic check procedure removed 1 Markov chain. Please check for convergence using checkConvergence() and maybe change your model settings (maybe add overdispersion).</code></pre>
 <p>bamp() automatically performs a check for MCMC convergence using Gelman and Rubin’s convergence diagnostic. We can manually check the convergence again:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../../reference/checkConvergence.html">checkConvergence</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Now we have a look at the model results. This includes estimates of smoothing parameters and deviance and DIC:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../../reference/print.apc.html">print</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Model:
 ## age (rw1)  - period (rw1)  - cohort (rw1) model
-## Deviance:     231.34
-## pD:            37.03
-## DIC:          268.37
+## Deviance:     231.01
+## pD:            36.74
+## DIC:          267.76
 ## 
 ## 
 ##  Hyper parameters:                 5%           50%          95%         
-## age                              0.347        0.899        1.917
-## period                          69.498      206.845      624.196
-## cohort                          34.471       59.023       98.692
+## age                              0.355        0.893        1.868
+## period                          68.898      198.855      597.425
+## cohort                          34.925       59.276       98.654
 ## 
 ## 
 ## Markov Chains convergence checked succesfully using Gelman's R (potential scale reduction factor).</code></pre>
 <p>We can plot the main APC effects using point-wise quantiles:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></code></pre></div>
 <p><img src="bamp_files/figure-html/plot_model-1.png" width="700"><img src="bamp_files/figure-html/plot_model-2.png" width="700"><img src="bamp_files/figure-html/plot_model-3.png" width="700"></p>
 <p>More quantiles are possible:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">model1</span>, quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>,<span class="fl">0.1</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>,<span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="bamp_files/figure-html/plot_model_with_more_quantiles-1.png" width="700"><img src="bamp_files/figure-html/plot_model_with_more_quantiles-2.png" width="700"><img src="bamp_files/figure-html/plot_model_with_more_quantiles-3.png" width="700"></p>
 <p>For other models see <em>vignette(“modeling”,package=“bamp”)</em>.</p>
@@ -141,9 +143,9 @@
 <h2 class="hasAnchor">
 <a href="#prediction" class="anchor"></a>Prediction</h2>
 <p>Using the prior assumption of a random walk for the period and cohort effect, one can predict cases for upcoming years.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/predict_apc.html">predict_apc</a></span><span class="op">(</span>object<span class="op">=</span><span class="va">model1</span>, periods<span class="op">=</span><span class="fl">3</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/predict_apc.html">predict_apc</a></span><span class="op">(</span>object<span class="op">=</span><span class="va">model1</span>, periods<span class="op">=</span><span class="fl">3</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">m</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">pred</span><span class="op">$</span><span class="va">pr</span><span class="op">[</span><span class="fl">2</span>,,<span class="op">]</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">pred</span><span class="op">$</span><span class="va">pr</span><span class="op">[</span><span class="fl">2</span>,,<span class="fl">8</span><span class="op">]</span>,type<span class="op">=</span><span class="st">"l"</span>, ylab<span class="op">=</span><span class="st">"probability"</span>, xlab<span class="op">=</span><span class="st">"year"</span>, ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="va">m</span><span class="op">)</span><span class="op">)</span>
 <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">7</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>
