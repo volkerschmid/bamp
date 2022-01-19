@@ -10,7 +10,7 @@
 #' @param period_covariate covariate for period
 #' @param cohort_covariate covariate for cohort
 #' @param mcmc.options list of options for MCMC. \itemize{\item number_of_iterations: number of iterations per chain. \item burn_in: number of iterations used as burnin at the beginning of the algorithm, these iterations will be removed. \item step: Step size, for example default is 50, so only every 50th iterations will be stored. \item tuning: number of iterations for automatic tuning. Depending on the model, the MCMC algorithm will tune certain parameters for more efficient MCMC chains. After tuning, the algorithm is restarted.} 
-#' @param hyperpar list of hyper parameters. The hyper prior for the precision (inverse variance) in the random walk priors is a Gamma distribution with parameters \eqn{a} and \eqn{b}; expected value is \eqn{a/b}, variance is \eqn{a/b^2}. Weak hyper parameters are suggested, defaults are \eqn{a=1, b=0.0005} for age, period and cohort effects and \eqn{a=1, b=0.05} for overdispersion (if added). 
+#' @param hyperpar list of hyper parameters. The hyper prior for the precision (inverse variance) in the random walk priors is a Gamma distribution with parameters \eqn{a} and \eqn{b}; expected value is \eqn{a/b}, variance is \eqn{a/b^2}. Weak hyper parameters are suggested, defaults are \eqn{a=1, b=0.5} for age, \eqn{a=1, b=0.0005} for period and cohort effects and \eqn{a=1, b=0.05} for overdispersion (if added). It is recommended to choose the hyper priors depending on the model, in particular on the order of the random walk.
 #' @param dic logical. If true. DIC will be computed
 #' @param parallel logical, should computation be done in parallel. This uses the parallel package, which does not allow parallel computing under Windows.
 #' @param verbose verbose mode
@@ -46,7 +46,7 @@ function(cases, population,
         period_covariate=NULL, cohort_covariate=NULL,
         periods_per_agegroup,
         mcmc.options=list("number_of_iterations"=100000, "burn_in"=50000, "step"=50, "tuning"=500),
-        hyperpar=list("age"=c(1,.5), "period"=c(1,0.0005), "cohort"=c(1,0.0005), "overdisp"=c(1,0.05)),
+        hyperpar=list("age"=c(1,0.5), "period"=c(1,0.0005), "cohort"=c(1,0.0005), "overdisp"=c(1,0.05)),
         dic=TRUE,
         parallel=TRUE, verbose=FALSE){
   output=apc()

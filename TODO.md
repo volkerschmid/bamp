@@ -6,6 +6,7 @@
 ** use results from $effect
 * Plotting rw2 effects
 ** Restrict per iteration
+* scale-dependent hyper priors (or data standardization)
 
 # Features
 

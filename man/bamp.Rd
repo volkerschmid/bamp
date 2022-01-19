@@ -44,7 +44,7 @@ bamp(
 
 \item{mcmc.options}{list of options for MCMC. \itemize{\item number_of_iterations: number of iterations per chain. \item burn_in: number of iterations used as burnin at the beginning of the algorithm, these iterations will be removed. \item step: Step size, for example default is 50, so only every 50th iterations will be stored. \item tuning: number of iterations for automatic tuning. Depending on the model, the MCMC algorithm will tune certain parameters for more efficient MCMC chains. After tuning, the algorithm is restarted.}}
 
-\item{hyperpar}{list of hyper parameters. The hyper prior for the precision (inverse variance) in the random walk priors is a Gamma distribution with parameters \eqn{a} and \eqn{b}; expected value is \eqn{a/b}, variance is \eqn{a/b^2}. Weak hyper parameters are suggested, defaults are \eqn{a=1, b=0.0005} for age, period and cohort effects and \eqn{a=1, b=0.05} for overdispersion (if added).}
+\item{hyperpar}{list of hyper parameters. The hyper prior for the precision (inverse variance) in the random walk priors is a Gamma distribution with parameters \eqn{a} and \eqn{b}; expected value is \eqn{a/b}, variance is \eqn{a/b^2}. Weak hyper parameters are suggested, defaults are \eqn{a=1, b=0.5} for age, \eqn{a=1, b=0.0005} for period and cohort effects and \eqn{a=1, b=0.05} for overdispersion (if added). It is recommended to choose the hyper priors depending on the model, in particular on the order of the random walk.}
 
 \item{dic}{logical. If true. DIC will be computed}
 
