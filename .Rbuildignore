@@ -20,3 +20,4 @@ docs/articles/*_cache/
 internaltest/
 vignettes/largevignettes/
 vignettes/standaloneversion/
+^CRAN-SUBMISSION$
