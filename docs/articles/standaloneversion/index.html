@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">bamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.1</span>
       </span>
     </div>
 
@@ -52,13 +54,13 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/volkerschmid/bamp">
+  <a href="https://github.com/volkerschmid/bamp" class="external-link">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="https://twitter.com/vjsstat">
+  <a href="https://twitter.com/vjsstat" class="external-link">
     <span class="fa fa-twitter"></span>
      
   </a>
@@ -73,23 +75,24 @@
 
       
 
-      </header><script src="index_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>BAMP standalone version</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/volkerschmid/bamp/blob/master/vignettes/standaloneversion/index.Rmd"><code>vignettes/standaloneversion/index.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/volkerschmid/bamp/blob/HEAD/vignettes/standaloneversion/index.Rmd" class="external-link"><code>vignettes/standaloneversion/index.Rmd</code></a></small>
       <div class="hidden name"><code>index.Rmd</code></div>
 
     </div>
 
     
     
-<p>BAMP is available as standalone version (version 1.3). The standalone version no longer actively developed.</p>
-<div id="downloads" class="section level1">
-<h1 class="hasAnchor">
-<a href="#downloads" class="anchor"></a>Downloads</h1>
+<p>BAMP is available as standalone version (version 1.3). The standalone
+version no longer actively developed.</p>
+<div class="section level2">
+<h2 id="downloads">Downloads<a class="anchor" aria-label="anchor" href="#downloads"></a>
+</h2>
 <ul>
 <li><a href="bamp.zip">BAMP Windows version</a></li>
 <li><a href="bamp.tar">BAMP Linux version</a></li>
@@ -97,23 +100,30 @@
 <li><a href="bamp.ssc">S-Plus scripts for BAMP results</a></li>
 <li><a href="dos2unix.zip">dos2unix</a></li>
 </ul>
-<div id="installation-and-usage-under-windows" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation-and-usage-under-windows" class="anchor"></a>Installation and usage under Windows</h2>
+<div class="section level3">
+<h3 id="installation-and-usage-under-windows">Installation and usage under Windows<a class="anchor" aria-label="anchor" href="#installation-and-usage-under-windows"></a>
+</h3>
 <ul>
 <li>Unzip the downloaded bamp.zip file</li>
-<li>Edit the bamp.ini file and you can start the program with a double click on the BAMP-icon.</li>
+<li>Edit the bamp.ini file and you can start the program with a double
+click on the BAMP-icon.</li>
 </ul>
-<p>If you want to use your own ini-files, you have to use a MS-DOS-console:</p>
+<p>If you want to use your own ini-files, you have to use a
+MS-DOS-console:</p>
 <blockquote>
 <p>bamp ini-file</p>
 </blockquote>
-<p>Please be sure, that the file cygwin1.dll is in the same folder as bamp.exe.</p>
-<p>We recommend to convert bamp.ini to unix format using [dos2unix] after editing the file with WordPad. Unpack dos2unix to the bamp folder. After editing and saving bamp.ini, drop the bamp.ini file on the dos2unix icon. After this, BAMP should run smoothly on all Windows versions.</p>
+<p>Please be sure, that the file cygwin1.dll is in the same folder as
+bamp.exe.</p>
+<p>We recommend to convert bamp.ini to unix format using [dos2unix]
+after editing the file with WordPad. Unpack dos2unix to the bamp folder.
+After editing and saving bamp.ini, drop the bamp.ini file on the
+dos2unix icon. After this, BAMP should run smoothly on all Windows
+versions.</p>
 </div>
-<div id="installation-and-usage-under-linux" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation-and-usage-under-linux" class="anchor"></a>Installation and usage under Linux</h2>
+<div class="section level3">
+<h3 id="installation-and-usage-under-linux">Installation and usage under Linux<a class="anchor" aria-label="anchor" href="#installation-and-usage-under-linux"></a>
+</h3>
 <p>Extract the bamp.tar file using</p>
 <blockquote>
 <p>tar xf bamp.tar</p>
@@ -124,14 +134,18 @@
 </blockquote>
 </div>
 </div>
-<div id="manual" class="section level1">
-<h1 class="hasAnchor">
-<a href="#manual" class="anchor"></a>Manual</h1>
-<p>Detailed information on the software, the data and the output can be found in <a href="http://dx.doi.org/10.18637/jss.v021.i08">Schmid, Held: Bayesian Age-Period-Cohort Modeling and Prediction - BAMP, Journal of Statistical Software, Vol. 21, Issue 8, Oct 2007</a>.</p>
-<div id="quick-steps" class="section level2">
-<h2 class="hasAnchor">
-<a href="#quick-steps" class="anchor"></a>Quick steps</h2>
-<p>After you have installed BAMP, edit the bamp.ini file or write your own ini-file. Then start the program by typing</p>
+<div class="section level2">
+<h2 id="manual">Manual<a class="anchor" aria-label="anchor" href="#manual"></a>
+</h2>
+<p>Detailed information on the software, the data and the output can be
+found in <a href="http://dx.doi.org/10.18637/jss.v021.i08" class="external-link">Schmid, Held:
+Bayesian Age-Period-Cohort Modeling and Prediction - BAMP, Journal of
+Statistical Software, Vol. 21, Issue 8, Oct 2007</a>.</p>
+<div class="section level3">
+<h3 id="quick-steps">Quick steps<a class="anchor" aria-label="anchor" href="#quick-steps"></a>
+</h3>
+<p>After you have installed BAMP, edit the bamp.ini file or write your
+own ini-file. Then start the program by typing</p>
 <blockquote>
 <p>bamp ini-file</p>
 </blockquote>
@@ -139,21 +153,32 @@
 <blockquote>
 <p>bamp</p>
 </blockquote>
-<p>On window-based OS you can also start BAMP with a double click on the BAMP-icon. BAMP then will use the bamp.ini file</p>
+<p>On window-based OS you can also start BAMP with a double click on the
+BAMP-icon. BAMP then will use the bamp.ini file</p>
 </div>
-<div id="input-files" class="section level2">
-<h2 class="hasAnchor">
-<a href="#input-files" class="anchor"></a>Input-Files</h2>
-<p>BAMP needs input files with the population data and the number of deaths. Both files have to be matrices of number of age groups x number of periods (or transposed, see dataorder). The data has to be separated by blanks.</p>
+<div class="section level3">
+<h3 id="input-files">Input-Files<a class="anchor" aria-label="anchor" href="#input-files"></a>
+</h3>
+<p>BAMP needs input files with the population data and the number of
+deaths. Both files have to be matrices of number of age groups x number
+of periods (or transposed, see dataorder). The data has to be separated
+by blanks.</p>
 </div>
-<div id="predictions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#predictions" class="anchor"></a>Predictions</h2>
-<p>If you want to get predictions of future death rates, set predictions to 1. Set number of predictions to the number of periods for which you want the predictions. If you also have population projection, set predictions to 3. In order to test the model you can also make prediction for existing data. Then the input files must include this data, the matrices have to be of order number of agegroups x (number of periods + number of predictions). Set deviance to 2 and BAMP will calculate the deviance for the predicted periods.</p>
+<div class="section level3">
+<h3 id="predictions">Predictions<a class="anchor" aria-label="anchor" href="#predictions"></a>
+</h3>
+<p>If you want to get predictions of future death rates, set predictions
+to 1. Set number of predictions to the number of periods for which you
+want the predictions. If you also have population projection, set
+predictions to 3. In order to test the model you can also make
+prediction for existing data. Then the input files must include this
+data, the matrices have to be of order number of agegroups x (number of
+periods + number of predictions). Set deviance to 2 and BAMP will
+calculate the deviance for the predicted periods.</p>
 </div>
-<div id="description-of-bamp-ini" class="section level2">
-<h2 class="hasAnchor">
-<a href="#description-of-bamp-ini" class="anchor"></a>Description of bamp.ini</h2>
+<div class="section level3">
+<h3 id="description-of-bamp-ini">Description of bamp.ini<a class="anchor" aria-label="anchor" href="#description-of-bamp-ini"></a>
+</h3>
 <table class="table">
 <colgroup>
 <col width="21%">
@@ -198,7 +223,8 @@
 </tr>
 <tr class="even">
 <td>predictions</td>
-<td>0 = no predictions, 1 = predictions, 2 = predictions for existing data (see deviance)</td>
+<td>0 = no predictions, 1 = predictions, 2 = predictions for existing
+data (see deviance)</td>
 </tr>
 <tr class="odd">
 <td>number of predictions</td>
@@ -222,11 +248,13 @@
 </tr>
 <tr class="even">
 <td>samples</td>
-<td>1 if you wish to get all samples, 0 else; samples will be written to “temp folder”</td>
+<td>1 if you wish to get all samples, 0 else; samples will be written to
+“temp folder”</td>
 </tr>
 <tr class="odd">
 <td>deviance</td>
-<td>0 = don’t compute deviance, 1 = compute deviance, 2 = compute deviance also for predicted periods (only if predictions = 2)</td>
+<td>0 = don’t compute deviance, 1 = compute deviance, 2 = compute
+deviance also for predicted periods (only if predictions = 2)</td>
 </tr>
 <tr class="even">
 <td>age block</td>
@@ -254,7 +282,8 @@
 </tr>
 <tr class="even">
 <td>z hyperpar.a and b.</td>
-<td>hyperparameters for Priors of precision of overdispersion parameter</td>
+<td>hyperparameters for Priors of precision of overdispersion
+parameter</td>
 </tr>
 <tr class="odd">
 <td>quantile 1 to 5</td>
@@ -264,15 +293,30 @@
 </table>
 </div>
 </div>
-<div id="publications" class="section level1">
-<h1 class="hasAnchor">
-<a href="#publications" class="anchor"></a>Publications</h1>
-<p><a href="../publications/publications.html">List of publications</a></p>
+<div class="section level2">
+<h2 id="publications">Publications<a class="anchor" aria-label="anchor" href="#publications"></a>
+</h2>
+<p><a href="../publications/publications.html">List of
+publications</a></p>
 </div>
-<div id="licence-agreement" class="section level1">
-<h1 class="hasAnchor">
-<a href="#licence-agreement" class="anchor"></a>Licence agreement</h1>
-<p>The authors of this software grant to any individual or non-commercial organization the right to use and to make an unlimited number of copies of this software. Usage by commercial entities require a license from the authors. You may not decompile, disassemble, reverse engineer, or modify the software. This includes, but is not limited to modifying/changing any icons, menus, or displays associated with the software. This software cannot be sold without written authorization from the authors. This restriction is not intended to apply for connect time charges, or flat rate connection/download fees for electronic bulletin board services. The authors of this program accept no responsibility for damages resulting from the use of this software and make no warranty on representation, either express or implied, including but not limited to, any implied warranty of merchantability or fitness for a particular purpose. This software is provided as is, and you, its user, assume all risks when using it.</p>
+<div class="section level2">
+<h2 id="licence-agreement">Licence agreement<a class="anchor" aria-label="anchor" href="#licence-agreement"></a>
+</h2>
+<p>The authors of this software grant to any individual or
+non-commercial organization the right to use and to make an unlimited
+number of copies of this software. Usage by commercial entities require
+a license from the authors. You may not decompile, disassemble, reverse
+engineer, or modify the software. This includes, but is not limited to
+modifying/changing any icons, menus, or displays associated with the
+software. This software cannot be sold without written authorization
+from the authors. This restriction is not intended to apply for connect
+time charges, or flat rate connection/download fees for electronic
+bulletin board services. The authors of this program accept no
+responsibility for damages resulting from the use of this software and
+make no warranty on representation, either express or implied, including
+but not limited to, any implied warranty of merchantability or fitness
+for a particular purpose. This software is provided as is, and you, its
+user, assume all risks when using it.</p>
 </div>
   </div>
 
@@ -287,11 +331,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Volker Schmid.</p>
+  <p></p>
+<p>Developed by Volker Schmid.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
@@ -299,6 +345,8 @@
 
   
 
+
+  
 
   </body>
 </html>

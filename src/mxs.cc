@@ -1,8 +1,13 @@
+#define USE_FC_LEN_T
 #include <R.h>
 #include <Rmath.h>
 #include <R_ext/Lapack.h>
 #include <R_ext/BLAS.h>
 #include "l.h"
+
+#ifndef FCONE
+# define FCONE
+#endif
 
 double xLx(double* Q, double* x, int noa, int b)
 {
@@ -53,7 +58,7 @@ double berechneVarianzsumx_i(double* L,int noa,int bandw)
     }
   int* nn=new int[1];
   nn[0]=n;
-  F77_CALL(dpotri)("L", nn, L2, lda, info);
+  F77_CALL(dpotri)("L", nn, L2, lda, info FCONE);
 
   //dpotri_(uplo, n, L2, lda, info);
 
@@ -84,14 +89,14 @@ double det(double* A,int n)
 }
 
 void cholesky77(int* n, int* bw, double* matrix,  int* lda, int* info) {
-  F77_CALL(dpbtrf)("L", n, bw, matrix, lda, info);
+  F77_CALL(dpbtrf)("L", n, bw, matrix, lda, info FCONE);
 }
 
 void loese77T(double* A, double* z, int* n, int* bw, int* lda, int* incx) {
-  F77_CALL(dtbsv)("L","T","N", n, bw, A, lda, z, incx);
+  F77_CALL(dtbsv)("L","T","N", n, bw, A, lda, z, incx FCONE FCONE FCONE);
 }
 void loese77N(double* A, double* z, int* n, int* bw, int* lda, int* incx) {
-  F77_CALL(dtbsv)("L","N","N", n, bw, A, lda, z, incx);
+  F77_CALL(dtbsv)("L","N","N", n, bw, A, lda, z, incx FCONE FCONE FCONE);
 }
 
 

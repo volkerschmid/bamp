@@ -2,8 +2,8 @@
 title: "Bayesian Age-Period-Cohort Prediction"
 author: "Volker Schmid"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-#output: rmarkdown::pdf_document
+#output: rmarkdown::html_vignette
+output: rmarkdown::pdf_document
 vignette: >
   %\VignetteIndexEntry{Prediction using Bayesian Age-Period-Cohort Models}
   %\VignetteEngine{knitr::rmarkdown}

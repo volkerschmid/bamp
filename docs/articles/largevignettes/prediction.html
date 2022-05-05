@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">bamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.1</span>
       </span>
     </div>
 
@@ -52,13 +54,13 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/volkerschmid/bamp">
+  <a href="https://github.com/volkerschmid/bamp" class="external-link">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="https://twitter.com/vjsstat">
+  <a href="https://twitter.com/vjsstat" class="external-link">
     <span class="fa fa-twitter"></span>
      
   </a>
@@ -73,30 +75,32 @@
 
       
 
-      </header><script src="prediction_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Bayesian Age-Period-Cohort Prediction</h1>
-                        <h4 class="author">Volker Schmid</h4>
+                        <h4 data-toc-skip class="author">Volker
+Schmid</h4>
             
-            <h4 class="date">2021-07-28</h4>
+            <h4 data-toc-skip class="date">2022-05-05</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/volkerschmid/bamp/blob/master/vignettes/largevignettes/prediction.Rmd"><code>vignettes/largevignettes/prediction.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/volkerschmid/bamp/blob/HEAD/vignettes/largevignettes/prediction.Rmd" class="external-link"><code>vignettes/largevignettes/prediction.Rmd</code></a></small>
       <div class="hidden name"><code>prediction.Rmd</code></div>
 
     </div>
 
     
     
-<div id="prediction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#prediction" class="anchor"></a>Prediction</h2>
-<p>Using the prior assumption of a random walk for the period and cohort effect, one can predict cases for upcoming years.</p>
+<div class="section level2">
+<h2 id="prediction">Prediction<a class="anchor" aria-label="anchor" href="#prediction"></a>
+</h2>
+<p>Using the prior assumption of a random walk for the period and cohort
+effect, one can predict cases for upcoming years.</p>
 <p>Here, we use the included data example.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">apc</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cases</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,type<span class="op">=</span><span class="st">"l"</span>,ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">cases</span><span class="op">)</span>, ylab<span class="op">=</span><span class="st">"cases"</span>, xlab<span class="op">=</span><span class="st">"year"</span>, main<span class="op">=</span><span class="st">"cases per age group"</span><span class="op">)</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">cases</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span>, col<span class="op">=</span><span class="va">i</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">apc</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cases</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,type<span class="op">=</span><span class="st">"l"</span>,ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">cases</span><span class="op">)</span>, ylab<span class="op">=</span><span class="st">"cases"</span>, xlab<span class="op">=</span><span class="st">"year"</span>, main<span class="op">=</span><span class="st">"cases per age group"</span><span class="op">)</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">cases</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span>, col<span class="op">=</span><span class="va">i</span><span class="op">)</span></code></pre></div>
 <p><img src="prediction_files/figure-html/loadplot-1.png" width="700"></p>
 <p>We us only nine years and predict the last year.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -106,15 +110,15 @@
 <code class="sourceCode R"><span class="va">model0</span><span class="op">&lt;-</span><span class="fu"><a href="../../reference/predict_apc.html">predict_apc</a></span><span class="op">(</span>object<span class="op">=</span><span class="va">model0</span>, periods<span class="op">=</span><span class="fl">1</span>, population<span class="op">=</span><span class="va">population</span>, update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Plot of predicted cases with credible intervals and true data</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/ts.plot.html">ts.plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">model0</span><span class="op">$</span><span class="va">predicted</span><span class="op">$</span><span class="va">cases_period</span><span class="op">)</span>, lty<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">cases</span>,<span class="fl">1</span>,<span class="va">sum</span><span class="op">)</span>, pch<span class="op">=</span><span class="fl">19</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/ts.plot.html" class="external-link">ts.plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">model0</span><span class="op">$</span><span class="va">predicted</span><span class="op">$</span><span class="va">cases_period</span><span class="op">)</span>, lty<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">cases</span>,<span class="fl">1</span>,<span class="va">sum</span><span class="op">)</span>, pch<span class="op">=</span><span class="fl">19</span><span class="op">)</span></code></pre></div>
 <p><img src="prediction_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
 <p>Plot period and cohort effects including prediction of year 10.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/ts.plot.html">ts.plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">model0</span><span class="op">$</span><span class="va">predicted</span><span class="op">$</span><span class="va">period</span><span class="op">)</span>, lty<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/ts.plot.html" class="external-link">ts.plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">model0</span><span class="op">$</span><span class="va">predicted</span><span class="op">$</span><span class="va">period</span><span class="op">)</span>, lty<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="prediction_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/ts.plot.html">ts.plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">model0</span><span class="op">$</span><span class="va">predicted</span><span class="op">$</span><span class="va">cohort</span><span class="op">)</span>, lty<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/ts.plot.html" class="external-link">ts.plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">model0</span><span class="op">$</span><span class="va">predicted</span><span class="op">$</span><span class="va">cohort</span><span class="op">)</span>, lty<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="prediction_files/figure-html/unnamed-chunk-2-2.png" width="700"></p>
 </div>
   </div>
@@ -130,11 +134,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Volker Schmid.</p>
+  <p></p>
+<p>Developed by Volker Schmid.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
@@ -142,6 +148,8 @@
 
   
 
+
+  
 
   </body>
 </html>

@@ -28,7 +28,7 @@ additional covariates.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bamp</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.1</span>
       </span>
     </div>
 
@@ -130,7 +130,7 @@ Additionally to the model described in Knorr-Held and Rainer (2001, DOI:10.1093/
 <li><p>tuning: number of iterations for automatic tuning. Depending on the model, the MCMC algorithm will tune certain parameters for more efficient MCMC chains. After tuning, the algorithm is restarted.</p></li>
 </ul></dd>
 <dt>hyperpar</dt>
-<dd><p>list of hyper parameters. The hyper prior for the precision (inverse variance) in the random walk priors is a Gamma distribution with parameters \(a\) and \(b\); expected value is \(a/b\), variance is \(a/b^2\). Weak hyper parameters are suggested, defaults are \(a=1, b=0.0005\) for age, period and cohort effects and \(a=1, b=0.05\) for overdispersion (if added).</p></dd>
+<dd><p>list of hyper parameters. The hyper prior for the precision (inverse variance) in the random walk priors is a Gamma distribution with parameters \(a\) and \(b\); expected value is \(a/b\), variance is \(a/b^2\). Weak hyper parameters are suggested, defaults are \(a=1, b=0.5\) for age, \(a=1, b=0.0005\) for period and cohort effects and \(a=1, b=0.05\) for overdispersion (if added). It is recommended to choose the hyper priors depending on the model, in particular on the order of the random walk.</p></dd>
 <dt>dic</dt>
 <dd><p>logical. If true. DIC will be computed</p></dd>
 <dt>parallel</dt>
@@ -169,8 +169,7 @@ Only samples from the posterior are computed, point estimates and credible inter
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>

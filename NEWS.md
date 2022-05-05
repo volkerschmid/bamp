@@ -1,3 +1,6 @@
+# bamp 2.1.1
+* USE_FC_LEN_T for Fortran code
+
 # bamp 2.1.0
 * Better default settings (burn in times ten, more informative prior for age).
 * Add warnings for failed convergence checks and removed chains in bamp(), including suggestions.
