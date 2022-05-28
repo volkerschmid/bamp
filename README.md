@@ -30,7 +30,7 @@ There are some graphical routines available in order to
 
 [Find the older standalone version here.](https://volkerschmid.github.io/bamp/articles/standaloneversion/)
 
-## BAMP R package (2.0)
+## BAMP R package (2.1)
 
 [The bamp R package is available on CRAN.](https://CRAN.R-project.org/package=bamp)
 
