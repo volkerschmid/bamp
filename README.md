@@ -36,4 +36,6 @@ There are some graphical routines available in order to
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/bamp)](https://CRAN.R-project.org/package=bamp)
+[![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/bamp)](https://cran.r-project.org/package=bamp)
+[![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/grand-total/bamp)](https://cran.r-project.org/package=bamp)
 <!-- badges: end -->
