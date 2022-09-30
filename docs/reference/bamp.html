@@ -84,59 +84,86 @@ Additionally to the model described in Knorr-Held and Rainer (2001, DOI:10.1093/
 </ul></div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">bamp</span><span class="op">(</span>
-  <span class="va">cases</span>,
-  <span class="va">population</span>,
-  <span class="va">age</span>,
-  <span class="va">period</span>,
-  <span class="va">cohort</span>,
-  overdisp <span class="op">=</span> <span class="cn">FALSE</span>,
-  period_covariate <span class="op">=</span> <span class="cn">NULL</span>,
-  cohort_covariate <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">periods_per_agegroup</span>,
-  mcmc.options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>number_of_iterations <span class="op">=</span> <span class="fl">1e+05</span>, burn_in <span class="op">=</span> <span class="fl">50000</span>, step <span class="op">=</span> <span class="fl">50</span>, tuning
-    <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>,
-  hyperpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span>, period <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5e-04</span><span class="op">)</span>, cohort <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5e-04</span><span class="op">)</span>, overdisp
-    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span>,
-  dic <span class="op">=</span> <span class="cn">TRUE</span>,
-  parallel <span class="op">=</span> <span class="cn">TRUE</span>,
-  verbose <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">bamp</span><span class="op">(</span></span>
+<span>  <span class="va">cases</span>,</span>
+<span>  <span class="va">population</span>,</span>
+<span>  <span class="va">age</span>,</span>
+<span>  <span class="va">period</span>,</span>
+<span>  <span class="va">cohort</span>,</span>
+<span>  overdisp <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  period_covariate <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cohort_covariate <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">periods_per_agegroup</span>,</span>
+<span>  mcmc.options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>number_of_iterations <span class="op">=</span> <span class="fl">1e+05</span>, burn_in <span class="op">=</span> <span class="fl">50000</span>, step <span class="op">=</span> <span class="fl">50</span>, tuning <span class="op">=</span></span>
+<span>    <span class="fl">500</span><span class="op">)</span>,</span>
+<span>  hyperpar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span>, period <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5e-04</span><span class="op">)</span>, cohort <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5e-04</span><span class="op">)</span>, overdisp <span class="op">=</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  dic <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  parallel <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>cases</dt>
 <dd><p>number of cases</p></dd>
+
+
 <dt>population</dt>
 <dd><p>population number</p></dd>
+
+
 <dt>age</dt>
 <dd><p>prior for age groups ("rw1", "rw2", "rw1+het", "rw2+het", " ")</p></dd>
+
+
 <dt>period</dt>
 <dd><p>prior for periods ("rw1", "rw2", "rw1+het", "rw2+het", " ")</p></dd>
+
+
 <dt>cohort</dt>
 <dd><p>prior for cohorts ("rw1", "rw2", "rw1+het", "rw2+het", " ")</p></dd>
+
+
 <dt>overdisp</dt>
 <dd><p>logical, add overdispersion to model</p></dd>
+
+
 <dt>period_covariate</dt>
 <dd><p>covariate for period</p></dd>
+
+
 <dt>cohort_covariate</dt>
 <dd><p>covariate for cohort</p></dd>
+
+
 <dt>periods_per_agegroup</dt>
 <dd><p>periods per age group</p></dd>
+
+
 <dt>mcmc.options</dt>
 <dd><p>list of options for MCMC.</p><ul><li><p>burn_in: number of iterations used as burnin at the beginning of the algorithm, these iterations will be removed.</p></li>
 <li><p>step: Step size, for example default is 50, so only every 50th iterations will be stored.</p></li>
 <li><p>tuning: number of iterations for automatic tuning. Depending on the model, the MCMC algorithm will tune certain parameters for more efficient MCMC chains. After tuning, the algorithm is restarted.</p></li>
 </ul></dd>
+
+
 <dt>hyperpar</dt>
 <dd><p>list of hyper parameters. The hyper prior for the precision (inverse variance) in the random walk priors is a Gamma distribution with parameters \(a\) and \(b\); expected value is \(a/b\), variance is \(a/b^2\). Weak hyper parameters are suggested, defaults are \(a=1, b=0.5\) for age, \(a=1, b=0.0005\) for period and cohort effects and \(a=1, b=0.05\) for overdispersion (if added). It is recommended to choose the hyper priors depending on the model, in particular on the order of the random walk.</p></dd>
+
+
 <dt>dic</dt>
 <dd><p>logical. If true. DIC will be computed</p></dd>
+
+
 <dt>parallel</dt>
 <dd><p>logical, should computation be done in parallel. This uses the parallel package, which does not allow parallel computing under Windows.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>verbose mode</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -151,10 +178,10 @@ Only samples from the posterior are computed, point estimates and credible inter
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">apc</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">bamp</span><span class="op">(</span><span class="va">cases</span>, <span class="va">population</span>, age<span class="op">=</span><span class="st">"rw1"</span>, period<span class="op">=</span><span class="st">"rw1"</span>, cohort<span class="op">=</span><span class="st">"rw1"</span>, periods_per_agegroup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">apc</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">bamp</span><span class="op">(</span><span class="va">cases</span>, <span class="va">population</span>, age<span class="op">=</span><span class="st">"rw1"</span>, period<span class="op">=</span><span class="st">"rw1"</span>, cohort<span class="op">=</span><span class="st">"rw1"</span>, periods_per_agegroup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -169,7 +196,7 @@ Only samples from the posterior are computed, point estimates and credible inter
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

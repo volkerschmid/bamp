@@ -1,3 +1,6 @@
+# bamp 2.1.2
+* Adapted to R 4.2
+
 # bamp 2.1.1
 * USE_FC_LEN_T for Fortran code
 

@@ -65,33 +65,42 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">coh</span><span class="op">(</span><span class="va">agegroup</span>, <span class="va">period</span>, <span class="va">noa</span>, <span class="va">periods_per_agegroup</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">coh</span><span class="op">(</span><span class="va">agegroup</span>, <span class="va">period</span>, <span class="va">noa</span>, <span class="va">periods_per_agegroup</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>agegroup</dt>
 <dd><p>age group index</p></dd>
+
+
 <dt>period</dt>
 <dd><p>period index</p></dd>
+
+
 <dt>noa</dt>
 <dd><p>number of age groups in total</p></dd>
+
+
 <dt>periods_per_agegroup</dt>
 <dd><p>periods per age group</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>cohort index</p>
+    
+
+<p>cohort index</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># last agegroup in first period equals first cohort</span></span>
-<span class="r-in"><span class="fu">coh</span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">5</span><span class="op">)</span>  </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># last agegroup in first period equals first cohort</span></span></span>
+<span class="r-in"><span><span class="fu">coh</span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">5</span><span class="op">)</span>  </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># first agegroup in last period equals last cohort </span></span>
-<span class="r-in"><span class="fu">coh</span><span class="op">(</span><span class="fl">1</span>, <span class="fl">8</span>, <span class="fl">10</span>, <span class="fl">5</span><span class="op">)</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># first agegroup in last period equals last cohort </span></span></span>
+<span class="r-in"><span><span class="fu">coh</span><span class="op">(</span><span class="fl">1</span>, <span class="fl">8</span>, <span class="fl">10</span>, <span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 53</span>
 </code></pre></div>
     </div>
@@ -107,7 +116,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

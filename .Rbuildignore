@@ -21,3 +21,4 @@ internaltest/
 vignettes/largevignettes/
 vignettes/standaloneversion/
 ^CRAN-SUBMISSION$
+^\.github$

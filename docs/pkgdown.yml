@@ -1,5 +1,5 @@
-pandoc: 2.17.1.1
-pkgdown: 2.0.3
+pandoc: 2.19.2
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   bamp: largevignettes/bamp.html
@@ -8,5 +8,5 @@ articles:
   simulation: largevignettes/simulation.html
   publications: publications/publications.html
   index: standaloneversion/index.html
-last_built: 2022-05-28T10:48Z
+last_built: 2022-09-30T14:43Z
 
