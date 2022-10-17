@@ -1,3 +1,6 @@
+# bamp 2.1.3
+* invalid UTF-8 in comment removed
+
 # bamp 2.1.2
 * Adapted to R 4.2
 

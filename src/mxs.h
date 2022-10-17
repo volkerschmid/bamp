@@ -2,7 +2,7 @@
 #include <math.h>
 
 
-//Methoden für Bandmatrizen
+//Methoden fuer Bandmatrizen
 
 
 // macht eine Matrix zu einer Bandmatrix
@@ -20,7 +20,7 @@ void loese(double* A, double* z, int &n, int& bw);
 //loest A * u = z
 void loese2(double* A, double* z, int &n, int& bw);
 
-// berechne x^t M x für Bandmatrizen
+// berechne x^t M x fuer Bandmatrizen
 double xMx(double* Q, double* x, int noa, int b);
 double xLx(double* Q, double* x, int noa, int b);
 

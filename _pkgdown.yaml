@@ -30,7 +30,10 @@ articles:
   - title: "Publications"
     contents:
     - publications/publications
-    
+  - title: "Standalone version (old)"
+    contents:
+    - standaloneversion/index
+
 reference:
 - title: "Main Function"
   contents: 
