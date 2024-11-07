@@ -1,75 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/TODO.html</loc>
-  </url>
-  <url>
-    <loc>/articles/bamp.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/largevignettes/bamp.html</loc>
-  </url>
-  <url>
-    <loc>/articles/largevignettes/modeling.html</loc>
-  </url>
-  <url>
-    <loc>/articles/largevignettes/prediction.html</loc>
-  </url>
-  <url>
-    <loc>/articles/largevignettes/simulation.html</loc>
-  </url>
-  <url>
-    <loc>/articles/publications/publications.html</loc>
-  </url>
-  <url>
-    <loc>/articles/standaloneversion/index.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/apc.data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/apc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/apcSimulate.html</loc>
-  </url>
-  <url>
-    <loc>/reference/bamp.html</loc>
-  </url>
-  <url>
-    <loc>/reference/checkConvergence.html</loc>
-  </url>
-  <url>
-    <loc>/reference/coh.html</loc>
-  </url>
-  <url>
-    <loc>/reference/effects.apc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plot.apc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/predict_apc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/print.apc.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/TODO.html</loc></url>
+<url><loc>/articles/bamp.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/largevignettes/bamp.html</loc></url>
+<url><loc>/articles/largevignettes/modeling.html</loc></url>
+<url><loc>/articles/largevignettes/prediction.html</loc></url>
+<url><loc>/articles/largevignettes/simulation.html</loc></url>
+<url><loc>/articles/publications/publications.html</loc></url>
+<url><loc>/articles/standaloneversion/index.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/apc.data.html</loc></url>
+<url><loc>/reference/apc.html</loc></url>
+<url><loc>/reference/apcSimulate.html</loc></url>
+<url><loc>/reference/bamp.html</loc></url>
+<url><loc>/reference/checkConvergence.html</loc></url>
+<url><loc>/reference/coh.html</loc></url>
+<url><loc>/reference/effects.apc.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/plot.apc.html</loc></url>
+<url><loc>/reference/predict_apc.html</loc></url>
+<url><loc>/reference/print.apc.html</loc></url>
 </urlset>
+
