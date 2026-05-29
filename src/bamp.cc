@@ -345,7 +345,7 @@ for (int iteration=1; iteration<= number_of_iterations; iteration++)
 	    {
 	      blocken(-number_of_agegroups, cohort_block, ny, delta, number_of_cohorts, number_of_periods, my, psi,  phi,  theta,  cohQ,  psitemp, vielfaches_der_breite, n, y, ja_cohort );
 	    }
-      if (cohort_block==3 || cohort_block==3)
+      if (cohort_block==3 || cohort_block==4)
 	    {
 	      blocken2(-number_of_agegroups, cohort_block, ny, ny2, number_of_cohorts, number_of_periods, my, psi, psi2,  phi,  theta, cohQ,  psitemp, vielfaches_der_breite, n, y, ja_cohort );
 	    }
