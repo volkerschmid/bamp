@@ -142,7 +142,11 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
   
   pr <- exp(ksi0)/(1+exp(ksi0))
   
-  if (is.null(population))population<-object$data$population
+  if (is.null(population)){
+    population <- t(object$data$population)
+  }else{
+    population <- as.matrix(population)
+  }
   
   n0<-min(dim(population)[1],n2)
   
