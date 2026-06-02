@@ -1,3 +1,7 @@
+# bamp 2.1.5
+* bugfix RW2 by Chris Kypridemos
+* Fixed population dimension handling in predict_apc.R by pietrosa
+
 # bamp 2.1.3
 * invalid UTF-8 in comment removed
 

@@ -1,6 +1,6 @@
-setwd("~/bamp/vignettes/largevignettes/")
+setwd(here::here("vignettes","largevignettes"))
 files<-list.files(pattern=".Rmd")
 for (file in files)rmarkdown::render(file)
 files<-list.files(pattern=".html")
 for (file in files)file.copy(file,"../")
-setwd("~/bamp/")
+setwd(here::here())
