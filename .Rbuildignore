@@ -22,3 +22,5 @@ vignettes/largevignettes/
 vignettes/standaloneversion/
 ^CRAN-SUBMISSION$
 ^\.github$
+^src/.*\.o$
+^src/.*\.so$
