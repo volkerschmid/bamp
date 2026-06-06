@@ -18,7 +18,7 @@ Suggests:
     rmarkdown,
     R.rsp,
     testthat (>= 3.0.0)
-URL: https://volkerschmid.github.io/bamp/
+URL: https://volkerschmid.github.io/bamp/, https://github.com/volkerschmid/bamp
 BugReports: https://github.com/volkerschmid/bamp/issues
 Config/roxygen2/version: 8.0.0
 Config/testthat/edition: 3
