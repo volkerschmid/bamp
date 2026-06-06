@@ -1,3 +1,5 @@
+# bamp 2.1.6
+
 # bamp 2.1.5
 * bugfix RW2 by Chris Kypridemos
 * Fixed population dimension handling in predict_apc.R by pietrosa
