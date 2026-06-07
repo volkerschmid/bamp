@@ -23,6 +23,10 @@
 
 checkConvergence<-function(x, info=FALSE, level=2, auto=FALSE)
 {
+  if (coda::nchain(x$samples$intercept) < 2) {
+    if (!auto) message("Only 1 MCMC chain available: Gelman-Rubin diagnostic requires at least 2 chains.")
+    return(FALSE)
+  }
   j<-level
   if(x$model$age!=" ")theta<-coda::gelman.diag(x$samples$age, multivariate = FALSE)
   if(x$model$period!=" ")phi<-coda::gelman.diag(x$samples$period, multivariate = FALSE)
@@ -34,7 +38,7 @@ checkConvergence<-function(x, info=FALSE, level=2, auto=FALSE)
   test<-FALSE
   if(x$model$age!=" ")test<-any(theta$psrf[,j]>1.1)|kappa$psrf[j]>1.1
   if(x$model$period!=" ")test<-test|any(phi$psrf[,j]>1.1)|lambda$psrf[j]>1.1
-  if(x$model$cohort!=" ")test<-test|any(psi$psrf[,j]>1.1)|kappa$psrf[j]>1.1
+  if(x$model$cohort!=" ")test<-test|any(psi$psrf[,j]>1.1)|ny$psrf[j]>1.1
   if (test|my$psrf[j]>1.1)
   {
     if(!auto){
@@ -45,9 +49,9 @@ checkConvergence<-function(x, info=FALSE, level=2, auto=FALSE)
         cat("age effect    ",apply(theta$psrf,2,mean),"\n")
         cat("period effect ",apply(phi$psrf,2,mean),"\n")
         cat("cohort effect ",apply(psi$psrf,2,mean),"\n")
-        cat("age hyperp.   ",apply(theta$psrf,2,mean),"\n")
-        cat("period hyperp.",apply(phi$psrf,2,mean),"\n")
-        cat("cohort hyperp.",apply(psi$psrf,2,mean),"\n")
+        cat("age hyperp.   ",apply(kappa$psrf,2,mean),"\n")
+        cat("period hyperp.",apply(lambda$psrf,2,mean),"\n")
+        cat("cohort hyperp.",apply(ny$psrf,2,mean),"\n")
       }
     }
     return=FALSE

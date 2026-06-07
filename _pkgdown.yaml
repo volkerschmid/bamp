@@ -1,9 +1,11 @@
+url: https://volkerschmid.github.io/bamp/
+
 template:
-  params:
-    bootswatch: spacelab
+  bootstrap: 5
+  bootswatch: spacelab
 
 navbar:
-  type: inverse
+  bg: dark
   left:
     - text: "Home"
       href: index.html
@@ -13,13 +15,11 @@ navbar:
       href: articles/index.html
     - text: "Standalone Version"
       href: articles/standaloneversion/index.html
-      
   right:
     - icon: fa-github fa-lg
       href: https://github.com/volkerschmid/bamp
-    - icon: fa-twitter
-      href: https://twitter.com/vjsstat
-      
+      aria-label: GitHub
+
 articles:
   - title: "Vignettes"
     contents:
@@ -36,22 +36,22 @@ articles:
 
 reference:
 - title: "Main Function"
-  contents: 
+  contents:
       - bamp
       - checkConvergence
       - apcSimulate
       - predict_apc
 - title: "apc S3 class"
-  contents: 
+  contents:
       - apc
       - effects.apc
       - plot.apc
       - print.apc
 - title: "Data"
-  contents: 
+  contents:
       - apc.data
 - title: "helper Functions"
-  contents: 
+  contents:
       - coh
 
 home:

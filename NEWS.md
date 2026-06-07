@@ -1,8 +1,17 @@
-# bamp (development version)
-
-# bamp 2.1.7
-
 # bamp 2.1.6
+
+* Fixed bug in cohort heterogeneity hyperparameter check (`cohort="rw2+het"` was not recognized correctly).
+* Fixed typo in `period_covariate` handling that silently prevented vector coercion.
+* Fixed `checkConvergence()`: cohort convergence check used age hyperparameter instead of cohort hyperparameter.
+* Fixed hyperparameter display in `checkConvergence()` info output.
+* Fixed memory leaks in C++ MCMC code (raw pointer allocations per iteration).
+* Fixed `GetRNGstate`/`PutRNGstate` pairing in random number generation.
+* Added Cholesky decomposition error check with informative message.
+* Replaced fork-based `mclapply` with socket-based `makeCluster`/`parLapply` for reliable parallel execution on all platforms, including macOS GUI environments (RStudio). Falls back to sequential if cluster setup fails.
+* MCMC chains that fail due to numerical errors are now discarded cleanly instead of continuing with corrupted values.
+* Cholesky decomposition now recovers from non-positive-definite precision matrices (common with RW2 priors during tuning) by adding increasing diagonal regularization and retrying, instead of aborting the chain.
+* Added unit tests.
+* Updated CITATION to use `bibentry()`.
 
 # bamp 2.1.5
 * bugfix RW2 by Chris Kypridemos

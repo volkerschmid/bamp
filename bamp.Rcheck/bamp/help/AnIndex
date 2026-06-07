@@ -1,0 +1,15 @@
+apc	apc
+apc.data	apc.data
+apcSimulate	apcSimulate
+bamp	bamp
+cases	apc.data
+checkConvergence	checkConvergence
+coh	coh
+cov_c	apc.data
+cov_p	apc.data
+effects.apc	effects.apc
+plot.apc	plot.apc
+population	apc.data
+predict_apc	predict_apc
+print	print.apc
+print.apc	print.apc

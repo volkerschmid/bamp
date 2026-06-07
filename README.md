@@ -1,4 +1,4 @@
-<img src="https://volkerschmid.github.io/bamp/figures/bamplogo8.png" align="right" />
+<img src="https://volkerschmid.github.io/bamp/figures/bamplogo8.png" align="right" alt="BAMP logo" />
 
 # Bayesian Age-period-cohort Modeling and Prediction
 
