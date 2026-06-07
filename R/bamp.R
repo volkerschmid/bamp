@@ -164,9 +164,10 @@ function(cases, population,
   model$age=age
   model$period=period
   model$cohort=cohort
-  
+
   model$overdispersion=overdisp
-  
+  output$model=model
+
   #if (!is.null(age_covariate))age_block=age_block=age_block+7
   if (!is.null(period_covariate))period_block=period_block+7
   if (!is.null(cohort_covariate))cohort_block=cohort_block+7
@@ -654,7 +655,7 @@ if(verbose>=2)
  }
  if (chains == 0) {
    cat("\nAll MCMC chains failed. Please check your model settings.\n")
-   return(list())
+   return(output)
  }
 
   deviance<-vector("list",chains)
@@ -699,7 +700,7 @@ if(verbose>=2)
  if (sum(kick)==0)
   {
    cat("\nAutomatic check procedure removed all Markov chains. Please change your model settings (maybe add overdispersion).")
-    return(list())
+    return(output)
   }
  
 
@@ -827,6 +828,7 @@ deviance<-coda::as.mcmc.list(deviance)
  checkConvergence(output, auto=verbose)
 
  output$ksi=ksi
+ output <- effects.apc(output, update=TRUE)
  cat("\n")
  return(output)
 }

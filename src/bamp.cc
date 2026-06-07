@@ -212,10 +212,14 @@ for (int i=0; i< number_of_agegroups; i++)
 }
 
 if (bev_summe <= 0.0) error("bamp: total population is zero");
-startwert = lung_summe/bev_summe;
-if (startwert <= 0.0) startwert = 1e-6;
-else if (startwert >= 1.0) startwert = 1.0 - 1e-6;
-startwert = log(startwert/(1-startwert));
+if (my_off[0] == 0.0) {
+  startwert = lung_summe/bev_summe;
+  if (startwert <= 0.0) startwert = 1e-6;
+  else if (startwert >= 1.0) startwert = 1.0 - 1e-6;
+  startwert = log(startwert/(1-startwert));
+} else {
+  startwert = my_off[0];
+}
 
 
 //  ***** SETTING VARIABLES *****
@@ -230,30 +234,36 @@ double* psitemp =new double[number_of_cohorts+number_of_predictions];
 double* thetatemp=new double[number_of_agegroups];
 double* phitemp=new double[number_of_periods+number_of_predictions];
 
+// Use first entries of sample arrays as starting values.
+// On the first call they are all zero (initialised in R with rep(0,...)),
+// so behaviour is identical to before.  On a restart the previous samples
+// provide warm starts that speed up convergence.
+GetRNGstate();
+
 for (int i=0; i<number_of_agegroups; i++)
-  {theta[i]=0.0;theta2[i]=0.0;}
-for (int i=0; i<number_of_periods2; i++)
-  {
-  phi[i]=0.0;phi2[i]=0.0;
-  }
+  {theta[i]=ttt[i]; theta2[i]=ttt2[i];}
+
+if (period_block>0)
+  for (int i=0; i<number_of_periods2; i++)
+    {phi[i]=pph[i]; phi2[i]=pph2[i];}
+else
+  for (int i=0; i<number_of_periods2; i++)
+    {phi[i]=0.0; phi2[i]=0.0;}
+
 if (cohort_block>0)
-{
-for (int i=0; i<number_of_cohorts2; i++)
-  {
-  psi[i]=normal(0.0,1.0);psi2[i]=normal(0.0,1.0);
-  }
-}
-if (cohort_block==0)
 {
   for (int i=0; i<number_of_cohorts2; i++)
   {
-    psi[i]=0.0;psi2[i]=0.0;
+    psi[i]=pps[i]; psi2[i]=pps2[i];
+    if (psi[i]==0.0) psi[i]=normal(0.0,1.0);
+    if (psi2[i]==0.0) psi2[i]=normal(0.0,1.0);
   }
 }
+else
+  for (int i=0; i<number_of_cohorts2; i++)
+    {psi[i]=0.0; psi2[i]=0.0;}
 
 double my=0.0;
-
-GetRNGstate();
 
 double** z=new double*[number_of_agegroups];
 for (int j=0;j<number_of_agegroups;j++)

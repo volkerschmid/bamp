@@ -1,6 +1,5 @@
 # Important
 
-* compute effects in bamp() (use effects.apc(..save=TRUE))
 * print.apc() 
 ** intercept
 ** use results from $effect

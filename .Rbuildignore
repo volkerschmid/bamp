@@ -24,3 +24,5 @@ vignettes/standaloneversion/
 ^\.github$
 ^src/.*\.o$
 ^src/.*\.so$
+^data-raw$
+^pkgdown$

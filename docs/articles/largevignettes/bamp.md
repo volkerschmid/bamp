@@ -23,6 +23,8 @@ model1 <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1",
               periods_per_agegroup = 5)
 ```
 
+    ## Warning: MCMC chains did not converge!
+
 bamp() automatically performs a check for MCMC convergence using Gelman
 and Rubin’s convergence diagnostic. We can manually check the
 convergence again:
@@ -32,7 +34,9 @@ convergence again:
 checkConvergence(model1)
 ```
 
-    ## [1] TRUE
+    ## Warning: MCMC chains did not converge!
+
+    ## [1] FALSE
 
 Now we have a look at the model results. This includes estimates of
 smoothing parameters and deviance and DIC:
@@ -43,20 +47,19 @@ print(model1)
 ```
 
     ## 
+    ## WARNING! Markov Chains have apparently not converged! DO NOT TRUST THIS MODEL!
+    ## 
     ##  Model:
     ## age (rw1)  - period (rw1)  - cohort (rw1) model
-    ## Deviance:     231.56
-    ## pD:            37.10
-    ## DIC:          268.65
+    ## Deviance:     231.52
+    ## pD:            36.86
+    ## DIC:          268.38
     ## 
     ## 
     ##  Hyper parameters:                 5%           50%          95%         
-    ## age                              0.347        0.913        1.898
-    ## period                          70.468      202.216      642.573
-    ## cohort                          34.539       58.835       96.003
-    ## 
-    ## 
-    ## Markov Chains convergence checked succesfully using Gelman's R (potential scale reduction factor).
+    ## age                              0.358        0.890        1.887
+    ## period                          72.847      204.735      663.295
+    ## cohort                          34.838       59.817       97.881
 
 We can plot the main APC effects using point-wise quantiles:
 

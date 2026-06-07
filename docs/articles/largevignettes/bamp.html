@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">bamp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.7</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,37 +83,38 @@ package=“bamp”)</em>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/bamp.html">bamp</a></span><span class="op">(</span><span class="va">cases</span>, <span class="va">population</span>, age<span class="op">=</span><span class="st">"rw1"</span>, period<span class="op">=</span><span class="st">"rw1"</span>, cohort<span class="op">=</span><span class="st">"rw1"</span>,</span>
 <span>              periods_per_agegroup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: MCMC chains did not converge!</span></span></code></pre>
 <p>bamp() automatically performs a check for MCMC convergence using
 Gelman and Rubin’s convergence diagnostic. We can manually check the
 convergence again:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/checkConvergence.html">checkConvergence</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
+<pre><code><span><span class="co">## Warning: MCMC chains did not converge!</span></span></code></pre>
+<pre><code><span><span class="co">## [1] FALSE</span></span></code></pre>
 <p>Now we have a look at the model results. This includes estimates of
 smoothing parameters and deviance and DIC:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/print.apc.html">print</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
+<span><span class="co">## WARNING! Markov Chains have apparently not converged! DO NOT TRUST THIS MODEL!</span></span>
+<span><span class="co">## </span></span>
 <span><span class="co">##  Model:</span></span>
 <span><span class="co">## age (rw1)  - period (rw1)  - cohort (rw1) model</span></span>
-<span><span class="co">## Deviance:     231.56</span></span>
-<span><span class="co">## pD:            37.10</span></span>
-<span><span class="co">## DIC:          268.65</span></span>
+<span><span class="co">## Deviance:     231.52</span></span>
+<span><span class="co">## pD:            36.86</span></span>
+<span><span class="co">## DIC:          268.38</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##  Hyper parameters:                 5%           50%          95%         </span></span>
-<span><span class="co">## age                              0.347        0.913        1.898</span></span>
-<span><span class="co">## period                          70.468      202.216      642.573</span></span>
-<span><span class="co">## cohort                          34.539       58.835       96.003</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Markov Chains convergence checked succesfully using Gelman's R (potential scale reduction factor).</span></span></code></pre>
+<span><span class="co">## age                              0.358        0.890        1.887</span></span>
+<span><span class="co">## period                          72.847      204.735      663.295</span></span>
+<span><span class="co">## cohort                          34.838       59.817       97.881</span></span></code></pre>
 <p>We can plot the main APC effects using point-wise quantiles:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
 <p><img src="bamp_files/figure-html/plot_model-1.png" class="r-plt" alt="" width="700"><img src="bamp_files/figure-html/plot_model-2.png" class="r-plt" alt="" width="700"><img src="bamp_files/figure-html/plot_model-3.png" class="r-plt" alt="" width="700"></p>
 <p>More quantiles are possible:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">model1</span>, quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>,<span class="fl">0.1</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>,<span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="bamp_files/figure-html/plot_model_with_more_quantiles-1.png" class="r-plt" alt="" width="700"><img src="bamp_files/figure-html/plot_model_with_more_quantiles-2.png" class="r-plt" alt="" width="700"><img src="bamp_files/figure-html/plot_model_with_more_quantiles-3.png" class="r-plt" alt="" width="700"></p>
 <p>For other models see
@@ -124,9 +125,9 @@ smoothing parameters and deviance and DIC:</p>
 </h2>
 <p>Using the prior assumption of a random walk for the period and cohort
 effect, one can predict cases for upcoming years.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/predict_apc.html">predict_apc</a></span><span class="op">(</span>object<span class="op">=</span><span class="va">model1</span>, periods<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">pred</span><span class="op">$</span><span class="va">pr</span><span class="op">[</span><span class="fl">2</span>,,<span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pred</span><span class="op">$</span><span class="va">pr</span><span class="op">[</span><span class="fl">2</span>,,<span class="fl">8</span><span class="op">]</span>,type<span class="op">=</span><span class="st">"l"</span>, ylab<span class="op">=</span><span class="st">"probability"</span>, xlab<span class="op">=</span><span class="st">"year"</span>, ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="va">m</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">7</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span></span>

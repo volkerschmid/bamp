@@ -1,3 +1,9 @@
+# bamp 2.1.7
+
+* Effects (age, period, cohort) are now computed automatically inside `bamp()` and stored in the returned object (`model$effects`), so a separate call to `effects.apc()` is no longer needed for the default median summary.
+* Fixed bug in `effects.apc()`: cache check was looking for `x$effect` (singular) instead of `x$effects` (plural), and referenced an undefined variable in the cache condition.
+* MCMC chains now use warm starts: on a restart the previous sample values are used as initial values, reducing burn-in time for automatic convergence checking. First-run behaviour is unchanged.
+
 # bamp 2.1.6
 
 * Fixed bug in cohort heterogeneity hyperparameter check (`cohort="rw2+het"` was not recognized correctly).

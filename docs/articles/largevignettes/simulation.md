@@ -159,7 +159,7 @@ cov_p<-rnorm(15,period,.1)
 ``` r
 
 simmod2 <- bamp(cases = simdata$cases, population = simdata$population, age = "rw1", 
-period = "rw1", cohort = "rw1", periods_per_agegroup =periods_per_agegroup,
+period = "rw1", cohort = "rw1", periods_per_agegroup = periods_per_agegroup,
 period_covariate = cov_p)
 ```
 

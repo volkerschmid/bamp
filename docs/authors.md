@@ -28,13 +28,13 @@ modeling and prediction. Journal of Statistical Software 21 (2007). DOI
     }
 
 Volker J. Schmid (2026). bamp: Bayesian age-period-cohort modeling and
-prediction. R package version 2.1.6.
+prediction. R package version 2.1.7.
 https://volkerschmid.github.io/bamp/
 
     @Manual{,
       title = {{bamp}: Bayesian age-period-cohort modeling and prediction},
       author = {Volker Schmid},
       year = {2026},
-      note = {R package version 2.1.6},
+      note = {R package version 2.1.7},
       url = {https://volkerschmid.github.io/bamp/},
     }

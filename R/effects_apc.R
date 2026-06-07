@@ -18,10 +18,9 @@
 effects.apc<-function(object, mean=FALSE, quantiles=0.5, update=FALSE, ...)
 {
   x<-object
-  #check, if we have done this before
-  if (!is.null(x$effect))
+  if (!is.null(x$effects))
   {
-    if (all(attr(effects,"settings")==c(mean,quantiles)))return(x$effect) 
+    if (all(attr(x$effects,"settings")==c(mean,quantiles))) return(x$effects)
   }
   
   age=x$samples$age
