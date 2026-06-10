@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">bamp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,14 +32,11 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.1.7" id="bamp-217">bamp 2.1.7<a class="anchor" aria-label="anchor" href="#bamp-217"></a></h2>
+<h2 class="pkg-version" data-toc-text="2.2.0" id="bamp-220">bamp 2.2.0<a class="anchor" aria-label="anchor" href="#bamp-220"></a></h2>
 <ul><li>Effects (age, period, cohort) are now computed automatically inside <code><a href="../reference/bamp.html">bamp()</a></code> and stored in the returned object (<code>model$effects</code>), so a separate call to <code><a href="../reference/effects.apc.html">effects.apc()</a></code> is no longer needed for the default median summary.</li>
 <li>Fixed bug in <code><a href="../reference/effects.apc.html">effects.apc()</a></code>: cache check was looking for <code>x$effect</code> (singular) instead of <code>x$effects</code> (plural), and referenced an undefined variable in the cache condition.</li>
 <li>MCMC chains now use warm starts: on a restart the previous sample values are used as initial values, reducing burn-in time for automatic convergence checking. First-run behaviour is unchanged.</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.1.6" id="bamp-216">bamp 2.1.6<a class="anchor" aria-label="anchor" href="#bamp-216"></a></h2>
-<ul><li>Fixed bug in cohort heterogeneity hyperparameter check (<code>cohort="rw2+het"</code> was not recognized correctly).</li>
+<li>Fixed bug in cohort heterogeneity hyperparameter check (<code>cohort="rw2+het"</code> was not recognized correctly).</li>
 <li>Fixed typo in <code>period_covariate</code> handling that silently prevented vector coercion.</li>
 <li>Fixed <code><a href="../reference/checkConvergence.html">checkConvergence()</a></code>: cohort convergence check used age hyperparameter instead of cohort hyperparameter.</li>
 <li>Fixed hyperparameter display in <code><a href="../reference/checkConvergence.html">checkConvergence()</a></code> info output.</li>

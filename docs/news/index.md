@@ -1,6 +1,6 @@
 # Changelog
 
-## bamp 2.1.7
+## bamp 2.2.0
 
 - Effects (age, period, cohort) are now computed automatically inside
   [`bamp()`](https://volkerschmid.github.io/bamp/reference/bamp.md) and
@@ -15,9 +15,6 @@
 - MCMC chains now use warm starts: on a restart the previous sample
   values are used as initial values, reducing burn-in time for automatic
   convergence checking. First-run behaviour is unchanged.
-
-## bamp 2.1.6
-
 - Fixed bug in cohort heterogeneity hyperparameter check
   (`cohort="rw2+het"` was not recognized correctly).
 - Fixed typo in `period_covariate` handling that silently prevented
