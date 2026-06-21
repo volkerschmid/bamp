@@ -1,0 +1,45 @@
+bamp version 2.3.0
+Warning: MCMC chains did not converge (identified quantities)!
+
+Warning messages:
+1: In max(d[, min(j, ncol(d))], na.rm = TRUE) :
+  no non-missing arguments to max; returning -Inf
+2: In max(d[, min(j, ncol(d))], na.rm = TRUE) :
+  no non-missing arguments to max; returning -Inf
+3: In max(d[, min(level, ncol(d))], na.rm = TRUE) :
+  no non-missing arguments to max; returning -Inf
+TIME fit: 40.469 s
+Warning: MCMC chains did not converge (identified quantities)!
+[1] FALSE
+Warning messages:
+1: In max(d[, min(j, ncol(d))], na.rm = TRUE) :
+  no non-missing arguments to max; returning -Inf
+2: In max(d[, min(j, ncol(d))], na.rm = TRUE) :
+  no non-missing arguments to max; returning -Inf
+3: In max(d[, min(level, ncol(d))], na.rm = TRUE) :
+  no non-missing arguments to max; returning -Inf
+
+WARNING! Markov Chains have apparently not converged! DO NOT TRUST THIS MODEL!
+
+ Model:
+age (rw1)  - period (rw1)  - cohort (rw1) model
+Deviance:   6.1e+210
+pD:         6.1e+210
+DIC:        1.2e+211
+
+
+ Hyper parameters:                 5%           50%          95%         
+age                              0.430        1.088        2.268
+period                          49.506      127.209      317.989
+cohort                          35.625       61.778      101.604
+Warning messages:
+1: In max(d[, min(j, ncol(d))], na.rm = TRUE) :
+  no non-missing arguments to max; returning -Inf
+2: In max(d[, min(j, ncol(d))], na.rm = TRUE) :
+  no non-missing arguments to max; returning -Inf
+3: In max(d[, min(level, ncol(d))], na.rm = TRUE) :
+  no non-missing arguments to max; returning -Inf
+Error in quantile.default(newX[, i], ...) : 
+  missing values and NaN's not allowed if 'na.rm' is FALSE
+Calls: predict_apc -> apply -> FUN -> quantile.default
+Execution halted

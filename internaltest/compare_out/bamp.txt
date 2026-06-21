@@ -1,0 +1,79 @@
+bamp version 2.2.0
+Note: Parallel execution failed (2 nodes produced errors; first error: there is no package called ‘bamp’); falling back to sequential.
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+Acceptance rate low. Restarting iterations.
+
+
+TIME fit: 8.354 s
+[1] TRUE
+
+ Model:
+age (rw1)  - period (rw1)  - cohort (rw1) model
+Deviance:     231.03
+pD:            36.73
+DIC:          267.76
+
+
+ Hyper parameters:                 5%           50%          95%         
+age                              0.360        0.925        1.980
+period                          68.393      200.036      607.519
+cohort                          34.736       59.679       98.250
+
+
+Markov Chains convergence checked succesfully using Gelman's R (potential scale reduction factor).TIME predict: 0.373 s
+             Length Class  Mode   
+pr           312    -none- numeric
+cases        240    -none- numeric
+cases_period  30    -none- numeric
+period        39    -none- numeric
+cohort       144    -none- numeric
+samples        5    -none- list   
