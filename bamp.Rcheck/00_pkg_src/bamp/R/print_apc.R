@@ -14,9 +14,15 @@
 #' }
 print.apc<-function(x, ...)
 {
-  
+  if (length(x$samples) == 0 || is.null(x$samples$age)) {
+    cat("\nNo MCMC samples available. All chains failed or were removed.\n")
+    if (!is.null(x$model$age))
+      cat(paste0("Model: ", x$model$age, " / ", x$model$period, " / ", x$model$cohort, "\n"))
+    return(invisible(x))
+  }
+
   ## Check convergence
-  
+
   cc <- checkConvergence(x, auto=TRUE)
   
   if (!cc)cat("\nWARNING! Markov Chains have apparently not converged! DO NOT TRUST THIS MODEL!\n")

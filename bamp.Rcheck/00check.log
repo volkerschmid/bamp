@@ -1,15 +1,15 @@
 * using log directory ‘/Users/volkerschmid/projects/bamp/bamp.Rcheck’
 * using R version 4.6.0 (2026-04-24)
-* using platform: aarch64-apple-darwin25.4.0
+* using platform: aarch64-apple-darwin23
 * R was compiled by
-    Apple clang version 21.0.0 (clang-2100.0.123.102)
-    GNU Fortran (Homebrew GCC 15.2.0_1) 15.2.0
+    Apple clang version 17.0.0 (clang-1700.3.19.1)
+    GNU Fortran (GCC) 14.2.0
 * running under: macOS Tahoe 26.5.1
 * using session charset: UTF-8
-* current time: 2026-06-06 11:28:28 UTC
+* current time: 2026-06-21 13:42:54 UTC
 * checking for file ‘bamp/DESCRIPTION’ ... OK
 * checking extension type ... Package
-* this is package ‘bamp’ version ‘2.1.6’
+* this is package ‘bamp’ version ‘2.2.0’
 * package encoding: UTF-8
 * checking package namespace information ... OK
 * checking package dependencies ... OK
@@ -71,10 +71,6 @@
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes ... OK
 * checking re-building of vignette outputs ... OK
-* checking PDF version of manual ... WARNING
-LaTeX errors when creating PDF version.
-This typically indicates Rd problems.
-* checking PDF version of manual without index ... ERROR
-Re-running with no redirection of stdout/stderr.
+* checking PDF version of manual ... OK
 * DONE
-Status: 1 ERROR, 1 WARNING
+Status: OK

@@ -23,7 +23,25 @@ model1 <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1",
               periods_per_agegroup = 5)
 ```
 
-    ## Warning: MCMC chains did not converge!
+    ## Note: Parallel execution failed (2 nodes produced errors; first error: there is no package called ‘bamp’); falling back to sequential.
+
+    ## Acceptance rate low. Restarting iterations.
+    ## 
+    ## Acceptance rate low. Restarting iterations.
+    ## 
+    ## Acceptance rate low. Restarting iterations.
+    ## 
+    ## Acceptance rate low. Restarting iterations.
+    ## 
+    ## Acceptance rate low. Restarting iterations.
+    ## 
+    ## Acceptance rate low. Restarting iterations.
+    ## 
+    ## Acceptance rate low. Restarting iterations.
+    ## 
+    ## Acceptance rate low. Restarting iterations.
+    ## 
+    ## Acceptance rate low. Restarting iterations.
 
 bamp() automatically performs a check for MCMC convergence using Gelman
 and Rubin’s convergence diagnostic. We can manually check the
@@ -34,9 +52,7 @@ convergence again:
 checkConvergence(model1)
 ```
 
-    ## Warning: MCMC chains did not converge!
-
-    ## [1] FALSE
+    ## [1] TRUE
 
 Now we have a look at the model results. This includes estimates of
 smoothing parameters and deviance and DIC:
@@ -47,19 +63,20 @@ print(model1)
 ```
 
     ## 
-    ## WARNING! Markov Chains have apparently not converged! DO NOT TRUST THIS MODEL!
-    ## 
     ##  Model:
     ## age (rw1)  - period (rw1)  - cohort (rw1) model
-    ## Deviance:     231.52
-    ## pD:            36.86
-    ## DIC:          268.38
+    ## Deviance:     231.30
+    ## pD:            37.04
+    ## DIC:          268.34
     ## 
     ## 
     ##  Hyper parameters:                 5%           50%          95%         
-    ## age                              0.358        0.890        1.887
-    ## period                          72.847      204.735      663.295
-    ## cohort                          34.838       59.817       97.881
+    ## age                              0.355        0.924        1.949
+    ## period                          67.552      195.013      620.193
+    ## cohort                          34.500       58.736       96.781
+    ## 
+    ## 
+    ## Markov Chains convergence checked succesfully using Gelman's R (potential scale reduction factor).
 
 We can plot the main APC effects using point-wise quantiles:
 

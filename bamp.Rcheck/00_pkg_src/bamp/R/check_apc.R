@@ -23,6 +23,14 @@
 
 checkConvergence<-function(x, info=FALSE, level=2, auto=FALSE)
 {
+  if (length(x$samples) == 0 || is.null(x$samples$intercept)) {
+    if (!auto) message("No MCMC samples available (all chains may have failed).")
+    return(FALSE)
+  }
+  if (coda::nchain(x$samples$intercept) < 2) {
+    if (!auto) message("Only 1 MCMC chain available: Gelman-Rubin diagnostic requires at least 2 chains.")
+    return(FALSE)
+  }
   j<-level
   if(x$model$age!=" ")theta<-coda::gelman.diag(x$samples$age, multivariate = FALSE)
   if(x$model$period!=" ")phi<-coda::gelman.diag(x$samples$period, multivariate = FALSE)

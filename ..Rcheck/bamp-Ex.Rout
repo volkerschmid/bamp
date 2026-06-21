@@ -1,0 +1,215 @@
+
+R version 4.6.0 (2026-04-24) -- "Because it was There"
+Copyright (C) 2026 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin23
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "bamp"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> library('bamp')
+bamp version 2.2.0
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("apcSimulate")
+> ### * apcSimulate
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: apcSimulate
+> ### Title: Simulate from age-period-cohort model
+> ### Aliases: apcSimulate
+> 
+> ### ** Examples
+> 
+> age=sqrt(seq(5,0,length=10)); age<-1-age-mean(age)
+> period=15:1; period[8:15]<-8:15; period<-period/6; period<-period-mean(period)
+> periods_per_agegroup=5; number_of_cohorts <- periods_per_agegroup*(10-1)+15
+> cohort<-rep(0,60); cohort[1:10]<-10:1; cohort[41:60]<- -(1:20)/2; cohort<-cohort/10;
+> cohort<-cohort-mean(cohort)
+> simdata<-apcSimulate(-5, age, period, cohort, periods_per_agegroup, 1e6)
+> par(mfrow=c(3,1))
+> plot(age, type="l")
+> plot(period, type="l")
+> plot(cohort, type="l")
+> ## Not run: 
+> ##D simmod <- bamp(cases = simdata$cases, population = simdata$population, age = "rw1", 
+> ##D period = "rw1", cohort = "rw1", periods_per_agegroup =periods_per_agegroup)
+> ##D plot(simmod)
+> ## End(Not run)
+> 
+> 
+> 
+> graphics::par(get("par.postscript", pos = 'CheckExEnv'))
+> cleanEx()
+> nameEx("bamp")
+> ### * bamp
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: bamp
+> ### Title: Bayesian Age-Period-Cohort Modeling and Prediction (bamp)
+> ### Aliases: bamp
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D data(apc)
+> ##D model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+> ## End(Not run)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("checkConvergence")
+> ### * checkConvergence
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: checkConvergence
+> ### Title: Check apc object, whether MCMC has converged
+> ### Aliases: checkConvergence
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D data(apc)
+> ##D model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+> ##D checkConvergence(model)
+> ## End(Not run)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("coh")
+> ### * coh
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: coh
+> ### Title: Compute cohort index from age and period index
+> ### Aliases: coh
+> 
+> ### ** Examples
+> 
+> # last agegroup in first period equals first cohort
+> coh(10, 1, 10, 5)  
+[1] 1
+> 
+> # first agegroup in last period equals last cohort 
+> coh(1, 8, 10, 5) 
+[1] 53
+> 
+> 
+> 
+> cleanEx()
+> nameEx("effects.apc")
+> ### * effects.apc
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: effects.apc
+> ### Title: Effects from Fitted APC Model
+> ### Aliases: effects.apc
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D data(apc)
+> ##D model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+> ##D effects(model)
+> ## End(Not run)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("plot.apc")
+> ### * plot.apc
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: plot.apc
+> ### Title: Plot apc object
+> ### Aliases: plot.apc
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D data(apc)
+> ##D model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+> ##D plot(model)
+> ## End(Not run)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("predict_apc")
+> ### * predict_apc
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: predict_apc
+> ### Title: Prediction for age-period-cohort models
+> ### Aliases: predict_apc
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D data(apc)
+> ##D model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+> ##D pred <- predict_apc(model, periods=1)
+> ##D plot(pred$pr[2,11,], main="Predicted rate per agegroup", ylab="p")
+> ## End(Not run)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("print.apc")
+> ### * print.apc
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: print.apc
+> ### Title: Print apc objects
+> ### Aliases: print.apc print
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D data(apc)
+> ##D model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
+> ##D print(model)
+> ## End(Not run)
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  0.04 0.005 0.044 0 0 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

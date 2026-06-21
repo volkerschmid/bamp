@@ -1,11 +1,4 @@
-args <- commandArgs(trailingOnly = TRUE)
-pkg_path <- args[1]
-
-lib <- tempfile("bamplib_")
-dir.create(lib)
-
-remotes::install_local(pkg_path, lib = lib, quiet = TRUE, force = TRUE)
-library(bamp, lib.loc = lib)
+library(bamp)
 
 data(apc)
 

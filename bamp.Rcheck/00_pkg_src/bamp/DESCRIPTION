@@ -1,7 +1,7 @@
 Package: bamp
 Type: Package
 Title: Bayesian Age-Period-Cohort Modeling and Prediction
-Version: 2.1.6
+Version: 2.2.0
 Date: 2026-06-06
 Author: Volker Schmid [aut, cre], Florian Geressen [ctb], Leonhard Held [ctb], Evi Rainer [ctb]
 Authors@R: c(person("Volker","Schmid",email="volker.schmid@lmu.de", role=c("aut","cre")),person("Florian","Geressen",role="ctb"), person("Leonhard","Held",role="ctb"),person("Evi","Rainer",role="ctb"))
@@ -20,4 +20,4 @@ BugReports: https://github.com/volkerschmid/bamp/issues
 Config/roxygen2/version: 8.0.0
 Config/testthat/edition: 3
 NeedsCompilation: yes
-Packaged: 2026-06-06 11:27:54 UTC; volkerschmid
+Packaged: 2026-06-21 13:42:09 UTC; volkerschmid

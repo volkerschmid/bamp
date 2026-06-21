@@ -1,11 +1,13 @@
 
 R version 4.6.0 (2026-04-24) -- "Because it was There"
 Copyright (C) 2026 The R Foundation for Statistical Computing
-Platform: aarch64-apple-darwin25.4.0
+Platform: aarch64-apple-darwin23
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
 Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
 
 R is a collaborative project with many contributors.
 Type 'contributors()' for more information and
@@ -19,7 +21,7 @@ Type 'q()' to quit R.
 > source(file.path(R.home("share"), "R", "examples-header.R"))
 > options(warn = 1)
 > library('bamp')
-bamp version 2.1.6
+bamp version 2.2.0
 > 
 > base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
 > base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')

@@ -1,0 +1,11 @@
+apc                     apc S3 class
+apc.data                Example dataset for APC model
+apcSimulate             Simulate from age-period-cohort model
+bamp                    Bayesian Age-Period-Cohort Modeling and
+                        Prediction (bamp)
+checkConvergence        Check apc object, whether MCMC has converged
+coh                     Compute cohort index from age and period index
+effects.apc             Effects from Fitted APC Model
+plot.apc                Plot apc object
+predict_apc             Prediction for age-period-cohort models
+print.apc               Print apc objects

@@ -4,7 +4,7 @@
 
 ## Test environments
 
-* macOS Tahoe 26.5.1, R 4.6.0 (aarch64-apple-darwin25.4.0, local)
+* macOS Tahoe 26.5.1, R 4.6.0 (aarch64-apple-darwin23, local)
 * Windows (win-builder, R-devel)
 
 ## Summary of changes in 2.2.0

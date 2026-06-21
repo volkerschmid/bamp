@@ -99,8 +99,31 @@ double* cholesky(int n, double* matrix,  int& bw)
   int nn = n;
   int bw0 = bw;
   int lda = bw+1;
+  int sz = n * lda;
+
   cholesky77(&nn, &bw0, matrix, &lda, &info);
-  if (info != 0) error("Cholesky decomposition failed: matrix is not positive definite");
+
+  if (info != 0) {
+    /* Matrix not positive definite (common with RW2 at extreme hyperparameter
+       values during tuning). Save original, add increasing diagonal jitter,
+       and retry. Diagonal elements are at matrix[j*lda] in band storage. */
+    double* orig = new double[sz];
+    for (int i = 0; i < sz; i++) orig[i] = matrix[i];
+
+    double jitter = 1e-6;
+    for (int attempt = 0; attempt < 15 && info != 0; attempt++) {
+      for (int i = 0; i < sz; i++) matrix[i] = orig[i];
+      for (int j = 0; j < n; j++) matrix[j * lda] += jitter;
+      info = 0;
+      cholesky77(&nn, &bw0, matrix, &lda, &info);
+      jitter *= 10.0;
+    }
+    delete[] orig;
+
+    if (info != 0)
+      error("Cholesky decomposition failed: matrix is not positive definite");
+  }
+
   return matrix;
 }
 

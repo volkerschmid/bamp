@@ -16,6 +16,10 @@
 #' }
 plot.apc<-function(x, quantiles=c(0.05,0.5,0.95), ...)
 {
+  if (length(x$samples) == 0 || is.null(x$samples$age)) {
+    message("No MCMC samples available.")
+    return(invisible(NULL))
+  }
   age<-as.array(x$samples$age)
   age<-apply(age,2,quantile,quantiles)
   period<-as.array(x$samples$period)

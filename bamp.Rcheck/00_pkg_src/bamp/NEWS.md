@@ -1,5 +1,8 @@
-# bamp 2.1.6
+# bamp 2.2.0
 
+* Effects (age, period, cohort) are now computed automatically inside `bamp()` and stored in the returned object (`model$effects`), so a separate call to `effects.apc()` is no longer needed for the default median summary.
+* Fixed bug in `effects.apc()`: cache check was looking for `x$effect` (singular) instead of `x$effects` (plural), and referenced an undefined variable in the cache condition.
+* MCMC chains now use warm starts: on a restart the previous sample values are used as initial values, reducing burn-in time for automatic convergence checking. First-run behaviour is unchanged.
 * Fixed bug in cohort heterogeneity hyperparameter check (`cohort="rw2+het"` was not recognized correctly).
 * Fixed typo in `period_covariate` handling that silently prevented vector coercion.
 * Fixed `checkConvergence()`: cohort convergence check used age hyperparameter instead of cohort hyperparameter.
@@ -7,6 +10,9 @@
 * Fixed memory leaks in C++ MCMC code (raw pointer allocations per iteration).
 * Fixed `GetRNGstate`/`PutRNGstate` pairing in random number generation.
 * Added Cholesky decomposition error check with informative message.
+* Replaced fork-based `mclapply` with socket-based `makeCluster`/`parLapply` for reliable parallel execution on all platforms, including macOS GUI environments (RStudio). Falls back to sequential if cluster setup fails.
+* MCMC chains that fail due to numerical errors are now discarded cleanly instead of continuing with corrupted values.
+* Cholesky decomposition now recovers from non-positive-definite precision matrices (common with RW2 priors during tuning) by adding increasing diagonal regularization and retrying, instead of aborting the chain.
 * Added unit tests.
 * Updated CITATION to use `bibentry()`.
 

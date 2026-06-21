@@ -164,9 +164,10 @@ function(cases, population,
   model$age=age
   model$period=period
   model$cohort=cohort
-  
+
   model$overdispersion=overdisp
-  
+  output$model=model
+
   #if (!is.null(age_covariate))age_block=age_block=age_block+7
   if (!is.null(period_covariate))period_block=period_block+7
   if (!is.null(cohort_covariate))cohort_block=cohort_block+7
@@ -575,25 +576,29 @@ if (verbose)
                      dev.sample,verbose){
    gc()
    if (verbose>=2)cat(paste("chain",i,"\n"))
-   
-return(.C("bamp",
-                          as.integer(cases),
-                          as.integer(population),
-                          as.integer(blocks),
-                          as.integer(numbers),
-                          as.double(periods_per_agegroup),
-                          as.integer(numbersmcmc),
-                          as.integer(modelsettings),
-                          as.double(allhyper),
-                          as.double(theta.sample), as.double(phi.sample), as.double(psi.sample),
-                          as.double(theta2.sample), as.double(phi2.sample), as.double(psi2.sample),
-                          as.double(ksi),
-                          as.double(delta.sample), as.double(kappa.sample), as.double(kappa2.sample), as.double(lambda.sample),
-                          as.double(lambda2.sample), as.double(ny.sample), as.double(ny2.sample), as.double(my.sample),
-                          as.double(dev.sample),
-                          as.integer(verbose)
-                          )
-)
+   tryCatch(
+     .C("bamp",
+        as.integer(cases),
+        as.integer(population),
+        as.integer(blocks),
+        as.integer(numbers),
+        as.double(periods_per_agegroup),
+        as.integer(numbersmcmc),
+        as.integer(modelsettings),
+        as.double(allhyper),
+        as.double(theta.sample), as.double(phi.sample), as.double(psi.sample),
+        as.double(theta2.sample), as.double(phi2.sample), as.double(psi2.sample),
+        as.double(ksi),
+        as.double(delta.sample), as.double(kappa.sample), as.double(kappa2.sample), as.double(lambda.sample),
+        as.double(lambda2.sample), as.double(ny.sample), as.double(ny2.sample), as.double(my.sample),
+        as.double(dev.sample),
+        as.integer(verbose)
+     ),
+     error = function(e) {
+       message("Chain ", i, " failed: ", conditionMessage(e))
+       NULL
+     }
+   )
 }
 
  if (parallel)
@@ -601,30 +606,57 @@ return(.C("bamp",
    cores<-getOption("mc.cores", 2L)
    if (parallel>1)
      cores<-parallel
+   cores<-min(cores, chains)
  }
+
 if(verbose>=2)
 {
   results_list<-list()
   for (i in 1:chains)
     results_list[[i]]<-singlerun(i,cases,population,blocks,numbers,periods_per_agegroup,
-                     numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, 
+                     numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample,
                      theta2.sample,phi2.sample,psi2.sample,ksi,delta.sample,kappa.sample,kappa2.sample,
-                     lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample, verbose)
-parallel<-FALSE
+                     lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose)
 }
- else{
-if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population,blocks,numbers,periods_per_agegroup,
-                                                 numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, 
-                                                 theta2.sample,phi2.sample,psi2.sample,ksi,delta.sample,kappa.sample,kappa2.sample,
-                                                 lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose, mc.cores=cores)
-
- 
- if(!parallel)results_list<-lapply(1:chains,singlerun,cases,population,blocks,numbers,periods_per_agegroup,
-                                              numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample, 
-                                              theta2.sample,phi2.sample,psi2.sample,ksi,delta.sample,kappa.sample,kappa2.sample,
-                                              lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose)
-}
+ else if(parallel){
+   results_list <- tryCatch({
+     cl <- parallel::makeCluster(cores)
+     on.exit(parallel::stopCluster(cl), add = TRUE)
+     parallel::clusterEvalQ(cl, library(bamp, quietly = TRUE))
+     parallel::clusterExport(cl, "singlerun", envir = environment())
+     parallel::parLapply(cl, 1:chains, singlerun,
+                         cases,population,blocks,numbers,periods_per_agegroup,
+                         numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample,
+                         theta2.sample,phi2.sample,psi2.sample,ksi,delta.sample,kappa.sample,kappa2.sample,
+                         lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose)
+   }, error = function(e) {
+     message("Note: Parallel execution failed (", conditionMessage(e),
+             "); falling back to sequential.")
+     lapply(1:chains, singlerun,
+            cases,population,blocks,numbers,periods_per_agegroup,
+            numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample,
+            theta2.sample,phi2.sample,psi2.sample,ksi,delta.sample,kappa.sample,kappa2.sample,
+            lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose)
+   })
+ } else {
+   results_list<-lapply(1:chains,singlerun,cases,population,blocks,numbers,periods_per_agegroup,
+                        numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample,
+                        theta2.sample,phi2.sample,psi2.sample,ksi,delta.sample,kappa.sample,kappa2.sample,
+                        lambda.sample,lambda2.sample,ny.sample,ny2.sample,my.sample,dev.sample,verbose)
+ }
 ##################################################################################################################################
+
+ # Remove chains that failed (singlerun returns NULL on C-level error)
+ failed <- vapply(results_list, is.null, logical(1))
+ if (any(failed)) {
+   if (verbose) message(sum(failed), " chain(s) failed and will be discarded.")
+   results_list <- results_list[!failed]
+   chains <- length(results_list)
+ }
+ if (chains == 0) {
+   cat("\nAll MCMC chains failed. Please check your model settings.\n")
+   return(output)
+ }
 
   deviance<-vector("list",chains)
 
@@ -668,7 +700,7 @@ if(parallel)results_list<-parallel::mclapply(1:chains,singlerun,cases,population
  if (sum(kick)==0)
   {
    cat("\nAutomatic check procedure removed all Markov chains. Please change your model settings (maybe add overdispersion).")
-    return(list())
+    return(output)
   }
  
 
@@ -796,6 +828,7 @@ deviance<-coda::as.mcmc.list(deviance)
  checkConvergence(output, auto=verbose)
 
  output$ksi=ksi
+ output <- effects.apc(output, update=TRUE)
  cat("\n")
  return(output)
 }

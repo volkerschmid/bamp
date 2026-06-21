@@ -1,0 +1,558 @@
+* using log directory ‘/Users/volkerschmid/projects/bamp/..Rcheck’
+* using R version 4.6.0 (2026-04-24)
+* using platform: aarch64-apple-darwin23
+* R was compiled by
+    Apple clang version 17.0.0 (clang-1700.3.19.1)
+    GNU Fortran (GCC) 14.2.0
+* running under: macOS Tahoe 26.5.1
+* using session charset: UTF-8
+* current time: 2026-06-21 13:40:11 UTC
+* checking for file ‘./DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘bamp’ version ‘2.2.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... WARNING
+Subdirectory ‘bamp/src’ contains apparent object files/libraries
+  bamp.o block.o init.o l.o matrix.o mxs.o praez.o update_my.o zufall.o
+  zz_ksi.o
+Object files/libraries should not be included in a source package.
+
+In addition to the above warning(s), found the following notes:
+
+Found the following apparent object files/libraries:
+  bamp.Rcheck/00_pkg_src/bamp/src/bamp.o
+  bamp.Rcheck/00_pkg_src/bamp/src/bamp.so
+  bamp.Rcheck/00_pkg_src/bamp/src/block.o
+  bamp.Rcheck/00_pkg_src/bamp/src/init.o
+  bamp.Rcheck/00_pkg_src/bamp/src/l.o
+  bamp.Rcheck/00_pkg_src/bamp/src/matrix.o
+  bamp.Rcheck/00_pkg_src/bamp/src/mxs.o
+  bamp.Rcheck/00_pkg_src/bamp/src/praez.o
+  bamp.Rcheck/00_pkg_src/bamp/src/update_my.o
+  bamp.Rcheck/00_pkg_src/bamp/src/zufall.o
+  bamp.Rcheck/00_pkg_src/bamp/src/zz_ksi.o
+  bamp.Rcheck/bamp/libs/bamp.so
+Object files/libraries should not be included in a source package.
+
+Subdirectory ‘bamp.Rcheck/bamp’ seems to contain an installed version of the package.
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .Rhistory
+  .github/.gitignore
+  .gitignore
+  vignettes/largevignettes/.gitignore
+  ..Rcheck
+  .Rproj.user
+  .git
+  .github
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... NOTE
+Found the following non-portable file paths:
+  bamp/vignettes/largevignettes/bamp_cache/html/Model1_with_RW1_priors_7380f33d7ca2c421aec7b4ae44f41771.RData
+  bamp/vignettes/largevignettes/bamp_cache/html/Model1_with_RW1_priors_7380f33d7ca2c421aec7b4ae44f41771.rdb
+  bamp/vignettes/largevignettes/bamp_cache/html/Model1_with_RW1_priors_7380f33d7ca2c421aec7b4ae44f41771.rdx
+  bamp/vignettes/largevignettes/bamp_cache/html/plot_model_with_more_quantiles_3a950866acc79e7c47e2a738965f51f7.RData
+  bamp/vignettes/largevignettes/bamp_cache/html/plot_model_with_more_quantiles_3a950866acc79e7c47e2a738965f51f7.rdb
+  bamp/vignettes/largevignettes/bamp_cache/html/plot_model_with_more_quantiles_3a950866acc79e7c47e2a738965f51f7.rdx
+  bamp/vignettes/largevignettes/modeling_cache/html/Model1_with_RW1_priors_a34cbc12293c242c9582c322acf62324.RData
+  bamp/vignettes/largevignettes/modeling_cache/html/Model1_with_RW1_priors_a34cbc12293c242c9582c322acf62324.rdb
+  bamp/vignettes/largevignettes/modeling_cache/html/Model1_with_RW1_priors_a34cbc12293c242c9582c322acf62324.rdx
+  bamp/vignettes/largevignettes/modeling_cache/html/Model2_results_b0e647985c95205faadf3b4111f06502.RData
+  bamp/vignettes/largevignettes/modeling_cache/html/Model2_results_b0e647985c95205faadf3b4111f06502.rdb
+  bamp/vignettes/largevignettes/modeling_cache/html/Model2_results_b0e647985c95205faadf3b4111f06502.rdx
+  bamp/vignettes/largevignettes/modeling_cache/html/Model2_with_RW2_priors_d3fdceb470137ccd59dc3162244df359.RData
+  bamp/vignettes/largevignettes/modeling_cache/html/Model2_with_RW2_priors_d3fdceb470137ccd59dc3162244df359.rdb
+  bamp/vignettes/largevignettes/modeling_cache/html/Model2_with_RW2_priors_d3fdceb470137ccd59dc3162244df359.rdx
+  bamp/vignettes/largevignettes/modeling_cache/html/plot_model_with_more_quantiles_0ee04c7fbd5d39460df49fec9fb85c72.RData
+  bamp/vignettes/largevignettes/modeling_cache/html/plot_model_with_more_quantiles_0ee04c7fbd5d39460df49fec9fb85c72.rdb
+  bamp/vignettes/largevignettes/modeling_cache/html/plot_model_with_more_quantiles_0ee04c7fbd5d39460df49fec9fb85c72.rdx
+  bamp/vignettes/largevignettes/modeling_cache/latex/Model1_with_RW1_priors_f4351deb934bd9a6f6acaacdfe88ba2a.RData
+  bamp/vignettes/largevignettes/modeling_cache/latex/Model1_with_RW1_priors_f4351deb934bd9a6f6acaacdfe88ba2a.rdb
+  bamp/vignettes/largevignettes/modeling_cache/latex/Model1_with_RW1_priors_f4351deb934bd9a6f6acaacdfe88ba2a.rdx
+  bamp/vignettes/largevignettes/modeling_cache/latex/Model2_results_a21ffa79a922fee6745c4b873e08bbe3.RData
+  bamp/vignettes/largevignettes/modeling_cache/latex/Model2_results_a21ffa79a922fee6745c4b873e08bbe3.rdb
+  bamp/vignettes/largevignettes/modeling_cache/latex/Model2_results_a21ffa79a922fee6745c4b873e08bbe3.rdx
+  bamp/vignettes/largevignettes/modeling_cache/latex/Model2_with_RW2_priors_ea1904d0ad3d4e25b37efb87e41478d6.RData
+  bamp/vignettes/largevignettes/modeling_cache/latex/Model2_with_RW2_priors_ea1904d0ad3d4e25b37efb87e41478d6.rdb
+  bamp/vignettes/largevignettes/modeling_cache/latex/Model2_with_RW2_priors_ea1904d0ad3d4e25b37efb87e41478d6.rdx
+  bamp/vignettes/largevignettes/modeling_cache/latex/check_model_4b1ab1245344b72b601d58a447925705.RData
+  bamp/vignettes/largevignettes/modeling_cache/latex/plot_model_with_more_quantiles_79382b622a61b09db6096609c984413d.RData
+  bamp/vignettes/largevignettes/modeling_cache/latex/plot_model_with_more_quantiles_79382b622a61b09db6096609c984413d.rdb
+  bamp/vignettes/largevignettes/modeling_cache/latex/plot_model_with_more_quantiles_79382b622a61b09db6096609c984413d.rdx
+  bamp/vignettes/largevignettes/modeling_cache/latex/print_model_d35a221f2a6a4d80156ff59449a82335.RData
+  bamp/vignettes/largevignettes/modeling_files/modeling_files/figure-latex/plot_model_with_more_quantiles-1.pdf
+  bamp/vignettes/largevignettes/modeling_files/modeling_files/figure-latex/plot_model_with_more_quantiles-2.pdf
+  bamp/vignettes/largevignettes/modeling_files/modeling_files/figure-latex/plot_model_with_more_quantiles-3.pdf
+  bamp/vignettes/largevignettes/prediction_cache/html/prediction_e030a3d12814b34363e4265fa90b5bb3.RData
+  bamp/vignettes/largevignettes/prediction_cache/html/unnamed-chunk-1_1694d6d87727dae9d53cec37f8889a09.RData
+  bamp/vignettes/largevignettes/prediction_cache/html/unnamed-chunk-1_1694d6d87727dae9d53cec37f8889a09.rdb
+  bamp/vignettes/largevignettes/prediction_cache/html/unnamed-chunk-1_1694d6d87727dae9d53cec37f8889a09.rdx
+  bamp/vignettes/largevignettes/prediction_cache/html/unnamed-chunk-2_37321952a5fc46c37f4324d07a19253a.RData
+  bamp/vignettes/largevignettes/prediction_cache/html/unnamed-chunk-2_37321952a5fc46c37f4324d07a19253a.rdb
+  bamp/vignettes/largevignettes/prediction_cache/html/unnamed-chunk-2_37321952a5fc46c37f4324d07a19253a.rdx
+  bamp/vignettes/largevignettes/prediction_cache/latex/prediction_8f92835101223002490efa9032b14074.RData
+  bamp/vignettes/largevignettes/prediction_cache/latex/predmodel_0f51eeeb6f551c16a60aeaf9e130b897.RData
+  bamp/vignettes/largevignettes/prediction_cache/latex/unnamed-chunk-1_52b874f672a87bb2fbdbc02df0bae7bb.RData
+  bamp/vignettes/largevignettes/prediction_cache/latex/unnamed-chunk-1_52b874f672a87bb2fbdbc02df0bae7bb.rdb
+  bamp/vignettes/largevignettes/prediction_cache/latex/unnamed-chunk-1_52b874f672a87bb2fbdbc02df0bae7bb.rdx
+  bamp/vignettes/largevignettes/prediction_cache/latex/unnamed-chunk-2_79b04eb96bf9fade555edbcfd61f3e6a.RData
+  bamp/vignettes/largevignettes/prediction_cache/latex/unnamed-chunk-2_79b04eb96bf9fade555edbcfd61f3e6a.rdb
+  bamp/vignettes/largevignettes/prediction_cache/latex/unnamed-chunk-2_79b04eb96bf9fade555edbcfd61f3e6a.rdx
+  bamp/vignettes/largevignettes/simulation_cache/html/bamp_with_covariate_0c01e6c3a452b517bfe45d090d25f0ea.RData
+  bamp/vignettes/largevignettes/simulation_cache/html/bamp_with_covariate_0c01e6c3a452b517bfe45d090d25f0ea.rdb
+  bamp/vignettes/largevignettes/simulation_cache/html/bamp_with_covariate_0c01e6c3a452b517bfe45d090d25f0ea.rdx
+  bamp/vignettes/largevignettes/simulation_cache/html/check_print_plot2_0a3d4d5527af61781f12a400caf1a4b8.RData
+  bamp/vignettes/largevignettes/simulation_cache/html/check_print_plot2_0a3d4d5527af61781f12a400caf1a4b8.rdb
+  bamp/vignettes/largevignettes/simulation_cache/html/check_print_plot2_0a3d4d5527af61781f12a400caf1a4b8.rdx
+  bamp/vignettes/largevignettes/simulation_cache/html/check_print_plot_ec275bff16ed8986edcdac907fc0cd68.RData
+  bamp/vignettes/largevignettes/simulation_cache/html/check_print_plot_ec275bff16ed8986edcdac907fc0cd68.rdb
+  bamp/vignettes/largevignettes/simulation_cache/html/check_print_plot_ec275bff16ed8986edcdac907fc0cd68.rdx
+  bamp/vignettes/largevignettes/simulation_cache/html/plot_comparison_23d8a55a6005bdee9dca0e403fcabda2.RData
+  bamp/vignettes/largevignettes/simulation_cache/html/plot_comparison_23d8a55a6005bdee9dca0e403fcabda2.rdb
+  bamp/vignettes/largevignettes/simulation_cache/html/plot_comparison_23d8a55a6005bdee9dca0e403fcabda2.rdx
+  bamp/vignettes/largevignettes/simulation_cache/html/prediction1_e007d59a447a22642f2f6ecd20bf045b.RData
+  bamp/vignettes/largevignettes/simulation_cache/html/prediction4_8f78b6a83719e3df9cc236595ce4474d.RData
+  bamp/vignettes/largevignettes/simulation_cache/html/prediction_ab1e0ebe65b00dc9985fbcfed3eae8d0.RData
+  bamp/vignettes/largevignettes/simulation_cache/html/simulate_age_9e5eb7240a5b3867ecb38cc145cfd99f.RData
+  bamp/vignettes/largevignettes/simulation_cache/html/simulate_age_9e5eb7240a5b3867ecb38cc145cfd99f.rdb
+  bamp/vignettes/largevignettes/simulation_cache/html/simulate_age_9e5eb7240a5b3867ecb38cc145cfd99f.rdx
+  bamp/vignettes/largevignettes/simulation_cache/html/simulate_cohort_6a045bfb9eb61719ddcf8328e559b019.RData
+  bamp/vignettes/largevignettes/simulation_cache/html/simulate_cohort_6a045bfb9eb61719ddcf8328e559b019.rdb
+  bamp/vignettes/largevignettes/simulation_cache/html/simulate_cohort_6a045bfb9eb61719ddcf8328e559b019.rdx
+  bamp/vignettes/largevignettes/simulation_cache/html/simulate_covariate_for_period_02884ddaf55212ca9bd79ce269110ce3.RData
+  bamp/vignettes/largevignettes/simulation_cache/html/simulate_covariate_for_period_02884ddaf55212ca9bd79ce269110ce3.rdb
+  bamp/vignettes/largevignettes/simulation_cache/html/simulate_covariate_for_period_02884ddaf55212ca9bd79ce269110ce3.rdx
+  bamp/vignettes/largevignettes/simulation_cache/html/simulate_data_af3ab00ce5b1a5602049935c18782abe.RData
+  bamp/vignettes/largevignettes/simulation_cache/html/simulate_data_af3ab00ce5b1a5602049935c18782abe.rdb
+  bamp/vignettes/largevignettes/simulation_cache/html/simulate_data_af3ab00ce5b1a5602049935c18782abe.rdx
+  bamp/vignettes/largevignettes/simulation_cache/html/simulate_period_ba94e66605bbeb2c0665039cf6daa897.RData
+  bamp/vignettes/largevignettes/simulation_cache/html/simulate_period_ba94e66605bbeb2c0665039cf6daa897.rdb
+  bamp/vignettes/largevignettes/simulation_cache/html/simulate_period_ba94e66605bbeb2c0665039cf6daa897.rdx
+  bamp/vignettes/largevignettes/simulation_cache/latex/bamp_with_covariate_60f37dcc1eb0bf7b90b8166715917aba.RData
+  bamp/vignettes/largevignettes/simulation_cache/latex/bamp_with_covariate_60f37dcc1eb0bf7b90b8166715917aba.rdb
+  bamp/vignettes/largevignettes/simulation_cache/latex/bamp_with_covariate_60f37dcc1eb0bf7b90b8166715917aba.rdx
+  bamp/vignettes/largevignettes/simulation_cache/latex/check_print_plot2_0d80ca5ea9b630fd578507dfc496a94f.RData
+  bamp/vignettes/largevignettes/simulation_cache/latex/check_print_plot2_0d80ca5ea9b630fd578507dfc496a94f.rdb
+  bamp/vignettes/largevignettes/simulation_cache/latex/check_print_plot2_0d80ca5ea9b630fd578507dfc496a94f.rdx
+  bamp/vignettes/largevignettes/simulation_cache/latex/check_print_plot_248e6a0d2f1144ffb49d551f5137828d.RData
+  bamp/vignettes/largevignettes/simulation_cache/latex/check_print_plot_248e6a0d2f1144ffb49d551f5137828d.rdb
+  bamp/vignettes/largevignettes/simulation_cache/latex/check_print_plot_248e6a0d2f1144ffb49d551f5137828d.rdx
+  bamp/vignettes/largevignettes/simulation_cache/latex/plot_comparison_34241cfc028f0d7183e6fac2d5232aa1.RData
+  bamp/vignettes/largevignettes/simulation_cache/latex/plot_comparison_34241cfc028f0d7183e6fac2d5232aa1.rdb
+  bamp/vignettes/largevignettes/simulation_cache/latex/plot_comparison_34241cfc028f0d7183e6fac2d5232aa1.rdx
+  bamp/vignettes/largevignettes/simulation_cache/latex/prediction1_56c6ccc22845135780e4fd1a8094ab45.RData
+  bamp/vignettes/largevignettes/simulation_cache/latex/prediction1_56c6ccc22845135780e4fd1a8094ab45.rdb
+  bamp/vignettes/largevignettes/simulation_cache/latex/prediction1_56c6ccc22845135780e4fd1a8094ab45.rdx
+  bamp/vignettes/largevignettes/simulation_cache/latex/prediction4_49e6a8f51ef9ebc2529b1d5e835a848c.RData
+  bamp/vignettes/largevignettes/simulation_cache/latex/prediction4_49e6a8f51ef9ebc2529b1d5e835a848c.rdb
+  bamp/vignettes/largevignettes/simulation_cache/latex/prediction4_49e6a8f51ef9ebc2529b1d5e835a848c.rdx
+  bamp/vignettes/largevignettes/simulation_cache/latex/prediction_f22fb01fa4d026cd2eee1701b79e7106.RData
+  bamp/vignettes/largevignettes/simulation_cache/latex/simulate_age_a385f4b5798985a8ee195ddfb29c1a4b.RData
+  bamp/vignettes/largevignettes/simulation_cache/latex/simulate_age_a385f4b5798985a8ee195ddfb29c1a4b.rdb
+  bamp/vignettes/largevignettes/simulation_cache/latex/simulate_age_a385f4b5798985a8ee195ddfb29c1a4b.rdx
+  bamp/vignettes/largevignettes/simulation_cache/latex/simulate_cohort_f5caa248e6911eec074c04f4b918318d.RData
+  bamp/vignettes/largevignettes/simulation_cache/latex/simulate_cohort_f5caa248e6911eec074c04f4b918318d.rdb
+  bamp/vignettes/largevignettes/simulation_cache/latex/simulate_cohort_f5caa248e6911eec074c04f4b918318d.rdx
+  bamp/vignettes/largevignettes/simulation_cache/latex/simulate_covariate_for_period_d54e47ce6cf845edc5cedbd5703dbd36.RData
+  bamp/vignettes/largevignettes/simulation_cache/latex/simulate_covariate_for_period_d54e47ce6cf845edc5cedbd5703dbd36.rdb
+  bamp/vignettes/largevignettes/simulation_cache/latex/simulate_covariate_for_period_d54e47ce6cf845edc5cedbd5703dbd36.rdx
+  bamp/vignettes/largevignettes/simulation_cache/latex/simulate_data_7e2351066abaf8db0f4af1a073156836.RData
+  bamp/vignettes/largevignettes/simulation_cache/latex/simulate_data_7e2351066abaf8db0f4af1a073156836.rdb
+  bamp/vignettes/largevignettes/simulation_cache/latex/simulate_data_7e2351066abaf8db0f4af1a073156836.rdx
+  bamp/vignettes/largevignettes/simulation_cache/latex/simulate_period_e9dc6f426590330ad0ff4eb956973747.RData
+  bamp/vignettes/largevignettes/simulation_cache/latex/simulate_period_e9dc6f426590330ad0ff4eb956973747.rdb
+  bamp/vignettes/largevignettes/simulation_cache/latex/simulate_period_e9dc6f426590330ad0ff4eb956973747.rdx
+
+Tarballs are only required to store paths of up to 100 bytes and cannot
+store those of more than 256 bytes, with restrictions including to 100
+bytes for the final component.
+See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘bamp’ can be installed ... OK
+* used C compiler: ‘Apple clang version 21.0.0 (clang-2100.1.1.101)’
+* used C++ compiler: ‘Apple clang version 21.0.0 (clang-2100.1.1.101)’
+* used SDK: ‘MacOSX26.5.sdk’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Checking should be performed on sources prepared by ‘R CMD build’.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Found the following directories with names of check directories:
+  ./..Rcheck
+  ./bamp.Rcheck
+Most likely, these were included erroneously.
+Found the following CITATION files in a non-standard place:
+  bamp.Rcheck/00_pkg_src/bamp/inst/CITATION
+  bamp.Rcheck/bamp/CITATION
+Most likely ‘inst/CITATION’ should be used instead.
+* checking code files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking whether startup messages can be suppressed ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... OK
+* checking files in ‘vignettes’ ... WARNING
+Files in the 'vignettes' directory but no files in 'inst/doc':
+  ‘bamp.html’ ‘bamp.html.asis’ ‘largevignettes/bamp.Rmd’
+  ‘largevignettes/bamp.html’
+  ‘largevignettes/bamp_cache/html/Model1_with_RW1_priors_7380f33d7ca2c421aec7b4ae44f41771.RData’
+  ‘largevignettes/bamp_cache/html/Model1_with_RW1_priors_7380f33d7ca2c421aec7b4ae44f41771.rdb’
+  ‘largevignettes/bamp_cache/html/Model1_with_RW1_priors_7380f33d7ca2c421aec7b4ae44f41771.rdx’
+  ‘largevignettes/bamp_cache/html/__packages’
+  ‘largevignettes/bamp_cache/html/check_model_70c987613e9d53fe66cb36391f448054.RData’
+  ‘largevignettes/bamp_cache/html/check_model_70c987613e9d53fe66cb36391f448054.rdb’
+  ‘largevignettes/bamp_cache/html/check_model_70c987613e9d53fe66cb36391f448054.rdx’
+  ‘largevignettes/bamp_cache/html/loadplot_e3af194b9847ecc65c0c5b1cfaf9bc91.RData’
+  ‘largevignettes/bamp_cache/html/loadplot_e3af194b9847ecc65c0c5b1cfaf9bc91.rdb’
+  ‘largevignettes/bamp_cache/html/loadplot_e3af194b9847ecc65c0c5b1cfaf9bc91.rdx’
+  ‘largevignettes/bamp_cache/html/plot_model_b5eb718b61575d9c788b1025df2e0837.RData’
+  ‘largevignettes/bamp_cache/html/plot_model_b5eb718b61575d9c788b1025df2e0837.rdb’
+  ‘largevignettes/bamp_cache/html/plot_model_b5eb718b61575d9c788b1025df2e0837.rdx’
+  ‘largevignettes/bamp_cache/html/plot_model_with_more_quantiles_3a950866acc79e7c47e2a738965f51f7.RData’
+  ‘largevignettes/bamp_cache/html/plot_model_with_more_quantiles_3a950866acc79e7c47e2a738965f51f7.rdb’
+  ‘largevignettes/bamp_cache/html/plot_model_with_more_quantiles_3a950866acc79e7c47e2a738965f51f7.rdx’
+  ‘largevignettes/bamp_cache/html/prediction_7768cf5042d45acdac5a22fb20e5d96f.RData’
+  ‘largevignettes/bamp_cache/html/prediction_7768cf5042d45acdac5a22fb20e5d96f.rdb’
+  ‘largevignettes/bamp_cache/html/prediction_7768cf5042d45acdac5a22fb20e5d96f.rdx’
+  ‘largevignettes/bamp_cache/html/print_model_f6a58bd475fdc33cf8d158bb0b9f6f41.RData’
+  ‘largevignettes/bamp_cache/html/print_model_f6a58bd475fdc33cf8d158bb0b9f6f41.rdb’
+  ‘largevignettes/bamp_cache/html/print_model_f6a58bd475fdc33cf8d158bb0b9f6f41.rdx’
+  ‘largevignettes/bamp_cache/html/setup_d39a7e8100474530f6c838c18b38d8e4.RData’
+  ‘largevignettes/bamp_cache/html/setup_d39a7e8100474530f6c838c18b38d8e4.rdb’
+  ‘largevignettes/bamp_cache/html/setup_d39a7e8100474530f6c838c18b38d8e4.rdx’
+  ‘largevignettes/bamp_cache/html/unnamed-chunk-1_2a97147124e17bba44a7a43b83469517.RData’
+  ‘largevignettes/bamp_cache/html/unnamed-chunk-1_2a97147124e17bba44a7a43b83469517.rdb’
+  ‘largevignettes/bamp_cache/html/unnamed-chunk-1_2a97147124e17bba44a7a43b83469517.rdx’
+  ‘largevignettes/bamp_files/figure-html/loadplot-1.png’
+  ‘largevignettes/bamp_files/figure-html/plot_model-1.png’
+  ‘largevignettes/bamp_files/figure-html/plot_model-2.png’
+  ‘largevignettes/bamp_files/figure-html/plot_model-3.png’
+  ‘largevignettes/bamp_files/figure-html/plot_model_with_more_quantiles-1.png’
+  ‘largevignettes/bamp_files/figure-html/plot_model_with_more_quantiles-2.png’
+  ‘largevignettes/bamp_files/figure-html/plot_model_with_more_quantiles-3.png’
+  ‘largevignettes/bamp_files/figure-html/unnamed-chunk-1-1.png’
+  ‘largevignettes/modeling.Rmd’ ‘largevignettes/modeling.pdf’
+  ‘largevignettes/modeling_cache/html/Model1_with_RW1_priors_a34cbc12293c242c9582c322acf62324.RData’
+  ‘largevignettes/modeling_cache/html/Model1_with_RW1_priors_a34cbc12293c242c9582c322acf62324.rdb’
+  ‘largevignettes/modeling_cache/html/Model1_with_RW1_priors_a34cbc12293c242c9582c322acf62324.rdx’
+  ‘largevignettes/modeling_cache/html/Model2_results_b0e647985c95205faadf3b4111f06502.RData’
+  ‘largevignettes/modeling_cache/html/Model2_results_b0e647985c95205faadf3b4111f06502.rdb’
+  ‘largevignettes/modeling_cache/html/Model2_results_b0e647985c95205faadf3b4111f06502.rdx’
+  ‘largevignettes/modeling_cache/html/Model2_with_RW2_priors_d3fdceb470137ccd59dc3162244df359.RData’
+  ‘largevignettes/modeling_cache/html/Model2_with_RW2_priors_d3fdceb470137ccd59dc3162244df359.rdb’
+  ‘largevignettes/modeling_cache/html/Model2_with_RW2_priors_d3fdceb470137ccd59dc3162244df359.rdx’
+  ‘largevignettes/modeling_cache/html/__packages’
+  ‘largevignettes/modeling_cache/html/check_model_72a95c6b8a10ca0cef6d740adc3abe5e.RData’
+  ‘largevignettes/modeling_cache/html/check_model_72a95c6b8a10ca0cef6d740adc3abe5e.rdb’
+  ‘largevignettes/modeling_cache/html/check_model_72a95c6b8a10ca0cef6d740adc3abe5e.rdx’
+  ‘largevignettes/modeling_cache/html/loadplot_9deeac7ec5a96535b15b17c1e3d07edc.RData’
+  ‘largevignettes/modeling_cache/html/loadplot_9deeac7ec5a96535b15b17c1e3d07edc.rdb’
+  ‘largevignettes/modeling_cache/html/loadplot_9deeac7ec5a96535b15b17c1e3d07edc.rdx’
+  ‘largevignettes/modeling_cache/html/model3_a54e94bd807af96be85e8e4c899ea1f1.RData’
+  ‘largevignettes/modeling_cache/html/model3_a54e94bd807af96be85e8e4c899ea1f1.rdb’
+  ‘largevignettes/modeling_cache/html/model3_a54e94bd807af96be85e8e4c899ea1f1.rdx’
+  ‘largevignettes/modeling_cache/html/model4_c8398def024d87a722c82bfd0953aa81.RData’
+  ‘largevignettes/modeling_cache/html/model4_c8398def024d87a722c82bfd0953aa81.rdb’
+  ‘largevignettes/modeling_cache/html/model4_c8398def024d87a722c82bfd0953aa81.rdx’
+  ‘largevignettes/modeling_cache/html/model5_e95fa083702f918856c69b876590418a.RData’
+  ‘largevignettes/modeling_cache/html/model5_e95fa083702f918856c69b876590418a.rdb’
+  ‘largevignettes/modeling_cache/html/model5_e95fa083702f918856c69b876590418a.rdx’
+  ‘largevignettes/modeling_cache/html/plot_model_2b7d86d82c9cc97850610ffe1a58da6a.RData’
+  ‘largevignettes/modeling_cache/html/plot_model_2b7d86d82c9cc97850610ffe1a58da6a.rdb’
+  ‘largevignettes/modeling_cache/html/plot_model_2b7d86d82c9cc97850610ffe1a58da6a.rdx’
+  ‘largevignettes/modeling_cache/html/plot_model_with_more_quantiles_0ee04c7fbd5d39460df49fec9fb85c72.RData’
+  ‘largevignettes/modeling_cache/html/plot_model_with_more_quantiles_0ee04c7fbd5d39460df49fec9fb85c72.rdb’
+  ‘largevignettes/modeling_cache/html/plot_model_with_more_quantiles_0ee04c7fbd5d39460df49fec9fb85c72.rdx’
+  ‘largevignettes/modeling_cache/html/print_model_3bf742b84a44cce1b8ef4a2f654d27a7.RData’
+  ‘largevignettes/modeling_cache/html/print_model_3bf742b84a44cce1b8ef4a2f654d27a7.rdb’
+  ‘largevignettes/modeling_cache/html/print_model_3bf742b84a44cce1b8ef4a2f654d27a7.rdx’
+  ‘largevignettes/modeling_cache/latex/Model1_with_RW1_priors_f4351deb934bd9a6f6acaacdfe88ba2a.RData’
+  ‘largevignettes/modeling_cache/latex/Model1_with_RW1_priors_f4351deb934bd9a6f6acaacdfe88ba2a.rdb’
+  ‘largevignettes/modeling_cache/latex/Model1_with_RW1_priors_f4351deb934bd9a6f6acaacdfe88ba2a.rdx’
+  ‘largevignettes/modeling_cache/latex/Model2_results_a21ffa79a922fee6745c4b873e08bbe3.RData’
+  ‘largevignettes/modeling_cache/latex/Model2_results_a21ffa79a922fee6745c4b873e08bbe3.rdb’
+  ‘largevignettes/modeling_cache/latex/Model2_results_a21ffa79a922fee6745c4b873e08bbe3.rdx’
+  ‘largevignettes/modeling_cache/latex/Model2_with_RW2_priors_ea1904d0ad3d4e25b37efb87e41478d6.RData’
+  ‘largevignettes/modeling_cache/latex/Model2_with_RW2_priors_ea1904d0ad3d4e25b37efb87e41478d6.rdb’
+  ‘largevignettes/modeling_cache/latex/Model2_with_RW2_priors_ea1904d0ad3d4e25b37efb87e41478d6.rdx’
+  ‘largevignettes/modeling_cache/latex/__packages’
+  ‘largevignettes/modeling_cache/latex/check_model_4b1ab1245344b72b601d58a447925705.RData’
+  ‘largevignettes/modeling_cache/latex/check_model_4b1ab1245344b72b601d58a447925705.rdb’
+  ‘largevignettes/modeling_cache/latex/check_model_4b1ab1245344b72b601d58a447925705.rdx’
+  ‘largevignettes/modeling_cache/latex/loadplot_461ed03859f5068825da1f94050edd59.RData’
+  ‘largevignettes/modeling_cache/latex/loadplot_461ed03859f5068825da1f94050edd59.rdb’
+  ‘largevignettes/modeling_cache/latex/loadplot_461ed03859f5068825da1f94050edd59.rdx’
+  ‘largevignettes/modeling_cache/latex/model3_c804c703ceba7fcd841c04b8db7bf4c9.RData’
+  ‘largevignettes/modeling_cache/latex/model3_c804c703ceba7fcd841c04b8db7bf4c9.rdb’
+  ‘largevignettes/modeling_cache/latex/model3_c804c703ceba7fcd841c04b8db7bf4c9.rdx’
+  ‘largevignettes/modeling_cache/latex/model4_c58076ed43beccbf7b4f8e05c3f54d0f.RData’
+  ‘largevignettes/modeling_cache/latex/model4_c58076ed43beccbf7b4f8e05c3f54d0f.rdb’
+  ‘largevignettes/modeling_cache/latex/model4_c58076ed43beccbf7b4f8e05c3f54d0f.rdx’
+  ‘largevignettes/modeling_cache/latex/model5_b98dbad596f375368c12cc9b5ef8a7c0.RData’
+  ‘largevignettes/modeling_cache/latex/model5_b98dbad596f375368c12cc9b5ef8a7c0.rdb’
+  ‘largevignettes/modeling_cache/latex/model5_b98dbad596f375368c12cc9b5ef8a7c0.rdx’
+  ‘largevignettes/modeling_cache/latex/plot_model_882557d5cd790b5955e6eb0e6297c98a.RData’
+  ‘largevignettes/modeling_cache/latex/plot_model_882557d5cd790b5955e6eb0e6297c98a.rdb’
+  ‘largevignettes/modeling_cache/latex/plot_model_882557d5cd790b5955e6eb0e6297c98a.rdx’
+  ‘largevignettes/modeling_cache/latex/plot_model_with_more_quantiles_79382b622a61b09db6096609c984413d.RData’
+  ‘largevignettes/modeling_cache/latex/plot_model_with_more_quantiles_79382b622a61b09db6096609c984413d.rdb’
+  ‘largevignettes/modeling_cache/latex/plot_model_with_more_quantiles_79382b622a61b09db6096609c984413d.rdx’
+  ‘largevignettes/modeling_cache/latex/print_model_d35a221f2a6a4d80156ff59449a82335.RData’
+  ‘largevignettes/modeling_cache/latex/print_model_d35a221f2a6a4d80156ff59449a82335.rdb’
+  ‘largevignettes/modeling_cache/latex/print_model_d35a221f2a6a4d80156ff59449a82335.rdx’
+  ‘largevignettes/modeling_cache/latex/setup_c37dd413aca057d1316417290d15830c.RData’
+  ‘largevignettes/modeling_cache/latex/setup_c37dd413aca057d1316417290d15830c.rdb’
+  ‘largevignettes/modeling_cache/latex/setup_c37dd413aca057d1316417290d15830c.rdx’
+  ‘largevignettes/modeling_files/figure-latex/Model2_results-1.pdf’
+  ‘largevignettes/modeling_files/figure-latex/Model2_results-2.pdf’
+  ‘largevignettes/modeling_files/figure-latex/Model2_results-3.pdf’
+  ‘largevignettes/modeling_files/figure-latex/loadplot-1.pdf’
+  ‘largevignettes/modeling_files/figure-latex/model3-1.pdf’
+  ‘largevignettes/modeling_files/figure-latex/model3-2.pdf’
+  ‘largevignettes/modeling_files/figure-latex/model4-1.pdf’
+  ‘largevignettes/modeling_files/figure-latex/model4-2.pdf’
+  ‘largevignettes/modeling_files/figure-latex/model4-3.pdf’
+  ‘largevignettes/modeling_files/figure-latex/model4-4.pdf’
+  ‘largevignettes/modeling_files/figure-latex/model4-5.pdf’
+  ‘largevignettes/modeling_files/figure-latex/model4-6.pdf’
+  ‘largevignettes/modeling_files/figure-latex/model5-1.pdf’
+  ‘largevignettes/modeling_files/figure-latex/model5-2.pdf’
+  ‘largevignettes/modeling_files/figure-latex/model5-3.pdf’
+  ‘largevignettes/modeling_files/figure-latex/model5-4.pdf’
+  ‘largevignettes/modeling_files/figure-latex/model5-5.pdf’
+  ‘largevignettes/modeling_files/figure-latex/model5-6.pdf’
+  ‘largevignettes/modeling_files/figure-latex/plot_model-1.pdf’
+  ‘largevignettes/modeling_files/figure-latex/plot_model-2.pdf’
+  ‘largevignettes/modeling_files/figure-latex/plot_model-3.pdf’
+  ‘largevignettes/modeling_files/figure-latex/plot_model_with_more_quantiles-1.pdf’
+  ‘largevignettes/modeling_files/figure-latex/plot_model_with_more_quantiles-2.pdf’
+  ‘largevignettes/modeling_files/figure-latex/plot_model_with_more_quantiles-3.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/Model2_results-1.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/Model2_results-2.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/Model2_results-3.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/loadplot-1.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/model3-1.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/model3-2.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/model4-1.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/model4-2.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/model4-3.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/model4-4.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/model4-5.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/model4-6.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/model5-1.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/model5-2.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/model5-3.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/model5-4.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/model5-5.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/model5-6.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/plot_model-1.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/plot_model-2.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/plot_model-3.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/plot_model_with_more_quantiles-1.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/plot_model_with_more_quantiles-2.pdf’
+  ‘largevignettes/modeling_files/modeling_files/figure-latex/plot_model_with_more_quantiles-3.pdf’
+  ‘largevignettes/prediction.Rmd’ ‘largevignettes/prediction.pdf’
+  ‘largevignettes/prediction_cache/html/__packages’
+  ‘largevignettes/prediction_cache/html/loadplot_40d4518f7a2d90939ec2acfe8d758cf9.RData’
+  ‘largevignettes/prediction_cache/html/loadplot_40d4518f7a2d90939ec2acfe8d758cf9.rdb’
+  ‘largevignettes/prediction_cache/html/loadplot_40d4518f7a2d90939ec2acfe8d758cf9.rdx’
+  ‘largevignettes/prediction_cache/html/prediction_e030a3d12814b34363e4265fa90b5bb3.RData’
+  ‘largevignettes/prediction_cache/html/prediction_e030a3d12814b34363e4265fa90b5bb3.rdb’
+  ‘largevignettes/prediction_cache/html/prediction_e030a3d12814b34363e4265fa90b5bb3.rdx’
+  ‘largevignettes/prediction_cache/html/predmodel_c242f0fb22b21468d20d7d9970da07d1.RData’
+  ‘largevignettes/prediction_cache/html/predmodel_c242f0fb22b21468d20d7d9970da07d1.rdb’
+  ‘largevignettes/prediction_cache/html/predmodel_c242f0fb22b21468d20d7d9970da07d1.rdx’
+  ‘largevignettes/prediction_cache/html/unnamed-chunk-1_1694d6d87727dae9d53cec37f8889a09.RData’
+  ‘largevignettes/prediction_cache/html/unnamed-chunk-1_1694d6d87727dae9d53cec37f8889a09.rdb’
+  ‘largevignettes/prediction_cache/html/unnamed-chunk-1_1694d6d87727dae9d53cec37f8889a09.rdx’
+  ‘largevignettes/prediction_cache/html/unnamed-chunk-2_37321952a5fc46c37f4324d07a19253a.RData’
+  ‘largevignettes/prediction_cache/html/unnamed-chunk-2_37321952a5fc46c37f4324d07a19253a.rdb’
+  ‘largevignettes/prediction_cache/html/unnamed-chunk-2_37321952a5fc46c37f4324d07a19253a.rdx’
+  ‘largevignettes/prediction_cache/latex/__packages’
+  ‘largevignettes/prediction_cache/latex/loadplot_a615d96f6e96966210bb1658d2390a3a.RData’
+  ‘largevignettes/prediction_cache/latex/loadplot_a615d96f6e96966210bb1658d2390a3a.rdb’
+  ‘largevignettes/prediction_cache/latex/loadplot_a615d96f6e96966210bb1658d2390a3a.rdx’
+  ‘largevignettes/prediction_cache/latex/prediction_8f92835101223002490efa9032b14074.RData’
+  ‘largevignettes/prediction_cache/latex/prediction_8f92835101223002490efa9032b14074.rdb’
+  ‘largevignettes/prediction_cache/latex/prediction_8f92835101223002490efa9032b14074.rdx’
+  ‘largevignettes/prediction_cache/latex/predmodel_0f51eeeb6f551c16a60aeaf9e130b897.RData’
+  ‘largevignettes/prediction_cache/latex/predmodel_0f51eeeb6f551c16a60aeaf9e130b897.rdb’
+  ‘largevignettes/prediction_cache/latex/predmodel_0f51eeeb6f551c16a60aeaf9e130b897.rdx’
+  ‘largevignettes/prediction_cache/latex/setup_d920b6cdc2a567a0ce5a91aa6c47e04d.RData’
+  ‘largevignettes/prediction_cache/latex/setup_d920b6cdc2a567a0ce5a91aa6c47e04d.rdb’
+  ‘largevignettes/prediction_cache/latex/setup_d920b6cdc2a567a0ce5a91aa6c47e04d.rdx’
+  ‘largevignettes/prediction_cache/latex/unnamed-chunk-1_52b874f672a87bb2fbdbc02df0bae7bb.RData’
+  ‘largevignettes/prediction_cache/latex/unnamed-chunk-1_52b874f672a87bb2fbdbc02df0bae7bb.rdb’
+  ‘largevignettes/prediction_cache/latex/unnamed-chunk-1_52b874f672a87bb2fbdbc02df0bae7bb.rdx’
+  ‘largevignettes/prediction_cache/latex/unnamed-chunk-2_79b04eb96bf9fade555edbcfd61f3e6a.RData’
+  ‘largevignettes/prediction_cache/latex/unnamed-chunk-2_79b04eb96bf9fade555edbcfd61f3e6a.rdb’
+  ‘largevignettes/prediction_cache/latex/unnamed-chunk-2_79b04eb96bf9fade555edbcfd61f3e6a.rdx’
+  ‘largevignettes/prediction_files/figure-latex/loadplot-1.pdf’
+  ‘largevignettes/prediction_files/figure-latex/unnamed-chunk-1-1.pdf’
+  ‘largevignettes/prediction_files/figure-latex/unnamed-chunk-2-1.pdf’
+  ‘largevignettes/prediction_files/figure-latex/unnamed-chunk-2-2.pdf’
+  ‘largevignettes/prediction_files/prediction_files/figure-latex/loadplot-1.pdf’
+  ‘largevignettes/prediction_files/prediction_files/figure-latex/unnamed-chunk-1-1.pdf’
+  ‘largevignettes/prediction_files/prediction_files/figure-latex/unnamed-chunk-2-1.pdf’
+  ‘largevignettes/prediction_files/prediction_files/figure-latex/unnamed-chunk-2-2.pdf’
+  ‘largevignettes/render.R’ ‘largevignettes/simulation.Rmd’
+  ‘largevignettes/simulation.pdf’
+  ‘largevignettes/simulation_cache/html/__packages’
+  ‘largevignettes/simulation_cache/html/bamp_101f191da86bc32c0fc609a5e2623792.RData’
+  ‘largevignettes/simulation_cache/html/bamp_101f191da86bc32c0fc609a5e2623792.rdb’
+  ‘largevignettes/simulation_cache/html/bamp_101f191da86bc32c0fc609a5e2623792.rdx’
+  ‘largevignettes/simulation_cache/html/bamp_with_covariate_0c01e6c3a452b517bfe45d090d25f0ea.RData’
+  ‘largevignettes/simulation_cache/html/bamp_with_covariate_0c01e6c3a452b517bfe45d090d25f0ea.rdb’
+  ‘largevignettes/simulation_cache/html/bamp_with_covariate_0c01e6c3a452b517bfe45d090d25f0ea.rdx’
+  ‘largevignettes/simulation_cache/html/check_print_plot2_0a3d4d5527af61781f12a400caf1a4b8.RData’
+  ‘largevignettes/simulation_cache/html/check_print_plot2_0a3d4d5527af61781f12a400caf1a4b8.rdb’
+  ‘largevignettes/simulation_cache/html/check_print_plot2_0a3d4d5527af61781f12a400caf1a4b8.rdx’
+  ‘largevignettes/simulation_cache/html/check_print_plot_ec275bff16ed8986edcdac907fc0cd68.RData’
+  ‘largevignettes/simulation_cache/html/check_print_plot_ec275bff16ed8986edcdac907fc0cd68.rdb’
+  ‘largevignettes/simulation_cache/html/check_print_plot_ec275bff16ed8986edcdac907fc0cd68.rdx’
+  ‘largevignettes/simulation_cache/html/plot_comparison_23d8a55a6005bdee9dca0e403fcabda2.RData’
+  ‘largevignettes/simulation_cache/html/plot_comparison_23d8a55a6005bdee9dca0e403fcabda2.rdb’
+  ‘largevignettes/simulation_cache/html/plot_comparison_23d8a55a6005bdee9dca0e403fcabda2.rdx’
+  ‘largevignettes/simulation_cache/html/prediction1_e007d59a447a22642f2f6ecd20bf045b.RData’
+  ‘largevignettes/simulation_cache/html/prediction1_e007d59a447a22642f2f6ecd20bf045b.rdb’
+  ‘largevignettes/simulation_cache/html/prediction1_e007d59a447a22642f2f6ecd20bf045b.rdx’
+  ‘largevignettes/simulation_cache/html/prediction4_8f78b6a83719e3df9cc236595ce4474d.RData’
+  ‘largevignettes/simulation_cache/html/prediction4_8f78b6a83719e3df9cc236595ce4474d.rdb’
+  ‘largevignettes/simulation_cache/html/prediction4_8f78b6a83719e3df9cc236595ce4474d.rdx’
+  ‘largevignettes/simulation_cache/html/prediction_ab1e0ebe65b00dc9985fbcfed3eae8d0.RData’
+  ‘largevignettes/simulation_cache/html/prediction_ab1e0ebe65b00dc9985fbcfed3eae8d0.rdb’
+  ‘largevignettes/simulation_cache/html/prediction_ab1e0ebe65b00dc9985fbcfed3eae8d0.rdx’
+  ‘largevignettes/simulation_cache/html/simulate_age_9e5eb7240a5b3867ecb38cc145cfd99f.RData’
+  ‘largevignettes/simulation_cache/html/simulate_age_9e5eb7240a5b3867ecb38cc145cfd99f.rdb’
+  ‘largevignettes/simulation_cache/html/simulate_age_9e5eb7240a5b3867ecb38cc145cfd99f.rdx’
+  ‘largevignettes/simulation_cache/html/simulate_cohort_6a045bfb9eb61719ddcf8328e559b019.RData’
+  ‘largevignettes/simulation_cache/html/simulate_cohort_6a045bfb9eb61719ddcf8328e559b019.rdb’
+  ‘largevignettes/simulation_cache/html/simulate_cohort_6a045bfb9eb61719ddcf8328e559b019.rdx’
+  ‘largevignettes/simulation_cache/html/simulate_covariate_for_period_02884ddaf55212ca9bd79ce269110ce3.RData’
+  ‘largevignettes/simulation_cache/html/simulate_covariate_for_period_02884ddaf55212ca9bd79ce269110ce3.rdb’
+  ‘largevignettes/simulation_cache/html/simulate_covariate_for_period_02884ddaf55212ca9bd79ce269110ce3.rdx’
+  ‘largevignettes/simulation_cache/html/simulate_data_af3ab00ce5b1a5602049935c18782abe.RData’
+  ‘largevignettes/simulation_cache/html/simulate_data_af3ab00ce5b1a5602049935c18782abe.rdb’
+  ‘largevignettes/simulation_cache/html/simulate_data_af3ab00ce5b1a5602049935c18782abe.rdx’
+  ‘largevignettes/simulation_cache/html/simulate_period_ba94e66605bbeb2c0665039cf6daa897.RData’
+  ‘largevignettes/simulation_cache/html/simulate_period_ba94e66605bbeb2c0665039cf6daa897.rdb’
+  ‘largevignettes/simulation_cache/html/simulate_period_ba94e66605bbeb2c0665039cf6daa897.rdx’
+  ‘largevignettes/simulation_cache/latex/__packages’
+  ‘largevignettes/simulation_cache/latex/bamp_a47ccec461ad10cd9aa4a8c9b3d2e6b6.RData’
+  ‘largevignettes/simulation_cache/latex/bamp_a47ccec461ad10cd9aa4a8c9b3d2e6b6.rdb’
+  ‘largevignettes/simulation_cache/latex/bamp_a47ccec461ad10cd9aa4a8c9b3d2e6b6.rdx’
+  ‘largevignettes/simulation_cache/latex/bamp_rw2_6abbf9a64fb9d440d4e8bf0122b3cf31.RData’
+  ‘largevignettes/simulation_cache/latex/bamp_rw2_6abbf9a64fb9d440d4e8bf0122b3cf31.rdb’
+  ‘largevignettes/simulation_cache/latex/bamp_rw2_6abbf9a64fb9d440d4e8bf0122b3cf31.rdx’
+  ‘largevignettes/simulation_cache/latex/bamp_with_covariate_60f37dcc1eb0bf7b90b8166715917aba.RData’
+  ‘largevignettes/simulation_cache/latex/bamp_with_covariate_60f37dcc1eb0bf7b90b8166715917aba.rdb’
+  ‘largevignettes/simulation_cache/latex/bamp_with_covariate_60f37dcc1eb0bf7b90b8166715917aba.rdx’
+  ‘largevignettes/simulation_cache/latex/check_print_plot2_0d80ca5ea9b630fd578507dfc496a94f.RData’
+  ‘largevignettes/simulation_cache/latex/check_print_plot2_0d80ca5ea9b630fd578507dfc496a94f.rdb’
+  ‘largevignettes/simulation_cache/latex/check_print_plot2_0d80ca5ea9b630fd578507dfc496a94f.rdx’
+  ‘largevignettes/simulation_cache/latex/check_print_plot_248e6a0d2f1144ffb49d551f5137828d.RData’
+  ‘largevignettes/simulation_cache/latex/check_print_plot_248e6a0d2f1144ffb49d551f5137828d.rdb’
+  ‘largevignettes/simulation_cache/latex/check_print_plot_248e6a0d2f1144ffb49d551f5137828d.rdx’
+  ‘largevignettes/simulation_cache/latex/plot_comparison_34241cfc028f0d7183e6fac2d5232aa1.RData’
+  ‘largevignettes/simulation_cache/latex/plot_comparison_34241cfc028f0d7183e6fac2d5232aa1.rdb’
+  ‘largevignettes/simulation_cache/latex/plot_comparison_34241cfc028f0d7183e6fac2d5232aa1.rdx’
+  ‘largevignettes/simulation_cache/latex/prediction1_56c6ccc22845135780e4fd1a8094ab45.RData’
+  ‘largevignettes/simulation_cache/latex/prediction1_56c6ccc22845135780e4fd1a8094ab45.rdb’
+  ‘largevignettes/simulation_cache/latex/prediction1_56c6ccc22845135780e4fd1a8094ab45.rdx’
+  ‘largevignettes/simulation_cache/latex/prediction4_49e6a8f51ef9ebc2529b1d5e835a848c.RData’
+  ‘largevignettes/simulation_cache/latex/prediction4_49e6a8f51ef9ebc2529b1d5e835a848c.rdb’
+  ‘largevignettes/simulation_cache/latex/prediction4_49e6a8f51ef9ebc2529b1d5e835a848c.rdx’
+  ‘largevignettes/simulation_cache/latex/prediction_f22fb01fa4d026cd2eee1701b79e7106.RData’
+  ‘largevignettes/simulation_cache/latex/prediction_f22fb01fa4d026cd2eee1701b79e7106.rdb’
+  ‘largevignettes/simulation_cache/latex/prediction_f22fb01fa4d026cd2eee1701b79e7106.rdx’
+  ‘largevignettes/simulation_cache/latex/setup_e7875757ce35ea8d75c7f6886bf97216.RData’
+  ‘largevignettes/simulation_cache/latex/setup_e7875757ce35ea8d75c7f6886bf97216.rdb’
+  ‘largevignettes/simulation_cache/latex/setup_e7875757ce35ea8d75c7f6886bf97216.rdx’
+  ‘largevignettes/simulation_cache/latex/simulate_age_a385f4b5798985a8ee195ddfb29c1a4b.RData’
+  ‘largevignettes/simulation_cache/latex/simulate_age_a385f4b5798985a8ee195ddfb29c1a4b.rdb’
+  ‘largevignettes/simulation_cache/latex/simulate_age_a385f4b5798985a8ee195ddfb29c1a4b.rdx’
+  ‘largevignettes/simulation_cache/latex/simulate_cohort_f5caa248e6911eec074c04f4b918318d.RData’
+  ‘largevignettes/simulation_cache/latex/simulate_cohort_f5caa248e6911eec074c04f4b918318d.rdb’
+  ‘largevignettes/simulation_cache/latex/simulate_cohort_f5caa248e6911eec074c04f4b918318d.rdx’
+  ‘largevignettes/simulation_cache/latex/simulate_covariate_for_period_d54e47ce6cf845edc5cedbd5703dbd36.RData’
+  ‘largevignettes/simulation_cache/latex/simulate_covariate_for_period_d54e47ce6cf845edc5cedbd5703dbd36.rdb’
+  ‘largevignettes/simulation_cache/latex/simulate_covariate_for_period_d54e47ce6cf845edc5cedbd5703dbd36.rdx’
+  ‘largevignettes/simulation_cache/latex/simulate_data_7e2351066abaf8db0f4af1a073156836.RData’
+  ‘largevignettes/simulation_cache/latex/simulate_data_7e2351066abaf8db0f4af1a073156836.rdb’
+  ‘largevignettes/simulation_cache/latex/simulate_data_7e2351066abaf8db0f4af1a073156836.rdx’
+  ‘largevignettes/simulation_cache/latex/simulate_period_e9dc6f426590330ad0ff4eb956973747.RData’
+  ‘largevignettes/simulation_cache/latex/simulate_period_e9dc6f426590330ad0ff4eb956973747.rdb’
+  ‘largevignettes/simulation_cache/latex/simulate_period_e9dc6f426590330ad0ff4eb956973747.rdx’
+  ‘largevignettes/simulation_files/figure-latex/check_print_plot-1.pdf’
+  ‘largevignettes/simulation_files/figure-latex/check_print_plot-2.pdf’
+  ‘largevignettes/simulation_files/figure-latex/check_print_plot-3.pdf’
+  ‘largevignettes/simulation_files/figure-latex/check_print_plot2-1.pdf’
+  ‘largevignettes/simulation_files/figure-latex/check_print_plot2-2.pdf’
+  ‘largevignettes/simulation_files/figure-latex/check_print_plot2-3.pdf’
+  ‘largevignettes/simulation_files/figure-latex/check_print_plot2-4.pdf’
+  ‘largevignettes/simulation_files/figure-latex/check_print_plot2-5.pdf’
+  ‘largevignettes/simulation_files/figure-latex/check_print_plot2-6.pdf’
+  ‘largevignettes/simulation_files/figure-latex/plot_comparison-1.pdf’
+  ‘largevignettes/simulation_files/figure-latex/plot_comparison-2.pdf’
+  ‘largevignettes/simulation_files/figure-latex/plot_comparison-3.pdf’
+  ‘largevignettes/simulation_files/figure-latex/prediction1-1.pdf’
+  ‘largevignettes/simulation_files/figure-latex/prediction4-1.pdf’
+  ‘largevignettes/simulation_files/figure-latex/simulate_age-1.pdf’
+  ‘largevignettes/simulation_files/figure-latex/simulate_cohort-1.pdf’
+  ‘largevignettes/simulation_files/figure-latex/simulate_period-1.pdf’
+  ‘modeling.html’ ‘modeling.html.asis’ ‘modeling.pdf’ ‘prediction.html’
+  ‘prediction.html.asis’ ‘prediction.pdf’
+  ‘publications/publications.Rmd’ ‘simulation.html’
+  ‘simulation.html.asis’ ‘simulation.pdf’ ‘standaloneversion/index.Rmd’
+  ‘standaloneversion/index.html’
+* checking examples ... OK
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ... OK
+  Running ‘testthat.R’
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes ... WARNING
+Directory 'inst/doc' does not exist.
+Package vignettes without corresponding single PDF/HTML:
+  ‘bamp.html.asis’
+  ‘modeling.html.asis’
+  ‘prediction.html.asis’
+  ‘simulation.html.asis’
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+Status: 4 WARNINGs, 3 NOTEs

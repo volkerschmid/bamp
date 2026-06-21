@@ -1,9 +1,471 @@
 Hmm ... looks like a package
 Converting parsed Rd's to LaTeX .
 Creating pdf output from LaTeX ...
-Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-  pdflatex is not available
-Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-  pdflatex is not available
-Error in running tools::texi2pdf()
-You may want to clean up by 'rm -Rf /var/folders/9r/npmf9tc515zdzg331q4vfxn00000gn/T//RtmppoUVIN/Rd2pdfe4743fa6a39b'
+
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(./Rd2.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/bk10.clo))
+(/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/Rd.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/bm.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/alltt.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/verbatim.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/textcomp.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/amssymb.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/eucal.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/inconsolata/zi4.sty
+`inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/xkeyval/keyval.tex)))))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/color.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.
+sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+ (/usr/local/texlive/2026basic/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/gettitlestring/gettitlestr
+ing.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)
+)) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/rerunfilecheck/rerunfilechec
+k.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/uniquecounter/uniquecounte
+r.sty)))) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/makeidx.sty)
+Writing index file Rd2.idx
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3backend/l3backend-pdftex.d
+ef)
+No file Rd2.aux.
+(/usr/local/texlive/2026basic/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/umsb.fd)
+No file Rd2.toc.
+[1{/usr/local/texlive/2026basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/
+usr/local/texlive/2026basic/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/
+texlive/2026basic/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}] [2]
+Overfull \hbox (20.60709pt too wide) in paragraph at lines 152--159
+\T1/ptm/m/n/10 Ad-di-tion-ally to the model de-scribed in Knorr-Held and Rainer
+ (2001, DOI:10.1093/biostatistics/2.1.109),
+[3]
+Overfull \hbox (21.39984pt too wide) in paragraph at lines 180--180
+ []  \T1/zi4/m/n/10 mcmc.options = list(number_of_iterations = 1e+05, burn_in =
+ 50000, step = 50, tuning =[] 
+
+Overfull \hbox (21.38962pt too wide) in paragraph at lines 182--182
+ []  \T1/zi4/m/n/10 hyperpar = list(age = c(1, 0.5), period = c(1, 5e-04), coho
+rt = c(1, 5e-04), overdisp =[] 
+[4]
+Overfull \hbox (1.68665pt too wide) in paragraph at lines 212--213
+\T1/ptm/m/n/10 the MCMC al-go-rithm will tune cer-tain pa-ram-e-ters for more e
+f-fi-cient MCMC
+
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 240--240
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+[5]
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 280--280
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+[6] (/usr/local/texlive/2026basic/texmf-dist/tex/latex/inconsolata/ts1zi4.fd)
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 358--358
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+[7{/usr/local/texlive/2026basic/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.e
+nc}]
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 399--399
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+[8]
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 462--462
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+[9]
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 499--499
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+No file Rd2.ind.
+[10]
+(/private/var/folders/9r/npmf9tc515zdzg331q4vfxn00000gn/T/Rtmp977lqV/Rd2pdf113c
+f7ad53a6a/Rd2.aux)
+
+Package rerunfilecheck Warning: File `Rd2.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)</usr/local/texlive/2026bas
+ic/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/t
+exlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/loc
+al/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></us
+r/local/texlive/2026basic/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/loc
+al/texlive/2026basic/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/te
+xlive/2026basic/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive
+/2026basic/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (10 pages, 123192 bytes).
+Transcript written on Rd2.log.
+This is makeindex, version 2.18 [TeX Live 2026] (kpathsea + Thai support).
+Scanning input file Rd2.idx....done (27 entries accepted, 0 rejected).
+Sorting entries....done (161 comparisons).
+Generating output file Rd2.ind....done (46 lines written, 0 warnings).
+Output written in Rd2.ind.
+Transcript written in Rd2.ilg.
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(./Rd2.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/bk10.clo))
+(/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/Rd.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/bm.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/alltt.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/verbatim.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/textcomp.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/amssymb.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/eucal.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/inconsolata/zi4.sty
+`inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/xkeyval/keyval.tex)))))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/color.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.
+sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+ (/usr/local/texlive/2026basic/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/gettitlestring/gettitlestr
+ing.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)
+)) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/rerunfilecheck/rerunfilechec
+k.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/uniquecounter/uniquecounte
+r.sty)))) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/makeidx.sty)
+Writing index file Rd2.idx
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3backend/l3backend-pdftex.d
+ef)
+(/private/var/folders/9r/npmf9tc515zdzg331q4vfxn00000gn/T/Rtmp977lqV/Rd2pdf113c
+f7ad53a6a/Rd2.aux)
+(/usr/local/texlive/2026basic/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+)
+(/private/var/folders/9r/npmf9tc515zdzg331q4vfxn00000gn/T/Rtmp977lqV/Rd2pdf113c
+f7ad53a6a/Rd2.out)
+(/private/var/folders/9r/npmf9tc515zdzg331q4vfxn00000gn/T/Rtmp977lqV/Rd2pdf113c
+f7ad53a6a/Rd2.out)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/private/var/folders/9r/npmf9tc515zdzg331q4vfxn00000gn/T/Rtmp977lqV/Rd2pdf113c
+f7ad53a6a/Rd2.toc [1{/usr/local/texlive/2026basic/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map}{/usr/local/texlive/2026basic/texmf-dist/fonts/enc/dvips/base/8
+r.enc}{/usr/local/texlive/2026basic/texmf-dist/fonts/enc/dvips/inconsolata/i4-t
+1-0.enc}]) [2]
+Overfull \hbox (20.60709pt too wide) in paragraph at lines 152--159
+\T1/ptm/m/n/10 Ad-di-tion-ally to the model de-scribed in Knorr-Held and Rainer
+ (2001, DOI:10.1093/biostatistics/2.1.109),
+[3]
+Overfull \hbox (21.39984pt too wide) in paragraph at lines 180--180
+ []  \T1/zi4/m/n/10 mcmc.options = list(number_of_iterations = 1e+05, burn_in =
+ 50000, step = 50, tuning =[] 
+
+Overfull \hbox (21.38962pt too wide) in paragraph at lines 182--182
+ []  \T1/zi4/m/n/10 hyperpar = list(age = c(1, 0.5), period = c(1, 5e-04), coho
+rt = c(1, 5e-04), overdisp =[] 
+[4]
+Overfull \hbox (1.68665pt too wide) in paragraph at lines 212--213
+\T1/ptm/m/n/10 the MCMC al-go-rithm will tune cer-tain pa-ram-e-ters for more e
+f-fi-cient MCMC
+
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 240--240
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+[5]
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 280--280
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+[6] (/usr/local/texlive/2026basic/texmf-dist/tex/latex/inconsolata/ts1zi4.fd)
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 358--358
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+[7{/usr/local/texlive/2026basic/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.e
+nc}]
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 399--399
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+[8]
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 462--462
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+[9]
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 499--499
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+
+(/private/var/folders/9r/npmf9tc515zdzg331q4vfxn00000gn/T/Rtmp977lqV/Rd2pdf113c
+f7ad53a6a/Rd2.ind [10]
+
+LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
+(Font)              using `T1/zi4/m/n' instead on input line 19.
+
+[11])
+(/private/var/folders/9r/npmf9tc515zdzg331q4vfxn00000gn/T/Rtmp977lqV/Rd2pdf113c
+f7ad53a6a/Rd2.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+Package rerunfilecheck Warning: File `Rd2.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)</usr/local/texlive/2026bas
+ic/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/t
+exlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/loc
+al/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></us
+r/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+</usr/local/texlive/2026basic/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr
+/local/texlive/2026basic/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/loca
+l/texlive/2026basic/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/tex
+live/2026basic/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (11 pages, 134726 bytes).
+Transcript written on Rd2.log.
+This is makeindex, version 2.18 [TeX Live 2026] (kpathsea + Thai support).
+Scanning input file Rd2.idx....done (27 entries accepted, 0 rejected).
+Sorting entries....done (161 comparisons).
+Generating output file Rd2.ind....done (46 lines written, 0 warnings).
+Output written in Rd2.ind.
+Transcript written in Rd2.ilg.
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(./Rd2.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/bk10.clo))
+(/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/Rd.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/bm.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/alltt.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/verbatim.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/textcomp.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/amssymb.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/eucal.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/inconsolata/zi4.sty
+`inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/xkeyval/keyval.tex)))))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/color.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.
+sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+ (/usr/local/texlive/2026basic/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/gettitlestring/gettitlestr
+ing.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)
+)) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/rerunfilecheck/rerunfilechec
+k.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/uniquecounter/uniquecounte
+r.sty)))) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/makeidx.sty)
+Writing index file Rd2.idx
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3backend/l3backend-pdftex.d
+ef)
+(/private/var/folders/9r/npmf9tc515zdzg331q4vfxn00000gn/T/Rtmp977lqV/Rd2pdf113c
+f7ad53a6a/Rd2.aux)
+(/usr/local/texlive/2026basic/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+)
+(/private/var/folders/9r/npmf9tc515zdzg331q4vfxn00000gn/T/Rtmp977lqV/Rd2pdf113c
+f7ad53a6a/Rd2.out)
+(/private/var/folders/9r/npmf9tc515zdzg331q4vfxn00000gn/T/Rtmp977lqV/Rd2pdf113c
+f7ad53a6a/Rd2.out)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/private/var/folders/9r/npmf9tc515zdzg331q4vfxn00000gn/T/Rtmp977lqV/Rd2pdf113c
+f7ad53a6a/Rd2.toc [1{/usr/local/texlive/2026basic/texmf-var/fonts/map/pdftex/up
+dmap/pdftex.map}{/usr/local/texlive/2026basic/texmf-dist/fonts/enc/dvips/base/8
+r.enc}{/usr/local/texlive/2026basic/texmf-dist/fonts/enc/dvips/inconsolata/i4-t
+1-0.enc}]) [2]
+Overfull \hbox (20.60709pt too wide) in paragraph at lines 152--159
+\T1/ptm/m/n/10 Ad-di-tion-ally to the model de-scribed in Knorr-Held and Rainer
+ (2001, DOI:10.1093/biostatistics/2.1.109),
+[3]
+Overfull \hbox (21.39984pt too wide) in paragraph at lines 180--180
+ []  \T1/zi4/m/n/10 mcmc.options = list(number_of_iterations = 1e+05, burn_in =
+ 50000, step = 50, tuning =[] 
+
+Overfull \hbox (21.38962pt too wide) in paragraph at lines 182--182
+ []  \T1/zi4/m/n/10 hyperpar = list(age = c(1, 0.5), period = c(1, 5e-04), coho
+rt = c(1, 5e-04), overdisp =[] 
+[4]
+Overfull \hbox (1.68665pt too wide) in paragraph at lines 212--213
+\T1/ptm/m/n/10 the MCMC al-go-rithm will tune cer-tain pa-ram-e-ters for more e
+f-fi-cient MCMC
+
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 240--240
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+[5]
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 280--280
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+[6] (/usr/local/texlive/2026basic/texmf-dist/tex/latex/inconsolata/ts1zi4.fd)
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 358--358
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+[7{/usr/local/texlive/2026basic/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.e
+nc}]
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 399--399
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+[8]
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 462--462
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+[9]
+Overfull \hbox (27.75328pt too wide) in paragraph at lines 499--499
+ []\T1/zi4/m/n/9 model <- bamp(cases, population, age="rw1", period="rw1", coho
+rt="rw1", periods_per_agegroup = 5)[] 
+
+(/private/var/folders/9r/npmf9tc515zdzg331q4vfxn00000gn/T/Rtmp977lqV/Rd2pdf113c
+f7ad53a6a/Rd2.ind [10]
+
+LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
+(Font)              using `T1/zi4/m/n' instead on input line 19.
+
+[11])
+(/private/var/folders/9r/npmf9tc515zdzg331q4vfxn00000gn/T/Rtmp977lqV/Rd2pdf113c
+f7ad53a6a/Rd2.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ )
+(see the transcript file for additional information)</usr/local/texlive/2026bas
+ic/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/t
+exlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/loc
+al/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></us
+r/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+</usr/local/texlive/2026basic/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr
+/local/texlive/2026basic/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/loca
+l/texlive/2026basic/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/tex
+live/2026basic/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (11 pages, 134888 bytes).
+Transcript written on Rd2.log.
+Saving output to ‘bamp-manual.pdf’ ...
+Done
+You may want to clean up by 'rm -Rf /var/folders/9r/npmf9tc515zdzg331q4vfxn00000gn/T//Rtmp977lqV/Rd2pdf113cf7ad53a6a'

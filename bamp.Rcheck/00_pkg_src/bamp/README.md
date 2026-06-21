@@ -1,5 +1,3 @@
-<img src="https://volkerschmid.github.io/bamp/figures/bamplogo8.png" align="right" />
-
 # Bayesian Age-period-cohort Modeling and Prediction
 
 BAMP is a software package to analyze incidence or mortality data on the Lexis diagram, using a Bayesian version of an age-period-cohort model. Such models have been described in, e.g., [Berzuini and Clayton (1994)](https://doi.org/10.1002/sim.4780130804),  [Besag, J.E., P.J. Green, D.M. Higdon and K.L. Mengersen (1995)](https://doi.org/10.1214/ss/1177010123) and [Knorr-Held and Rainer (2001)](https://doi.org/10.1093/biostatistics/2.1.109). For each pixel in the Lexis diagram (that  is for a specific age group and specific period) data must be available on the number of persons under risk (population number) and the number of disease cases (typically cancer incidence or mortality). A hierarchical model is assumed with a binomial model in the first-stage.
