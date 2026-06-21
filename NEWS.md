@@ -1,3 +1,5 @@
+# bamp 2.3.0
+
 # bamp 2.2.0
 
 * Effects (age, period, cohort) are now computed automatically inside `bamp()` and stored in the returned object (`model$effects`), so a separate call to `effects.apc()` is no longer needed for the default median summary.
