@@ -59,25 +59,30 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
     function(prepi, rw, n1, n2){
       lambda<-prepi[1]
       phi<-prepi[-1]
-      if(rw == 1){
-        for(i in (n1+1):n2){
-          phi[i] <- (rnorm(1, mean = 0, sd = 1)/sqrt(lambda)) + phi[i-1]
+      # nothing to extrapolate when there are no future steps (n2==n1). Guard the
+      # (n1+1):n2 loops: R's `:` counts DOWN when n2<n1+1, so (n1+1):n1 would be
+      # c(n1+1, n1) and wrongly append/overwrite a step. This matters for
+      # predict_apc(periods=0) (retrospective model checking), where n2==n1.
+      if(n2 > n1){
+        if(rw == 1){
+          for(i in (n1+1):n2){
+            phi[i] <- (rnorm(1, mean = 0, sd = 1)/sqrt(lambda)) + phi[i-1]
+          }
+        }
+
+        if(rw == 2){
+          for(i in (n1+1):n2){
+            phi[i] <- (rnorm(1, mean = 0, sd = 1)/sqrt(lambda)) + (2*phi[i-1] - phi[i-2])
+          }
+        }
+
+        if(rw == 0){
+          for(i in (n1+1):n2){
+            phi[i] <- phi[i-1]
+          }
         }
       }
-      
-      if(rw == 2){
-        for(i in (n1+1):n2){
-          phi[i] <- (rnorm(1, mean = 0, sd = 1)/sqrt(lambda)) + (2*phi[i-1] - phi[i-2])
-        }
-      }
-      
-      if(rw == 0){
-        for(i in (n1+1):n2){
-          phi[i] <- phi[i-1]
-        }
-      }
-      
-      
+
       return(phi)
     }
   

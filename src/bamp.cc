@@ -68,7 +68,6 @@ double temp1;
 int max_number_of_ap_combinations;
 double* period_data;
 double* cohort_data;
-int tuningcount=0;
 
 //counters for sampling
 int gen_c=0;
@@ -289,7 +288,6 @@ double delta = 1.0;
 //double mydach;
 //double devsumme;
 //double devianztemp;
-int index=0;
 //int tip = 0;
 
 my=startwert;
@@ -560,7 +558,6 @@ if (mode==1)
 	          Rprintf("Tuning is necessary. Restarting iterations.");
 	          ididwritesomething=42;
 	          lastitpercent=0.0;
-	          tuningcount++;
 	       }
 	       for (int l=0;l<number_of_agegroups;l++)
 	       {
@@ -756,8 +753,6 @@ if (mode==1)
 	     {
 	       for (int i=0; i< number_of_cohorts; i++){psi[i]=psi[i]*cohort_data[i];}
 	     }
-
-	   index += 1;
 	}
 
 
