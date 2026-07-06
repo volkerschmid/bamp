@@ -9,8 +9,8 @@ vignettes/*_files/
 ^.*\.dropbox\.attr$
 ^cran-comments\.md$
 LICENSE
-test
-unused
+^test/
+^unused/
 _pkgdown.yaml
 .gitignore
 ^.*\.git$
