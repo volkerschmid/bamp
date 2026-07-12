@@ -23,6 +23,10 @@
   quantiles and zero-covariate models.
 * Fixed `predict_apc(periods = 0)` crash (downward-sequence off-by-one).
 
+The Polya-Gamma sampler and its native C engine, DIC-based `selectModel()`, and the
+identifiability-aware convergence diagnostics in this release were contributed by
+Chris Kypridemos (PR #8).
+
 # bamp 2.2.0
 
 * Effects (age, period, cohort) are now computed automatically inside `bamp()` and stored in the returned object (`model$effects`), so a separate call to `effects.apc()` is no longer needed for the default median summary.
