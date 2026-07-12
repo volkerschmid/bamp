@@ -85,7 +85,9 @@ plot(prediction$period[2,])
 
 
 ```{r simulate_covariate_for_period}
-cov_p<-rnorm(15,period,.1)
+# a period covariate is a positive multiplier scaling the period effect, so it
+# must be > 0; exp() keeps it positive (rnorm(15, period, .1) alone can be <= 0).
+cov_p<-exp(rnorm(15,period,.1))
 ```
 
 
