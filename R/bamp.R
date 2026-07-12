@@ -172,6 +172,14 @@ function(cases, population,
   ## overdispersion, heterogeneity and period/cohort covariates -- there is no
   ## longer any model that falls back to IWLS.
 
+  ## Fill any hyper-parameter the caller omitted with its default. A partial
+  ## hyperpar list (e.g. list(age=, period=, cohort=) with no "overdisp") would
+  ## otherwise leave hyperpar$overdisp NULL, producing NULL hyper-values that
+  ## later crash the sampler / mkmat() ("attempt to set an attribute on NULL").
+  ## modifyList keeps any extra entries the caller supplied (e.g. age_het).
+  hyperpar <- modifyList(list("age"=c(1,0.5), "period"=c(1,0.0005),
+                              "cohort"=c(1,0.0005), "overdisp"=c(1,0.05)), hyperpar)
+
   age_hyperpar_a=hyperpar$age[1]
   age_hyperpar_b=hyperpar$age[2]
   period_hyperpar_a=hyperpar$period[1]
