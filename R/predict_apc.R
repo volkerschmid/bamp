@@ -33,6 +33,17 @@
 #' plot(pred$pr[2,11,], main="Predicted rate per agegroup", ylab="p")
 #' }
 predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0.95), update=FALSE){
+  ## guard: a model whose MCMC chains were ALL discarded during fitting carries no
+  ## posterior samples (e.g. the sampler collapsed on sparse / near-zero-event data and the
+  ## automatic convergence check removed every chain). Predicting from it reads effect
+  ## dimensions of length 0 and fails with a cryptic error deep in the parallel workers
+  ## ("argument of length 0" / "non-numeric argument to mathematical function"). Stop
+  ## clearly and actionably instead -- mirroring the guard already in checkConvergence().
+  if (length(object$samples) == 0 || is.null(object$samples$intercept))
+    stop("predict_apc: the fitted model has no usable posterior samples -- all MCMC chains ",
+         "were discarded during fitting, so the sampler did not converge (e.g. on sparse or ",
+         "near-zero-event data). Refit with more iterations, added overdispersion or a simpler ",
+         "model, and verify with checkConvergence() before predicting.", call. = FALSE)
   ksi_prognose <-
     function(prepi, vdb, noa, nop, nop2, noc, zmode){
       my<-prepi[1]
