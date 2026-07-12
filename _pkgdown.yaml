@@ -41,6 +41,7 @@ reference:
       - checkConvergence
       - apcSimulate
       - predict_apc
+      - selectModel
 - title: "apc S3 class"
   contents:
       - apc
