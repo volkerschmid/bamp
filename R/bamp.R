@@ -275,6 +275,11 @@ function(cases, population,
   model$cohort=cohort
 
   model$overdispersion=overdisp
+  ## record whether the RW structure matrices were Sorbye-Rue scaled (method="pg"
+  ## only). predict_apc needs this: the extrapolation innovation variance is
+  ## 1/(precision * scale), so a forecast must apply the SAME per-effect scale the
+  ## fit used, else long-horizon credible bands are inflated by the scale factor.
+  model$prior_scale=isTRUE(prior_scale)
   output$model=model
 
   #if (!is.null(age_covariate))age_block=age_block=age_block+7

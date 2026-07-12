@@ -56,9 +56,16 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
     }
   
   predict_rw <-
-    function(prepi, rw, n1, n2){
+    function(prepi, rw, n1, n2, scale = 1){
       lambda<-prepi[1]
       phi<-prepi[-1]
+      # innovation sd of the extrapolated random walk. The RW precision `lambda`
+      # is the multiplier on the (possibly Sorbye-Rue scaled) structure matrix
+      # `scale * K`, so the innovation variance is 1/(lambda*scale). `scale` is 1
+      # for the unscaled prior (method="iwls", or prior_scale=FALSE) and equals
+      # the Sorbye-Rue factor when the fit used prior_scale=TRUE -- without it the
+      # forecast noise is too large by sqrt(scale) and long-horizon bands explode.
+      sdi <- 1/sqrt(lambda * scale)
       # nothing to extrapolate when there are no future steps (n2==n1). Guard the
       # (n1+1):n2 loops: R's `:` counts DOWN when n2<n1+1, so (n1+1):n1 would be
       # c(n1+1, n1) and wrongly append/overwrite a step. This matters for
@@ -66,13 +73,13 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
       if(n2 > n1){
         if(rw == 1){
           for(i in (n1+1):n2){
-            phi[i] <- (rnorm(1, mean = 0, sd = 1)/sqrt(lambda)) + phi[i-1]
+            phi[i] <- rnorm(1, mean = 0, sd = sdi) +phi[i-1]
           }
         }
 
         if(rw == 2){
           for(i in (n1+1):n2){
-            phi[i] <- (rnorm(1, mean = 0, sd = 1)/sqrt(lambda)) + (2*phi[i-1] - phi[i-2])
+            phi[i] <- rnorm(1, mean = 0, sd = sdi) +(2*phi[i-1] - phi[i-2])
           }
         }
 
@@ -99,9 +106,12 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
                 rw1 = 1,
                 rw2 = 2
     )
+    ## Sorbye-Rue scale used for the period prior at fit time (n1 periods, order
+    ## rwp). 1 when the fit did not scale, so iwls / prior_scale=FALSE are exact.
+    s_p<-if(isTRUE(object$model$prior_scale)) .pg_scale(.pg_Kmat(n1, rwp), rwp) else 1
     ch<-length(object$samples$period)
       prep<-parallel::mclapply(1:ch, function(i,samples)cbind(object$samples$period_parameter[[i]],object$samples$period[[i]]), samples)
-      phi<-parallel::mclapply(prep, function(prepi, rw, n1, n2){t(apply(prepi, 1, predict_rw, rw, n1, n2))}, rwp, n1, n2)
+      phi<-parallel::mclapply(prep, function(prepi, rw, n1, n2, scale){t(apply(prepi, 1, predict_rw, rw, n1, n2, scale))}, rwp, n1, n2, s_p)
   }
   
   if (!object$model$cohort=="")
@@ -112,9 +122,13 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
     )
     c1<-dim(object$samples$cohort[[1]])[2]
     c2<-bamp::coh(1,n2,a1,object$data$periods_per_agegroup)
+    ## Sorbye-Rue scale used for the cohort prior at fit time (c1 cohorts, order
+    ## rwc). This is the dominant term: the scale grows fast with #cohorts (e.g.
+    ## ~590 for RW2 over 70 cohorts), so omitting it detonates the young-age band.
+    s_c<-if(isTRUE(object$model$prior_scale)) .pg_scale(.pg_Kmat(c1, rwc), rwc) else 1
     ch<-length(object$samples$cohort)
       prep<-parallel::mclapply(1:ch, function(i,samples)cbind(object$samples$cohort_parameter[[i]],object$samples$cohort[[i]]), samples)
-      psi<-parallel::mclapply(prep, function(prepi, rw, n1, n2){t(apply(prepi, 1, predict_rw, rw, n1, n2))}, rwc, c1, c2)
+      psi<-parallel::mclapply(prep, function(prepi, rw, n1, n2, scale){t(apply(prepi, 1, predict_rw, rw, n1, n2, scale))}, rwc, c1, c2, s_c)
   }
     
   nr.samples<-length(object$samples$intercept[[1]])
