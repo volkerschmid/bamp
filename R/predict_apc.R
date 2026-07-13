@@ -159,7 +159,7 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
     ksi0<-abind::abind(ksi0,ksi[[i]], along=3)
   }
   
-  pr <- exp(ksi0)/(1+exp(ksi0))
+  pr <- plogis(ksi0)  # stable sigmoid: exp/(1+exp) overflows to NaN at large logits
   
   if (is.null(population)){
     population <- t(object$data$population)
