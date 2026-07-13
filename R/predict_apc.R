@@ -99,6 +99,14 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
   n1<-dim(object$data$cases)[2]
   n2<-n1+periods
   rwp<-rwc<-0
+
+  ## Bug 2: counts + cohort span up front so the no-cohort path has them;
+  ## default zero cohort effect (overwritten below when a cohort prior exists).
+  ch <- length(object$samples$intercept)
+  nr.samples <- length(object$samples$intercept[[1]])
+  c2 <- bamp::coh(1, n2, a1, object$data$periods_per_agegroup)
+  c1 <- c2
+  psi <- lapply(seq_len(ch), function(i) matrix(0, nr.samples, c2))
   
   if (!object$model$period=="")
   {
@@ -114,7 +122,7 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
       phi<-parallel::mclapply(prep, function(prepi, rw, n1, n2, scale){t(apply(prepi, 1, predict_rw, rw, n1, n2, scale))}, rwp, n1, n2, s_p)
   }
   
-  if (!object$model$cohort=="")
+  if (nzchar(trimws(object$model$cohort)))
   {
     rwc<-switch(object$model$cohort,
                 rw1 = 1,
@@ -170,7 +178,7 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
   n0<-min(dim(population)[1],n2)
   
   predictedcases <- array(apply(pr,3,function(pr1,n,n0){
-    return(rbinom(n0*dim(n)[2],n[1:n0,],pr1[1:n0,]))},population,n0),c(n0,dim(pr)[2:3]))
+    return(rbinom(n0*dim(n)[2],round(n[1:n0,]),pr1[1:n0,]))},population,n0),c(n0,dim(pr)[2:3]))
   
   predictperiod<-apply(predictedcases,c(1,3),sum)
 
