@@ -168,6 +168,13 @@ function(cases, population,
   method <- match.arg(method)
   pg_engine <- match.arg(pg_engine)
 
+  ## Normalise the "no effect" specification to " " up front, BEFORE the
+  ## "...+het" checks below -- otherwise cohort=NULL (or age/period=NULL) hits
+  ## `NULL == "rw1+het"` -> logical(0) -> "argument is of length zero".
+  if (is.null(age))    age    <- " "
+  if (is.null(period)) period <- " "
+  if (is.null(cohort)) cohort <- " "
+
   ## The Polya-Gamma Gibbs engine natively supports plain RW1/RW2 priors,
   ## overdispersion, heterogeneity and period/cohort covariates -- there is no
   ## longer any model that falls back to IWLS.
