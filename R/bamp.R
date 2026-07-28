@@ -9,13 +9,56 @@
 #' @param periods_per_agegroup periods per age group
 #' @param period_covariate covariate for period
 #' @param cohort_covariate covariate for cohort
-#' @param mcmc.options list of options for MCMC. \itemize{\item number_of_iterations: number of iterations per chain. \item burn_in: number of iterations used as burnin at the beginning of the algorithm, these iterations will be removed. \item step: Step size, for example default is 50, so only every 50th iterations will be stored. \item tuning: number of iterations for automatic tuning. Depending on the model, the MCMC algorithm will tune certain parameters for more efficient MCMC chains. After tuning, the algorithm is restarted.} 
+#' @param mcmc.options list of options for MCMC. \itemize{\item number_of_iterations: number of iterations per chain. \item burn_in: number of iterations used as burnin at the beginning of the algorithm, these iterations will be removed. \item step: Step size, so only every step-th iteration is stored. \item tuning: number of iterations for automatic tuning (used by \code{method="iwls"}). Depending on the model, the MCMC algorithm will tune certain parameters for more efficient MCMC chains. After tuning, the algorithm is restarted.} Each of \code{number_of_iterations}, \code{burn_in} and \code{step} may be a number or the string \code{"auto"} (the default). \code{"auto"} chooses the value from the data: rare or zero-heavy counts (whose rare-event cells mix more slowly) get more iterations (from 40000 for well-populated data up to 120000 when almost every cell is empty or has very few events), \code{burn_in} defaults to half the iterations, and \code{step} is set to keep about 1000 stored samples per chain. Any value given as a number is used exactly as supplied, so explicit settings reproduce the previous behaviour.
 #' @param hyperpar list of hyper parameters. The hyper prior for the precision (inverse variance) in the random walk priors is a Gamma distribution with parameters \eqn{a} and \eqn{b}; expected value is \eqn{a/b}, variance is \eqn{a/b^2}. Weak hyper parameters are suggested, defaults are \eqn{a=1, b=0.5} for age, \eqn{a=1, b=0.0005} for period and cohort effects and \eqn{a=1, b=0.05} for overdispersion (if added). It is recommended to choose the hyper priors depending on the model, in particular on the order of the random walk.
 #' @param dic logical. If true. DIC will be computed
-#' @param parallel logical, should computation be done in parallel. This uses the parallel package, which does not allow parallel computing under Windows.
+#' @param parallel should the chains be run in parallel. \code{TRUE}/\code{FALSE},
+#' or a number giving the requested number of cores (capped at the number of
+#' chains). Uses the \code{parallel} package: forked workers
+#' (\code{\link[parallel]{mclapply}}) on Unix and macOS, and -- for
+#' \code{method = "pg"} -- a PSOCK cluster on Windows (where forking is
+#' unavailable), so the default engine now runs in parallel on all platforms.
+#' (The legacy \code{method = "iwls"} engine still runs serially on Windows.)
+#' Parallel runs are reproducible: the per-chain seeds are drawn in the main
+#' process, so a given \code{set.seed()} yields the same result serially or in
+#' parallel.
 #' @param verbose verbose mode
+#' @param method MCMC engine. \code{"pg"} (default) is a joint sampler that
+#' combines Polya-Gamma data augmentation (Polson, Scott & Windle 2013) with a
+#' Laplace (Newton) Metropolis-Hastings refinement: each sweep draws the
+#' intercept and the age, period and cohort effects jointly in one exact Gibbs
+#' step and then refines them with a joint Newton proposal against the true
+#' binomial likelihood. It has no Metropolis tuning, never restarts on low
+#' acceptance and does not prune chains; it is markedly more robust for RW2
+#' priors and converges the high-population, rare-event cells of
+#' incidence/mortality data that the Gibbs step alone mixes only slowly. It
+#' natively supports all of the package's models -- RW1/RW2 priors,
+#' heterogeneity (\code{"rw1+het"}/\code{"rw2+het"}), overdispersion and
+#' period/cohort covariates. The Polya-Gamma weights use a normal approximation
+#' that is essentially exact for the large population counts of
+#' incidence/mortality data, so it typically needs far fewer iterations than the
+#' legacy sampler. \code{"iwls"} is the original block Metropolis-Hastings
+#' sampler with IWLS proposals (the default in versions before 2.2.0); it remains
+#' available and can be faster on well-behaved (non rare-event) data, but it can
+#' fail to converge or prune all chains on sparse/zero-cell data.
+#' @param prior_scale logical; only used by \code{method="pg"}. If \code{TRUE},
+#' the intrinsic random-walk structure matrices are scaled to unit generalised
+#' variance (Sorbye & Rue 2014) so that a single hyper-prior is comparable
+#' across random-walk orders, grid sizes and data sets. The default is
+#' \code{FALSE}, which keeps the same prior parameterisation (and the same
+#' default hyper-parameters) as \code{method="iwls"}; if you set it to
+#' \code{TRUE} you should choose hyper-parameters appropriate for the scaled
+#' prior. See \sQuote{Scaling the random-walk priors} below for the rationale
+#' and benefits, and the examples for a short demonstration.
+#' @param pg_engine implementation of the \code{method="pg"} sampler, one of
+#' \code{"C"} (default) or \code{"R"}. Both run the identical algorithm and,
+#' for a given seed, produce the same draws to floating-point tolerance; the
+#' \code{"C"} engine is a compiled port of the inner loop (no extra package
+#' dependency) and is roughly twice as fast. \code{"R"} is the readable
+#' reference implementation, kept for verification. Ignored for
+#' \code{method="iwls"}.
 #'
-#' @description 
+#' @description
 #' Bayesian Age-Period-Cohort Modeling for the analyze of incidence or mortality data on the Lexis diagram.
 #' For each pixel in the Lexis diagram (that is for a specific age group and specific period) data must be available on the number of persons under risk (population number) and the number of disease cases (typically cancer incidence or mortality).
 #' A hierarchical model is assumed with a binomial model in the first-stage. As smoothing priors for the age, period and cohort parameters random walks of first and second order (RW1 or RW2) available.
@@ -28,28 +71,121 @@
 #' \item models with additional age, period and/or cohort heterogeneity,
 #' \item additional covariates.}
 #' 
-#' @details This functions returns an \code{\link{apc}} object. 
+#' @details This functions returns an \code{\link{apc}} object.
 #' Only samples from the posterior are computed, point estimates and credible intervals will be computed in \code{\link{effects.apc}}, \code{\link{print.apc}} and \code{\link{plot.apc}}.
 #' \code{\link{predict_apc}} can be used for for prediction of the future rates and number of cases and for a retrospective prediction for model checking.
+#'
+#' @section Scaling the random-walk priors (\code{prior_scale}):
+#' Each age, period and cohort effect has an intrinsic Gaussian (random-walk)
+#' prior with precision (smoothing) parameter \eqn{\kappa}: the effect vector
+#' \eqn{x} has density proportional to \eqn{\exp(-\tfrac{1}{2}\kappa\, x'Kx)},
+#' where \eqn{K=D'D} is built from the first- or second-order difference
+#' operator \eqn{D}. A \eqn{\mathrm{Gamma}(a,b)} hyper-prior is placed on
+#' \eqn{\kappa}. The difficulty is that the smoothness implied by a given
+#' \eqn{\kappa} is governed not by \eqn{\kappa} alone but by the marginal
+#' variance of the effect, the generalised inverse of \eqn{\kappa K}; and the
+#' eigenvalues of \eqn{K} grow with the number of time points and with the
+#' random-walk order. The \emph{same} hyper-prior on \eqn{\kappa} therefore
+#' implies very different prior smoothness for, say, an RW1 over 10 periods and
+#' an RW2 over 50 cohorts. A hyper-prior tuned on one model silently means
+#' something different on another, which is one reason a fixed default can
+#' behave inconsistently across data sets.
+#'
+#' With \code{prior_scale = TRUE} the structure matrix \eqn{K} is rescaled so
+#' that the geometric mean of the (generalised) marginal variances equals one
+#' (Sorbye and Rue, 2014, DOI:10.1080/01621459.2013.866549). After scaling,
+#' \eqn{1/\sqrt{\kappa}} is, to a good approximation, the marginal standard
+#' deviation of a typical effect element \emph{on the log-odds (logit) scale},
+#' independently of the random-walk order, the number of age/period/cohort
+#' points and the grid spacing.
+#'
+#' Benefits: (i) \strong{portable hyper-priors} -- one \eqn{\mathrm{Gamma}(a,b)}
+#' encodes the same smoothness belief across RW1/RW2 and across data sets of
+#' different size; (ii) an \strong{interpretable prior} -- you can set
+#' \eqn{(a,b)} to express a belief about \eqn{1/\sqrt{\kappa}} as a prior effect
+#' standard deviation on the logit scale; (iii) \strong{fairer model comparison}
+#' (e.g. RW1 vs RW2 by DIC), because the prior is not implicitly penalising one
+#' model far more than another. Scaling affects only the smooth random-walk
+#' blocks; the i.i.d. heterogeneity components and overdispersion already have
+#' an interpretable scale and are unchanged.
+#'
+#' The default is \code{prior_scale = FALSE} so that \code{method = "pg"}
+#' reproduces the prior parameterisation (and default \code{hyperpar}) of the
+#' legacy \code{method = "iwls"} engine. If you turn scaling on you should set
+#' \code{hyperpar} for the scaled prior, where \eqn{\kappa \approx
+#' 1/\mathrm{variance}}; using the unscaled defaults with \code{prior_scale =
+#' TRUE} would impose a different (and probably unintended) amount of smoothing.
+#' Scaling is most worthwhile when fitting many models or data sets and you want
+#' one coherent, interpretable prior across all of them. The example below shows
+#' the effect concretely.
+#'
 #' @seealso \code{vignette("modeling", package = "bamp")}
 #' @useDynLib bamp
 #' @export
 #' @import coda
-#' @examples 
+#' @examples
 #' \dontrun{
 #' data(apc)
 #' model <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", periods_per_agegroup = 5)
 #' }
+#'
+#' ## Demonstration of prior_scale (no MCMC, runs instantly): for a fixed
+#' ## precision kappa, report the geometric-mean prior marginal standard
+#' ## deviation of a random-walk effect on the logit scale, with and without
+#' ## Sorbye-Rue scaling, across random-walk orders and grid sizes.
+#' prior_sd <- function(L, order, kappa = 1, scale = FALSE) {
+#'   K <- crossprod(diff(diag(L), differences = order))   # structure matrix D'D
+#'   if (scale) {                                          # Sorbye-Rue unit-variance scaling
+#'     e <- eigen(K, symmetric = TRUE); keep <- e$values > max(e$values) * 1e-9
+#'     V <- e$vectors[, keep, drop = FALSE]
+#'     Sigma <- V %*% diag(1 / e$values[keep], sum(keep)) %*% t(V)
+#'     K <- K * exp(mean(log(diag(Sigma))))
+#'   }
+#'   e <- eigen(K, symmetric = TRUE); keep <- e$values > max(e$values) * 1e-9
+#'   V <- e$vectors[, keep, drop = FALSE]
+#'   Sig <- V %*% diag(1 / e$values[keep], sum(keep)) %*% t(V) / kappa
+#'   sqrt(exp(mean(log(diag(Sig)))))                       # geometric-mean marginal SD
+#' }
+#' grid <- expand.grid(order = 1:2, L = c(10, 25, 50))
+#' data.frame(grid,
+#'            unscaled = round(mapply(prior_sd, grid$L, grid$order, scale = FALSE), 3),
+#'            scaled   = round(mapply(prior_sd, grid$L, grid$order, scale = TRUE), 3))
+#' ## With prior_scale = FALSE the same kappa = 1 implies an effect SD ranging
+#' ## from ~1.2 to ~14.6 across these models; with prior_scale = TRUE it is 1.0
+#' ## throughout, so a single hyper-prior on kappa means the same smoothness for
+#' ## every random-walk order and grid size.
 bamp <-
 function(cases, population,
         age, period, cohort, overdisp=FALSE,
         period_covariate=NULL, cohort_covariate=NULL,
         periods_per_agegroup,
-        mcmc.options=list("number_of_iterations"=100000, "burn_in"=50000, "step"=50, "tuning"=500),
+        mcmc.options=list("number_of_iterations"="auto", "burn_in"="auto", "step"="auto", "tuning"=500),
         hyperpar=list("age"=c(1,0.5), "period"=c(1,0.0005), "cohort"=c(1,0.0005), "overdisp"=c(1,0.05)),
         dic=TRUE,
-        parallel=TRUE, verbose=FALSE){
+        parallel=TRUE, verbose=FALSE,
+        method=c("pg","iwls"), prior_scale=FALSE, pg_engine=c("C","R")){
   output=apc()
+  method <- match.arg(method)
+  pg_engine <- match.arg(pg_engine)
+
+  ## Normalise the "no effect" specification to " " up front, BEFORE the
+  ## "...+het" checks below -- otherwise cohort=NULL (or age/period=NULL) hits
+  ## `NULL == "rw1+het"` -> logical(0) -> "argument is of length zero".
+  if (is.null(age))    age    <- " "
+  if (is.null(period)) period <- " "
+  if (is.null(cohort)) cohort <- " "
+
+  ## The Polya-Gamma Gibbs engine natively supports plain RW1/RW2 priors,
+  ## overdispersion, heterogeneity and period/cohort covariates -- there is no
+  ## longer any model that falls back to IWLS.
+
+  ## Fill any hyper-parameter the caller omitted with its default. A partial
+  ## hyperpar list (e.g. list(age=, period=, cohort=) with no "overdisp") would
+  ## otherwise leave hyperpar$overdisp NULL, producing NULL hyper-values that
+  ## later crash the sampler / mkmat() ("attempt to set an attribute on NULL").
+  ## modifyList keeps any extra entries the caller supplied (e.g. age_het).
+  hyperpar <- modifyList(list("age"=c(1,0.5), "period"=c(1,0.0005),
+                              "cohort"=c(1,0.0005), "overdisp"=c(1,0.05)), hyperpar)
 
   age_hyperpar_a=hyperpar$age[1]
   age_hyperpar_b=hyperpar$age[2]
@@ -94,39 +230,27 @@ function(cases, population,
   if (parallel>4)chains=parallel
   if (unname(Sys.info()["sysname"] == "Windows"))parallel=FALSE
   
-  # have been options before
-  if (is.null(mcmc.options$burn_in))
-  {
-    burn_in=5000
-  }
-  else
-  {
-      burn_in=mcmc.options$burn_in
-  }
-  if(is.null(mcmc.options$number_of_iterations))
-    {
-    number_of_iterations=100000+burn_in
-  }
-  else
-  {
-        number_of_iterations=mcmc.options$number_of_iterations
-  }
-  if (is.null(mcmc.options$tuning))
-    {
-    tuning=500
-    }
-  else
-    {
-      tuning=mcmc.options$tuning
-    }
-  if (is.null(mcmc.options$step))
-  {
-    step=1
-    }
-  else
-  {
-      step=mcmc.options$step
-      }
+  ## Resolve the MCMC length. A numeric entry is used exactly as given (full
+  ## backward compatibility -- existing calls are unaffected). An entry left at
+  ## the default "auto" (or NULL) is filled from a data-aware heuristic: rare /
+  ## zero-heavy data (the high-population rare-event cells whose Polya-Gamma
+  ## augmentation mixes slowly) gets more iterations, well-populated data fewer.
+  ## burn_in then defaults to half the iterations and step keeps ~1000 stored
+  ## samples, so the stored-sample count is roughly constant across data sets.
+  is_auto <- function(x) is.null(x) || (length(x) == 1L && is.character(x) && x == "auto")
+  number_of_iterations <- if (is_auto(mcmc.options$number_of_iterations))
+    .bamp_auto_mcmc(cases) else mcmc.options$number_of_iterations
+  burn_in <- if (is_auto(mcmc.options$burn_in))
+    as.integer(round(number_of_iterations / 2)) else mcmc.options$burn_in
+  step <- if (is_auto(mcmc.options$step))
+    max(1L, as.integer(round((number_of_iterations - burn_in) / 1000))) else mcmc.options$step
+  tuning <- if (is.null(mcmc.options$tuning)) 500 else mcmc.options$tuning
+  if (burn_in >= number_of_iterations)
+    stop("burn_in must be smaller than number_of_iterations", call. = FALSE)
+  if (verbose && (is_auto(mcmc.options$number_of_iterations) ||
+                  is_auto(mcmc.options$burn_in) || is_auto(mcmc.options$step)))
+    cat(sprintf("Auto MCMC settings from data rarity: %d iterations, %d burn-in, step %d.\n",
+                number_of_iterations, burn_in, step))
   dataorder = 0
   number_of_agegroups=dim(cases)[2]
   number_of_periods=dim(cases)[1]
@@ -166,6 +290,11 @@ function(cases, population,
   model$cohort=cohort
 
   model$overdispersion=overdisp
+  ## record whether the RW structure matrices were Sorbye-Rue scaled (method="pg"
+  ## only). predict_apc needs this: the extrapolation innovation variance is
+  ## 1/(precision * scale), so a forecast must apply the SAME per-effect scale the
+  ## fit used, else long-horizon credible bands are inflated by the scale factor.
+  model$prior_scale=isTRUE(prior_scale)
   output$model=model
 
   #if (!is.null(age_covariate))age_block=age_block=age_block+7
@@ -568,6 +697,55 @@ if (verbose)
             age_hyperpar_a2, age_hyperpar_b2, period_hyperpar_a2, period_hyperpar_b2, cohort_hyperpar_a2, cohort_hyperpar_b2,
             z_hyperpar_a, z_hyperpar_b)
 
+ if (method == "pg") {
+   ## ---- Polya-Gamma Gibbs engine (exact conditionals, no MH tuning) ----
+   ord_of <- function(b) if (b %in% c(1,3)) 1L else if (b %in% c(2,4)) 2L else 0L
+   ord_a <- ord_of(age_block); ord_p <- ord_of(period_block); ord_c <- ord_of(cohort_block)
+   Ymat <- matrix(as.integer(cases),      number_of_agegroups, number_of_periods)
+   Nmat <- matrix(as.integer(population),  number_of_agegroups, number_of_periods)
+   het_pg <- c(age_block %in% c(3, 4), period_block %in% c(3, 4), cohort_block %in% c(3, 4))
+   hyper_pg <- list(age    = c(age_hyperpar_a,    age_hyperpar_b),
+                    period = c(period_hyperpar_a, period_hyperpar_b),
+                    cohort = c(cohort_hyperpar_a, cohort_hyperpar_b),
+                    age_het    = c(age_hyperpar_a2,    age_hyperpar_b2),
+                    period_het = c(period_hyperpar_a2, period_hyperpar_b2),
+                    cohort_het = c(cohort_hyperpar_a2, cohort_hyperpar_b2))
+   ## period/cohort covariate (mean-1 normalised above as period_data/cohort_data,
+   ## lengths J and K); the engine scales the smooth period/cohort effect by it.
+   cov_p <- if (period_plus == 1) as.numeric(period_data) else NULL
+   cov_c <- if (cohort_plus == 1) as.numeric(cohort_data) else NULL
+   if (verbose) cat(paste0("Running Polya-Gamma Gibbs engine in ", chains, " chains.\n"))
+   ## pass the raw `parallel` (logical or numeric core count) so .bamp_pg can use
+   ## as many cores as the iwls path would (it caps internally at n_chains)
+   pg <- .bamp_pg(Ymat, Nmat, ord_a, ord_p, ord_c, round(periods_per_agegroup),
+                  hyper_pg, number_of_iterations, burn_in, step, chains,
+                  parallel = parallel, prior_scale = prior_scale, verbose = verbose,
+                  overdisp = (z_mode == 1), z_hyper = c(z_hyperpar_a, z_hyperpar_b),
+                  het = het_pg, cov_p = cov_p, cov_c = cov_c, engine = pg_engine)
+   sumkick <- chains
+   mkmat <- function(field) coda::as.mcmc.list(lapply(pg, function(r) coda::mcmc(r[[field]])))
+   mkvec <- function(field) coda::as.mcmc.list(lapply(pg, function(r) coda::mcmc(matrix(r[[field]], ncol = 1))))
+   theta <- mkmat("theta"); phi <- mkmat("phi"); psi <- mkmat("psi")
+   my <- mkvec("my"); kappa <- mkvec("kappa"); lambda <- mkvec("lambda")
+   ny <- mkvec("ny"); deviance <- mkvec("deviance")
+   ## het components: populate from the pg fit when present, else zero-fill for
+   ## object compatibility. (The shared samples assembly stores age2/etc. only for
+   ## block==3, matching the iwls output contract.)
+   zerofill <- coda::as.mcmc.list(lapply(pg, function(r) coda::mcmc(matrix(0, nrow = length(r$my), ncol = 1))))
+   theta2  <- if (het_pg[1]) mkmat("theta2") else zerofill
+   phi2    <- if (het_pg[2]) mkmat("phi2")   else zerofill
+   psi2    <- if (het_pg[3]) mkmat("psi2")   else zerofill
+   kappa2  <- if (het_pg[1]) mkvec("kappa2") else zerofill
+   lambda2 <- if (het_pg[2]) mkvec("lambda2") else zerofill
+   ny2     <- if (het_pg[3]) mkvec("ny2")    else zerofill
+   ## overdispersion precision (zeta); stored as samples$overdispersion when z_mode==1
+   delta <- if (z_mode == 1)
+     coda::as.mcmc.list(lapply(pg, function(r) coda::mcmc(matrix(r$zeta, ncol = 1))))
+   else
+     coda::as.mcmc.list(lapply(pg, function(r) coda::mcmc(matrix(0, nrow = length(r$my), ncol = 1))))
+   ## per-chain ksi in the agegroup-major layout expected downstream
+   ksi <- lapply(pg, function(r) as.numeric(t(r$ksi)))
+ } else {
  singlerun<-function(i,cases,population,blocks,numbers,periods_per_agegroup,
                      numbersmcmc,modelsettings,allhyper,theta.sample,phi.sample,psi.sample,
                      theta2.sample,phi2.sample,psi2.sample,ksi,
@@ -699,16 +877,19 @@ if(verbose>=2)
  
  if (sum(kick)==0)
   {
-   cat("\nAutomatic check procedure removed all Markov chains. Please change your model settings (maybe add overdispersion).")
+   warning("Automatic check procedure removed all Markov chains. ",
+           "Please change your model settings (e.g. add overdispersion) or try method=\"pg\".",
+           call. = FALSE)
     return(output)
   }
  
 
  if (sum(kick)<chains)
  {
-   cat("\nAutomatic check procedure removed",sum(!kick),"Markov chain")
-   if (sum(!kick)>1)cat("s")
-   cat(". Please check for convergence using checkConvergence() and maybe change your model settings (maybe add overdispersion).\n")
+   warning("Automatic check procedure removed ", sum(!kick), " Markov chain",
+           if (sum(!kick) > 1) "s" else "",
+           ". Please check convergence with checkConvergence() and consider changing your ",
+           "model settings (e.g. add overdispersion) or method=\"pg\".", call. = FALSE)
  }
  
  ii=0
@@ -749,6 +930,7 @@ ny2<-coda::as.mcmc.list(ny2)
 my<-coda::as.mcmc.list(my)
 delta<-coda::as.mcmc.list(delta)
 deviance<-coda::as.mcmc.list(deviance)
+ }
 
 
  samples=list("intercept"=my, "age"=theta, "period"=phi, "cohort"=psi)
@@ -831,4 +1013,22 @@ deviance<-coda::as.mcmc.list(deviance)
  output <- effects.apc(output, update=TRUE)
  cat("\n")
  return(output)
+}
+
+## Internal: data-aware default for number_of_iterations. Rare / zero-heavy data
+## -- the high-population rare-event cells whose Polya-Gamma augmentation mixes
+## slowly -- needs more iterations to converge; well-populated data converges
+## quickly. Returns a recommended iteration count from a simple rarity score:
+## the fraction of zero cells, or half the fraction of very-low-count cells
+## (<=5 events), whichever is larger. Maps a rarity of 0 to 40000 iterations and
+## a rarity of 1 (essentially all cells empty/rare) to 120000, rounded to 1000.
+## Used only for mcmc.options entries left at "auto"; explicit numbers override.
+.bamp_auto_mcmc <- function(cases) {
+  Y <- suppressWarnings(as.numeric(as.matrix(cases)))
+  Y <- Y[is.finite(Y)]
+  if (!length(Y)) return(80000L)                 # no usable data: mid-range default
+  zero_frac <- mean(Y == 0)
+  rare_frac <- mean(Y <= 5)
+  rarity <- min(1, max(zero_frac, 0.5 * rare_frac))
+  as.integer(round((40000 + 80000 * rarity) / 1000) * 1000)
 }

@@ -2521,11 +2521,9 @@ void blockupdate_a2(int swit, int age_block, double kappa, double kappa2, double
   loese(L,thetaschlange,n,bandw);
 
   //x=my + y
-  double sum=0;
   for (int i=0; i< n; i++)
   {
     thetaschlange[i]=thetaschlange[i]+thetaschlangetemp[i];
-    sum+=thetaschlange[i];
   }
 
   //Zentrieren ???

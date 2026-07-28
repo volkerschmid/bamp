@@ -1,3 +1,32 @@
+# bamp 3.0.0
+
+* New Polya-Gamma Gibbs sampler (`method = "pg"`, now the default): a joint
+  Polya-Gamma data-augmentation sampler with exact full conditionals and no
+  Metropolis tuning. Supports overdispersion, age/period/cohort heterogeneity
+  and period/cohort covariates natively. The legacy IWLS sampler remains
+  available via `method = "iwls"`.
+* Native C implementation of the Polya-Gamma sampler (`pg_engine = "C"`,
+  the default) with an equivalent pure-R reference (`pg_engine = "R"`);
+  the two agree to numerical tolerance.
+* `mcmc.options` values `number_of_iterations`, `burn_in` and `step` may now be
+  set to `"auto"` (the default), which chooses the MCMC length from the rarity
+  of the data. Any value given as a number is used exactly as before.
+* New `selectModel()`: automatic APC model selection by DIC.
+* New `prior_scale` argument for `method = "pg"`.
+* `checkConvergence()` now assesses the identified quantities (smoothing
+  precisions, intercept and the fitted linear predictor per Lexis cell), which
+  are invariant to the age-period-cohort trend aliasing, rather than the raw
+  effect chains that drift along the non-identified trend.
+* `effects.apc()` and `plot.apc()` gain a `convention` argument that fixes the
+  non-identified linear trend to a chosen display gauge, making the effect
+  curves reproducible between runs; `plot.apc()` also handles any number of
+  quantiles and zero-covariate models.
+* Fixed `predict_apc(periods = 0)` crash (downward-sequence off-by-one).
+
+The Polya-Gamma sampler and its native C engine, DIC-based `selectModel()`, and the
+identifiability-aware convergence diagnostics in this release were contributed by
+Chris Kypridemos (PR #8).
+
 # bamp 2.2.0
 
 * Effects (age, period, cohort) are now computed automatically inside `bamp()` and stored in the returned object (`model$effects`), so a separate call to `effects.apc()` is no longer needed for the default median summary.

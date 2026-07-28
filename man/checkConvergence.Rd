@@ -9,20 +9,36 @@ checkConvergence(x, info = FALSE, level = 2, auto = FALSE)
 \arguments{
 \item{x}{An apc object}
 
-\item{info}{logical; print more information}
+\item{info}{logical; print more information (including the raw per-effect
+diagnostic, which is affected by the age-period-cohort identifiability and
+should not be used on its own, see Details)}
 
-\item{level}{level of check; 1 uses point point estimation, 2 uses upper C.I.}
+\item{level}{level of check; 1 uses point estimate, 2 uses upper C.I.}
 
-\item{auto}{logical; should be TRUE if called automatically from \code{\link{bamp}}
-#'}
+\item{auto}{logical; should be TRUE if called automatically from \code{\link{bamp}}}
 }
 \value{
 logical; TRUE if check is fine.
 }
 \description{
-This functions uses Gelman and Rubin's R to check convergence for all main parameters. 
-All parameters should have R<1.1. 
-\code{\link{bamp}} runs at least four MCMC chains by default (more if parallel is more than four).
+This function uses Gelman and Rubin's R (potential scale reduction factor) to
+check convergence. All checked quantities should have R<1.1.
+\code{\link{bamp}} runs at least four MCMC chains by default (more if
+\code{parallel} is more than four).
+}
+\details{
+In an age-period-cohort model the age, period and cohort effects are linearly
+dependent (Clayton and Schifflers, 1987): a linear trend can be moved between
+the three effects without changing the likelihood. The individual effect
+chains can therefore drift along this non-identified direction even when the
+model has fully converged, which makes a naive Gelman-R on the raw effects
+report spurious non-convergence.
+
+\code{checkConvergence} therefore assesses the quantities that are actually
+identified: the smoothing precisions, the intercept, and the fitted linear
+predictor (log-odds) in every cell of the Lexis diagram, which is invariant
+to the trend re-allocation. With \code{info=TRUE} the raw per-effect
+diagnostic is also printed for reference.
 }
 \examples{
 \dontrun{
