@@ -22,10 +22,10 @@
 #' report spurious non-convergence.
 #'
 #' \code{checkConvergence} therefore assesses the quantities that are actually
-#' identified: the smoothing precisions, the intercept, and the fitted linear
-#' predictor (log-odds) in every cell of the Lexis diagram, which is invariant
-#' to the trend re-allocation. With \code{info=TRUE} the raw per-effect
-#' diagnostic is also printed for reference.
+#' identified: the smoothing precisions and the fitted linear predictor
+#' (log-odds) in every cell of the Lexis diagram, which is invariant to the
+#' trend re-allocation. With \code{info=TRUE} the raw per-effect diagnostic is
+#' also printed for reference.
 #'
 #' @import coda
 #' @return logical; TRUE if check is fine.
@@ -53,7 +53,12 @@ checkConvergence <- function(x, info = FALSE, level = 2, auto = FALSE)
   j <- level
   thr <- 1.1
 
-  ## ---- helper: max PSRF over the columns of an mcmc.list ----
+  ## ---- identified quantities: smoothing precisions + fitted log-odds -------
+  ## shared with selectModel(), which must judge convergence identically; see
+  ## .apc_identified_psrf.
+  psrf <- .apc_identified_psrf(x, level = j)
+
+  ## ---- raw per-effect diagnostic (NOT identified for full APC) ----
   maxpsrf <- function(mcl) {
     if (is.null(mcl) || length(mcl) < 2) return(NA_real_)
     d <- tryCatch(
@@ -62,24 +67,9 @@ checkConvergence <- function(x, info = FALSE, level = 2, auto = FALSE)
     if (is.null(d)) return(NA_real_)
     max(d[, min(j, ncol(d))], na.rm = TRUE)
   }
-
   has_age    <- !is.null(x$model$age)    && x$model$age    != " "
   has_period <- !is.null(x$model$period) && x$model$period != " "
   has_cohort <- !is.null(x$model$cohort) && x$model$cohort != " "
-
-  ## ---- identified quantity 1: smoothing precisions + intercept ----
-  psrf <- c(intercept = maxpsrf(x$samples$intercept))
-  if (has_age)    psrf <- c(psrf, age_prec    = maxpsrf(x$samples$age_parameter))
-  if (has_period) psrf <- c(psrf, period_prec = maxpsrf(x$samples$period_parameter))
-  if (has_cohort) psrf <- c(psrf, cohort_prec = maxpsrf(x$samples$cohort_parameter))
-  if (!is.null(x$model$overdispersion) && isTRUE(x$model$overdispersion))
-    psrf <- c(psrf, overdisp = maxpsrf(x$samples$overdispersion))
-
-  ## ---- identified quantity 2: fitted linear predictor eta per cell ----
-  eta_psrf <- .apc_eta_psrf(x, level = j)
-  psrf <- c(psrf, fitted = eta_psrf)
-
-  ## ---- raw per-effect diagnostic (NOT identified for full APC) ----
   raw <- c()
   if (has_age)    raw <- c(raw, age    = maxpsrf(x$samples$age))
   if (has_period) raw <- c(raw, period = maxpsrf(x$samples$period))
@@ -104,6 +94,36 @@ checkConvergence <- function(x, info = FALSE, level = 2, auto = FALSE)
     }
   }
   return(ok)
+}
+
+## Internal: the identified-quantity PSRFs that checkConvergence() judges
+## convergence on -- the smoothing precisions of the effects present in the
+## model, plus the fitted linear predictor (log-odds). The intercept and
+## overdispersion precision are deliberately excluded: they are noisier and
+## not decisive for judging convergence of the smooth effects. This is the
+## SINGLE shared implementation -- selectModel()'s screening/refit fits call
+## it too, so both judge convergence identically (the original bug this
+## guards against: selectModel() judged convergence on the fitted log-odds
+## alone, so it could adopt a model whose smoothing precisions had not
+## actually converged).
+.apc_identified_psrf <- function(x, level = 2) {
+  maxpsrf <- function(mcl) {
+    if (is.null(mcl) || length(mcl) < 2) return(NA_real_)
+    d <- tryCatch(
+      coda::gelman.diag(mcl, multivariate = FALSE, autoburnin = FALSE)$psrf,
+      error = function(e) NULL)
+    if (is.null(d)) return(NA_real_)
+    max(d[, min(level, ncol(d))], na.rm = TRUE)
+  }
+  has_age    <- !is.null(x$model$age)    && x$model$age    != " "
+  has_period <- !is.null(x$model$period) && x$model$period != " "
+  has_cohort <- !is.null(x$model$cohort) && x$model$cohort != " "
+
+  psrf <- c()
+  if (has_age)    psrf <- c(psrf, age_prec    = maxpsrf(x$samples$age_parameter))
+  if (has_period) psrf <- c(psrf, period_prec = maxpsrf(x$samples$period_parameter))
+  if (has_cohort) psrf <- c(psrf, cohort_prec = maxpsrf(x$samples$cohort_parameter))
+  c(psrf, fitted = .apc_eta_psrf(x, level = level))
 }
 
 ## Internal: maximum Gelman-R over the fitted linear predictor eta = mu + age +

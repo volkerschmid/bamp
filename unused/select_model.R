@@ -25,10 +25,10 @@
 #' Model comparison uses DIC (lower is better), which rewards fit and penalises
 #' effective complexity (\code{pD}); see \code{\link{bamp}}. A specification that
 #' did not converge is never selected, because a low DIC from a chain that has
-#' not mixed is not trustworthy -- convergence is judged on the identified fitted
-#' values via the same criterion as \code{\link{checkConvergence}} (the maximum
-#' Gelman-Rubin statistic of the fitted log-odds across Lexis cells must be at or
-#' below \code{psrf_tol}).
+#' not mixed is not trustworthy -- convergence is judged via the same criterion
+#' as \code{\link{checkConvergence}}: the maximum Gelman-Rubin statistic over the
+#' smoothing precisions of the effects present and the fitted log-odds across
+#' Lexis cells must be at or below \code{psrf_tol}.
 #'
 #' For speed and fairness all candidates are fitted with the same short
 #' \code{screen} MCMC settings; the selected model is then optionally refitted
@@ -145,7 +145,10 @@ selectModel <- function(cases, population, periods_per_agegroup,
       res <- list(spec = s, dic = NA_real_, pD = NA_real_, mean_dev = NA_real_,
                   psrf = NA_real_, converged = FALSE, secs = secs, model = NULL)
     } else {
-      psrf <- tryCatch(max(.apc_eta_psrf(m), na.rm = TRUE), error = function(e) NA_real_)
+      ## same criterion as checkConvergence(): smoothing precisions + fitted
+      ## log-odds (see .apc_identified_psrf), so a screening/refit fit is never
+      ## adopted as "converged" here while checkConvergence() would disagree.
+      psrf <- tryCatch(max(.apc_identified_psrf(m), na.rm = TRUE), error = function(e) NA_real_)
       res <- list(spec = s, dic = m$deviance$DIC, pD = m$deviance$pD,
                   mean_dev = m$deviance$mean.deviance, psrf = psrf,
                   converged = is.finite(psrf) && psrf <= psrf_tol, secs = secs, model = m)

@@ -43,18 +43,25 @@ print(simdata$cases)
 ```
 
 ```{r bamp}
-simmod <- bamp(cases = simdata$cases, population = simdata$population, age = "rw1", 
-period = "rw1", cohort = "rw1", periods_per_agegroup =periods_per_agegroup)
+tic();simmod <- bamp(cases = simdata$cases, population = simdata$population, age = "rw2", 
+period = "rw2", cohort = "rw2", periods_per_agegroup =periods_per_agegroup,method="iwls");toc()
+tic();simmod2 <- bamp(cases = simdata$cases, population = simdata$population, age = "rw2", 
+period = "rw2", cohort = "rw2", periods_per_agegroup =periods_per_agegroup, method="pg");toc()
 ```
 
 ```{r check_print_plot}
 print(simmod)
+print(simmod2)
 checkConvergence(simmod)
+checkConvergence(simmod2)
 plot(simmod)
+plot(simmod2)
 ```
 ```{r plot_comparison}
 effects<-effects(simmod)
-effects2<-effects(simmod, mean=TRUE)
+effects2m<-effects(simmod, mean=TRUE)
+effects2<-effects(simmod2)
+effects2m<-effects(simmod2, mean=TRUE)
 #par(mfrow=c(3,1))
 plot(age, type="l")
 lines(effects$age, col="blue")
@@ -84,22 +91,43 @@ plot(prediction$period[2,])
 
 
 ```{r bamp_rw2}
-simmodrw2 <- bamp(cases = simdata$cases, population = simdata$population, age = "rw2", 
-period = "rw2", cohort = "rw2", periods_per_agegroup =periods_per_agegroup)
+tic();simmodrw2 <- bamp(cases = simdata$cases, population = simdata$population, age = "rw2", 
+period = "rw2", cohort = "rw2", periods_per_agegroup =periods_per_agegroup, method = "iwls");toc()
+tic();simmodrw2pg <- bamp(cases = simdata$cases, population = simdata$population, age = "rw2", 
+period = "rw2", cohort = "rw2", periods_per_agegroup =periods_per_agegroup, method="pg");toc()
 ```
 
 ```{r check_print_plot_rw2}
 print(simmodrw2)
+print(simmodrw2pg)
 checkConvergence(simmodrw2)
+checkConvergence(simmodrw2pg)
 plot(simmodrw2)
+plot(simmodrw2pg)
+```
+
+```{r plot_comparison}
+effects<-effects(simmodrw2pg)
+effects2<-effects(simmodrw2pg, mean=TRUE)
+#par(mfrow=c(3,1))
+plot(age, type="l")
+lines(effects$age, col="blue")
+lines(effects2$age, col="green")
+plot(period, type="l")
+lines(effects$period, col="blue")
+lines(effects2$period, col="green")
+plot(cohort, type="l")
+lines(effects$cohort, col="blue")
+lines(effects2$cohort, col="green")
 ```
 
 ```{r simulate_covariate_for_period}
-cov_p<-rnorm(15,period,.1)
+# must be > 0; exp() keeps it positive (rnorm(15, period, .1) alone can be <= 0).
+cov_p<-exp(rnorm(15,period,.1))
 ```
 
 ```{r bamp_with_covariate}
 simmod2 <- bamp(cases = simdata$cases, population = simdata$population, age = "rw1", 
 period = "rw1", cohort = "rw1", periods_per_agegroup =periods_per_agegroup,
-period_covariate = cov_p)
+period_covariate = cov_p, method="pg")
 ```

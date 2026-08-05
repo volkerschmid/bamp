@@ -501,6 +501,27 @@
        mh_accept = if (n_mh > 0) acc_mh / n_mh else NA_real_)
 }
 
+## --- surface a failed chain's real error instead of a try-error object -----
+## Unlike parLapply (which calls checkForRemoteErrors and stops immediately),
+## mclapply swallows a worker's error into a "try-error" list element and only
+## warns ("all scheduled cores encountered errors in user code"). Left
+## unchecked, that try-error later hits `r[[field]]` in bamp.R's mkmat/mkvec,
+## failing with an opaque "subscript out of bounds" that hides the actual
+## cause (e.g. a non-positive period/cohort covariate, see .bamp_pg_chain's
+## stopifnot above). Check for and re-raise it here, at the source.
+.pg_stop_on_failed_chains <- function(res) {
+  bad <- vapply(res, function(r) inherits(r, "try-error"), logical(1))
+  if (any(bad)) {
+    msgs <- vapply(res[bad], function(r) {
+      cond <- attr(r, "condition")
+      if (!is.null(cond)) conditionMessage(cond) else trimws(as.character(r))
+    }, character(1))
+    stop(sprintf("bamp(): %d of %d pg chain(s) failed:\n%s", sum(bad), length(res),
+                 paste0("  - ", unique(msgs), collapse = "\n")), call. = FALSE)
+  }
+  res
+}
+
 ## --- driver: run chains (optionally in parallel) ---------------------------
 .bamp_pg <- function(Y, N, ord_a, ord_p, ord_c, ppa, hyper,
                      n_iter, burn_in, thin, n_chains, parallel = FALSE,
@@ -527,7 +548,7 @@
     ## Unix/macOS: fork-based parallelism. Each forked worker inherits the parent
     ## RNG state but .bamp_pg_chain re-seeds with its own pre-drawn `seed`, so the
     ## result is identical to the serial path for a given top-level set.seed().
-    return(parallel::mclapply(seeds, runner, mc.cores = cores))
+    return(.pg_stop_on_failed_chains(parallel::mclapply(seeds, runner, mc.cores = cores)))
   }
 
   ## Windows: no fork(), so mclapply cannot parallelise. Use a PSOCK cluster of

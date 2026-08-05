@@ -35,10 +35,10 @@ model has fully converged, which makes a naive Gelman-R on the raw effects
 report spurious non-convergence.
 
 \code{checkConvergence} therefore assesses the quantities that are actually
-identified: the smoothing precisions, the intercept, and the fitted linear
-predictor (log-odds) in every cell of the Lexis diagram, which is invariant
-to the trend re-allocation. With \code{info=TRUE} the raw per-effect
-diagnostic is also printed for reference.
+identified: the smoothing precisions and the fitted linear predictor
+(log-odds) in every cell of the Lexis diagram, which is invariant to the
+trend re-allocation. With \code{info=TRUE} the raw per-effect diagnostic is
+also printed for reference.
 }
 \examples{
 \dontrun{

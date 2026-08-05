@@ -4,35 +4,39 @@
 
 ## Test environments
 
-* macOS Tahoe 26.5.1, R 4.6.0 (aarch64-apple-darwin23, local)
+* macOS Tahoe 26.5.2, R 4.6.0 (aarch64-apple-darwin23, local)
 * Windows (win-builder, R-devel)
 
-## Summary of changes in 2.2.0
+## Summary of changes in 3.0.0
 
-This release fixes several bugs and improves robustness:
+This is a major release, adding a new default MCMC engine and several bug fixes:
 
-* Age/period/cohort effects are now computed automatically inside `bamp()`
-  and stored in the returned object, so a separate call to `effects.apc()`
-  is no longer needed.
-* MCMC chains now use warm starts on restart, reducing burn-in time for
-  automatic convergence checking.
-* Fixed cache check in `effects.apc()` (wrong field name `x$effect` vs
-  `x$effects`).
-* Fixed cohort heterogeneity hyperparameter check (`cohort="rw2+het"`
-  was not recognized correctly).
-* Fixed typo in `period_covariate` handling that silently prevented
-  vector coercion.
-* Fixed `checkConvergence()`: cohort convergence check used age
-  hyperparameter instead of cohort hyperparameter.
-* Fixed memory leaks in C++ MCMC code.
-* Fixed `GetRNGstate`/`PutRNGstate` pairing in random number generation.
-* Added Cholesky decomposition error check with informative message;
-  non-positive-definite matrices are now handled by diagonal
-  regularization and retry instead of aborting the chain.
-* Replaced fork-based `mclapply` with socket-based `makeCluster`/
-  `parLapply` for reliable parallel execution on all platforms,
-  including macOS GUI environments (RStudio).
-* MCMC chains that fail due to numerical errors are now discarded
-  cleanly.
-* Added unit tests.
-* Updated CITATION to use `bibentry()`.
+* New Polya-Gamma Gibbs sampler (`method = "pg"`, now the default): a joint
+  data-augmentation sampler with exact full conditionals and no Metropolis
+  tuning. Supports overdispersion, age/period/cohort heterogeneity and
+  period/cohort covariates natively. The legacy IWLS sampler remains
+  available via `method = "iwls"`.
+* Native C implementation of the Polya-Gamma sampler (`pg_engine = "C"`,
+  the default) with an equivalent pure-R reference (`pg_engine = "R"`).
+* `mcmc.options` values `number_of_iterations`, `burn_in` and `step` may now
+  be set to `"auto"` (the default), choosing the MCMC length from the
+  rarity of the data.
+* New `prior_scale` argument for `method = "pg"`.
+* `checkConvergence()` now assesses identified quantities (smoothing
+  precisions, intercept, fitted linear predictor per Lexis cell) instead of
+  the raw effect chains, which drift along the non-identified
+  age-period-cohort trend.
+* `effects.apc()` and `plot.apc()` gain a `convention` argument fixing the
+  non-identified linear trend to a chosen display gauge.
+* Fixed `predict_apc(periods = 0)` crash (downward-sequence off-by-one).
+* Fixed `predict_apc()` logit overflow (`plogis()` instead of
+  `exp(x)/(1+exp(x))`, which returned `NaN` for large forecast logits).
+* Fixed `bamp()` to accept `age`/`period`/`cohort = NULL`.
+* Fixed `predict_apc()` for age-period (no-cohort) models and non-integer
+  population/exposure.
+* `bamp(..., method = "pg")` now surfaces the real error message from a
+  failed MCMC chain instead of an opaque "subscript out of bounds".
+
+## Downstream dependencies
+
+There are no reverse dependencies on CRAN.

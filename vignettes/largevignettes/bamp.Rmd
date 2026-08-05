@@ -15,9 +15,20 @@ knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
 library(bamp)
 ```
 
+## Introduction
+
+Age-period-cohort (APC) models decompose incidence or mortality rates into
+three smooth components: an **age** effect (how risk varies across age
+groups), a **period** effect (how risk varies over calendar time) and a
+**cohort** effect (how risk varies across birth cohorts). BAMP fits such
+models in a Bayesian framework via MCMC and provides tools to check
+convergence, inspect the fitted effects, and predict future cases.
+
 ## Data example
 
-BAMP includes a data example.
+BAMP includes a data example: `cases` and `population`, matrices of observed
+case counts and population at risk, cross-classified by calendar year (rows)
+and age group (columns).
 
 ```{r loadplot}
 data(apc)
@@ -25,44 +36,67 @@ plot(cases[,1],type="l",ylim=range(cases), ylab="cases", xlab="year", main="case
 for (i in 2:8)lines(cases[,i], col=i)
 ```
 
-For simulating APC data, see *vignette("simulation", package="bamp")*.
+For simulating your own APC data, see *vignette("simulation", package="bamp")*.
 
-## APC model with random walk first order prior
+## APC model with random-walk first-order priors
+
+We fit a model with a first-order random walk (`"rw1"`) prior on each of the
+age, period and cohort effects -- a common default that assumes each effect
+changes smoothly, without a systematic trend, between neighbouring levels.
+`periods_per_agegroup` tells `bamp()` how many calendar years each age group
+spans, which is needed to map age and period onto the cohort dimension.
+
 ```{r Model1_with_RW1_priors}
 model1 <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1",
               periods_per_agegroup = 5)
 ```
 
-bamp() automatically performs a check for MCMC convergence using Gelman and Rubin's convergence diagnostic. We can manually check the convergence again:
+`bamp()` automatically checks MCMC convergence using the Gelman-Rubin
+diagnostic and warns if the chains have not converged. We can also run this
+check manually:
 
 ```{r check_model}
 checkConvergence(model1)
 ```
 
-Now we have a look at the model results. This includes estimates of smoothing parameters and deviance and DIC:
+`print()` summarises the fitted model: posterior estimates of the smoothing
+(precision) parameters, and the deviance and DIC, which are useful for
+comparing models (see *vignette("modeling", package="bamp")* for model
+selection):
+
 ```{r print_model}
 print(model1)
 ```
 
-We can plot the main APC effects using point-wise quantiles: 
+The fitted age, period and cohort effects can be plotted with point-wise
+posterior quantiles:
+
 ```{r plot_model}
 plot(model1)
 ```
 
-More quantiles are possible:
+By default the plot shows the median and a 90% interval; other quantiles can
+be requested explicitly:
+
 ```{r plot_model_with_more_quantiles}
 plot(model1, quantiles = c(0.025,0.1,0.5,0.9,0.975))
 ```
 
-For other models see *vignette("modeling",package="bamp")*.
+For other prior choices (e.g. second-order random walks, heterogeneity,
+covariates), see *vignette("modeling", package="bamp")*.
 
 ## Prediction
 
-Using the prior assumption of a random walk for the period and cohort effect, one can predict cases for upcoming years. 
+Because the period and cohort effects are modelled as random walks, their
+most likely continuation is a flat extrapolation with growing uncertainty --
+which lets us predict cases for upcoming years:
 
 ```{r prediction}
 pred <- predict_apc(object=model1, periods=3)
 ```
+
+The plot below shows the predicted probability of a case per age group; the
+dashed vertical line marks the start of the 3-year forecast:
 
 ```{r}
 m<-max(pred$pr[2,,])
@@ -73,4 +107,4 @@ legend(1,m,col=8:1,legend=paste("Age group",1:8),lwd=2,cex=0.6)
 lines(c(10.5,10.5),c(0,1),lty=2)
 ```
 
-More details see *vignette("prediction",package="bamp")*.
+For more details, see *vignette("prediction", package="bamp")*.

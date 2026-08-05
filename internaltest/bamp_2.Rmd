@@ -26,8 +26,10 @@ for (i in 2:8)lines(cases[,i], col=i)
 
 ## APC model with random walk first order prior
 ```{r Model1_with_RW1_priors}
-model1 <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1",
+model1 <- bamp(cases, population, age="rw1", period="rw1", cohort="rw1", overdisp=TRUE,
               periods_per_agegroup = 5)
+modl0 = selectModel(cases, population, periods_per_agegroup = 5, screen = list(number_of_iterations = 20000, burn_in = 10000,
+                                      step = 5, tuning = 200))
 ```
 
 bamp() automatically performs a check for MCMC convergence using Gelman and Rubin's convergence diagnostic. We can manually check the convergence again:
@@ -64,7 +66,7 @@ plot(model2)
 ```
 
 ```{r model3}
-model3<-bamp(cases, population, age="rw1", period=" ", cohort="rw2",
+model3<-bamp(cases, population, age="rw1", period="rw1", cohort="rw1", overdisp = TRUE,
               periods_per_agegroup = 5)
 checkConvergence(model3)
 print(model3)

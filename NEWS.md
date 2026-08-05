@@ -1,5 +1,7 @@
 # bamp 3.0.0
 
+Major release. The Polya-Gamma sampler and its native C engine, and the identifiability-aware convergence diagnostics in this release were contributed by Chris Kypridemos.
+
 * New Polya-Gamma Gibbs sampler (`method = "pg"`, now the default): a joint
   Polya-Gamma data-augmentation sampler with exact full conditionals and no
   Metropolis tuning. Supports overdispersion, age/period/cohort heterogeneity
@@ -11,7 +13,6 @@
 * `mcmc.options` values `number_of_iterations`, `burn_in` and `step` may now be
   set to `"auto"` (the default), which chooses the MCMC length from the rarity
   of the data. Any value given as a number is used exactly as before.
-* New `selectModel()`: automatic APC model selection by DIC.
 * New `prior_scale` argument for `method = "pg"`.
 * `checkConvergence()` now assesses the identified quantities (smoothing
   precisions, intercept and the fitted linear predictor per Lexis cell), which
@@ -22,10 +23,17 @@
   curves reproducible between runs; `plot.apc()` also handles any number of
   quantiles and zero-covariate models.
 * Fixed `predict_apc(periods = 0)` crash (downward-sequence off-by-one).
-
-The Polya-Gamma sampler and its native C engine, DIC-based `selectModel()`, and the
-identifiability-aware convergence diagnostics in this release were contributed by
-Chris Kypridemos (PR #8).
+* Fixed `predict_apc()` logit overflow: use `plogis()` instead of
+  `exp(x)/(1+exp(x))`, which returned `NaN` for large forecast logits and
+  crashed downstream.
+* Fixed `bamp()`: `age`/`period`/`cohort = NULL` is now accepted (previously
+  errored with "argument is of length zero").
+* Fixed `predict_apc()`: age-period models without a cohort effect can now be
+  predicted, and non-integer population/exposure no longer produces `NA`.
+* `bamp(..., method = "pg")`: a chain that fails under forked parallelism
+  (`parallel::mclapply`) now reports its actual error instead of the opaque
+  "subscript out of bounds" that resulted from silently indexing into the
+  failed chain's result.
 
 # bamp 2.2.0
 

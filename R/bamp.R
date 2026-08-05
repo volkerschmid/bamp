@@ -123,6 +123,7 @@
 #' @useDynLib bamp
 #' @export
 #' @import coda
+#' @importFrom utils modifyList
 #' @examples
 #' \dontrun{
 #' data(apc)
@@ -237,9 +238,11 @@ function(cases, population,
   ## augmentation mixes slowly) gets more iterations, well-populated data fewer.
   ## burn_in then defaults to half the iterations and step keeps ~1000 stored
   ## samples, so the stored-sample count is roughly constant across data sets.
+  ## 
   is_auto <- function(x) is.null(x) || (length(x) == 1L && is.character(x) && x == "auto")
   number_of_iterations <- if (is_auto(mcmc.options$number_of_iterations))
     .bamp_auto_mcmc(cases) else mcmc.options$number_of_iterations
+  if (is_auto(mcmc.options$number_of_iterations)&overdisp)number_of_iterations <- 1.5*number_of_iterations
   burn_in <- if (is_auto(mcmc.options$burn_in))
     as.integer(round(number_of_iterations / 2)) else mcmc.options$burn_in
   step <- if (is_auto(mcmc.options$step))
@@ -944,9 +947,9 @@ deviance<-coda::as.mcmc.list(deviance)
  if (z_mode==1) samples=c(samples, list("overdispersion"=delta))
  samples=c(samples,list("deviance"=deviance))
  
- data=list("cases"=cases,"population"=population, "periods_per_agegroup"=periods_per_agegroup)
- 
- 
+ data=list("cases"=cases,"population"=population, "periods_per_agegroup"=periods_per_agegroup, 
+  agegroups=ncol(cases), periods=nrow(cases), cohorts=periods_per_agegroup * (ncol(cases)- 1) + nrow(cases))
+  
  output$model=model
  output$data=data
  output$samples=samples
