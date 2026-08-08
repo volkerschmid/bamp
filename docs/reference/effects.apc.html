@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">bamp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,15 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'apc'</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/effects.html" class="external-link">effects</a></span><span class="op">(</span><span class="va">object</span>, mean <span class="op">=</span> <span class="cn">FALSE</span>, quantiles <span class="op">=</span> <span class="fl">0.5</span>, update <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/effects.html" class="external-link">effects</a></span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  mean <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  quantiles <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  update <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  convention <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"period"</span>, <span class="st">"cohort"</span>, <span class="st">"none"</span><span class="op">)</span>,</span>
+<span>  combined <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -62,6 +70,19 @@
 <dd><p>logical. If TRUE, the apc object including the effects is returned</p></dd>
 
 
+<dt id="arg-convention">convention<a class="anchor" aria-label="anchor" href="#arg-convention"></a></dt>
+<dd><p>display-layer gauge convention for the linear trend (drift)
+in a full age-period-cohort model; one of <code>"age"</code> (default),
+<code>"period"</code>, <code>"cohort"</code> or <code>"none"</code>. See Details.</p></dd>
+
+
+<dt id="arg-combined">combined<a class="anchor" aria-label="anchor" href="#arg-combined"></a></dt>
+<dd><p>logical. For heterogeneity models (<code>"rw1+het"</code> /
+<code>"rw2+het"</code>), if <code>TRUE</code> the returned effect is the full effect
+(smooth + iid heterogeneity component); if <code>FALSE</code> (default) only the
+smooth component is returned. Ignored for models without heterogeneity.</p></dd>
+
+
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Additional arguments will be ignored</p></dd>
 
@@ -69,6 +90,36 @@
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>List of age, period, cohort effects or apc object including effects (if update=TRUE)</p>
+    </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>In a full age-period-cohort model the age, period and cohort effects are
+identifiable only up to one shared linear trend (drift), because a linear
+trend can be moved between the three effects without changing the fitted
+rates (Clayton and Schifflers, 1987). When the raw posterior samples are
+summarised directly, this non-identified trend makes the effect curves drift
+between MCMC iterations and between runs, so they are not reproducible.</p>
+<p><code>convention</code> fixes that single degree of freedom for display:
+<code>"age"</code> removes the linear slope of the age effect (age is shown as
+curvature about a zero trend, the drift is shown in the period and cohort
+effects); <code>"period"</code> and <code>"cohort"</code> pin the corresponding effect's
+slope to zero instead; <code>"none"</code> returns the raw, un-gauged effects
+(previous behaviour, curves may differ between runs). The gauge is applied
+per MCMC draw before the quantiles are computed, and only for full APC models
+– for models without all three effects there is no trend aliasing and the
+argument is ignored.</p>
+<p>Fixing the gauge removes the run-to-run linear-trend (drift) component, which
+is typically the dominant source of non-reproducibility in the effect curves;
+the residual curvature and Monte-Carlo sampling noise are unaffected, so two
+independent runs are made much closer but need not agree exactly. The
+zero-slope property holds for every individual MCMC draw; because quantiles
+are non-linear, the summarised median/quantile curve has only approximately
+(not exactly) zero slope.</p>
+<p>The gauge is display-only: it never modifies the stored samples
+(<code>object$samples</code>), and the fitted rates, the predictions from
+<code><a href="predict_apc.html">predict_apc</a></code> and the DIC are invariant to it – only the way the
+common linear trend is split among the three curves changes. The convention
+actually used is recorded in <code>attr(result, "gauge_convention")</code>.</p>
     </div>
 
     <div class="section level2">
@@ -85,11 +136,11 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Volker Schmid.</p>
+  <p>Developed by Volker Schmid, Chris Kypridemos.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

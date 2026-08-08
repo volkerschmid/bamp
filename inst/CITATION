@@ -25,7 +25,7 @@ bibentry(bibtype = "Manual",
  note = note,
  url = "https://volkerschmid.github.io/bamp/",
  textVersion =
-   paste("Volker J. Schmid",
+   paste("Volker J. Schmid et al.",
          sprintf("(%s).", year),
          "bamp: Bayesian age-period-cohort modeling and prediction.",
          paste(note, ".", sep = ""),

@@ -44,7 +44,7 @@ print(simdata$cases)
 
 ```{r bamp}
 tic();simmod <- bamp(cases = simdata$cases, population = simdata$population, age = "rw2", 
-period = "rw2", cohort = "rw2", periods_per_agegroup =periods_per_agegroup,method="iwls");toc()
+period = "rw2", cohort = "rw2", periods_per_agegroup =periods_per_agegroup,method="taylor");toc()
 tic();simmod2 <- bamp(cases = simdata$cases, population = simdata$population, age = "rw2", 
 period = "rw2", cohort = "rw2", periods_per_agegroup =periods_per_agegroup, method="pg");toc()
 ```
@@ -92,7 +92,7 @@ plot(prediction$period[2,])
 
 ```{r bamp_rw2}
 tic();simmodrw2 <- bamp(cases = simdata$cases, population = simdata$population, age = "rw2", 
-period = "rw2", cohort = "rw2", periods_per_agegroup =periods_per_agegroup, method = "iwls");toc()
+period = "rw2", cohort = "rw2", periods_per_agegroup =periods_per_agegroup, method = "taylor");toc()
 tic();simmodrw2pg <- bamp(cases = simdata$cases, population = simdata$population, age = "rw2", 
 period = "rw2", cohort = "rw2", periods_per_agegroup =periods_per_agegroup, method="pg");toc()
 ```

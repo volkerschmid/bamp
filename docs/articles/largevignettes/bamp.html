@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">bamp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,7 @@
                         <h4 data-toc-skip class="author">Volker
 Schmid</h4>
             
-            <h4 data-toc-skip class="date">2026-06-21</h4>
+            <h4 data-toc-skip class="date">2026-08-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/volkerschmid/bamp/blob/HEAD/vignettes/largevignettes/bamp.Rmd" class="external-link"><code>vignettes/largevignettes/bamp.Rmd</code></a></small>
       <div class="d-none name"><code>bamp.Rmd</code></div>
@@ -66,85 +66,96 @@ Schmid</h4>
     
     
 <div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>Age-period-cohort (APC) models decompose incidence or mortality rates
+into three smooth components: an <strong>age</strong> effect (how risk
+varies across age groups), a <strong>period</strong> effect (how risk
+varies over calendar time) and a <strong>cohort</strong> effect (how
+risk varies across birth cohorts). BAMP fits such models in a Bayesian
+framework via MCMC and provides tools to check convergence, inspect the
+fitted effects, and predict future cases.</p>
+</div>
+<div class="section level2">
 <h2 id="data-example">Data example<a class="anchor" aria-label="anchor" href="#data-example"></a>
 </h2>
-<p>BAMP includes a data example.</p>
+<p>BAMP includes a data example: <code>cases</code> and
+<code>population</code>, matrices of observed case counts and population
+at risk, cross-classified by calendar year (rows) and age group
+(columns).</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">apc</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cases</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,type<span class="op">=</span><span class="st">"l"</span>,ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">cases</span><span class="op">)</span>, ylab<span class="op">=</span><span class="st">"cases"</span>, xlab<span class="op">=</span><span class="st">"year"</span>, main<span class="op">=</span><span class="st">"cases per age group"</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">cases</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span>, col<span class="op">=</span><span class="va">i</span><span class="op">)</span></span></code></pre></div>
 <p><img src="bamp_files/figure-html/loadplot-1.png" class="r-plt" alt="" width="700"></p>
-<p>For simulating APC data, see <em>vignette(“simulation”,
+<p>For simulating your own APC data, see <em>vignette(“simulation”,
 package=“bamp”)</em>.</p>
 </div>
 <div class="section level2">
-<h2 id="apc-model-with-random-walk-first-order-prior">APC model with random walk first order prior<a class="anchor" aria-label="anchor" href="#apc-model-with-random-walk-first-order-prior"></a>
+<h2 id="apc-model-with-random-walk-first-order-priors">APC model with random-walk first-order priors<a class="anchor" aria-label="anchor" href="#apc-model-with-random-walk-first-order-priors"></a>
 </h2>
+<p>We fit a model with a first-order random walk (<code>"rw1"</code>)
+prior on each of the age, period and cohort effects – a common default
+that assumes each effect changes smoothly, without a systematic trend,
+between neighbouring levels. <code>periods_per_agegroup</code> tells
+<code><a href="../../reference/bamp.html">bamp()</a></code> how many calendar years each age group spans, which
+is needed to map age and period onto the cohort dimension.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/bamp.html">bamp</a></span><span class="op">(</span><span class="va">cases</span>, <span class="va">population</span>, age<span class="op">=</span><span class="st">"rw1"</span>, period<span class="op">=</span><span class="st">"rw1"</span>, cohort<span class="op">=</span><span class="st">"rw1"</span>,</span>
 <span>              periods_per_agegroup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Note: Parallel execution failed (2 nodes produced errors; first error: there is no package called ‘bamp’); falling back to sequential.</span></span></code></pre>
-<pre><code><span><span class="co">## Acceptance rate low. Restarting iterations.</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Acceptance rate low. Restarting iterations.</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Acceptance rate low. Restarting iterations.</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Acceptance rate low. Restarting iterations.</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Acceptance rate low. Restarting iterations.</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Acceptance rate low. Restarting iterations.</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Acceptance rate low. Restarting iterations.</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Acceptance rate low. Restarting iterations.</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Acceptance rate low. Restarting iterations.</span></span></code></pre>
-<p>bamp() automatically performs a check for MCMC convergence using
-Gelman and Rubin’s convergence diagnostic. We can manually check the
-convergence again:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<p><code><a href="../../reference/bamp.html">bamp()</a></code> automatically checks MCMC convergence using the
+Gelman-Rubin diagnostic and warns if the chains have not converged. We
+can also run this check manually:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/checkConvergence.html">checkConvergence</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
-<p>Now we have a look at the model results. This includes estimates of
-smoothing parameters and deviance and DIC:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p><code><a href="../../reference/print.apc.html">print()</a></code> summarises the fitted model: posterior estimates
+of the smoothing (precision) parameters, and the deviance and DIC, which
+are useful for comparing models (see <em>vignette(“modeling”,
+package=“bamp”)</em> for model selection):</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/print.apc.html">print</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##  Model:</span></span>
 <span><span class="co">## age (rw1)  - period (rw1)  - cohort (rw1) model</span></span>
-<span><span class="co">## Deviance:     231.30</span></span>
-<span><span class="co">## pD:            37.04</span></span>
-<span><span class="co">## DIC:          268.34</span></span>
+<span><span class="co">## Deviance:     230.12</span></span>
+<span><span class="co">## pD:            36.60</span></span>
+<span><span class="co">## DIC:          266.72</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##  Hyper parameters:                 5%           50%          95%         </span></span>
-<span><span class="co">## age                              0.355        0.924        1.949</span></span>
-<span><span class="co">## period                          67.552      195.013      620.193</span></span>
-<span><span class="co">## cohort                          34.500       58.736       96.781</span></span>
+<span><span class="co">## age                              0.436        1.108        2.295</span></span>
+<span><span class="co">## period                          48.842      128.964      320.787</span></span>
+<span><span class="co">## cohort                          35.190       61.080      103.190</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Markov Chains convergence checked succesfully using Gelman's R (potential scale reduction factor).</span></span></code></pre>
-<p>We can plot the main APC effects using point-wise quantiles:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<p>The fitted age, period and cohort effects can be plotted with
+point-wise posterior quantiles:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre></div>
 <p><img src="bamp_files/figure-html/plot_model-1.png" class="r-plt" alt="" width="700"><img src="bamp_files/figure-html/plot_model-2.png" class="r-plt" alt="" width="700"><img src="bamp_files/figure-html/plot_model-3.png" class="r-plt" alt="" width="700"></p>
-<p>More quantiles are possible:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<p>By default the plot shows the median and a 90% interval; other
+quantiles can be requested explicitly:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">model1</span>, quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>,<span class="fl">0.1</span>,<span class="fl">0.5</span>,<span class="fl">0.9</span>,<span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="bamp_files/figure-html/plot_model_with_more_quantiles-1.png" class="r-plt" alt="" width="700"><img src="bamp_files/figure-html/plot_model_with_more_quantiles-2.png" class="r-plt" alt="" width="700"><img src="bamp_files/figure-html/plot_model_with_more_quantiles-3.png" class="r-plt" alt="" width="700"></p>
-<p>For other models see
-<em>vignette(“modeling”,package=“bamp”)</em>.</p>
+<p>For other prior choices (e.g. second-order random walks,
+heterogeneity, covariates), see <em>vignette(“modeling”,
+package=“bamp”)</em>.</p>
 </div>
 <div class="section level2">
 <h2 id="prediction">Prediction<a class="anchor" aria-label="anchor" href="#prediction"></a>
 </h2>
-<p>Using the prior assumption of a random walk for the period and cohort
-effect, one can predict cases for upcoming years.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<p>Because the period and cohort effects are modelled as random walks,
+their most likely continuation is a flat extrapolation with growing
+uncertainty – which lets us predict cases for upcoming years:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/predict_apc.html">predict_apc</a></span><span class="op">(</span>object<span class="op">=</span><span class="va">model1</span>, periods<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<p>The plot below shows the predicted probability of a case per age
+group; the dashed vertical line marks the start of the 3-year
+forecast:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">pred</span><span class="op">$</span><span class="va">pr</span><span class="op">[</span><span class="fl">2</span>,,<span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pred</span><span class="op">$</span><span class="va">pr</span><span class="op">[</span><span class="fl">2</span>,,<span class="fl">8</span><span class="op">]</span>,type<span class="op">=</span><span class="st">"l"</span>, ylab<span class="op">=</span><span class="st">"probability"</span>, xlab<span class="op">=</span><span class="st">"year"</span>, ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="va">m</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">7</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span></span>
@@ -152,7 +163,8 @@ effect, one can predict cases for upcoming years.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="fl">1</span>,<span class="va">m</span>,col<span class="op">=</span><span class="fl">8</span><span class="op">:</span><span class="fl">1</span>,legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Age group"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span>,lwd<span class="op">=</span><span class="fl">2</span>,cex<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10.5</span>,<span class="fl">10.5</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,lty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="bamp_files/figure-html/unnamed-chunk-1-1.png" class="r-plt" alt="" width="700"></p>
-<p>More details see <em>vignette(“prediction”,package=“bamp”)</em>.</p>
+<p>For more details, see <em>vignette(“prediction”,
+package=“bamp”)</em>.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -161,11 +173,11 @@ effect, one can predict cases for upcoming years.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Volker Schmid.</p>
+  <p>Developed by Volker Schmid, Chris Kypridemos.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

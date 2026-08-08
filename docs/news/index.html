@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">bamp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,26 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.2.0" id="bamp-220">bamp 2.2.0<a class="anchor" aria-label="anchor" href="#bamp-220"></a></h2>
+<h2 class="pkg-version" data-toc-text="3.0.0" id="bamp-300">bamp 3.0.0<a class="anchor" aria-label="anchor" href="#bamp-300"></a></h2>
+<p>Major release. The Polya-Gamma sampler and its native C engine, and the identifiability-aware convergence diagnostics in this release were contributed by Chris Kypridemos.</p>
+<ul><li>New Polya-Gamma Gibbs sampler (<code>method = "pg"</code>, now the default): a joint Polya-Gamma data-augmentation sampler with exact full conditionals and no Metropolis tuning. Supports overdispersion, age/period/cohort heterogeneity and period/cohort covariates natively. The legacy Taylor sampler remains available via <code>method = "taylor"</code>.</li>
+<li>Native C implementation of the Polya-Gamma sampler (<code>pg_engine = "C"</code>, the default) with an equivalent pure-R reference (<code>pg_engine = "R"</code>); the two agree to numerical tolerance.</li>
+<li>
+<code>mcmc.options</code> values <code>number_of_iterations</code>, <code>burn_in</code> and <code>step</code> may now be set to <code>"auto"</code> (the default), which chooses the MCMC length from the rarity of the data. Any value given as a number is used exactly as before.</li>
+<li>New <code>prior_scale</code> argument for <code>method = "pg"</code>.</li>
+<li>
+<code><a href="../reference/checkConvergence.html">checkConvergence()</a></code> now assesses the identified quantities (smoothing precisions, intercept and the fitted linear predictor per Lexis cell), which are invariant to the age-period-cohort trend aliasing, rather than the raw effect chains that drift along the non-identified trend.</li>
+<li>
+<code><a href="../reference/effects.apc.html">effects.apc()</a></code> and <code><a href="../reference/plot.apc.html">plot.apc()</a></code> gain a <code>convention</code> argument that fixes the non-identified linear trend to a chosen display gauge, making the effect curves reproducible between runs; <code><a href="../reference/plot.apc.html">plot.apc()</a></code> also handles any number of quantiles and zero-covariate models.</li>
+<li>Fixed <code>predict_apc(periods = 0)</code> crash (downward-sequence off-by-one).</li>
+<li>Fixed <code><a href="../reference/predict_apc.html">predict_apc()</a></code> logit overflow: use <code><a href="https://rdrr.io/r/stats/Logistic.html" class="external-link">plogis()</a></code> instead of <code>exp(x)/(1+exp(x))</code>, which returned <code>NaN</code> for large forecast logits and crashed downstream.</li>
+<li>Fixed <code><a href="../reference/bamp.html">bamp()</a></code>: <code>age</code>/<code>period</code>/<code>cohort = NULL</code> is now accepted (previously errored with “argument is of length zero”).</li>
+<li>Fixed <code><a href="../reference/predict_apc.html">predict_apc()</a></code>: age-period models without a cohort effect can now be predicted, and non-integer population/exposure no longer produces <code>NA</code>.</li>
+<li>
+<code>bamp(..., method = "pg")</code>: a chain that fails under forked parallelism (<code><a href="https://rdrr.io/r/parallel/mclapply.html" class="external-link">parallel::mclapply</a></code>) now reports its actual error instead of the opaque “subscript out of bounds” that resulted from silently indexing into the failed chain’s result.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.2.0" id="bamp-220">bamp 2.2.0<a class="anchor" aria-label="anchor" href="#bamp-220"></a></h2><p class="text-muted">CRAN release: 2026-06-21</p>
 <ul><li>Effects (age, period, cohort) are now computed automatically inside <code><a href="../reference/bamp.html">bamp()</a></code> and stored in the returned object (<code>model$effects</code>), so a separate call to <code><a href="../reference/effects.apc.html">effects.apc()</a></code> is no longer needed for the default median summary.</li>
 <li>Fixed bug in <code><a href="../reference/effects.apc.html">effects.apc()</a></code>: cache check was looking for <code>x$effect</code> (singular) instead of <code>x$effects</code> (plural), and referenced an undefined variable in the cache condition.</li>
 <li>MCMC chains now use warm starts: on a restart the previous sample values are used as initial values, reducing burn-in time for automatic convergence checking. First-run behaviour is unchanged.</li>
@@ -114,11 +133,11 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Volker Schmid.</p>
+  <p>Developed by Volker Schmid, Chris Kypridemos.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

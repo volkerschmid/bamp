@@ -1,6 +1,62 @@
 # Changelog
 
+## bamp 3.0.0
+
+Major release. The Polya-Gamma sampler and its native C engine, and the
+identifiability-aware convergence diagnostics in this release were
+contributed by Chris Kypridemos.
+
+- New Polya-Gamma Gibbs sampler (`method = "pg"`, now the default): a
+  joint Polya-Gamma data-augmentation sampler with exact full
+  conditionals and no Metropolis tuning. Supports overdispersion,
+  age/period/cohort heterogeneity and period/cohort covariates natively.
+  The legacy Taylor sampler remains available via `method = "taylor"`.
+- Native C implementation of the Polya-Gamma sampler (`pg_engine = "C"`,
+  the default) with an equivalent pure-R reference (`pg_engine = "R"`);
+  the two agree to numerical tolerance.
+- `mcmc.options` values `number_of_iterations`, `burn_in` and `step` may
+  now be set to `"auto"` (the default), which chooses the MCMC length
+  from the rarity of the data. Any value given as a number is used
+  exactly as before.
+- New `prior_scale` argument for `method = "pg"`.
+- [`checkConvergence()`](https://volkerschmid.github.io/bamp/reference/checkConvergence.md)
+  now assesses the identified quantities (smoothing precisions,
+  intercept and the fitted linear predictor per Lexis cell), which are
+  invariant to the age-period-cohort trend aliasing, rather than the raw
+  effect chains that drift along the non-identified trend.
+- [`effects.apc()`](https://volkerschmid.github.io/bamp/reference/effects.apc.md)
+  and
+  [`plot.apc()`](https://volkerschmid.github.io/bamp/reference/plot.apc.md)
+  gain a `convention` argument that fixes the non-identified linear
+  trend to a chosen display gauge, making the effect curves reproducible
+  between runs;
+  [`plot.apc()`](https://volkerschmid.github.io/bamp/reference/plot.apc.md)
+  also handles any number of quantiles and zero-covariate models.
+- Fixed `predict_apc(periods = 0)` crash (downward-sequence off-by-one).
+- Fixed
+  [`predict_apc()`](https://volkerschmid.github.io/bamp/reference/predict_apc.md)
+  logit overflow: use
+  [`plogis()`](https://rdrr.io/r/stats/Logistic.html) instead of
+  `exp(x)/(1+exp(x))`, which returned `NaN` for large forecast logits
+  and crashed downstream.
+- Fixed
+  [`bamp()`](https://volkerschmid.github.io/bamp/reference/bamp.md):
+  `age`/`period`/`cohort = NULL` is now accepted (previously errored
+  with “argument is of length zero”).
+- Fixed
+  [`predict_apc()`](https://volkerschmid.github.io/bamp/reference/predict_apc.md):
+  age-period models without a cohort effect can now be predicted, and
+  non-integer population/exposure no longer produces `NA`.
+- `bamp(..., method = "pg")`: a chain that fails under forked
+  parallelism
+  ([`parallel::mclapply`](https://rdrr.io/r/parallel/mclapply.html)) now
+  reports its actual error instead of the opaque “subscript out of
+  bounds” that resulted from silently indexing into the failed chain’s
+  result.
+
 ## bamp 2.2.0
+
+CRAN release: 2026-06-21
 
 - Effects (age, period, cohort) are now computed automatically inside
   [`bamp()`](https://volkerschmid.github.io/bamp/reference/bamp.md) and

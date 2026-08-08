@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">bamp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,7 @@
                         <h4 data-toc-skip class="author">Volker
 Schmid</h4>
             
-            <h4 data-toc-skip class="date">2026-06-21</h4>
+            <h4 data-toc-skip class="date">2026-08-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/volkerschmid/bamp/blob/HEAD/vignettes/largevignettes/prediction.Rmd" class="external-link"><code>vignettes/largevignettes/prediction.Rmd</code></a></small>
       <div class="d-none name"><code>prediction.Rmd</code></div>
@@ -68,26 +68,39 @@ Schmid</h4>
 <div class="section level2">
 <h2 id="prediction">Prediction<a class="anchor" aria-label="anchor" href="#prediction"></a>
 </h2>
-<p>Using the prior assumption of a random walk for the period and cohort
-effect, one can predict cases for upcoming years.</p>
-<p>Here, we use the included data example.</p>
+<p>Because period and cohort effects are modelled as random walks, they
+can be extrapolated as a continuation of these trends, which lets
+<code><a href="../../reference/predict_apc.html">predict_apc()</a></code> forecast cases for years beyond the observed
+data. For a first introduction to <code><a href="../../reference/bamp.html">bamp()</a></code>, see
+<em>vignette(“bamp”, package=“bamp”)</em>; for other model
+specifications, see <em>vignette(“modeling”, package=“bamp”)</em>.</p>
+<p>We use the bundled data example, which covers ten years:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">apc</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cases</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,type<span class="op">=</span><span class="st">"l"</span>,ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">cases</span><span class="op">)</span>, ylab<span class="op">=</span><span class="st">"cases"</span>, xlab<span class="op">=</span><span class="st">"year"</span>, main<span class="op">=</span><span class="st">"cases per age group"</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">cases</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span>, col<span class="op">=</span><span class="va">i</span><span class="op">)</span></span></code></pre></div>
 <p><img src="prediction_files/figure-html/loadplot-1.png" class="r-plt" alt="" width="700"></p>
-<p>We us only nine years and predict the last year.</p>
+<p>To see how well the forecast holds up against real data, we fit the
+model on only the first nine years and predict the tenth, so it can be
+compared to the cases actually observed that year.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model0</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/bamp.html">bamp</a></span><span class="op">(</span><span class="va">cases</span><span class="op">[</span><span class="op">-</span><span class="fl">10</span>,<span class="op">]</span>, <span class="va">population</span><span class="op">[</span><span class="op">-</span><span class="fl">10</span>,<span class="op">]</span>, age<span class="op">=</span><span class="st">"rw1"</span>, period<span class="op">=</span><span class="st">"rw1"</span>, cohort<span class="op">=</span><span class="st">"rw1"</span>,</span>
 <span>              periods_per_agegroup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<p><code><a href="../../reference/predict_apc.html">predict_apc()</a></code> extends the fitted model by the given
+number of periods. With <code>update = TRUE</code> the forecast is
+merged back into <code>model0</code> (as <code>model0$predicted</code>)
+instead of being returned as a separate object:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model0</span><span class="op">&lt;-</span><span class="fu"><a href="../../reference/predict_apc.html">predict_apc</a></span><span class="op">(</span>object<span class="op">=</span><span class="va">model0</span>, periods<span class="op">=</span><span class="fl">1</span>, population<span class="op">=</span><span class="va">population</span>, update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>Plot of predicted cases with credible intervals and true data</p>
+<p>The forecast for year 10 (dashed lines: 90% credible interval; solid
+line: median) lines up well with the true total cases (points), which
+were held out of the fit:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/ts.plot.html" class="external-link">ts.plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">model0</span><span class="op">$</span><span class="va">predicted</span><span class="op">$</span><span class="va">cases_period</span><span class="op">)</span>, lty<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">cases</span>,<span class="fl">1</span>,<span class="va">sum</span><span class="op">)</span>, pch<span class="op">=</span><span class="fl">19</span><span class="op">)</span></span></code></pre></div>
 <p><img src="prediction_files/figure-html/unnamed-chunk-1-1.png" class="r-plt" alt="" width="700"></p>
-<p>Plot period and cohort effects including prediction of year 10.</p>
+<p>The same credible intervals extend the period and cohort effects
+themselves into year 10:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/ts.plot.html" class="external-link">ts.plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">model0</span><span class="op">$</span><span class="va">predicted</span><span class="op">$</span><span class="va">period</span><span class="op">)</span>, lty<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="prediction_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="" width="700"></p>
@@ -102,11 +115,11 @@ effect, one can predict cases for upcoming years.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Volker Schmid.</p>
+  <p>Developed by Volker Schmid, Chris Kypridemos.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

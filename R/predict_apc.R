@@ -73,7 +73,7 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
       # innovation sd of the extrapolated random walk. The RW precision `lambda`
       # is the multiplier on the (possibly Sorbye-Rue scaled) structure matrix
       # `scale * K`, so the innovation variance is 1/(lambda*scale). `scale` is 1
-      # for the unscaled prior (method="iwls", or prior_scale=FALSE) and equals
+      # for the unscaled prior (method="taylor", or prior_scale=FALSE) and equals
       # the Sorbye-Rue factor when the fit used prior_scale=TRUE -- without it the
       # forecast noise is too large by sqrt(scale) and long-horizon bands explode.
       sdi <- 1/sqrt(lambda * scale)
@@ -126,7 +126,7 @@ predict_apc<-function(object, periods=0, population=NULL, quantiles=c(0.05,0.5,0
                 rw2 = 2
     )
     ## Sorbye-Rue scale used for the period prior at fit time (n1 periods, order
-    ## rwp). 1 when the fit did not scale, so iwls / prior_scale=FALSE are exact.
+    ## rwp). 1 when the fit did not scale, so taylor / prior_scale=FALSE are exact.
     s_p<-if(isTRUE(object$model$prior_scale)) .pg_scale(.pg_Kmat(n1, rwp), rwp) else 1
     ch<-length(object$samples$period)
       prep<-parallel::mclapply(1:ch, function(i,samples)cbind(object$samples$period_parameter[[i]],object$samples$period[[i]]), samples)

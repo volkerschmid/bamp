@@ -14,8 +14,8 @@ This is a major release, adding a new default MCMC engine and several bug fixes:
 * New Polya-Gamma Gibbs sampler (`method = "pg"`, now the default): a joint
   data-augmentation sampler with exact full conditionals and no Metropolis
   tuning. Supports overdispersion, age/period/cohort heterogeneity and
-  period/cohort covariates natively. The legacy IWLS sampler remains
-  available via `method = "iwls"`.
+  period/cohort covariates natively. The legacy Taylor expansion proposal sampler remains
+  available via `method = "taylor"`.
 * Native C implementation of the Polya-Gamma sampler (`pg_engine = "C"`,
   the default) with an equivalent pure-R reference (`pg_engine = "R"`).
 * `mcmc.options` values `number_of_iterations`, `burn_in` and `step` may now

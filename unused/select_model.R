@@ -34,7 +34,7 @@
 #' \code{screen} MCMC settings; the selected model is then optionally refitted
 #' (\code{refit = TRUE}) with the longer \code{final} settings before being
 #' returned. Fitting uses \code{method = "pg"}, which is robust on the sparse,
-#' rare-event data where the legacy IWLS sampler can fail to converge.
+#' rare-event data where the legacy Taylor sampler can fail to converge.
 #'
 #' Pin an axis to exclude it from the search by passing a fixed value: e.g.
 #' \code{age = "rw2"} fixes the age effect (it is not searched), \code{age = " "}

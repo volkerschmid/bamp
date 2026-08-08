@@ -2,6 +2,7 @@ library(bamp)
 
 data(apc)
 
+load("/Users/volkerschmid/projects/Apc-Full-vs-Empirical-Bayes--R.Inla/nord_data_prepare/data/nordcan_processed/nordcan_apc_sets.rds")
 t1 <- proc.time()
 model1 <- bamp(cases, population, age = "rw1", period = "rw1", cohort = "rw1",
                periods_per_agegroup = 5)

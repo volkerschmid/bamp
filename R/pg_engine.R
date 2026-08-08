@@ -177,7 +177,7 @@
   ## linear predictor, with precision zeta ~ Gamma(z_hyper). Under PG both have
   ## closed-form conditionals (Gaussian for delta, Gamma for zeta). Only the
   ## scalar precision is stored (the cell effects are re-sampled at predict time),
-  ## matching the iwls output contract.
+  ## matching the taylor output contract.
   has_od <- isTRUE(overdisp)
   zeta <- z_hyper[1] / z_hyper[2]
   delta_ij <- matrix(0, I, J)
@@ -536,7 +536,7 @@
                                        overdisp = overdisp, z_hyper = z_hyper, het = het,
                                        cov_p = cov_p, cov_c = cov_c, engine = engine)
   ## Honour a numeric `parallel` as the requested number of cores (matching the
-  ## iwls path, where cores <- parallel); a bare TRUE means getOption('mc.cores').
+  ## taylor path, where cores <- parallel); a bare TRUE means getOption('mc.cores').
   ## Capped at the number of chains. Previously cores were hard-capped at 2, so
   ## parallel=4 ran 4 chains on only 2 cores and PG wall-clock was ~2x inflated.
   want_par <- isTRUE(parallel) || (is.numeric(parallel) && parallel > 1)

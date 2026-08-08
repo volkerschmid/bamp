@@ -21,7 +21,7 @@ bamp(
   dic = TRUE,
   parallel = TRUE,
   verbose = FALSE,
-  method = c("pg", "iwls"),
+  method = c("pg", "taylor"),
   prior_scale = FALSE,
   pg_engine = c("C", "R")
 )
@@ -45,7 +45,7 @@ bamp(
 
 \item{periods_per_agegroup}{periods per age group}
 
-\item{mcmc.options}{list of options for MCMC. \itemize{\item number_of_iterations: number of iterations per chain. \item burn_in: number of iterations used as burnin at the beginning of the algorithm, these iterations will be removed. \item step: Step size, so only every step-th iteration is stored. \item tuning: number of iterations for automatic tuning (used by \code{method="iwls"}). Depending on the model, the MCMC algorithm will tune certain parameters for more efficient MCMC chains. After tuning, the algorithm is restarted.} Each of \code{number_of_iterations}, \code{burn_in} and \code{step} may be a number or the string \code{"auto"} (the default). \code{"auto"} chooses the value from the data: rare or zero-heavy counts (whose rare-event cells mix more slowly) get more iterations (from 40000 for well-populated data up to 120000 when almost every cell is empty or has very few events), \code{burn_in} defaults to half the iterations, and \code{step} is set to keep about 1000 stored samples per chain. Any value given as a number is used exactly as supplied, so explicit settings reproduce the previous behaviour.}
+\item{mcmc.options}{list of options for MCMC. \itemize{\item number_of_iterations: number of iterations per chain. \item burn_in: number of iterations used as burnin at the beginning of the algorithm, these iterations will be removed. \item step: Step size, so only every step-th iteration is stored. \item tuning: number of iterations for automatic tuning (used by \code{method="taylor"}). Depending on the model, the MCMC algorithm will tune certain parameters for more efficient MCMC chains. After tuning, the algorithm is restarted.} Each of \code{number_of_iterations}, \code{burn_in} and \code{step} may be a number or the string \code{"auto"} (the default). \code{"auto"} chooses the value from the data: rare or zero-heavy counts (whose rare-event cells mix more slowly) get more iterations (from 40000 for well-populated data up to 120000 when almost every cell is empty or has very few events), \code{burn_in} defaults to half the iterations, and \code{step} is set to keep about 1000 stored samples per chain. Any value given as a number is used exactly as supplied, so explicit settings reproduce the previous behaviour.}
 
 \item{hyperpar}{list of hyper parameters. The hyper prior for the precision (inverse variance) in the random walk priors is a Gamma distribution with parameters \eqn{a} and \eqn{b}; expected value is \eqn{a/b}, variance is \eqn{a/b^2}. Weak hyper parameters are suggested, defaults are \eqn{a=1, b=0.5} for age, \eqn{a=1, b=0.0005} for period and cohort effects and \eqn{a=1, b=0.05} for overdispersion (if added). It is recommended to choose the hyper priors depending on the model, in particular on the order of the random walk.}
 
@@ -57,7 +57,7 @@ chains). Uses the \code{parallel} package: forked workers
 (\code{\link[parallel]{mclapply}}) on Unix and macOS, and -- for
 \code{method = "pg"} -- a PSOCK cluster on Windows (where forking is
 unavailable), so the default engine now runs in parallel on all platforms.
-(The legacy \code{method = "iwls"} engine still runs serially on Windows.)
+(The legacy \code{method = "taylor"} engine still runs serially on Windows.)
 Parallel runs are reproducible: the per-chain seeds are drawn in the main
 process, so a given \code{set.seed()} yields the same result serially or in
 parallel.}
@@ -78,8 +78,8 @@ heterogeneity (\code{"rw1+het"}/\code{"rw2+het"}), overdispersion and
 period/cohort covariates. The Polya-Gamma weights use a normal approximation
 that is essentially exact for the large population counts of
 incidence/mortality data, so it typically needs far fewer iterations than the
-legacy sampler. \code{"iwls"} is the original block Metropolis-Hastings
-sampler with IWLS proposals (the default in versions before 2.2.0); it remains
+legacy sampler. \code{"taylor"} is the original block Metropolis-Hastings
+sampler with taylor expansion proposals (the default in versions 2.x); it remains
 available and can be faster on well-behaved (non rare-event) data, but it can
 fail to converge or prune all chains on sparse/zero-cell data.}
 
@@ -88,7 +88,7 @@ the intrinsic random-walk structure matrices are scaled to unit generalised
 variance (Sorbye & Rue 2014) so that a single hyper-prior is comparable
 across random-walk orders, grid sizes and data sets. The default is
 \code{FALSE}, which keeps the same prior parameterisation (and the same
-default hyper-parameters) as \code{method="iwls"}; if you set it to
+default hyper-parameters) as \code{method="taylor"}; if you set it to
 \code{TRUE} you should choose hyper-parameters appropriate for the scaled
 prior. See \sQuote{Scaling the random-walk priors} below for the rationale
 and benefits, and the examples for a short demonstration.}
@@ -99,7 +99,7 @@ for a given seed, produce the same draws to floating-point tolerance; the
 \code{"C"} engine is a compiled port of the inner loop (no extra package
 dependency) and is roughly twice as fast. \code{"R"} is the readable
 reference implementation, kept for verification. Ignored for
-\code{method="iwls"}.}
+\code{method="taylor"}.}
 }
 \description{
 Bayesian Age-Period-Cohort Modeling for the analyze of incidence or mortality data on the Lexis diagram.
@@ -156,7 +156,7 @@ an interpretable scale and are unchanged.
 
 The default is \code{prior_scale = FALSE} so that \code{method = "pg"}
 reproduces the prior parameterisation (and default \code{hyperpar}) of the
-legacy \code{method = "iwls"} engine. If you turn scaling on you should set
+legacy \code{method = "taylor"} engine. If you turn scaling on you should set
 \code{hyperpar} for the scaled prior, where \eqn{\kappa \approx
 1/\mathrm{variance}}; using the unscaled defaults with \code{prior_scale =
 TRUE} would impose a different (and probably unintended) amount of smoothing.

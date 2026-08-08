@@ -5,8 +5,8 @@ Major release. The Polya-Gamma sampler and its native C engine, and the identifi
 * New Polya-Gamma Gibbs sampler (`method = "pg"`, now the default): a joint
   Polya-Gamma data-augmentation sampler with exact full conditionals and no
   Metropolis tuning. Supports overdispersion, age/period/cohort heterogeneity
-  and period/cohort covariates natively. The legacy IWLS sampler remains
-  available via `method = "iwls"`.
+  and period/cohort covariates natively. The legacy Taylor sampler remains
+  available via `method = "taylor"`.
 * Native C implementation of the Polya-Gamma sampler (`pg_engine = "C"`,
   the default) with an equivalent pure-R reference (`pg_engine = "R"`);
   the two agree to numerical tolerance.
