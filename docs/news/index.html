@@ -44,12 +44,15 @@
 <code><a href="../reference/checkConvergence.html">checkConvergence()</a></code> now assesses the identified quantities (smoothing precisions, intercept and the fitted linear predictor per Lexis cell), which are invariant to the age-period-cohort trend aliasing, rather than the raw effect chains that drift along the non-identified trend.</li>
 <li>
 <code><a href="../reference/effects.apc.html">effects.apc()</a></code> and <code><a href="../reference/plot.apc.html">plot.apc()</a></code> gain a <code>convention</code> argument that fixes the non-identified linear trend to a chosen display gauge, making the effect curves reproducible between runs; <code><a href="../reference/plot.apc.html">plot.apc()</a></code> also handles any number of quantiles and zero-covariate models.</li>
+<li>
+<code><a href="../reference/print.apc.html">print.apc()</a></code> now also reports the intercept (5%/50%/95% quantiles).</li>
 <li>Fixed <code>predict_apc(periods = 0)</code> crash (downward-sequence off-by-one).</li>
 <li>Fixed <code><a href="../reference/predict_apc.html">predict_apc()</a></code> logit overflow: use <code><a href="https://rdrr.io/r/stats/Logistic.html" class="external-link">plogis()</a></code> instead of <code>exp(x)/(1+exp(x))</code>, which returned <code>NaN</code> for large forecast logits and crashed downstream.</li>
 <li>Fixed <code><a href="../reference/bamp.html">bamp()</a></code>: <code>age</code>/<code>period</code>/<code>cohort = NULL</code> is now accepted (previously errored with “argument is of length zero”).</li>
 <li>Fixed <code><a href="../reference/predict_apc.html">predict_apc()</a></code>: age-period models without a cohort effect can now be predicted, and non-integer population/exposure no longer produces <code>NA</code>.</li>
 <li>
 <code>bamp(..., method = "pg")</code>: a chain that fails under forked parallelism (<code><a href="https://rdrr.io/r/parallel/mclapply.html" class="external-link">parallel::mclapply</a></code>) now reports its actual error instead of the opaque “subscript out of bounds” that resulted from silently indexing into the failed chain’s result.</li>
+<li>Fixed <code><a href="../reference/bamp.html">bamp()</a></code>’s convergence warning being tied to <code>verbose</code> backwards: it now prints the “did not converge” message when <code>verbose = TRUE</code> and stays silent when <code>verbose = FALSE</code>, as intended.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.2.0" id="bamp-220">bamp 2.2.0<a class="anchor" aria-label="anchor" href="#bamp-220"></a></h2><p class="text-muted">CRAN release: 2026-06-21</p>

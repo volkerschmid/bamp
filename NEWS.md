@@ -23,6 +23,7 @@ Major release. The Polya-Gamma sampler and its native C engine, DIC-based `selec
   non-identified linear trend to a chosen display gauge, making the effect
   curves reproducible between runs; `plot.apc()` also handles any number of
   quantiles and zero-covariate models.
+* `print.apc()` now also reports the intercept (5%/50%/95% quantiles).
 * Fixed `predict_apc(periods = 0)` crash (downward-sequence off-by-one).
 * Fixed `predict_apc()` logit overflow: use `plogis()` instead of
   `exp(x)/(1+exp(x))`, which returned `NaN` for large forecast logits and
@@ -35,6 +36,9 @@ Major release. The Polya-Gamma sampler and its native C engine, DIC-based `selec
   (`parallel::mclapply`) now reports its actual error instead of the opaque
   "subscript out of bounds" that resulted from silently indexing into the
   failed chain's result.
+* Fixed `bamp()`'s convergence warning being tied to `verbose` backwards: it
+  now prints the "did not converge" message when `verbose = TRUE` and stays
+  silent when `verbose = FALSE`, as intended.
 
 # bamp 2.2.0
 

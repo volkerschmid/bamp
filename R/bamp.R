@@ -1010,7 +1010,10 @@ deviance<-coda::as.mcmc.list(deviance)
  #     return(ksi)
  #   }
  
- checkConvergence(output, auto=verbose)
+ ## auto=TRUE suppresses checkConvergence()'s own "did not converge" cat();
+ ## that should happen when bamp() is silent (verbose=FALSE), not the other
+ ## way around, so this is the negation of verbose, not verbose itself.
+ checkConvergence(output, auto=!verbose)
 
  output$ksi=ksi
  output <- effects.apc(output, update=TRUE)

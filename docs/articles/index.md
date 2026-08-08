@@ -15,7 +15,7 @@
 
 - [Publications](https://volkerschmid.github.io/bamp/articles/publications/publications.md):
 
-### Standalone version (old)
+### Standalone version (legacy)
 
 - [BAMP standalone
   version](https://volkerschmid.github.io/bamp/articles/standaloneversion/index.md):

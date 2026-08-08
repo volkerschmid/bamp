@@ -194,7 +194,7 @@ if (FALSE) {
 
   selectModel(dat$cases,dat$population,periods_per_agegroup = dat$periods_per_agegroup, screen = list(number_of_iterations = 10000, burn_in = 5000,
                                           step = 5, tuning = 200), dic_margin = 0.1)
-  bamp(dat$cases,dat$population,"rw1+het","rw1","rw1",periods_per_agegroup = dat$periods_per_agegroup, mcmc.options = list(number_of_iterations = 10000, burn_in = 5000,
+  b=bamp(dat$cases,dat$population,"rw1+het","rw1","rw1",periods_per_agegroup = dat$periods_per_agegroup, mcmc.options = list(number_of_iterations = 10000, burn_in = 5000,
                                           step = 5, tuning = 200))
   selectModel(dat$cases,dat$population,periods_per_agegroup = dat$periods_per_agegroup, screen = list(number_of_iterations = 10000, burn_in = 5000,
                                           step = 5, tuning = 200), dic_margin = 0.1, try_heterogeneity = TRUE)

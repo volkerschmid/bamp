@@ -31,6 +31,7 @@ This is a major release, adding a new default MCMC engine and several bug fixes:
   non-identified linear trend to a chosen display gauge, making the effect
   curves reproducible between runs; `plot.apc()` also handles any number of
   quantiles and zero-covariate models.
+* `print.apc()` now also reports the intercept (5%/50%/95% quantiles).
 * Fixed `predict_apc(periods = 0)` crash (downward-sequence off-by-one).
 * Fixed `predict_apc()` logit overflow (`plogis()` instead of
   `exp(x)/(1+exp(x))`, which returned `NaN` for large forecast logits).
@@ -39,6 +40,9 @@ This is a major release, adding a new default MCMC engine and several bug fixes:
   population/exposure.
 * `bamp(..., method = "pg")` now surfaces the real error message from a
   failed MCMC chain instead of an opaque "subscript out of bounds".
+* Fixed `bamp()`'s convergence warning being tied to `verbose` backwards
+  (it now prints on `verbose = TRUE` and stays silent on `verbose = FALSE`,
+  as intended).
 
 ## Downstream dependencies
 

@@ -37,6 +37,8 @@ were contributed by Chris Kypridemos.
   between runs;
   [`plot.apc()`](https://volkerschmid.github.io/bamp/reference/plot.apc.md)
   also handles any number of quantiles and zero-covariate models.
+- [`print.apc()`](https://volkerschmid.github.io/bamp/reference/print.apc.md)
+  now also reports the intercept (5%/50%/95% quantiles).
 - Fixed `predict_apc(periods = 0)` crash (downward-sequence off-by-one).
 - Fixed
   [`predict_apc()`](https://volkerschmid.github.io/bamp/reference/predict_apc.md)
@@ -58,6 +60,11 @@ were contributed by Chris Kypridemos.
   reports its actual error instead of the opaque “subscript out of
   bounds” that resulted from silently indexing into the failed chain’s
   result.
+- Fixed
+  [`bamp()`](https://volkerschmid.github.io/bamp/reference/bamp.md)’s
+  convergence warning being tied to `verbose` backwards: it now prints
+  the “did not converge” message when `verbose = TRUE` and stays silent
+  when `verbose = FALSE`, as intended.
 
 ## bamp 2.2.0
 

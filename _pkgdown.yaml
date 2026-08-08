@@ -57,9 +57,7 @@ reference:
 
 home:
   links:
-  - text: "BAMP standalone version"
-    href: http://volkerschmid.github.io/bamp/articles/standaloneversion
   - text: "Volker Schmid"
     href: https://volkerschmid.de
   - text: "Bioimaging group"
-    href: http://www.bioimg.statistik.uni-muenchen.de
+    href: https://www.stat.lmu.de/bayss

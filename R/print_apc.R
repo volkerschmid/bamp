@@ -65,7 +65,7 @@ print.apc<-function(x, ...)
 
   interceptpar <- quantile(unlist(x$samples$intercept), c(.05,.5,.95))
 
-  cat("\n","Intercept:", paste0(rep(" ",6)))
+  cat("\n","Effects:", paste0(rep(" ",6)))
   cat(format(names(interceptpar),width=12))
   cat("\n")
   cat("intercept", paste0(rep(" ",7)))
