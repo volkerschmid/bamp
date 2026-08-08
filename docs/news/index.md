@@ -2,9 +2,11 @@
 
 ## bamp 3.0.0
 
-Major release. The Polya-Gamma sampler and its native C engine, and the
-identifiability-aware convergence diagnostics in this release were
-contributed by Chris Kypridemos.
+Major release. The Polya-Gamma sampler and its native C engine,
+DIC-based
+[`selectModel()`](https://volkerschmid.github.io/bamp/reference/selectModel.md),
+and the identifiability-aware convergence diagnostics in this release
+were contributed by Chris Kypridemos.
 
 - New Polya-Gamma Gibbs sampler (`method = "pg"`, now the default): a
   joint Polya-Gamma data-augmentation sampler with exact full
@@ -18,6 +20,9 @@ contributed by Chris Kypridemos.
   now be set to `"auto"` (the default), which chooses the MCMC length
   from the rarity of the data. Any value given as a number is used
   exactly as before.
+- New
+  [`selectModel()`](https://volkerschmid.github.io/bamp/reference/selectModel.md):
+  automatic APC model selection by DIC.
 - New `prior_scale` argument for `method = "pg"`.
 - [`checkConvergence()`](https://volkerschmid.github.io/bamp/reference/checkConvergence.md)
   now assesses the identified quantities (smoothing precisions,

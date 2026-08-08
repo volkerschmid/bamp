@@ -12,7 +12,7 @@
   Epidemiologie. PhD Thesis,
   München.](https://edoc.ub.uni-muenchen.de/3000/)
 
-- [Beruzini, C., D. Clayton (1994): Bayesian Analysis of Survival on
+- [Berzuini, C., D. Clayton (1994): Bayesian Analysis of Survival on
   Multiple Time Scales. Statistics in Medicine, 13,
   823-838](https://doi.org/10.1002/sim.4780130804)
 
@@ -53,7 +53,7 @@
 - [Shu-Zheng Liu, Fang Zhang, Pei-Liang Quan, Jian-Bang Lu, Zhi-Cai Liu,
   Xi-Bin Sun (2012): Time Trends of Esophageal Cancer Mortality in
   Linzhou City During the Period 1988-2010 and a Bayesian Approach
-  Projection for 2020. Asian Paci c J Cancer Prev, 13:9,
+  Projection for 2020. Asian Pacific J Cancer Prev, 13:9,
   4501-4504.](https://doi.org/10.7314/APJCP.2012.13.9.4501)
 - [Guzman Castillo M, Gillespie DOS, Allen K, Bandosz P, Schmid V,
   Capewell S, et al.: Future Declines of Coronary Heart Disease
@@ -99,7 +99,7 @@
   Jun Kobayashi (2018). Gender Differences in Projected Life Expectancy
   in Japan (2023–2047). Determined by Bayesian Age-Period-Cohort
   Analysis. Nippon Eiseigaku Zasshi (Japanese Journal of Hygiene), 73:3,
-  Pages 338-353,.](https://doi.org/10.1265/jjh.73.33)
+  Pages 338-353.](https://doi.org/10.1265/jjh.73.33)
 - [Yirui Zhai, Zhouguang Hui, Wanqing Chen, Jianming Ying, Junling Li,
   Shugeng Gao (2020). The Epidemic of Malignant Mesothelioma in China: A
   Prediction of Incidence During 2016-2030. Preprints with The Lancet,
@@ -115,8 +115,8 @@
   Health, 12:04093.](http://dx.doi.org/10.7189/jogh.12.04093)
 - [Sakakibara, A, Nakayama, T, Uchida, H, et al. Trends and future
   projections of cervical cancer-related outcomes in Japan: What happens
-  if the HPV vaccine program is not implemented? Int J Cancer. 2022; 1-
-  12.](http://dx.doi.org/10.1002/ijc.34391)
+  if the HPV vaccine program is not implemented? Int J Cancer. 2022;
+  1-12.](http://dx.doi.org/10.1002/ijc.34391)
 - [Jinwei Chen, Yikun Chang, Yueqian Wu, Hui Tang, Gonghua Wu, Jie Sun,
   Pengyu Wang, Yuantao Hao, Wangjian Zhang, Zhicheng Du, Trends,
   Age-Period-Cohort Effects, and Projections in the Incidence and

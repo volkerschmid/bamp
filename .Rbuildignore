@@ -26,3 +26,5 @@ vignettes/standaloneversion/
 ^src/.*\.so$
 ^data-raw$
 ^pkgdown$
+^cache$
+^figure$

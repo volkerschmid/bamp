@@ -33,11 +33,12 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="3.0.0" id="bamp-300">bamp 3.0.0<a class="anchor" aria-label="anchor" href="#bamp-300"></a></h2>
-<p>Major release. The Polya-Gamma sampler and its native C engine, and the identifiability-aware convergence diagnostics in this release were contributed by Chris Kypridemos.</p>
+<p>Major release. The Polya-Gamma sampler and its native C engine, DIC-based <code><a href="../reference/selectModel.html">selectModel()</a></code>, and the identifiability-aware convergence diagnostics in this release were contributed by Chris Kypridemos.</p>
 <ul><li>New Polya-Gamma Gibbs sampler (<code>method = "pg"</code>, now the default): a joint Polya-Gamma data-augmentation sampler with exact full conditionals and no Metropolis tuning. Supports overdispersion, age/period/cohort heterogeneity and period/cohort covariates natively. The legacy Taylor sampler remains available via <code>method = "taylor"</code>.</li>
 <li>Native C implementation of the Polya-Gamma sampler (<code>pg_engine = "C"</code>, the default) with an equivalent pure-R reference (<code>pg_engine = "R"</code>); the two agree to numerical tolerance.</li>
 <li>
 <code>mcmc.options</code> values <code>number_of_iterations</code>, <code>burn_in</code> and <code>step</code> may now be set to <code>"auto"</code> (the default), which chooses the MCMC length from the rarity of the data. Any value given as a number is used exactly as before.</li>
+<li>New <code><a href="../reference/selectModel.html">selectModel()</a></code>: automatic APC model selection by DIC.</li>
 <li>New <code>prior_scale</code> argument for <code>method = "pg"</code>.</li>
 <li>
 <code><a href="../reference/checkConvergence.html">checkConvergence()</a></code> now assesses the identified quantities (smoothing precisions, intercept and the fitted linear predictor per Lexis cell), which are invariant to the age-period-cohort trend aliasing, rather than the raw effect chains that drift along the non-identified trend.</li>

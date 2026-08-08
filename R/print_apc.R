@@ -61,6 +61,19 @@ print.apc<-function(x, ...)
   cat("\n Model:\n");
   cat(paste0(settings,"\n"))
   
+  ## Intercept
+
+  interceptpar <- quantile(unlist(x$samples$intercept), c(.05,.5,.95))
+
+  cat("\n","Intercept:", paste0(rep(" ",6)))
+  cat(format(names(interceptpar),width=12))
+  cat("\n")
+  cat("intercept", paste0(rep(" ",7)))
+  cat(format(interceptpar,digits = 3, width=12,trim=FALSE,nsmall=3))
+  cat("\n")
+  cat("\n")
+    
+
   ## Deviance
   
   cat(paste0("Deviance: ", format(x$deviance$mean.deviance,digits = 2,nsmall = 2, width=10,trim=FALSE),"\n"))
@@ -73,7 +86,7 @@ print.apc<-function(x, ...)
   perpar <- quantile(unlist(x$samples$period_parameter), c(.05,.5,.95))
   cohpar <- quantile(unlist(x$samples$cohort_parameter), c(.05,.5,.95))
   if(x$model$overdispersion)overdisp <- quantile(unlist(x$samples$overdispersion), c(.05,.5,.95))
-  
+
   cat("\n","Hyper parameters:")
   cat(paste0(rep(" ",9)))
   cat(format(names(agepar),width=12))

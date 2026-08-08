@@ -10,6 +10,8 @@
   : Simulate from age-period-cohort model
 - [`predict_apc()`](https://volkerschmid.github.io/bamp/reference/predict_apc.md)
   : Prediction for age-period-cohort models
+- [`selectModel()`](https://volkerschmid.github.io/bamp/reference/selectModel.md)
+  : Automatic model selection for age-period-cohort models
 
 ## apc S3 class
 

@@ -76,8 +76,7 @@ like the bundled `apc` data example:
 
 ## Recovering the effects with `bamp()`
 
-We fit the same first-order random-walk model used throughout the other
-vignettes to the simulated data:
+We fit a second-order random-walk (RW2) model to the simulated data:
 
 `simmod`` ``<-`` `[`bamp`](https://volkerschmid.github.io/bamp/reference/bamp.md)`(``cases ``=`` ``simdata``$``cases``, population ``=`` ``simdata``$``population``, age ``=`` ``"rw2"``,`` ``period ``=`` ``"rw2"``, cohort ``=`` ``"rw2"``, periods_per_agegroup ``=``periods_per_agegroup``)`
 

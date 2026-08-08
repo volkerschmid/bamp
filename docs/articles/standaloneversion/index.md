@@ -1,7 +1,7 @@
 # BAMP standalone version
 
-BAMP is available as standalone version (version 1.3). The standalone
-version no longer actively developed.
+This site provides the legacy standalone version 1.3 of BAMP. It is no
+longer supported and only provided for historic reasons.
 
 ## Downloads
 
@@ -25,10 +25,10 @@ If you want to use your own ini-files, you have to use a MS-DOS-console:
 
 > bamp ini-file
 
-Please be sure, that the file cygwin1.dll is in the same folder as
+Please be sure that the file cygwin1.dll is in the same folder as
 bamp.exe.
 
-We recommend to convert bamp.ini to unix format using \[dos2unix\] after
+We recommend converting bamp.ini to unix format using \[dos2unix\] after
 editing the file with WordPad. Unpack dos2unix to the bamp folder. After
 editing and saving bamp.ini, drop the bamp.ini file on the dos2unix
 icon. After this, BAMP should run smoothly on all Windows versions.
@@ -89,7 +89,7 @@ calculate the deviance for the predicted periods.
 | cancer data | Path + File of number of deaths |
 | population data | Path + File of population number |
 | output folder | Path of Folder for output files |
-| temp folder | Path of Folder for temporarily files |
+| temp folder | Path of Folder for temporary files |
 | output file | File for general output; 0 = console |
 | dataorder | 1 if data for one period is in a row, 0 if in a column |
 | number of agegroups | Number of agegroups |

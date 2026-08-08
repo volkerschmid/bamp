@@ -30,7 +30,7 @@ articles:
   - title: "Publications"
     contents:
     - publications/publications
-  - title: "Standalone version (old)"
+  - title: "Standalone version (legacy)"
     contents:
     - standaloneversion/index
 
@@ -41,6 +41,7 @@ reference:
       - checkConvergence
       - apcSimulate
       - predict_apc
+      - selectModel
 - title: "apc S3 class"
   contents:
       - apc

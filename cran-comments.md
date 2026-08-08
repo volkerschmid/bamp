@@ -21,13 +21,16 @@ This is a major release, adding a new default MCMC engine and several bug fixes:
 * `mcmc.options` values `number_of_iterations`, `burn_in` and `step` may now
   be set to `"auto"` (the default), choosing the MCMC length from the
   rarity of the data.
+* New `selectModel()`: automatic APC model selection by DIC.
 * New `prior_scale` argument for `method = "pg"`.
 * `checkConvergence()` now assesses identified quantities (smoothing
   precisions, intercept, fitted linear predictor per Lexis cell) instead of
   the raw effect chains, which drift along the non-identified
   age-period-cohort trend.
 * `effects.apc()` and `plot.apc()` gain a `convention` argument fixing the
-  non-identified linear trend to a chosen display gauge.
+  non-identified linear trend to a chosen display gauge, making the effect
+  curves reproducible between runs; `plot.apc()` also handles any number of
+  quantiles and zero-covariate models.
 * Fixed `predict_apc(periods = 0)` crash (downward-sequence off-by-one).
 * Fixed `predict_apc()` logit overflow (`plogis()` instead of
   `exp(x)/(1+exp(x))`, which returned `NaN` for large forecast logits).

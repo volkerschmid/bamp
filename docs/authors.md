@@ -27,8 +27,8 @@ modeling and prediction. Journal of Statistical Software 21 (2007). DOI
 prediction}, author = {Volker Schmid and Leonhard Held}, journal =
 {Journal of Statistical Software}, year = {2007}, volume = {21}, }
 
-Volker J. Schmid (2026). bamp: Bayesian age-period-cohort modeling and
-prediction. R package version 3.0.0.
+Volker J. Schmid et al. (2026). bamp: Bayesian age-period-cohort
+modeling and prediction. R package version 3.0.0.
 https://volkerschmid.github.io/bamp/
 
 @Manual{, title = {{bamp}: Bayesian age-period-cohort modeling and

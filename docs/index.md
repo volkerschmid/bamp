@@ -20,42 +20,47 @@ cohort effect and to analyze a age-period model. Additional unstructured
 prior distributions are assumed for each pixel in the Lexis diagram.
 Note that there is a nonidentifiability in the likelihood of the
 APC-model, see [Clayton and Schifflers
-(1987)](https://doi.org/10.1002/sim.4780060406), which indices some
-problems in interpreting the latent effects. Only for RW1 model, the
-parameters are (weakly) identifiable.
+(1987)](https://doi.org/10.1002/sim.4780060406), which induces some
+problems in interpreting the latent effects. The RW1 model is (weakly)
+identifiable; for the full RW2 model,
+[`effects.apc()`](https://volkerschmid.github.io/bamp/reference/effects.apc.md)/[`plot.apc()`](https://volkerschmid.github.io/bamp/reference/plot.apc.md)
+provide a `convention` argument that fixes the non-identified linear
+trend to a chosen display gauge, making the effect curves interpretable
+and reproducible between runs.
 
-BAMP has several features which are described more detailed in
-[Knorr-Held and Rainer
-(2001)](https://doi.org/10.1093/biostatistics/2.1.109):
+BAMP covers a range of models:
 
-- The data does not need to be on the same grid, for example period can
-  be in one year intervals and age group in five year intervals.
-- BAMP allows for prediction of the future number of cases
-- BAMP allows for a retrospective prediction for model checking
+- AP and AC models,
+- models with and without global heterogeneity parameter
+  (overdispersion),
+- models with additional age, period and/or cohort heterogeneity,
+- models including covariates in the period or cohort effect,
 
-Additionally to the model described in [Knorr-Held and Rainer
-(2001)](https://doi.org/10.1093/biostatistics/2.1.109), BAMP can
-handle - AP and AC models - models with and without global heterogenity
-parameter (overdispersion) - models with additional age, period and/or
-cohort heterogenity - including covariates (still in development) Detail
-about this feature can be found in [Schmid (2004 - in
-German)](https://edoc.ub.uni-muenchen.de/3000/)
+The package includes features like
+
+- data does not need to be on the same grid for age groups and periods,
+  for example period can be in one year intervals and age group in five
+  year intervals,
+- prediction of future rates and number of cases,
+- retrospective prediction for model checking,
+- automatic model selection based on DIC
+  ([`selectModel()`](https://volkerschmid.github.io/bamp/reference/selectModel.md)).
+
+Since version 3.0.0, BAMP uses a Polya-Gamma Gibbs sampler
+(`method = "pg"`, the default), a joint data-augmentation sampler with
+exact full conditionals and no Metropolis tuning; the legacy
+Taylor-expansion sampler remains available via `method = "taylor"`.
 
 There are some graphical routines available in order to
 
-- plot estimated age, period and cohort effects (only for RW1 model)
+- plot estimated age, period and cohort effects
 - compare observed and fitted rates
 - predict rates
 - assess the “significance” of the unstructured parameters. This helps
   to identify variation in the data, which is not supported by the age,
   period and cohort parameters.
 
-## BAMP old version (1.3)
-
-[Find the older standalone version
-here.](https://volkerschmid.github.io/bamp/articles/standaloneversion/)
-
-## BAMP R package (2.1)
+## BAMP R package
 
 [The bamp R package is available on
 CRAN.](https://CRAN.R-project.org/package=bamp)

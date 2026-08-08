@@ -54,6 +54,10 @@ selection):
     ## 
     ##  Model:
     ## age (rw1)  - period (rw1)  - cohort (rw1) model
+    ## 
+    ##  Intercept:            5%           50%          95%         
+    ## intercept                   -10.511      -10.446      -10.387
+    ## 
     ## Deviance:     230.12
     ## pD:            36.60
     ## DIC:          266.72

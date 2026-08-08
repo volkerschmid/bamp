@@ -78,8 +78,7 @@ print(simdata$cases)
 
 ## Recovering the effects with `bamp()`
 
-We fit the same first-order random-walk model used throughout the other
-vignettes to the simulated data:
+We fit a second-order random-walk (RW2) model to the simulated data:
 
 ```{r bamp}
 simmod <- bamp(cases = simdata$cases, population = simdata$population, age = "rw2",
