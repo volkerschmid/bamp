@@ -25,7 +25,7 @@ There are some graphical routines available in order to
 - plot estimated age, period and cohort effects
 - compare observed and fitted rates
 - predict rates
-- assess the "significance" of the unstructured parameters. This helps to identify variation in the data, which is not supported by the age, period and cohort parameters.
+- assess the pointwise credible intervals of the unstructured parameters. This helps to identify variation in the data, which is not supported by the age, period and cohort parameters.
 
 ## BAMP R package
 
